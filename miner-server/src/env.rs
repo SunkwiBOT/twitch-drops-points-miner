@@ -2,6 +2,7 @@ use std::net::{IpAddr, SocketAddr};
 use std::path::{Path, PathBuf};
 
 use anyhow::{bail, Context};
+use ipnet::IpNet;
 use url::Url;
 
 use crate::access::{Access, HTTPS};
@@ -21,6 +22,7 @@ const VAULT_PASSPHRASE: &str = "MINER_VAULT_PASSPHRASE";
 const TRUSTED_HOPS: &str = "MINER_TRUSTED_HOPS";
 const TRUSTED_HOPS_DEFAULT: usize = 1;
 const TRUSTED_HOPS_MAX: usize = 10;
+const PROXY_NETWORKS: &str = "MINER_PROXY_NETWORKS";
 
 pub struct ServerEnv {
     pub data_dir: PathBuf,
@@ -66,6 +68,10 @@ impl ServerEnv {
         let public_url = set(PUBLIC_URL)
             .map(|url| parse_public_url(&url).context(PUBLIC_URL))
             .transpose()?;
+        let proxy_networks = match set(PROXY_NETWORKS) {
+            Some(networks) => parse_proxy_networks(&networks)?,
+            None => Vec::new(),
+        };
 
         let Some(password) = password else {
             bail!("{PASSWORD} is required (or {PASSWORD}{FILE_SUFFIX}): the dashboard never runs without a password");
@@ -83,6 +89,7 @@ impl ServerEnv {
                 url,
                 password,
                 trusted_hops,
+                proxy_networks,
             },
         };
 
@@ -138,6 +145,23 @@ fn parse_trusted_hops(value: &str) -> anyhow::Result<usize> {
             "{TRUSTED_HOPS} must be a whole number from 1 to {TRUSTED_HOPS_MAX}, got {value:?}"
         ),
     }
+}
+
+// ! A bare address is a network of one.
+fn parse_proxy_networks(value: &str) -> anyhow::Result<Vec<IpNet>> {
+    value
+        .split([',', ' ', '\n', '\t'])
+        .filter(|part| !part.is_empty())
+        .map(|part| {
+            part.parse::<IpNet>()
+                .or_else(|_| part.parse::<IpAddr>().map(IpNet::from))
+                .map_err(|_| {
+                    anyhow::anyhow!(
+                        "{PROXY_NETWORKS}: {part:?} is not an address or a network like 192.0.2.0/24 or 2001:db8::/64"
+                    )
+                })
+        })
+        .collect()
 }
 
 fn parse_public_url(value: &str) -> anyhow::Result<Url> {

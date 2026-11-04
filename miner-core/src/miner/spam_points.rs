@@ -388,7 +388,7 @@ impl SpamPoints {
             client,
         } = plan;
         let spends = self.spends(&line.record.id);
-        let (client, tally) = (&client, &line.tally);
+        let (client, tally, stop) = (&client, &line.tally, &cancel);
         let (channel_id, reward, text) = (&channel_id, &line.reward, text.as_deref());
         let (progress, count) = (&self.progress, line.count);
 
@@ -400,11 +400,26 @@ impl SpamPoints {
             &cancel,
             tally,
             || async move {
-                Answer::of(
-                    client
-                        .redeem_reward(channel_id, reward, text, move || tally.left())
-                        .await,
-                )
+                let mut left = false;
+                let sent = client
+                    .redeem_reward(channel_id, reward, text, || {
+                        // ! A request still waiting for its slot when the burst is
+                        // cancelled (page left, app stopping) stays home.
+                        left = !stop.is_cancelled();
+
+                        if left {
+                            tally.left();
+                        }
+
+                        left
+                    })
+                    .await;
+
+                if left {
+                    Answer::of(sent)
+                } else {
+                    Answer::NotSent
+                }
             },
             |done| {
                 let _ = progress.send(BurstProgress {

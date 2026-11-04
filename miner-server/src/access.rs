@@ -5,6 +5,7 @@ use std::net::{IpAddr, Ipv4Addr, Ipv6Addr};
 use std::time::Duration;
 
 use axum::http::{header, HeaderMap, HeaderName, HeaderValue, Method};
+use ipnet::IpNet;
 use miner_core::error::ErrorCode;
 use url::Url;
 
@@ -25,6 +26,7 @@ pub enum Access {
         url: Url,
         password: String,
         trusted_hops: usize,
+        proxy_networks: Vec<IpNet>,
     },
 }
 
@@ -94,8 +96,18 @@ impl Access {
     pub fn admit(&self, headers: &HeaderMap, socket: IpAddr) -> Result<IpAddr, ErrorCode> {
         match self {
             Self::Local { .. } => Ok(socket),
-            Self::Public { trusted_hops, .. } => {
-                if !from_local_network(socket) {
+            Self::Public {
+                trusted_hops,
+                proxy_networks,
+                ..
+            } => {
+                let proxy = socket.to_canonical();
+
+                if !from_local_network(proxy)
+                    && !proxy_networks
+                        .iter()
+                        .any(|network| network.contains(&proxy))
+                {
                     return Err(ErrorCode::ProxyNotLocal);
                 }
 

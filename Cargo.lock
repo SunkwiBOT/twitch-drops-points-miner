@@ -2741,6 +2741,7 @@ dependencies = [
  "base64 0.22.1",
  "futures-util",
  "hex",
+ "ipnet",
  "mime_guess",
  "miner-core",
  "rand 0.9.5",

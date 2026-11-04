@@ -57,6 +57,9 @@ fn read_recent(store: &Store) -> Result<Vec<MinerEvent>> {
 // ! Twitch's search suggests nothing under this many letters.
 const SEARCH_MIN_CHARS: usize = 2;
 const SEARCH_MAX_CHARS: usize = 60;
+// ! Twitch logins are 4 to 25 characters long: shorter text is only a
+// fragment, not worth reading apart.
+const LOGIN_MIN_CHARS: usize = 4;
 
 const MANUAL_REFRESH_GAP: Duration = Duration::from_secs(300);
 const CATALOG_CACHE_KEY: &str = "catalog_cache";
@@ -1513,21 +1516,26 @@ impl Manager {
 
         let fragment: String = query.chars().take(SEARCH_MAX_CHARS).collect();
         let http = self.http();
-        let (games, channels) = crate::twitch::search::suggestions(&http, &fragment).await?;
-        let exact = match crate::util::normalize_login(query) {
-            Some(login) if !channels.iter().any(|channel| channel.login == login) => {
-                // ! Only an extra: a failed read leaves the suggestions as they are.
-                crate::twitch::channels::lookup_public(&http, &login)
-                    .await
-                    .ok()
-                    .flatten()
-            }
-            _ => None,
-        };
+        let exact =
+            crate::util::normalize_login(query).filter(|login| login.len() >= LOGIN_MIN_CHARS);
+        let (suggested, read) = tokio::join!(
+            crate::twitch::search::suggestions(&http, &fragment),
+            async {
+                match &exact {
+                    // ! Only an extra: a failed read leaves the suggestions as they are.
+                    Some(login) => crate::twitch::channels::lookup_public(&http, login)
+                        .await
+                        .ok()
+                        .flatten(),
+                    None => None,
+                }
+            },
+        );
+        let (games, channels) = suggested?;
 
         Ok(crate::api::SearchResponse {
             games,
-            channels: crate::twitch::search::exact_first(channels, exact),
+            channels: crate::twitch::search::exact_first(channels, read),
         })
     }
 

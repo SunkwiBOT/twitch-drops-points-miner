@@ -182,6 +182,8 @@ pub enum Answer {
     Taken,
     Refused(String),
     Failed(ErrorCode),
+    // ! Cancelled while it waited for a free slot: it never left.
+    NotSent,
 }
 
 impl Answer {
@@ -240,6 +242,7 @@ fn add_once<T: PartialEq>(list: &mut Vec<T>, item: T) {
 struct Counted {
     started: u32,
     left: u32,
+    held_back: u32,
     result: BurstResult,
 }
 
@@ -261,9 +264,11 @@ impl Tally {
 
     pub fn answer(&self, answer: Answer) -> u32 {
         let mut counted = self.lock();
+        let counted = &mut *counted;
         let result = &mut counted.result;
 
         match answer {
+            Answer::NotSent => counted.held_back += 1,
             Answer::Taken => result.sent += 1,
             Answer::Refused(code) => {
                 result.refused += 1;
@@ -281,7 +286,9 @@ impl Tally {
     fn finished(&self, count: u32) -> BurstResult {
         let mut counted = self.lock();
 
-        counted.result.cancelled = count.saturating_sub(counted.started);
+        counted.result.cancelled = count
+            .saturating_sub(counted.started)
+            .saturating_add(counted.held_back);
 
         counted.result.clone()
     }

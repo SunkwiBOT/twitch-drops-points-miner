@@ -33,4 +33,5 @@ reqwest = { workspace = true }
 sha2 = { workspace = true }
 hex = { workspace = true }
 url = { workspace = true }
+ipnet = { workspace = true }
 semver = { workspace = true }

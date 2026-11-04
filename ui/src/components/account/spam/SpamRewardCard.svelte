@@ -170,12 +170,12 @@
               {t.spam_redeeming({ done: sending.done, total: sending.total })}
             {:else}
               {t.spam_redeem()}
-              <span
-                class="inline-flex items-center gap-1 border-l border-primary-foreground/40 pl-2 font-semibold tabular-nums"
-                ><Icon name={IconName.CHANNEL_POINTS} size={13} />{number(
-                  reward.cost * quantity,
-                )}</span
-              >
+              {#if !free}<span
+                  class="inline-flex items-center gap-1 border-l border-primary-foreground/40 pl-2 font-semibold tabular-nums"
+                  ><Icon name={IconName.CHANNEL_POINTS} size={13} />{number(
+                    reward.cost * quantity,
+                  )}</span
+                >{/if}
             {/if}
           </Button>
         {/snippet}

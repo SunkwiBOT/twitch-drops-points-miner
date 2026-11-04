@@ -291,6 +291,7 @@ docker compose up -d
 | `MINER_PASSWORD_FILE` | 无 | 从文件读取 `MINER_PASSWORD`，例如 Docker secret。两者只能设置其一。 |
 | `MINER_PUBLIC_URL` | 无 | 仅在 HTTPS 反向代理（Caddy、nginx、Traefik、Cloudflare Tunnel……）之后使用：仪表盘的 `https://` 地址，不带路径，例如 `https://miner.example.com`。代理必须转发 `X-Forwarded-Proto`、`X-Forwarded-For` 和 websocket（常见的代理默认都会这样做），并且容器的端口不能被直接访问。这样一来，仪表盘会拒绝一切不是经由代理通过 HTTPS 发来的请求，并在某个地址输错 5 次密码后将其封锁 30 秒。代理必须运行在同一台机器或其局域网中：来自公网地址的连接会被拒绝。 |
 | `MINER_TRUSTED_HOPS` | `1` | 仅配合 `MINER_PUBLIC_URL` 使用：会向 `X-Forwarded-For` 添加条目的代理数量，取值 1 到 10。两层代理前后相连时（例如 Cloudflare 位于 Traefik 之前）设为 `2`。 |
+| `MINER_PROXY_NETWORKS` | 无 | 仅与 `MINER_PUBLIC_URL` 一起使用：除本机及其私有局域网外，代理还可从哪些网络连接，用逗号分隔：单个地址或类似 `2001:db8:1::/64` 的网络，适用于 IPv6 地址为公网地址的局域网。 |
 | `MINER_VAULT_PASSPHRASE` | 无 | 仅用于从设置了应用密码的桌面应用复制过来的数据文件夹：在启动时将其解锁。从零搭建的服务器永远不需要它。 |
 | `MINER_VAULT_PASSPHRASE_FILE` | 无 | 从文件读取 `MINER_VAULT_PASSPHRASE`。两者只能设置其一。 |
 | `DATA_DIR` | 镜像中为 `/data`，否则为工作目录下的 `data` | 数据库、密钥文件和日志。 |

@@ -291,6 +291,7 @@ docker compose up -d
 | `MINER_PASSWORD_FILE` | なし | `MINER_PASSWORD` をファイルから読み込みます（Docker secret など）。どちらか一方だけを設定してください。 |
 | `MINER_PUBLIC_URL` | なし | HTTPS リバースプロキシ（Caddy、nginx、Traefik、Cloudflare Tunnel など）の背後に置く場合のみ：ダッシュボードの `https://` アドレス。パスは含めず、`https://miner.example.com` のように指定します。プロキシは `X-Forwarded-Proto`、`X-Forwarded-For`、websocket を転送する必要があり（一般的なプロキシは既定でそうします）、コンテナーのポートに直接アクセスできてはいけません。これにより、ダッシュボードはプロキシを経由した HTTPS 以外のアクセスをすべて拒否し、パスワードを 5 回間違えたアドレスを 30 秒間ブロックします。プロキシは同じマシンかそのローカルネットワーク上で動かす必要があり、パブリックアドレスからの接続は拒否されます。 |
 | `MINER_TRUSTED_HOPS` | `1` | `MINER_PUBLIC_URL` を使う場合のみ：`X-Forwarded-For` にエントリを追加するプロキシの数（1〜10）。プロキシを 2 段に重ねる場合（Traefik の前に Cloudflare など）は `2` です。 |
+| `MINER_PROXY_NETWORKS` | なし | `MINER_PUBLIC_URL` と併用する場合のみ：このマシンとそのプライベートなローカルネットワーク以外に、プロキシの接続を許可するネットワーク。カンマ区切りで、単一のアドレスか `2001:db8:1::/64` のようなネットワークを指定します（IPv6 アドレスがグローバルなローカルネットワーク向け）。 |
 | `MINER_VAULT_PASSPHRASE` | なし | アプリのパスワードを設定したデスクトップアプリからコピーしたデータフォルダ専用です。起動時にロックを解除します。一から構築したサーバーでは必要ありません。 |
 | `MINER_VAULT_PASSPHRASE_FILE` | なし | `MINER_VAULT_PASSPHRASE` をファイルから読み込みます。どちらか一方だけを設定してください。 |
 | `DATA_DIR` | イメージ内では `/data`、それ以外は作業ディレクトリの `data` | データベース、鍵ファイル、ログ。 |

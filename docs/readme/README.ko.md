@@ -291,6 +291,7 @@ docker compose up -d
 | `MINER_PASSWORD_FILE` | 없음 | `MINER_PASSWORD`를 파일에서 읽어요(예: Docker secret). 둘 중 하나만 설정하세요. |
 | `MINER_PUBLIC_URL` | 없음 | HTTPS 리버스 프록시(Caddy, nginx, Traefik, Cloudflare Tunnel 등) 뒤에 둘 때만 써요. 대시보드의 `https://` 주소로, 경로 없이 `https://miner.example.com`처럼 써요. 프록시는 `X-Forwarded-Proto`, `X-Forwarded-For`, 웹소켓을 전달해야 하고(흔히 쓰는 프록시는 기본으로 그렇게 해요), 컨테이너의 포트에 직접 접속할 수 없어야 해요. 그러면 대시보드는 프록시를 거쳐 HTTPS로 들어오지 않은 접속을 모두 거부하고, 비밀번호를 5번 틀린 주소를 30초 동안 차단해요. 프록시는 같은 기기나 그 로컬 네트워크에서 실행해야 해요. 공인 주소에서 온 연결은 거부돼요. |
 | `MINER_TRUSTED_HOPS` | `1` | `MINER_PUBLIC_URL`을 쓸 때만: `X-Forwarded-For`에 항목을 추가하는 프록시 수로, 1~10이에요. 프록시 두 개가 앞뒤로 놓여 있으면(예: Traefik 앞에 Cloudflare) `2`예요. |
+| `MINER_PROXY_NETWORKS` | 없음 | `MINER_PUBLIC_URL`과 함께일 때만: 이 기기와 그 사설 로컬 네트워크 외에 프록시가 접속할 수 있는 다른 네트워크를 쉼표로 구분해 지정해요. 단일 주소나 `2001:db8:1::/64` 같은 네트워크로, IPv6 주소가 글로벌인 로컬 네트워크에 써요. |
 | `MINER_VAULT_PASSPHRASE` | 없음 | 앱 비밀번호를 설정한 데스크톱 앱에서 복사한 데이터 폴더에만 필요해요. 시작할 때 잠금을 해제해요. 처음부터 새로 만든 서버에는 필요 없어요. |
 | `MINER_VAULT_PASSPHRASE_FILE` | 없음 | `MINER_VAULT_PASSPHRASE`를 파일에서 읽어요. 둘 중 하나만 설정하세요. |
 | `DATA_DIR` | 이미지에서는 `/data`, 그 외에는 작업 디렉터리의 `data` | 데이터베이스, 키 파일, 로그. |

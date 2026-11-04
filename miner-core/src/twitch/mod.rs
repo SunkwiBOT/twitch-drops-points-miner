@@ -125,23 +125,25 @@ impl TwitchHttp {
         token: Option<&str>,
         body: &Value,
     ) -> Result<Value> {
-        self.post_gql_leaving(account_id, operation, token, body, || {})
+        self.post_gql_leaving(account_id, operation, token, body, || true)
             .await
     }
 
     // ! `leaving` runs once the request has its slot: from there it may reach
-    // Twitch, before that it never left.
+    // Twitch, before that it never left. `false` keeps it from leaving at all.
     pub async fn post_gql_leaving(
         &self,
         account_id: Option<&str>,
         operation: &str,
         token: Option<&str>,
         body: &Value,
-        leaving: impl FnOnce(),
+        leaving: impl FnOnce() -> bool,
     ) -> Result<Value> {
         let _permit = self.permit().await;
 
-        leaving();
+        if !leaving() {
+            return Err(Error::InvalidRequest("held back before it left".to_owned()));
+        }
 
         let pending = self
             .requests
@@ -236,7 +238,7 @@ impl TwitchClient {
         &self,
         operation: Operation,
         variables: Value,
-        leaving: impl FnOnce(),
+        leaving: impl FnOnce() -> bool,
     ) -> Result<Value> {
         let token = self.token.read().await.clone();
         let sent = self

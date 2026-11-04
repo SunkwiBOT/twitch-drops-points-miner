@@ -33,7 +33,7 @@ impl TwitchClient {
         channel_id: &str,
         reward: &SpamReward,
         text: Option<&str>,
-        leaving: impl FnOnce(),
+        leaving: impl FnOnce() -> bool,
     ) -> Result<Option<String>> {
         let mut input = json!({
             "channelID": channel_id,
