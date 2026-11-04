@@ -999,6 +999,7 @@
   "spam_pick_title": "Wähle einen Kanal",
   "spam_pick_text": "Hier erscheinen seine eigenen Belohnungen, mit dem Guthaben dieses Kontos auf dem Kanal.",
   "spam_balance": "Kanalpunkte-Guthaben: {points}",
+  "spam_balance_unlimited": "Unbegrenzte Kanalpunkte: Auf deinem eigenen Kanal zieht Twitch keine Punkte ab",
   "spam_balance_changed": "aktualisiert {time}",
   "spam_balance_live_hint": "Wird alle 2 bis 3 s neu gelesen, solange diese Seite offen ist. Die Zeit ist die der letzten Änderung des Guthabens.",
   "spam_balance_paused": "Verfolgung pausiert",

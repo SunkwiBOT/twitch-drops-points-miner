@@ -11,10 +11,11 @@
     balance: number;
     changedAt: string;
     tracking: BalanceTracking;
+    free: boolean;
     now: number;
   };
 
-  let { balance, changedAt, tracking, now }: SpamBalancePropsType = $props();
+  let { balance, changedAt, tracking, free, now }: SpamBalancePropsType = $props();
 
   const live = $derived(tracking === BalanceTracking.LIVE);
 
@@ -34,10 +35,11 @@
   <span
     class="inline-flex items-center gap-1.5 text-xl leading-tight font-semibold tabular-nums"
     role="img"
-    aria-label={t.spam_balance({ points: number(balance) })}
-    ><span class="text-link"><Icon name={IconName.CHANNEL_POINTS} size={18} /></span>{number(
-      balance,
-    )}</span
+    aria-label={free ? t.spam_balance_unlimited() : t.spam_balance({ points: number(balance) })}
+    ><span class="text-link"><Icon name={IconName.CHANNEL_POINTS} size={18} /></span>{#if free}<Icon
+        name={IconName.INFINITY}
+        size={22}
+      />{:else}{number(balance)}{/if}</span
   >
   <Tip text={BALANCE_HINTS[tracking]()}>
     {#snippet children(props)}

@@ -50,6 +50,7 @@
         live: channel?.live === true,
         balance: entry.balance,
         in_points: entry.in_points,
+        own: entry.login === account.login,
       };
     }),
   );

@@ -999,6 +999,7 @@
   "spam_pick_title": "Scegli un canale",
   "spam_pick_text": "Qui compaiono i suoi premi personalizzati, con il saldo di questo account sul canale.",
   "spam_balance": "Saldo punti canale: {points}",
+  "spam_balance_unlimited": "Punti canale illimitati: sul tuo canale Twitch non ne scala nessuno",
   "spam_balance_changed": "aggiornato {time}",
   "spam_balance_live_hint": "Riletto ogni 2-3 s finché questa pagina è aperta. L'ora è quella dell'ultima variazione del saldo.",
   "spam_balance_paused": "monitoraggio in pausa",

@@ -881,6 +881,7 @@
   "spam_pick_title": "Bir kanal seç",
   "spam_pick_text": "Kanalın özel ödülleri, bu hesabın kanaldaki bakiyesiyle birlikte burada görünür.",
   "spam_balance": "Kanal puanı bakiyesi: {points}",
+  "spam_balance_unlimited": "Sınırsız kanal puanı: Twitch kendi kanalında puan düşmez",
   "spam_balance_changed": "güncellendi: {time}",
   "spam_balance_live_hint": "Bu sayfa açıkken 2–3 saniyede bir yeniden okunur. Saat, bakiyenin son değiştiği andır.",
   "spam_balance_paused": "takip duraklatıldı",

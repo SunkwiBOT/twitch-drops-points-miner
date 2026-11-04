@@ -73,6 +73,7 @@ export const ICON_PATHS: Record<IconName, string> = {
   [IconName.TARGET]:
     "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z",
   [IconName.ZAP]: "M13 2 3 14h9l-1 8 10-12h-9l1-8z",
+  [IconName.INFINITY]: "M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8",
   [IconName.STAR]:
     "m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z",
   [IconName.FLAME]:

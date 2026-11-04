@@ -985,6 +985,7 @@
   "spam_pick_title": "Valitse kanava",
   "spam_pick_text": "Kanavan omat palkinnot näkyvät tässä, ja niiden kanssa tämän tilin saldo kanavalla.",
   "spam_balance": "Kanavapisteiden saldo: {points}",
+  "spam_balance_unlimited": "Rajattomasti kanavapisteitä: Twitch ei ota pisteitä omalla kanavallasi",
   "spam_balance_changed": "päivitetty {time}",
   "spam_balance_live_hint": "Luetaan uudelleen 2–3 sekunnin välein, kun tämä sivu on auki. Aika on saldon viimeisimmän muutoksen.",
   "spam_balance_paused": "seuranta keskeytetty",

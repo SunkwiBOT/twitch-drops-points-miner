@@ -1013,6 +1013,7 @@
   "spam_pick_title": "Choisissez une chaîne",
   "spam_pick_text": "Ses récompenses personnalisées s'affichent ici, avec le solde de ce compte sur la chaîne.",
   "spam_balance": "Solde de points de chaîne : {points}",
+  "spam_balance_unlimited": "Points de chaîne illimités : Twitch n'en prend aucun sur votre propre chaîne",
   "spam_balance_changed": "mis à jour {time}",
   "spam_balance_live_hint": "Relu toutes les 2 à 3 s tant que cette page est ouverte. L'heure est celle du dernier changement du solde.",
   "spam_balance_paused": "suivi en pause",

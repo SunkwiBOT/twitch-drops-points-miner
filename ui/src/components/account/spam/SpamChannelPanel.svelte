@@ -252,6 +252,7 @@
           balance={balance.current.balance}
           changedAt={balance.current.changed_at}
           tracking={balance.tracking}
+          free={channel.login === account.login}
           {now}
         />
       {/if}

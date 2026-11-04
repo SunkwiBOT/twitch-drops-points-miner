@@ -839,6 +839,7 @@
   "spam_pick_title": "Chọn một kênh",
   "spam_pick_text": "Phần thưởng tùy chỉnh của kênh hiện ở đây, cùng số dư của tài khoản này trên kênh.",
   "spam_balance": "Số dư điểm kênh: {points}",
+  "spam_balance_unlimited": "Điểm kênh không giới hạn: Twitch không trừ điểm trên kênh của chính bạn",
   "spam_balance_changed": "cập nhật {time}",
   "spam_balance_live_hint": "Đọc lại mỗi 2–3 giây khi trang này đang mở. Thời gian là lúc số dư thay đổi lần cuối.",
   "spam_balance_paused": "tạm dừng theo dõi",

@@ -839,6 +839,7 @@
   "spam_pick_title": "Pilih channel",
   "spam_pick_text": "Hadiah kustom channel tampil di sini, beserta saldo akun ini di channel tersebut.",
   "spam_balance": "Saldo poin channel: {points}",
+  "spam_balance_unlimited": "Poin channel tanpa batas: Twitch tidak mengambil poin di channel milikmu sendiri",
   "spam_balance_changed": "diperbarui {time}",
   "spam_balance_live_hint": "Dibaca ulang setiap 2–3 detik selama halaman ini terbuka. Waktunya adalah perubahan saldo terakhir.",
   "spam_balance_paused": "pemantauan dijeda",

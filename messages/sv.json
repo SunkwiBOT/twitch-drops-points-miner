@@ -1013,6 +1013,7 @@
   "spam_pick_title": "Välj en kanal",
   "spam_pick_text": "Här visas kanalens egna belöningar, med kontots saldo på kanalen.",
   "spam_balance": "Saldo av kanalpoäng: {points}",
+  "spam_balance_unlimited": "Obegränsade kanalpoäng: Twitch drar inga poäng på din egen kanal",
   "spam_balance_changed": "uppdaterad {time}",
   "spam_balance_live_hint": "Läses om var 2–3 s medan sidan är öppen. Tiden är saldots senaste ändring.",
   "spam_balance_paused": "bevakning pausad",

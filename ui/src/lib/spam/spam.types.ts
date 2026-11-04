@@ -8,6 +8,7 @@ export type SpamHistoryRowType = {
   live: boolean;
   balance: number | undefined;
   in_points: boolean;
+  own: boolean;
 };
 
 export type SpamChannelType = {

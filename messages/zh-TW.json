@@ -839,6 +839,7 @@
   "spam_pick_title": "選擇一個頻道",
   "spam_pick_text": "這裡會顯示該頻道的自訂獎勵，以及此帳號在該頻道的餘額。",
   "spam_balance": "頻道點數餘額：{points}",
+  "spam_balance_unlimited": "頻道點數無限：在你自己的頻道，Twitch 不會扣除點數",
   "spam_balance_changed": "{time}更新",
   "spam_balance_live_hint": "此頁面開啟時每 2 到 3 秒重新讀取一次。時間為餘額最後一次變動的時間。",
   "spam_balance_paused": "追蹤已暫停",

@@ -1013,6 +1013,7 @@
   "spam_pick_title": "Kies een kanaal",
   "spam_pick_text": "Hier verschijnen de eigen beloningen, met het saldo van dit account op het kanaal.",
   "spam_balance": "Saldo kanaalpunten: {points}",
+  "spam_balance_unlimited": "Onbeperkt kanaalpunten: op je eigen kanaal rekent Twitch geen punten af",
   "spam_balance_changed": "bijgewerkt {time}",
   "spam_balance_live_hint": "Elke 2 tot 3 s opnieuw gelezen zolang deze pagina open is. De tijd is die van de laatste wijziging van het saldo.",
   "spam_balance_paused": "volgen gepauzeerd",

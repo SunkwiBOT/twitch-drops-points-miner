@@ -1024,6 +1024,7 @@
   "spam_pick_title": "Vyberte kanál",
   "spam_pick_text": "Zde se zobrazí jeho vlastní odměny spolu se zůstatkem tohoto účtu na kanálu.",
   "spam_balance": "Zůstatek bodů kanálu: {points}",
+  "spam_balance_unlimited": "Neomezené body kanálu: na vlastním kanálu si Twitch žádné body nebere",
   "spam_balance_changed": "aktualizováno {time}",
   "spam_balance_live_hint": "Načítá se znovu každé 2 až 3 s, dokud je stránka otevřená. Čas je čas poslední změny zůstatku.",
   "spam_balance_paused": "sledování pozastaveno",

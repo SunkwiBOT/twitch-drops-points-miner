@@ -1013,6 +1013,7 @@
   "spam_pick_title": "Choose a channel",
   "spam_pick_text": "Its custom rewards show here, with this account's balance on the channel.",
   "spam_balance": "Channel points balance: {points}",
+  "spam_balance_unlimited": "Unlimited channel points: Twitch takes none on your own channel",
   "spam_balance_changed": "updated {time}",
   "spam_balance_live_hint": "Read again every 2 to 3 s while this page is open. The time is the balance's last change.",
   "spam_balance_paused": "tracking paused",

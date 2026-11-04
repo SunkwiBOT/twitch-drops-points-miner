@@ -839,6 +839,7 @@
   "spam_pick_title": "选择一个频道",
   "spam_pick_text": "这里会显示该频道的自定义奖励，以及此账号在该频道的余额。",
   "spam_balance": "频道点数余额：{points}",
+  "spam_balance_unlimited": "频道点数无限：在你自己的频道，Twitch 不会扣除点数",
   "spam_balance_changed": "{time}更新",
   "spam_balance_live_hint": "此页面打开时每 2 到 3 秒重新读取一次。时间为余额最后一次变化的时间。",
   "spam_balance_paused": "跟踪已暂停",

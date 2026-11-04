@@ -1013,6 +1013,7 @@
   "spam_pick_title": "Elige un canal",
   "spam_pick_text": "Aquí aparecen sus recompensas personalizadas, con el saldo de esta cuenta en el canal.",
   "spam_balance": "Saldo de puntos de canal: {points}",
+  "spam_balance_unlimited": "Puntos de canal ilimitados: Twitch no cobra puntos en tu propio canal",
   "spam_balance_changed": "actualizado {time}",
   "spam_balance_live_hint": "Se vuelve a leer cada 2 o 3 s mientras esta página está abierta. La hora es la del último cambio del saldo.",
   "spam_balance_paused": "seguimiento en pausa",

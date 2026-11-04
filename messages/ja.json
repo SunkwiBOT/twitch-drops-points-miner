@@ -839,6 +839,7 @@
   "spam_pick_title": "チャンネルを選択",
   "spam_pick_text": "そのチャンネルのカスタム報酬と、このアカウントのチャンネルでの残高がここに表示されます。",
   "spam_balance": "チャンネルポイント残高：{points}",
+  "spam_balance_unlimited": "チャンネルポイント無制限：自分のチャンネルでは Twitch はポイントを消費しません",
   "spam_balance_changed": "{time}に更新",
   "spam_balance_live_hint": "このページを開いている間、2〜3 秒ごとに読み直します。時刻は残高が最後に変わった時刻です。",
   "spam_balance_paused": "追跡を一時停止中",

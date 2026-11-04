@@ -881,6 +881,7 @@
   "spam_pick_title": "Válassz csatornát",
   "spam_pick_text": "Itt jelennek meg a saját jutalmai, a fiók egyenlegével együtt a csatornán.",
   "spam_balance": "Csatornapont-egyenleg: {points}",
+  "spam_balance_unlimited": "Korlátlan csatornapont: a saját csatornádon a Twitch nem von le pontot",
   "spam_balance_changed": "frissítve {time}",
   "spam_balance_live_hint": "2–3 másodpercenként újra beolvasva, amíg az oldal nyitva van. Az időpont az egyenleg utolsó változásáé.",
   "spam_balance_paused": "követés szüneteltetve",

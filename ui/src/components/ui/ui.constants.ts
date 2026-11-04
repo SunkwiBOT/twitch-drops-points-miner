@@ -46,6 +46,7 @@ export enum IconName {
   TROPHY = "TROPHY",
   TARGET = "TARGET",
   ZAP = "ZAP",
+  INFINITY = "INFINITY",
   STAR = "STAR",
   FLAME = "FLAME",
   RADIO = "RADIO",

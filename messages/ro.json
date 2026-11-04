@@ -1024,6 +1024,7 @@
   "spam_pick_title": "Alege un canal",
   "spam_pick_text": "Aici apar recompensele lui personalizate, cu soldul acestui cont pe canal.",
   "spam_balance": "Soldul punctelor de canal: {points}",
+  "spam_balance_unlimited": "Puncte de canal nelimitate: pe propriul canal Twitch nu ia niciun punct",
   "spam_balance_changed": "actualizat {time}",
   "spam_balance_live_hint": "Recitit la fiecare 2–3 s cât timp pagina e deschisă. Ora este cea a ultimei schimbări a soldului.",
   "spam_balance_paused": "urmărire în pauză",

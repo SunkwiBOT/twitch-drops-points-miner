@@ -177,7 +177,13 @@
             <span class={cn("min-w-0 flex-1 truncate font-semibold", current && "text-link")}
               >{e.name}</span
             >
-            {#if e.balance !== undefined}<span
+            {#if e.own}<span
+                class="inline-flex shrink-0 items-center gap-1 text-hint font-semibold"
+                role="img"
+                aria-label={t.spam_balance_unlimited()}
+                ><span class="text-link"><Icon name={IconName.CHANNEL_POINTS} size={13} /></span
+                ><Icon name={IconName.INFINITY} size={16} /></span
+              >{:else if e.balance !== undefined}<span
                 class="inline-flex shrink-0 items-center gap-1 text-hint font-semibold tabular-nums"
                 ><span class="text-link"><Icon name={IconName.CHANNEL_POINTS} size={13} /></span
                 >{number(e.balance)}</span

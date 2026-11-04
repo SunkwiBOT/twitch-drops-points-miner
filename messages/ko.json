@@ -839,6 +839,7 @@
   "spam_pick_title": "채널을 선택하세요",
   "spam_pick_text": "채널의 사용자 지정 보상과 이 계정의 채널 잔액이 여기에 표시돼요.",
   "spam_balance": "채널 포인트 잔액: {points}",
+  "spam_balance_unlimited": "채널 포인트 무제한: 내 채널에서는 Twitch가 포인트를 차감하지 않아요",
   "spam_balance_changed": "{time} 업데이트",
   "spam_balance_live_hint": "이 페이지가 열려 있는 동안 2~3초마다 다시 읽어요. 시간은 잔액이 마지막으로 바뀐 시각이에요.",
   "spam_balance_paused": "추적 일시 중지됨",
