@@ -33,6 +33,7 @@
 <span class="flex shrink-0 flex-col items-end gap-0.5 text-right">
   <span
     class="inline-flex items-center gap-1.5 text-xl leading-tight font-semibold tabular-nums"
+    role="img"
     aria-label={t.spam_balance({ points: number(balance) })}
     ><span class="text-link"><Icon name={IconName.CHANNEL_POINTS} size={18} /></span>{number(
       balance,
@@ -40,8 +41,9 @@
   >
   <Tip text={BALANCE_HINTS[tracking]()}>
     {#snippet children(props)}
-      <span
+      <button
         {...props}
+        type="button"
         class="inline-flex cursor-help items-center gap-1.5 text-xs text-muted-foreground"
       >
         <span class="relative inline-flex size-1.5 shrink-0" aria-hidden="true">
@@ -52,7 +54,7 @@
           ></span>
         </span>
         {status}
-      </span>
+      </button>
     {/snippet}
   </Tip>
 </span>

@@ -351,9 +351,9 @@ Otevřete <http://localhost:8080> (nebo adresu stroje ve vaší síti) a zadejte
 
 | Proměnná | Výchozí | Účel |
 |---|---|---|
-| `MINER_PASSWORD` | žádná | Heslo panelu, povinné: bez něj se server odmítne spustit. Alespoň 12 znaků (kratší heslo zobrazí při startu varování). |
+| `MINER_PASSWORD` | žádná | Heslo panelu, povinné: bez něj se server odmítne spustit. Alespoň 12 znaků (kratší heslo zobrazí při startu varování). Ukázková hodnota `change-me` se odmítá. |
 | `MINER_PASSWORD_FILE` | žádná | Načte `MINER_PASSWORD` ze souboru, například z Docker secretu. Nastavte jen jednu z nich, ne obě. |
-| `MINER_PUBLIC_URL` | žádná | Jen za reverzní proxy HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel…): adresa `https://` panelu, bez cesty, například `https://miner.example.com`. Proxy musí předávat `X-Forwarded-Proto`, `X-Forwarded-For` a websockety, což běžné proxy ve výchozím stavu dělají, a port kontejneru nesmí být přímo dostupný. Panel pak odmítne vše, co nepřichází přes proxy po HTTPS, a po 5 špatných heslech zablokuje adresu na 30 sekund. |
+| `MINER_PUBLIC_URL` | žádná | Jen za reverzní proxy HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel…): adresa `https://` panelu, bez cesty, například `https://miner.example.com`. Proxy musí předávat `X-Forwarded-Proto`, `X-Forwarded-For` a websockety, což běžné proxy ve výchozím stavu dělají, a port kontejneru nesmí být přímo dostupný. Panel pak odmítne vše, co nepřichází přes proxy po HTTPS, a po 5 špatných heslech zablokuje adresu na 30 sekund. Proxy musí běžet na stejném počítači nebo v jeho místní síti: spojení z veřejné adresy se odmítá. |
 | `MINER_TRUSTED_HOPS` | `1` | Jen s `MINER_PUBLIC_URL`: kolik proxy přidává záznam do `X-Forwarded-For`, od 1 do 10. `2` se dvěma proxy za sebou, například Cloudflare před Traefikem. |
 | `MINER_VAULT_PASSPHRASE` | žádná | Jen pro složku s daty zkopírovanou z desktopové aplikace s nastaveným heslem aplikace: při startu ji odemkne. Server postavený od nuly ji nikdy nepotřebuje. |
 | `MINER_VAULT_PASSPHRASE_FILE` | žádná | Načte `MINER_VAULT_PASSPHRASE` ze souboru. Nastavte jen jednu z nich, ne obě. |

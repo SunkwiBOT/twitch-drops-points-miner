@@ -8,7 +8,7 @@ use tokio::sync::{broadcast, mpsc, watch, Notify};
 use tokio_util::sync::CancellationToken;
 
 use super::account::AccountCommand;
-use super::record_event;
+use super::record_account_event;
 use crate::api::{AccountSnapshot, RedeemRequest};
 use crate::error::{Error, Result};
 use crate::events::{EventContext, EventKind, MinerEvent};
@@ -25,6 +25,8 @@ const PROGRESS_BUFFER: usize = 256;
 
 pub(super) struct Burst {
     pub(super) account_id: String,
+    pub(super) login: String,
+    pub(super) reward_id: String,
     pub(super) cancel: CancellationToken,
     pub(super) line: Option<BurstLine>,
 }
@@ -255,10 +257,14 @@ impl SpamPoints {
         }
 
         if behind {
-            let _ = access.commands.try_send(AccountCommand::Balance {
+            let sent = access.commands.try_send(AccountCommand::Balance {
                 login: login.to_owned(),
                 balance,
             });
+
+            if let Err(mpsc::error::TrySendError::Full(_)) = sent {
+                tracing::debug!(%login, "account busy: the Points page catches up on its next read");
+            }
         }
 
         Ok(kept)
@@ -298,10 +304,22 @@ impl SpamPoints {
                 return Err(Error::InvalidRequest("burst id already running".to_owned()));
             }
 
+            // ! A page that gave up waiting frees its button while the burst may
+            // still spend: a second one on the same reward waits for its end.
+            if bursts.values().any(|burst| {
+                burst.account_id == record.id
+                    && burst.login == login
+                    && burst.reward_id == reward_id
+            }) {
+                return Err(Error::BurstRunning);
+            }
+
             bursts.insert(
                 burst_id.clone(),
                 Burst {
                     account_id: record.id.clone(),
+                    login: login.clone(),
+                    reward_id: reward_id.clone(),
                     cancel: cancel.clone(),
                     line: None,
                 },
@@ -368,7 +386,7 @@ impl SpamPoints {
             client,
         } = plan;
         let spends = self.spends(&line.record.id);
-        let client = &client;
+        let (client, tally) = (&client, &line.tally);
         let (channel_id, reward, text) = (&channel_id, &line.reward, text.as_deref());
         let (progress, count) = (&self.progress, line.count);
 
@@ -378,8 +396,14 @@ impl SpamPoints {
             count,
             delay,
             &cancel,
-            &line.tally,
-            || async move { Answer::of(client.redeem_reward(channel_id, reward, text).await) },
+            tally,
+            || async move {
+                Answer::of(
+                    client
+                        .redeem_reward(channel_id, reward, text, move || tally.left())
+                        .await,
+                )
+            },
             |done| {
                 let _ = progress.send(BurstProgress {
                     burst_id: burst_id.clone(),
@@ -478,19 +502,23 @@ fn journal_line(
     line: &BurstLine,
     result: &BurstResult,
 ) {
-    if result.cancelled >= line.count || !matches!(store.account(&line.record.id), Ok(Some(_))) {
+    if result.cancelled >= line.count {
+        return;
+    }
+
+    let written = record_account_event(
+        store,
+        events,
+        burst_event(&line.record, &line.login, &line.reward, line.count, result),
+    );
+
+    if !written {
         return;
     }
 
     if let Err(error) = store.mark_spam_used(&line.record.id, &line.login, Utc::now()) {
         tracing::warn!(%error, "Spam Points use not kept");
     }
-
-    record_event(
-        store,
-        events,
-        burst_event(&line.record, &line.login, &line.reward, line.count, result),
-    );
 }
 
 pub(super) fn burst_event(

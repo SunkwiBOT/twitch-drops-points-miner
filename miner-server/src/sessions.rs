@@ -204,7 +204,7 @@ impl Sessions {
         let wanted = hash(session);
 
         self.entries.write().await.retain(|entry| {
-            let kept = entry.hash != wanted;
+            let kept = !bool::from(entry.hash.ct_eq(&wanted));
 
             if !kept {
                 entry.revoked.cancel();

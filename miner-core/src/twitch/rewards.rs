@@ -33,6 +33,7 @@ impl TwitchClient {
         channel_id: &str,
         reward: &SpamReward,
         text: Option<&str>,
+        leaving: impl FnOnce(),
     ) -> Result<Option<String>> {
         let mut input = json!({
             "channelID": channel_id,
@@ -48,7 +49,11 @@ impl TwitchClient {
         }
 
         let response = self
-            .gql(Operation::RedeemCustomReward, json!({ "input": input }))
+            .gql_once(
+                Operation::RedeemCustomReward,
+                json!({ "input": input }),
+                leaving,
+            )
             .await?;
 
         redemption_answer(&response)
@@ -75,11 +80,21 @@ pub fn rewards_context(response: &Value) -> Result<Option<RewardsContext>> {
 
     rewards.sort_by_key(|reward| reward.cost);
 
+    let balance = match channel["self"]["communityPoints"]["balance"].as_i64() {
+        Some(balance) => balance,
+        // ! A channel without channel points has no balance and nothing to
+        // redeem; rewards without the balance would all read as too dear.
+        None if rewards.is_empty() => 0,
+        None => {
+            return Err(Error::InvalidResponse(
+                "the channel's rewards came without the viewer's balance".into(),
+            ))
+        }
+    };
+
     Ok(Some(RewardsContext {
         channel_id,
-        balance: channel["self"]["communityPoints"]["balance"]
-            .as_i64()
-            .unwrap_or(0),
+        balance,
         rewards,
     }))
 }

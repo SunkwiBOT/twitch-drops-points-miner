@@ -372,6 +372,7 @@
   "error_too_many_attempts": "Забагато неправильних паролів: спробуйте трохи згодом.",
   "error_https_required": "Відкрийте панель за її адресою HTTPS.",
   "error_forwarded_for_required": "HTTPS-проксі перед панеллю має передавати адресу відвідувача (X-Forwarded-For).",
+  "error_proxy_not_local": "Панель приймає свій HTTPS-проксі лише з цієї машини або з її локальної мережі.",
   "error_cross_site_request": "Відхилено: запит надійшов зі сторінки іншого сайту.",
   "error_update_signature_refused": "Завантаження не збігається з підписом версії: нічого не встановлено.",
   "error_update_install_failed": "Не вдалося встановити оновлення: застосунок залишається на поточній версії.",
@@ -1014,8 +1015,6 @@
   "spam_channels": "Канали",
   "spam_search_placeholder": "Знайти канал Twitch",
   "spam_search_hint": "Знайдіть будь-який канал Twitch, навіть поза вашим списком «Бали».",
-  "spam_last_used": "використано {time}",
-  "spam_never_used": "ще не використано",
   "spam_in_points": "У вашому списку «Бали»",
   "spam_in_history": "Уже у вашій історії",
   "spam_remove_history": "Прибрати з історії",
@@ -1107,6 +1106,7 @@
   "spam_no_rewards": "Зараз немає доступних нагород.",
   "error_unknown_reward": "Цієї нагороди на каналі більше немає.",
   "error_reward_not_redeemable": "Нічого не надіслано: нагороді потрібне повідомлення, вона недоступна чи перезаряджається, або не вистачає балів.",
+  "error_burst_running": "Ця нагорода ще надсилається: дочекайтеся завершення.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

@@ -364,9 +364,9 @@ adgangskoden.
 
 | Variabel | Standard | Formål |
 |---|---|---|
-| `MINER_PASSWORD` | ingen | Adgangskode til oversigten, påkrævet: serveren nægter at starte uden. Mindst 12 tegn (en kortere giver en advarsel ved start). |
+| `MINER_PASSWORD` | ingen | Adgangskode til oversigten, påkrævet: serveren nægter at starte uden. Mindst 12 tegn (en kortere giver en advarsel ved start). Eksempelværdien `change-me` afvises. |
 | `MINER_PASSWORD_FILE` | ingen | Læser `MINER_PASSWORD` fra en fil, f.eks. en Docker-secret. Den ene eller den anden, ikke begge. |
-| `MINER_PUBLIC_URL` | ingen | Kun bag en reverse proxy til HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel …): oversigtens `https://`-adresse, uden sti, f.eks. `https://miner.example.com`. Proxyen skal videresende `X-Forwarded-Proto`, `X-Forwarded-For` og websockets, hvilket almindelige proxyer gør som standard, og containerens port må ikke kunne nås direkte. Oversigten afviser så alt, der ikke kommer gennem proxyen over HTTPS, og spærrer en adresse i 30 sekunder efter 5 forkerte adgangskoder. |
+| `MINER_PUBLIC_URL` | ingen | Kun bag en reverse proxy til HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel …): oversigtens `https://`-adresse, uden sti, f.eks. `https://miner.example.com`. Proxyen skal videresende `X-Forwarded-Proto`, `X-Forwarded-For` og websockets, hvilket almindelige proxyer gør som standard, og containerens port må ikke kunne nås direkte. Oversigten afviser så alt, der ikke kommer gennem proxyen over HTTPS, og spærrer en adresse i 30 sekunder efter 5 forkerte adgangskoder. Proxyen skal køre på samme maskine eller dens lokale netværk: en forbindelse fra en offentlig adresse afvises. |
 | `MINER_TRUSTED_HOPS` | `1` | Kun med `MINER_PUBLIC_URL`: hvor mange proxyer der tilføjer en post til `X-Forwarded-For`, fra 1 til 10. `2` med to proxyer bag hinanden, f.eks. Cloudflare foran Traefik. |
 | `MINER_VAULT_PASSPHRASE` | ingen | Kun til en datamappe kopieret fra skrivebordsappen med en appadgangskode sat: låser den op ved start. En server bygget fra bunden har aldrig brug for den. |
 | `MINER_VAULT_PASSPHRASE_FILE` | ingen | Læser `MINER_VAULT_PASSPHRASE` fra en fil. Den ene eller den anden, ikke begge. |

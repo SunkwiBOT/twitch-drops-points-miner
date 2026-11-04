@@ -372,6 +372,7 @@
   "error_too_many_attempts": "Příliš mnoho špatných hesel: zkuste to za chvíli znovu.",
   "error_https_required": "Otevřete panel na jeho adrese HTTPS.",
   "error_forwarded_for_required": "Proxy HTTPS před panelem musí posílat adresu návštěvníka (X-Forwarded-For).",
+  "error_proxy_not_local": "Panel přijímá svou proxy HTTPS jen z tohoto počítače nebo jeho místní sítě.",
   "error_cross_site_request": "Odmítnuto: požadavek přišel ze stránky jiného webu.",
   "error_update_signature_refused": "Stažený soubor neodpovídá podpisu verze: nic nebylo nainstalováno.",
   "error_update_install_failed": "Aktualizaci nelze nainstalovat: aplikace zůstává na současné verzi.",
@@ -1016,8 +1017,6 @@
   "spam_channels": "Kanály",
   "spam_search_placeholder": "Hledat kanál na Twitchi",
   "spam_search_hint": "Vyhledejte jakýkoli kanál na Twitchi, i mimo váš seznam Bodů.",
-  "spam_last_used": "použito {time}",
-  "spam_never_used": "nikdy nepoužito",
   "spam_in_points": "Ve vašem seznamu Bodů",
   "spam_in_history": "Už je ve vaší historii",
   "spam_remove_history": "Odebrat z historie",
@@ -1109,6 +1108,7 @@
   "spam_no_rewards": "Momentálně není k dispozici žádná odměna.",
   "error_unknown_reward": "Tato odměna už na kanálu není.",
   "error_reward_not_redeemable": "Nic nebylo odesláno: odměna vyžaduje zprávu, není dostupná nebo se obnovuje, nebo je zůstatek příliš nízký.",
+  "error_burst_running": "Tato odměna se ještě odesílá: počkejte, až odesílání skončí.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

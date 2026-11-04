@@ -10,6 +10,7 @@ export class BalanceTracker {
   #failures = $state(0);
   #focused = $state(watched());
   #reading = false;
+  #loads = 0;
   #fetch: () => Promise<SpamBalanceType>;
 
   readonly tracking = $derived.by((): BalanceTracking => {
@@ -53,6 +54,7 @@ export class BalanceTracker {
   }
 
   loaded(balance: SpamBalanceType): void {
+    this.#loads += 1;
     this.current = balance;
     this.#failures = 0;
   }
@@ -66,8 +68,15 @@ export class BalanceTracker {
 
     this.#reading = true;
 
+    const loads = this.#loads;
+
     try {
       const read = await this.#fetch();
+
+      // ! A full reload landed meanwhile: its balance is newer than this read.
+      if (loads !== this.#loads) {
+        return;
+      }
 
       this.#failures = 0;
 

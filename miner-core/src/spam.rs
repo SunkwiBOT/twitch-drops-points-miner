@@ -67,9 +67,6 @@ pub struct SpamChannelEntry {
     pub in_points: bool,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[ts(optional)]
-    pub used_at: Option<DateTime<Utc>>,
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[ts(optional)]
     pub balance: Option<i64>,
 }
 
@@ -118,23 +115,30 @@ pub struct PointsChannel {
 
 // ! Opening a channel moves nothing: the row under the pointer stays put.
 pub fn channel_list(points: &[PointsChannel], rows: &[SpamRow]) -> Vec<SpamChannelEntry> {
+    struct Listed {
+        entry: SpamChannelEntry,
+        used_at: Option<DateTime<Utc>>,
+        added_at: Option<DateTime<Utc>>,
+        index: usize,
+    }
+
     let row = |login: &str| rows.iter().find(|row| row.login == login);
-    let mut listed: Vec<(SpamChannelEntry, Option<DateTime<Utc>>, usize)> = points
+    let mut listed: Vec<Listed> = points
         .iter()
         .enumerate()
         .map(|(index, channel)| {
             let kept = row(&channel.login);
 
-            (
-                SpamChannelEntry {
+            Listed {
+                entry: SpamChannelEntry {
                     login: channel.login.clone(),
                     in_points: true,
-                    used_at: kept.and_then(|row| row.used_at),
                     balance: channel.balance.or(kept.and_then(|row| row.balance)),
                 },
-                None,
+                used_at: kept.and_then(|row| row.used_at),
+                added_at: None,
                 index,
-            )
+            }
         })
         .collect();
 
@@ -145,33 +149,33 @@ pub fn channel_list(points: &[PointsChannel], rows: &[SpamRow]) -> Vec<SpamChann
             continue;
         }
 
-        listed.push((
-            SpamChannelEntry {
+        listed.push(Listed {
+            entry: SpamChannelEntry {
                 login: kept.login.clone(),
                 in_points: false,
-                used_at: kept.used_at,
                 balance: kept.balance,
             },
-            kept.added_at,
-            usize::MAX,
-        ));
+            used_at: kept.used_at,
+            added_at: kept.added_at,
+            index: usize::MAX,
+        });
     }
 
-    listed.sort_by(|(a, a_added, a_index), (b, b_added, b_index)| {
-        let group = |entry: &SpamChannelEntry| match (entry.used_at, entry.in_points) {
-            (Some(_), _) => 0,
-            (None, false) => 1,
-            (None, true) => 2,
-        };
+    let group = |item: &Listed| match (item.used_at, item.entry.in_points) {
+        (Some(_), _) => 0,
+        (None, false) => 1,
+        (None, true) => 2,
+    };
 
+    listed.sort_by(|a, b| {
         group(a)
             .cmp(&group(b))
             .then_with(|| b.used_at.cmp(&a.used_at))
-            .then_with(|| b_added.cmp(a_added))
-            .then_with(|| a_index.cmp(b_index))
+            .then_with(|| b.added_at.cmp(&a.added_at))
+            .then_with(|| a.index.cmp(&b.index))
     });
 
-    listed.into_iter().map(|(entry, _, _)| entry).collect()
+    listed.into_iter().map(|item| item.entry).collect()
 }
 
 pub enum Answer {
@@ -232,6 +236,7 @@ fn add_once<T: PartialEq>(list: &mut Vec<T>, item: T) {
 #[derive(Default)]
 struct Counted {
     started: u32,
+    left: u32,
     result: BurstResult,
 }
 
@@ -245,6 +250,10 @@ impl Tally {
 
     pub fn start(&self) {
         self.lock().started += 1;
+    }
+
+    pub fn left(&self) {
+        self.lock().left += 1;
     }
 
     pub fn answer(&self, answer: Answer) -> u32 {
@@ -275,14 +284,15 @@ impl Tally {
     }
 
     // ! The requests on their way when the app stops count as sent: they left,
-    // and the Journal must not hide points Twitch may still take.
+    // and the Journal must not hide points Twitch may still take. One still
+    // waiting for a slot never left: cancelled.
     pub fn interrupted(&self, count: u32) -> BurstResult {
         let counted = self.lock();
         let answered = counted.result.answered();
 
         BurstResult {
-            sent: counted.result.sent + counted.started.saturating_sub(answered),
-            cancelled: count.saturating_sub(counted.started),
+            sent: counted.result.sent + counted.left.saturating_sub(answered),
+            cancelled: count.saturating_sub(counted.left),
             ..counted.result.clone()
         }
     }

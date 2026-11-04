@@ -287,9 +287,9 @@ docker compose up -d
 
 | 變數 | 預設值 | 用途 |
 |---|---|---|
-| `MINER_PASSWORD` | 無 | 儀表板密碼，必填：沒有設定的話，伺服器會拒絕啟動。至少 12 個字元（較短的密碼會在啟動時顯示警告）。 |
+| `MINER_PASSWORD` | 無 | 儀表板密碼，必填：沒有設定的話，伺服器會拒絕啟動。至少 12 個字元（較短的密碼會在啟動時顯示警告）。範例值 `change-me` 會被拒絕。 |
 | `MINER_PASSWORD_FILE` | 無 | 從檔案讀取 `MINER_PASSWORD`，例如 Docker secret。兩者只能擇一設定。 |
-| `MINER_PUBLIC_URL` | 無 | 僅在 HTTPS 反向代理伺服器（Caddy、nginx、Traefik、Cloudflare Tunnel……）後方使用：儀表板的 `https://` 位址，不含路徑，例如 `https://miner.example.com`。代理伺服器必須轉送 `X-Forwarded-Proto`、`X-Forwarded-For` 和 websocket（常見的代理伺服器預設都會這麼做），而且容器的連接埠不能被直接連到。如此一來，儀表板會拒絕一切不是經由代理伺服器透過 HTTPS 送來的請求，並在某個位址輸錯 5 次密碼後將其封鎖 30 秒。 |
+| `MINER_PUBLIC_URL` | 無 | 僅在 HTTPS 反向代理伺服器（Caddy、nginx、Traefik、Cloudflare Tunnel……）後方使用：儀表板的 `https://` 位址，不含路徑，例如 `https://miner.example.com`。代理伺服器必須轉送 `X-Forwarded-Proto`、`X-Forwarded-For` 和 websocket（常見的代理伺服器預設都會這麼做），而且容器的連接埠不能被直接連到。如此一來，儀表板會拒絕一切不是經由代理伺服器透過 HTTPS 送來的請求，並在某個位址輸錯 5 次密碼後將其封鎖 30 秒。代理伺服器必須在同一台機器或其區域網路中執行：來自公開位址的連線會被拒絕。 |
 | `MINER_TRUSTED_HOPS` | `1` | 僅搭配 `MINER_PUBLIC_URL` 使用：會在 `X-Forwarded-For` 加上一筆項目的代理伺服器數量，介於 1 到 10。兩台代理伺服器前後串接時（例如 Cloudflare 位於 Traefik 前方）設為 `2`。 |
 | `MINER_VAULT_PASSPHRASE` | 無 | 僅適用於從已設定應用程式密碼的桌面版複製過來的資料目錄：在啟動時將其解鎖。全新架設的伺服器完全不需要它。 |
 | `MINER_VAULT_PASSPHRASE_FILE` | 無 | 從檔案讀取 `MINER_VAULT_PASSPHRASE`。兩者只能擇一設定。 |

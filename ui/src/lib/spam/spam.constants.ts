@@ -12,8 +12,9 @@ export const SPAM_CLOCK_MS = 1_000;
 
 export const SPAM_MESSAGE_MAX = 200;
 
-// ! A request of the burst may retry for about a minute: past that, the
-// message carrying the result was lost with the push channel.
+// ! Counted again from each answer of the burst: a request waits for a free
+// slot, then up to 20 s for Twitch. Silent longer, the message carrying the
+// result was lost with the push channel.
 export const SPAM_RESULT_WAIT_MS = 90_000;
 
 export enum BalanceTracking {

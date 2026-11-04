@@ -369,6 +369,7 @@
   "error_too_many_attempts": "Твърде много грешни пароли: опитайте отново след малко.",
   "error_https_required": "Отворете таблото на неговия HTTPS адрес.",
   "error_forwarded_for_required": "HTTPS проксито пред таблото трябва да изпраща адреса на посетителя (X-Forwarded-For).",
+  "error_proxy_not_local": "Таблото приема своето HTTPS прокси само от тази машина или от локалната ѝ мрежа.",
   "error_cross_site_request": "Отказано: заявката дойде от страница на друг сайт.",
   "error_update_signature_refused": "Изтеглянето не съвпада с подписа на версията: нищо не е инсталирано.",
   "error_update_install_failed": "Обновлението не можа да бъде инсталирано: приложението остава на текущата версия.",
@@ -1005,8 +1006,6 @@
   "spam_channels": "Канали",
   "spam_search_placeholder": "Търсене на канал в Twitch",
   "spam_search_hint": "Потърсете всеки канал в Twitch, дори извън списъка ви „Точки“.",
-  "spam_last_used": "използван {time}",
-  "spam_never_used": "неизползван",
   "spam_in_points": "В списъка ви „Точки“",
   "spam_in_history": "Вече е в историята ви",
   "spam_remove_history": "Премахване от историята",
@@ -1096,6 +1095,7 @@
   "spam_no_rewards": "В момента няма налична награда.",
   "error_unknown_reward": "Тази награда вече не съществува в канала.",
   "error_reward_not_redeemable": "Нищо не е изпратено: наградата изисква съобщение, не е достъпна или се презарежда, или точките не стигат.",
+  "error_burst_running": "Тази награда още се изпраща: изчакайте да приключи.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

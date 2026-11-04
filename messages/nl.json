@@ -369,6 +369,7 @@
   "error_too_many_attempts": "Te veel verkeerde wachtwoorden: probeer het zo opnieuw.",
   "error_https_required": "Open het dashboard via het HTTPS-adres.",
   "error_forwarded_for_required": "De HTTPS-proxy vóór het dashboard moet het adres van de bezoeker meesturen (X-Forwarded-For).",
+  "error_proxy_not_local": "Het dashboard accepteert zijn HTTPS-proxy alleen vanaf deze machine of het lokale netwerk ervan.",
   "error_cross_site_request": "Geweigerd: het verzoek kwam van een pagina van een andere site.",
   "error_update_signature_refused": "De download komt niet overeen met de handtekening van de versie: er is niets geïnstalleerd.",
   "error_update_install_failed": "De update kon niet worden geïnstalleerd: de app blijft op de huidige versie.",
@@ -1005,8 +1006,6 @@
   "spam_channels": "Kanalen",
   "spam_search_placeholder": "Een Twitch-kanaal zoeken",
   "spam_search_hint": "Zoek elk Twitch-kanaal, ook buiten je Puntenlijst.",
-  "spam_last_used": "gebruikt {time}",
-  "spam_never_used": "nooit gebruikt",
   "spam_in_points": "In je Puntenlijst",
   "spam_in_history": "Staat al in je geschiedenis",
   "spam_remove_history": "Uit de geschiedenis verwijderen",
@@ -1096,6 +1095,7 @@
   "spam_no_rewards": "Op dit moment is er geen beloning beschikbaar.",
   "error_unknown_reward": "Deze beloning bestaat niet meer op het kanaal.",
   "error_reward_not_redeemable": "Er is niets verzonden: de beloning vraagt een bericht, is niet beschikbaar of in afkoeltijd, of het saldo is te laag.",
+  "error_burst_running": "Deze beloning wordt nog verzonden: wacht tot dat klaar is.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

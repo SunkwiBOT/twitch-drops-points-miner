@@ -362,9 +362,9 @@ contraseña.
 
 | Variable | Por defecto | Función |
 |---|---|---|
-| `MINER_PASSWORD` | ninguno | Contraseña del panel, obligatoria: sin ella, el servidor se niega a arrancar. De 12 caracteres o más (si es más corta, aparece una advertencia al arrancar). |
+| `MINER_PASSWORD` | ninguno | Contraseña del panel, obligatoria: sin ella, el servidor se niega a arrancar. De 12 caracteres o más (si es más corta, aparece una advertencia al arrancar). El valor de ejemplo `change-me` se rechaza. |
 | `MINER_PASSWORD_FILE` | ninguno | Lee `MINER_PASSWORD` desde un archivo, por ejemplo un secreto de Docker. Una u otra, no las dos. |
-| `MINER_PUBLIC_URL` | ninguno | Solo detrás de un proxy inverso HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel…): la dirección `https://` del panel, sin ruta, como `https://miner.example.com`. El proxy debe reenviar `X-Forwarded-Proto`, `X-Forwarded-For` y los websockets, algo que los proxies habituales hacen por defecto, y el puerto del contenedor no debe ser accesible directamente. Así, el panel rechaza todo lo que no llegue por el proxy en HTTPS y bloquea una dirección durante 30 segundos tras 5 contraseñas incorrectas. |
+| `MINER_PUBLIC_URL` | ninguno | Solo detrás de un proxy inverso HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel…): la dirección `https://` del panel, sin ruta, como `https://miner.example.com`. El proxy debe reenviar `X-Forwarded-Proto`, `X-Forwarded-For` y los websockets, algo que los proxies habituales hacen por defecto, y el puerto del contenedor no debe ser accesible directamente. Así, el panel rechaza todo lo que no llegue por el proxy en HTTPS y bloquea una dirección durante 30 segundos tras 5 contraseñas incorrectas. El proxy debe ejecutarse en la misma máquina o en su red local: una conexión desde una dirección pública se rechaza. |
 | `MINER_TRUSTED_HOPS` | `1` | Solo con `MINER_PUBLIC_URL`: cuántos proxies añaden una entrada a `X-Forwarded-For`, de 1 a 10. `2` con dos proxies, uno detrás de otro, como Cloudflare delante de Traefik. |
 | `MINER_VAULT_PASSPHRASE` | ninguno | Solo para una carpeta de datos copiada de la app de escritorio con una contraseña de la app: la desbloquea al arrancar. Un servidor creado desde cero nunca la necesita. |
 | `MINER_VAULT_PASSPHRASE_FILE` | ninguno | Lee `MINER_VAULT_PASSPHRASE` desde un archivo. Una u otra, no las dos. |

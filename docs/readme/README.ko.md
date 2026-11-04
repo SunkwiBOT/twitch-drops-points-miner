@@ -287,9 +287,9 @@ docker compose up -d
 
 | 변수 | 기본값 | 용도 |
 |---|---|---|
-| `MINER_PASSWORD` | 없음 | 대시보드 비밀번호. 필수예요. 없으면 서버가 시작을 거부해요. 12자 이상이어야 해요(더 짧으면 시작할 때 경고가 표시돼요). |
+| `MINER_PASSWORD` | 없음 | 대시보드 비밀번호. 필수예요. 없으면 서버가 시작을 거부해요. 12자 이상이어야 해요(더 짧으면 시작할 때 경고가 표시돼요). 예시 값 `change-me`는 거부돼요. |
 | `MINER_PASSWORD_FILE` | 없음 | `MINER_PASSWORD`를 파일에서 읽어요(예: Docker secret). 둘 중 하나만 설정하세요. |
-| `MINER_PUBLIC_URL` | 없음 | HTTPS 리버스 프록시(Caddy, nginx, Traefik, Cloudflare Tunnel 등) 뒤에 둘 때만 써요. 대시보드의 `https://` 주소로, 경로 없이 `https://miner.example.com`처럼 써요. 프록시는 `X-Forwarded-Proto`, `X-Forwarded-For`, 웹소켓을 전달해야 하고(흔히 쓰는 프록시는 기본으로 그렇게 해요), 컨테이너의 포트에 직접 접속할 수 없어야 해요. 그러면 대시보드는 프록시를 거쳐 HTTPS로 들어오지 않은 접속을 모두 거부하고, 비밀번호를 5번 틀린 주소를 30초 동안 차단해요. |
+| `MINER_PUBLIC_URL` | 없음 | HTTPS 리버스 프록시(Caddy, nginx, Traefik, Cloudflare Tunnel 등) 뒤에 둘 때만 써요. 대시보드의 `https://` 주소로, 경로 없이 `https://miner.example.com`처럼 써요. 프록시는 `X-Forwarded-Proto`, `X-Forwarded-For`, 웹소켓을 전달해야 하고(흔히 쓰는 프록시는 기본으로 그렇게 해요), 컨테이너의 포트에 직접 접속할 수 없어야 해요. 그러면 대시보드는 프록시를 거쳐 HTTPS로 들어오지 않은 접속을 모두 거부하고, 비밀번호를 5번 틀린 주소를 30초 동안 차단해요. 프록시는 같은 기기나 그 로컬 네트워크에서 실행해야 해요. 공인 주소에서 온 연결은 거부돼요. |
 | `MINER_TRUSTED_HOPS` | `1` | `MINER_PUBLIC_URL`을 쓸 때만: `X-Forwarded-For`에 항목을 추가하는 프록시 수로, 1~10이에요. 프록시 두 개가 앞뒤로 놓여 있으면(예: Traefik 앞에 Cloudflare) `2`예요. |
 | `MINER_VAULT_PASSPHRASE` | 없음 | 앱 비밀번호를 설정한 데스크톱 앱에서 복사한 데이터 폴더에만 필요해요. 시작할 때 잠금을 해제해요. 처음부터 새로 만든 서버에는 필요 없어요. |
 | `MINER_VAULT_PASSPHRASE_FILE` | 없음 | `MINER_VAULT_PASSPHRASE`를 파일에서 읽어요. 둘 중 하나만 설정하세요. |

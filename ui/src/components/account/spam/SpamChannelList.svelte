@@ -6,8 +6,6 @@
   import { SEARCH_SHOWN_MAX } from "../../../lib/search/search.constants";
   import { TwitchSearch } from "../../../lib/search/search.svelte";
   import type { SpamHistoryRowType } from "../../../lib/spam/spam.types";
-  import { ticker } from "../../../lib/state/ticker.svelte";
-  import { relativeTime } from "../../../lib/time/time.utils";
   import ChannelAvatar from "../../ui/ChannelAvatar.svelte";
   import ChipRemoveButton from "../../ui/ChipRemoveButton.svelte";
   import EmptyState from "../../ui/EmptyState.svelte";
@@ -29,22 +27,63 @@
     selected: string | null;
     onselect: (login: string) => void;
     onpick: (channel: SearchChannelType) => void;
-    onremove: (login: string) => void;
+    onremove: (login: string) => Promise<boolean>;
   };
 
   let { entries, selected, onselect, onpick, onremove }: SpamChannelListPropsType = $props();
 
+  const uid = $props.id();
+  const searchId = `${uid}-search`;
+
   let query = $state("");
+  let list = $state<HTMLElement | null>(null);
+  let leaving = $state<{ login: string; index: number } | null>(null);
 
   const twitch = new TwitchSearch();
   const found = $derived(twitch.results.channels.slice(0, SEARCH_SHOWN_MAX));
   const searching = $derived(query.trim() !== "");
 
+  const focusSearch = (): void => document.getElementById(searchId)?.focus();
+
+  // ! The results leave with the search: the focus goes back to its field.
   const pick = (channel: SearchChannelType): void => {
     query = "";
     twitch.clear();
     onpick(channel);
+    focusSearch();
   };
+
+  const remove = async (login: string, index: number): Promise<void> => {
+    leaving = { login, index };
+
+    if (!(await onremove(login))) {
+      leaving = null;
+    }
+  };
+
+  // ! The × leaves with its row: the focus goes to the row now in its place,
+  // unless the user already moved it elsewhere.
+  $effect(() => {
+    if (!leaving || entries.some((entry) => entry.login === leaving?.login)) {
+      return;
+    }
+
+    const focused = document.activeElement;
+    const lost = !focused || focused === document.body || list?.contains(focused);
+
+    if (lost) {
+      const rows = list?.querySelectorAll<HTMLElement>("[data-channel-row]") ?? [];
+      const next = rows[Math.min(leaving.index, rows.length - 1)];
+
+      if (next) {
+        next.focus();
+      } else {
+        focusSearch();
+      }
+    }
+
+    leaving = null;
+  });
 
   const ROW =
     "flex min-h-13 items-center gap-3 border-b px-3 py-2 transition-colors last:border-b-0";
@@ -52,11 +91,17 @@
 
 <Panel title={t.spam_channels()} count={entries.length}>
   <SearchField
+    id={searchId}
     placeholder={t.spam_search_placeholder()}
     aria-label={t.spam_search_placeholder()}
     bind:value={query}
     search={{ label: t.common_search(), busy: twitch.busy, run: () => twitch.now(query) }}
     oninput={() => twitch.update(query)}
+    onkeydown={(event) => {
+      if (event.key === "Enter" && !event.isComposing) {
+        twitch.now(query);
+      }
+    }}
   />
 
   {#if searching}
@@ -107,8 +152,12 @@
   {:else if entries.length === 0}
     <EmptyState text={t.spam_search_hint()} />
   {:else}
-    <div class="flex flex-col overflow-hidden rounded-lg border" role="list">
-      {#each entries as e (e.login)}
+    <div
+      bind:this={list}
+      class="flex max-h-[min(26rem,55dvh)] flex-col overflow-y-auto overscroll-contain rounded-lg border"
+      role="list"
+    >
+      {#each entries as e, index (e.login)}
         {@const current = e.login === selected}
         <div
           class={cn(
@@ -121,17 +170,13 @@
             type="button"
             class="flex min-w-0 flex-1 items-center gap-3 text-left"
             aria-current={current ? "true" : undefined}
+            data-channel-row
             onclick={() => onselect(e.login)}
           >
             <ChannelAvatar url={e.avatar} name={e.name} size={AvatarSize.MD} live={e.live} />
-            <span class="flex min-w-0 flex-1 flex-col gap-0.5">
-              <span class={cn("truncate font-semibold", current && "text-link")}>{e.name}</span>
-              <span class="truncate text-xs text-muted-foreground"
-                >{e.used_at
-                  ? t.spam_last_used({ time: relativeTime(e.used_at, ticker.now) })
-                  : t.spam_never_used()}</span
-              >
-            </span>
+            <span class={cn("min-w-0 flex-1 truncate font-semibold", current && "text-link")}
+              >{e.name}</span
+            >
             {#if e.balance !== undefined}<span
                 class="inline-flex shrink-0 items-center gap-1 text-hint font-semibold tabular-nums"
                 ><span class="text-link"><Icon name={IconName.CHANNEL_POINTS} size={13} /></span
@@ -143,7 +188,7 @@
               label={t.spam_remove_history()}
               name={e.name}
               iconSize={14}
-              onclick={() => onremove(e.login)}
+              onclick={() => void remove(e.login, index)}
             />
           {:else}
             <span class="size-5 shrink-0" aria-hidden="true"></span>

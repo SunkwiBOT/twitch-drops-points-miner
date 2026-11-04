@@ -372,6 +372,7 @@
   "error_too_many_attempts": "Слишком много неверных паролей: попробуйте чуть позже.",
   "error_https_required": "Откройте панель по её адресу HTTPS.",
   "error_forwarded_for_required": "HTTPS-прокси перед панелью должен передавать адрес посетителя (X-Forwarded-For).",
+  "error_proxy_not_local": "Панель принимает свой HTTPS-прокси только с этой машины или из её локальной сети.",
   "error_cross_site_request": "Отклонено: запрос пришёл со страницы другого сайта.",
   "error_update_signature_refused": "Загрузка не совпадает с подписью версии: ничего не установлено.",
   "error_update_install_failed": "Не удалось установить обновление: приложение остаётся на текущей версии.",
@@ -1014,8 +1015,6 @@
   "spam_channels": "Каналы",
   "spam_search_placeholder": "Найти канал Twitch",
   "spam_search_hint": "Найдите любой канал Twitch, даже вне вашего списка «Баллы».",
-  "spam_last_used": "использован {time}",
-  "spam_never_used": "ещё не использован",
   "spam_in_points": "В вашем списке «Баллы»",
   "spam_in_history": "Уже в вашей истории",
   "spam_remove_history": "Убрать из истории",
@@ -1107,6 +1106,7 @@
   "spam_no_rewards": "Сейчас нет доступных наград.",
   "error_unknown_reward": "Этой награды на канале больше нет.",
   "error_reward_not_redeemable": "Ничего не отправлено: награде нужно сообщение, она недоступна или перезаряжается, либо не хватает баллов.",
+  "error_burst_running": "Эта награда ещё отправляется: дождитесь окончания.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

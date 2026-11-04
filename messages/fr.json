@@ -369,6 +369,7 @@
   "error_too_many_attempts": "Trop de mauvais mots de passe : réessayez dans un instant.",
   "error_https_required": "Ouvrez le tableau de bord par son adresse HTTPS.",
   "error_forwarded_for_required": "Le proxy HTTPS devant le tableau de bord doit transmettre l'adresse du visiteur (X-Forwarded-For).",
+  "error_proxy_not_local": "Le tableau de bord n'accepte son proxy HTTPS que depuis cette machine ou son réseau local.",
   "error_cross_site_request": "Refusé : la demande venait d'une page d'un autre site.",
   "error_update_signature_refused": "Le téléchargement ne correspond pas à la signature de la version : rien n'a été installé.",
   "error_update_install_failed": "La mise à jour n'a pas pu être installée : l'application reste sur sa version actuelle.",
@@ -1005,8 +1006,6 @@
   "spam_channels": "Chaînes",
   "spam_search_placeholder": "Rechercher une chaîne Twitch",
   "spam_search_hint": "Cherchez n'importe quelle chaîne Twitch, même hors de votre liste Points.",
-  "spam_last_used": "utilisée {time}",
-  "spam_never_used": "jamais utilisée",
   "spam_in_points": "Dans votre liste Points",
   "spam_in_history": "Déjà dans votre historique",
   "spam_remove_history": "Retirer de l'historique",
@@ -1096,6 +1095,7 @@
   "spam_no_rewards": "Aucune récompense disponible pour l'instant.",
   "error_unknown_reward": "Cette récompense n'existe plus sur la chaîne.",
   "error_reward_not_redeemable": "Rien n'a été envoyé : la récompense demande un message, est indisponible ou en recharge, ou le solde est trop bas.",
+  "error_burst_running": "Cette récompense est encore en cours d'envoi : attendez la fin.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

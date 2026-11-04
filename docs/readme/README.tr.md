@@ -287,9 +287,9 @@ docker compose up -d
 
 | Değişken | Varsayılan | Amaç |
 |---|---|---|
-| `MINER_PASSWORD` | yok | Panel şifresi, zorunludur: sunucu onsuz başlamayı reddeder. 12 karakter veya daha uzun olmalıdır (daha kısa bir şifre başlangıçta bir uyarı gösterir). |
+| `MINER_PASSWORD` | yok | Panel şifresi, zorunludur: sunucu onsuz başlamayı reddeder. 12 karakter veya daha uzun olmalıdır (daha kısa bir şifre başlangıçta bir uyarı gösterir). Örnek değer `change-me` reddedilir. |
 | `MINER_PASSWORD_FILE` | yok | `MINER_PASSWORD` değerini bir dosyadan, örneğin bir Docker secret'tan okur. İkisinden yalnızca biri, ikisi birden değil. |
-| `MINER_PUBLIC_URL` | yok | Yalnızca bir HTTPS ters proxy (Caddy, nginx, Traefik, Cloudflare Tunnel…) arkasında: panelin `https://` adresi, yol olmadan; örneğin `https://miner.example.com`. Proxy `X-Forwarded-Proto`, `X-Forwarded-For` başlıklarını ve websocket'leri iletmelidir (yaygın proxy'ler bunu varsayılan olarak yapar) ve container'ın portuna doğrudan ulaşılamamalıdır. Panel bu durumda proxy üzerinden HTTPS ile gelmeyen her şeyi reddeder ve 5 yanlış şifreden sonra bir adresi 30 saniyeliğine kilitler. |
+| `MINER_PUBLIC_URL` | yok | Yalnızca bir HTTPS ters proxy (Caddy, nginx, Traefik, Cloudflare Tunnel…) arkasında: panelin `https://` adresi, yol olmadan; örneğin `https://miner.example.com`. Proxy `X-Forwarded-Proto`, `X-Forwarded-For` başlıklarını ve websocket'leri iletmelidir (yaygın proxy'ler bunu varsayılan olarak yapar) ve container'ın portuna doğrudan ulaşılamamalıdır. Panel bu durumda proxy üzerinden HTTPS ile gelmeyen her şeyi reddeder ve 5 yanlış şifreden sonra bir adresi 30 saniyeliğine kilitler. Proxy aynı makinede veya onun yerel ağında çalışmalıdır: genel bir adresten gelen bağlantı reddedilir. |
 | `MINER_TRUSTED_HOPS` | `1` | Yalnızca `MINER_PUBLIC_URL` ile: `X-Forwarded-For` başlığına girdi ekleyen proxy sayısı, 1 ile 10 arasında. Art arda iki proxy varsa, örneğin Traefik'in önünde Cloudflare, `2`. |
 | `MINER_VAULT_PASSPHRASE` | yok | Yalnızca uygulama şifresi olan masaüstü uygulamasından kopyalanmış bir veri klasörü için: başlangıçta klasörün kilidini açar. Sıfırdan kurulan bir sunucunun buna hiç ihtiyacı olmaz. |
 | `MINER_VAULT_PASSPHRASE_FILE` | yok | `MINER_VAULT_PASSPHRASE` değerini bir dosyadan okur. İkisinden yalnızca biri, ikisi birden değil. |

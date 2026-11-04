@@ -14,6 +14,8 @@ const DEFAULT_PORT: u16 = 8080;
 pub const PASSWORD_MIN_CHARS: usize = 12;
 const FILE_SUFFIX: &str = "_FILE";
 const PASSWORD: &str = "MINER_PASSWORD";
+// ! The value docker-compose.yml and the README show: anyone who read them knows it.
+const PASSWORD_EXAMPLE: &str = "change-me";
 const PUBLIC_URL: &str = "MINER_PUBLIC_URL";
 const VAULT_PASSPHRASE: &str = "MINER_VAULT_PASSPHRASE";
 const TRUSTED_HOPS: &str = "MINER_TRUSTED_HOPS";
@@ -68,6 +70,12 @@ impl ServerEnv {
         let Some(password) = password else {
             bail!("{PASSWORD} is required (or {PASSWORD}{FILE_SUFFIX}): the dashboard never runs without a password");
         };
+
+        if password.trim() == PASSWORD_EXAMPLE {
+            bail!(
+                "{PASSWORD} is still the example \"{PASSWORD_EXAMPLE}\": choose your own password"
+            );
+        }
 
         let access = match public_url {
             None => Access::Local { password },

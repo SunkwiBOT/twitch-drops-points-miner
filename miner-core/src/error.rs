@@ -68,6 +68,8 @@ pub enum Error {
     UnknownReward(String),
     #[error("the reward cannot be redeemed now: {0}")]
     RewardNotRedeemable(String),
+    #[error("a burst of this reward is still running")]
+    BurstRunning,
     #[error("invalid proxy: {0}")]
     InvalidProxy(String),
     #[error("invalid streamer login: {0}")]
@@ -105,6 +107,7 @@ pub enum ErrorCode {
     UnknownChannel,
     UnknownReward,
     RewardNotRedeemable,
+    BurstRunning,
     InvalidProxy,
     InvalidStreamerLogin,
     PassphraseRequired,
@@ -117,6 +120,7 @@ pub enum ErrorCode {
     TooManyAttempts,
     HttpsRequired,
     ForwardedForRequired,
+    ProxyNotLocal,
     CrossSiteRequest,
     UpdateSignatureRefused,
     UpdateInstallFailed,
@@ -156,6 +160,7 @@ impl Error {
             Error::UnknownChannel(_) => ErrorCode::UnknownChannel,
             Error::UnknownReward(_) => ErrorCode::UnknownReward,
             Error::RewardNotRedeemable(_) => ErrorCode::RewardNotRedeemable,
+            Error::BurstRunning => ErrorCode::BurstRunning,
             Error::InvalidRequest(_) => ErrorCode::InvalidRequest,
             Error::InvalidProxy(_) => ErrorCode::InvalidProxy,
             Error::InvalidStreamerLogin(_) => ErrorCode::InvalidStreamerLogin,
@@ -179,6 +184,7 @@ impl Error {
                 | Error::UnknownChannel(_)
                 | Error::UnknownReward(_)
                 | Error::RewardNotRedeemable(_)
+                | Error::BurstRunning
                 | Error::InvalidProxy(_)
                 | Error::InvalidStreamerLogin(_)
                 | Error::PassphraseRequired

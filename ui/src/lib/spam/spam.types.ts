@@ -6,7 +6,6 @@ export type SpamHistoryRowType = {
   name: string;
   avatar: string | undefined;
   live: boolean;
-  used_at: string | undefined;
   balance: number | undefined;
   in_points: boolean;
 };

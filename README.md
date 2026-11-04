@@ -356,9 +356,9 @@ password.
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `MINER_PASSWORD` | none | Dashboard password, required: the server refuses to start without it. 12 characters or more (a shorter one shows a warning at start). |
+| `MINER_PASSWORD` | none | Dashboard password, required: the server refuses to start without it. 12 characters or more (a shorter one shows a warning at start). The example value `change-me` is refused. |
 | `MINER_PASSWORD_FILE` | none | Reads `MINER_PASSWORD` from a file, such as a Docker secret. One or the other, not both. |
-| `MINER_PUBLIC_URL` | none | Only behind an HTTPS reverse proxy (Caddy, nginx, Traefik, Cloudflare Tunnel…): the dashboard's `https://` address, without a path, like `https://miner.example.com`. The proxy must forward `X-Forwarded-Proto`, `X-Forwarded-For` and websockets, which common proxies do by default, and the container's port must not be reachable directly. The dashboard then refuses anything that does not come through the proxy over HTTPS, and locks out an address for 30 seconds after 5 wrong passwords. |
+| `MINER_PUBLIC_URL` | none | Only behind an HTTPS reverse proxy (Caddy, nginx, Traefik, Cloudflare Tunnel…): the dashboard's `https://` address, without a path, like `https://miner.example.com`. The proxy must forward `X-Forwarded-Proto`, `X-Forwarded-For` and websockets, which common proxies do by default, and the container's port must not be reachable directly. The dashboard then refuses anything that does not come through the proxy over HTTPS, and locks out an address for 30 seconds after 5 wrong passwords. The proxy must run on the same machine or its local network: a connection from a public address is refused. |
 | `MINER_TRUSTED_HOPS` | `1` | With `MINER_PUBLIC_URL` only: how many proxies add an entry to `X-Forwarded-For`, from 1 to 10. `2` with two proxies one behind the other, like Cloudflare in front of Traefik. |
 | `MINER_VAULT_PASSPHRASE` | none | Only for a data folder copied from the desktop app with an app password: unlocks it at start. A server set up from scratch never needs it. |
 | `MINER_VAULT_PASSPHRASE_FILE` | none | Reads `MINER_VAULT_PASSPHRASE` from a file. One or the other, not both. |

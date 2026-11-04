@@ -362,9 +362,9 @@ password.
 
 | Variabile | Predefinito | Scopo |
 |---|---|---|
-| `MINER_PASSWORD` | nessuno | Password della dashboard, obbligatoria: senza, il server si rifiuta di avviarsi. Di 12 caratteri o più (una più corta mostra un avviso all'avvio). |
+| `MINER_PASSWORD` | nessuno | Password della dashboard, obbligatoria: senza, il server si rifiuta di avviarsi. Di 12 caratteri o più (una più corta mostra un avviso all'avvio). Il valore di esempio `change-me` viene rifiutato. |
 | `MINER_PASSWORD_FILE` | nessuno | Legge `MINER_PASSWORD` da un file, per esempio un secret Docker. L'una o l'altra, non entrambe. |
-| `MINER_PUBLIC_URL` | nessuno | Solo dietro un reverse proxy HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel…): l'indirizzo `https://` della dashboard, senza percorso, come `https://miner.example.com`. Il proxy deve inoltrare `X-Forwarded-Proto`, `X-Forwarded-For` e i websocket, cosa che i proxy più diffusi fanno già di default, e la porta del container non deve essere raggiungibile direttamente. La dashboard rifiuta quindi tutto ciò che non passa dal proxy in HTTPS, e blocca un indirizzo per 30 secondi dopo 5 password errate. |
+| `MINER_PUBLIC_URL` | nessuno | Solo dietro un reverse proxy HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel…): l'indirizzo `https://` della dashboard, senza percorso, come `https://miner.example.com`. Il proxy deve inoltrare `X-Forwarded-Proto`, `X-Forwarded-For` e i websocket, cosa che i proxy più diffusi fanno già di default, e la porta del container non deve essere raggiungibile direttamente. La dashboard rifiuta quindi tutto ciò che non passa dal proxy in HTTPS, e blocca un indirizzo per 30 secondi dopo 5 password errate. Il proxy deve girare sulla stessa macchina o sulla sua rete locale: una connessione da un indirizzo pubblico viene rifiutata. |
 | `MINER_TRUSTED_HOPS` | `1` | Solo con `MINER_PUBLIC_URL`: quanti proxy aggiungono una voce a `X-Forwarded-For`, da 1 a 10. `2` con due proxy uno dietro l'altro, come Cloudflare davanti a Traefik. |
 | `MINER_VAULT_PASSPHRASE` | nessuno | Solo per una cartella dei dati copiata dall'app desktop con una password dell'app: la sblocca all'avvio. Un server creato da zero non ne ha mai bisogno. |
 | `MINER_VAULT_PASSPHRASE_FILE` | nessuno | Legge `MINER_VAULT_PASSPHRASE` da un file. L'una o l'altra, non entrambe. |

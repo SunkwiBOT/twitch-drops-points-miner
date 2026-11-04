@@ -372,6 +372,7 @@
   "error_too_many_attempts": "Prea multe parole greșite: încearcă din nou peste puțin timp.",
   "error_https_required": "Deschide panoul la adresa lui HTTPS.",
   "error_forwarded_for_required": "Proxy-ul HTTPS din fața panoului trebuie să trimită adresa vizitatorului (X-Forwarded-For).",
+  "error_proxy_not_local": "Panoul acceptă proxy-ul său HTTPS doar de pe această mașină sau din rețeaua ei locală.",
   "error_cross_site_request": "Refuzat: cererea venea de pe o pagină a altui site.",
   "error_update_signature_refused": "Descărcarea nu corespunde semnăturii versiunii: nu s-a instalat nimic.",
   "error_update_install_failed": "Actualizarea nu a putut fi instalată: aplicația rămâne la versiunea actuală.",
@@ -1016,8 +1017,6 @@
   "spam_channels": "Canale",
   "spam_search_placeholder": "Caută un canal Twitch",
   "spam_search_hint": "Caută orice canal Twitch, chiar și în afara listei tale de Puncte.",
-  "spam_last_used": "folosit {time}",
-  "spam_never_used": "niciodată folosit",
   "spam_in_points": "În lista ta de Puncte",
   "spam_in_history": "Deja în istoricul tău",
   "spam_remove_history": "Elimină din istoric",
@@ -1109,6 +1108,7 @@
   "spam_no_rewards": "Nicio recompensă disponibilă deocamdată.",
   "error_unknown_reward": "Această recompensă nu mai există pe canal.",
   "error_reward_not_redeemable": "Nu s-a trimis nimic: recompensa cere un mesaj, nu este disponibilă sau e în reîncărcare, ori soldul nu ajunge.",
+  "error_burst_running": "Această recompensă încă se trimite: așteaptă să se termine.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

@@ -369,6 +369,7 @@
   "error_too_many_attempts": "Liian monta väärää salasanaa: yritä hetken päästä uudelleen.",
   "error_https_required": "Avaa hallintapaneeli sen HTTPS-osoitteesta.",
   "error_forwarded_for_required": "Hallintapaneelin edessä olevan HTTPS-välityspalvelimen on lähetettävä kävijän osoite (X-Forwarded-For).",
+  "error_proxy_not_local": "Hallintapaneeli hyväksyy HTTPS-välityspalvelimensa vain tältä koneelta tai sen lähiverkosta.",
   "error_cross_site_request": "Hylätty: pyyntö tuli toisen sivuston sivulta.",
   "error_update_signature_refused": "Lataus ei vastaa version allekirjoitusta: mitään ei asennettu.",
   "error_update_install_failed": "Päivitystä ei voitu asentaa: sovellus jää nykyiseen versioonsa.",
@@ -977,8 +978,6 @@
   "spam_channels": "Kanavat",
   "spam_search_placeholder": "Hae Twitch-kanavaa",
   "spam_search_hint": "Hae mitä tahansa Twitch-kanavaa, myös Pisteet-listasi ulkopuolelta.",
-  "spam_last_used": "käytetty {time}",
-  "spam_never_used": "ei koskaan käytetty",
   "spam_in_points": "Pisteet-listassasi",
   "spam_in_history": "Jo historiassasi",
   "spam_remove_history": "Poista historiasta",
@@ -1068,6 +1067,7 @@
   "spam_no_rewards": "Yhtään palkintoa ei ole nyt saatavilla.",
   "error_unknown_reward": "Tätä palkintoa ei enää ole kanavalla.",
   "error_reward_not_redeemable": "Mitään ei lähetetty: palkinto vaatii viestin, ei ole saatavilla tai on jäähtymässä, tai pisteet eivät riitä.",
+  "error_burst_running": "Tätä palkintoa lähetetään yhä: odota, että lähetys päättyy.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

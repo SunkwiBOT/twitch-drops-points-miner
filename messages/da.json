@@ -369,6 +369,7 @@
   "error_too_many_attempts": "For mange forkerte adgangskoder: prøv igen om lidt.",
   "error_https_required": "Åbn dashboardet på dets HTTPS-adresse.",
   "error_forwarded_for_required": "HTTPS-proxyen foran dashboardet skal sende den besøgendes adresse (X-Forwarded-For).",
+  "error_proxy_not_local": "Dashboardet tager kun imod sin HTTPS-proxy fra denne maskine eller dens lokale netværk.",
   "error_cross_site_request": "Afvist: anmodningen kom fra en side på et andet websted.",
   "error_update_signature_refused": "Downloaden passer ikke med versionens signatur: intet blev installeret.",
   "error_update_install_failed": "Opdateringen kunne ikke installeres: appen bliver på sin nuværende version.",
@@ -1005,8 +1006,6 @@
   "spam_channels": "Kanaler",
   "spam_search_placeholder": "Søg efter en Twitch-kanal",
   "spam_search_hint": "Søg efter en hvilken som helst Twitch-kanal, også uden for din Point-liste.",
-  "spam_last_used": "brugt {time}",
-  "spam_never_used": "aldrig brugt",
   "spam_in_points": "På din Point-liste",
   "spam_in_history": "Allerede i din historik",
   "spam_remove_history": "Fjern fra historikken",
@@ -1096,6 +1095,7 @@
   "spam_no_rewards": "Ingen belønning er tilgængelig lige nu.",
   "error_unknown_reward": "Denne belønning findes ikke længere på kanalen.",
   "error_reward_not_redeemable": "Intet blev sendt: belønningen kræver en besked, er ikke tilgængelig eller har nedkøling, eller saldoen rækker ikke.",
+  "error_burst_running": "Denne belønning bliver stadig sendt: vent, til det er færdigt.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

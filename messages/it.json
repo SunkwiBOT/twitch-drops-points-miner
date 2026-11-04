@@ -369,6 +369,7 @@
   "error_too_many_attempts": "Troppe password errate: riprova tra poco.",
   "error_https_required": "Apri la dashboard dal suo indirizzo HTTPS.",
   "error_forwarded_for_required": "Il proxy HTTPS davanti alla dashboard deve inviare l'indirizzo del visitatore (X-Forwarded-For).",
+  "error_proxy_not_local": "La dashboard accetta il suo proxy HTTPS solo da questa macchina o dalla sua rete locale.",
   "error_cross_site_request": "Rifiutata: la richiesta veniva da una pagina di un altro sito.",
   "error_update_signature_refused": "Il download non corrisponde alla firma della versione: non è stato installato nulla.",
   "error_update_install_failed": "Impossibile installare l'aggiornamento: l'app resta alla versione attuale.",
@@ -991,8 +992,6 @@
   "spam_channels": "Canali",
   "spam_search_placeholder": "Cerca un canale Twitch",
   "spam_search_hint": "Cerca qualsiasi canale Twitch, anche fuori dalla tua lista Punti.",
-  "spam_last_used": "usato {time}",
-  "spam_never_used": "mai usato",
   "spam_in_points": "Nella tua lista Punti",
   "spam_in_history": "Già nella tua cronologia",
   "spam_remove_history": "Rimuovi dalla cronologia",
@@ -1082,6 +1081,7 @@
   "spam_no_rewards": "Nessun premio disponibile per ora.",
   "error_unknown_reward": "Questo premio non esiste più sul canale.",
   "error_reward_not_redeemable": "Non è stato inviato nulla: il premio richiede un messaggio, non è disponibile o è in ricarica, oppure il saldo non basta.",
+  "error_burst_running": "Questo premio è ancora in invio: aspetta che finisca.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

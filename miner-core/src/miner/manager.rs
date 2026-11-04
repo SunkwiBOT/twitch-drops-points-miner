@@ -1512,9 +1512,23 @@ impl Manager {
         }
 
         let fragment: String = query.chars().take(SEARCH_MAX_CHARS).collect();
-        let (games, channels) = crate::twitch::search::suggestions(&self.http(), &fragment).await?;
+        let http = self.http();
+        let (games, channels) = crate::twitch::search::suggestions(&http, &fragment).await?;
+        let exact = match crate::util::normalize_login(query) {
+            Some(login) if !channels.iter().any(|channel| channel.login == login) => {
+                // ! Only an extra: a failed read leaves the suggestions as they are.
+                crate::twitch::channels::lookup_public(&http, &login)
+                    .await
+                    .ok()
+                    .flatten()
+            }
+            _ => None,
+        };
 
-        Ok(crate::api::SearchResponse { games, channels })
+        Ok(crate::api::SearchResponse {
+            games,
+            channels: crate::twitch::search::exact_first(channels, exact),
+        })
     }
 
     pub async fn lookup_channels(&self, entries: &[String]) -> Result<ChannelsLookupResponse> {

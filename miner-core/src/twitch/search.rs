@@ -2,7 +2,7 @@ use serde_json::{json, Value};
 
 use super::operations::Operation;
 use super::{text, values, TwitchHttp};
-use crate::domain::{SearchChannel, SearchGame};
+use crate::domain::{Channel, SearchChannel, SearchGame};
 use crate::error::Result;
 
 pub async fn suggestions(
@@ -68,4 +68,29 @@ pub(crate) fn parse(body: &Value) -> (Vec<SearchGame>, Vec<SearchChannel>) {
     }
 
     (games, channels)
+}
+
+// ! Twitch's suggestions can leave out the channel whose exact login was typed
+// (an offline one): read apart, it comes first.
+pub(crate) fn exact_first(
+    mut channels: Vec<SearchChannel>,
+    exact: Option<Channel>,
+) -> Vec<SearchChannel> {
+    let Some(exact) = exact else {
+        return channels;
+    };
+
+    let found = match channels.iter().position(|c| c.login == exact.login) {
+        Some(at) => channels.remove(at),
+        None => SearchChannel {
+            login: exact.login,
+            display_name: exact.display_name,
+            avatar_url: exact.avatar_url,
+            live: exact.live,
+            verified: false,
+        },
+    };
+
+    channels.insert(0, found);
+    channels
 }

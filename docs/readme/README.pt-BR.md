@@ -357,9 +357,9 @@ Abra <http://localhost:8080> (ou o endereço da máquina na sua rede) e digite a
 
 | Variável | Padrão | Função |
 |---|---|---|
-| `MINER_PASSWORD` | nenhum | Senha do painel, obrigatória: sem ela, o servidor se recusa a iniciar. Com 12 caracteres ou mais (uma mais curta mostra um aviso ao iniciar). |
+| `MINER_PASSWORD` | nenhum | Senha do painel, obrigatória: sem ela, o servidor se recusa a iniciar. Com 12 caracteres ou mais (uma mais curta mostra um aviso ao iniciar). O valor de exemplo `change-me` é recusado. |
 | `MINER_PASSWORD_FILE` | nenhum | Lê `MINER_PASSWORD` de um arquivo, por exemplo um secret do Docker. Uma ou outra, não as duas. |
-| `MINER_PUBLIC_URL` | nenhum | Só atrás de um proxy reverso HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel…): o endereço `https://` do painel, sem caminho, como `https://miner.example.com`. O proxy precisa repassar `X-Forwarded-Proto`, `X-Forwarded-For` e os websockets, o que os proxies comuns fazem por padrão, e a porta do contêiner não pode ficar acessível diretamente. Assim, o painel recusa tudo o que não passe pelo proxy em HTTPS e bloqueia um endereço por 30 segundos depois de 5 senhas erradas. |
+| `MINER_PUBLIC_URL` | nenhum | Só atrás de um proxy reverso HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel…): o endereço `https://` do painel, sem caminho, como `https://miner.example.com`. O proxy precisa repassar `X-Forwarded-Proto`, `X-Forwarded-For` e os websockets, o que os proxies comuns fazem por padrão, e a porta do contêiner não pode ficar acessível diretamente. Assim, o painel recusa tudo o que não passe pelo proxy em HTTPS e bloqueia um endereço por 30 segundos depois de 5 senhas erradas. O proxy precisa rodar na mesma máquina ou na rede local dela: uma conexão vinda de um endereço público é recusada. |
 | `MINER_TRUSTED_HOPS` | `1` | Só com `MINER_PUBLIC_URL`: quantos proxies adicionam uma entrada a `X-Forwarded-For`, de 1 a 10. `2` com dois proxies, um atrás do outro, como a Cloudflare na frente do Traefik. |
 | `MINER_VAULT_PASSPHRASE` | nenhum | Só para uma pasta de dados copiada do app para desktop com uma senha do app: desbloqueia a pasta ao iniciar. Um servidor criado do zero nunca precisa dela. |
 | `MINER_VAULT_PASSPHRASE_FILE` | nenhum | Lê `MINER_VAULT_PASSPHRASE` de um arquivo. Uma ou outra, não as duas. |

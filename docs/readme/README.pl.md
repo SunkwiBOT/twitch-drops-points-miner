@@ -357,9 +357,9 @@ Otwórz <http://localhost:8080> (lub adres maszyny w Twojej sieci) i wpisz hasł
 
 | Zmienna | Domyślnie | Przeznaczenie |
 |---|---|---|
-| `MINER_PASSWORD` | brak | Hasło panelu, wymagane: bez niego serwer odmawia uruchomienia. Co najmniej 12 znaków (krótsze wyświetla ostrzeżenie przy starcie). |
+| `MINER_PASSWORD` | brak | Hasło panelu, wymagane: bez niego serwer odmawia uruchomienia. Co najmniej 12 znaków (krótsze wyświetla ostrzeżenie przy starcie). Przykładowa wartość `change-me` jest odrzucana. |
 | `MINER_PASSWORD_FILE` | brak | Odczytuje `MINER_PASSWORD` z pliku, np. z sekretu Dockera. Ustaw jedno albo drugie, nie oba. |
-| `MINER_PUBLIC_URL` | brak | Tylko za odwrotnym proxy HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel…): adres `https://` panelu, bez ścieżki, np. `https://miner.example.com`. Proxy musi przekazywać `X-Forwarded-Proto`, `X-Forwarded-For` i websockety, co popularne proxy robią domyślnie, a port kontenera nie może być dostępny bezpośrednio. Panel odrzuca wtedy wszystko, co nie przechodzi przez proxy po HTTPS, a po 5 błędnych hasłach blokuje adres na 30 sekund. |
+| `MINER_PUBLIC_URL` | brak | Tylko za odwrotnym proxy HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel…): adres `https://` panelu, bez ścieżki, np. `https://miner.example.com`. Proxy musi przekazywać `X-Forwarded-Proto`, `X-Forwarded-For` i websockety, co popularne proxy robią domyślnie, a port kontenera nie może być dostępny bezpośrednio. Panel odrzuca wtedy wszystko, co nie przechodzi przez proxy po HTTPS, a po 5 błędnych hasłach blokuje adres na 30 sekund. Proxy musi działać na tym samym komputerze lub w jego sieci lokalnej: połączenie z adresu publicznego jest odrzucane. |
 | `MINER_TRUSTED_HOPS` | `1` | Tylko z `MINER_PUBLIC_URL`: ile proxy dodaje wpis do `X-Forwarded-For`, od 1 do 10. `2` przy dwóch proxy, jednym za drugim, np. Cloudflare przed Traefikiem. |
 | `MINER_VAULT_PASSPHRASE` | brak | Tylko dla folderu danych skopiowanego z aplikacji desktopowej z ustawionym hasłem aplikacji: odblokowuje go przy starcie. Serwer postawiony od zera nigdy jej nie potrzebuje. |
 | `MINER_VAULT_PASSPHRASE_FILE` | brak | Odczytuje `MINER_VAULT_PASSPHRASE` z pliku. Ustaw jedno albo drugie, nie oba. |

@@ -19,6 +19,27 @@ pub(crate) fn record_event(
         Err(error) => tracing::warn!(%error, "history write failed"),
     }
 
+    announce(events, event);
+}
+
+// ! `false`: the account was removed meanwhile, and the line with it.
+pub(crate) fn record_account_event(
+    store: &Store,
+    events: &broadcast::Sender<MinerEvent>,
+    mut event: MinerEvent,
+) -> bool {
+    match store.push_account_history(&event) {
+        Ok(Some(id)) => event.id = id,
+        Ok(None) => return false,
+        Err(error) => tracing::warn!(%error, "history write failed"),
+    }
+
+    announce(events, event);
+
+    true
+}
+
+fn announce(events: &broadcast::Sender<MinerEvent>, event: MinerEvent) {
     let account = Some(event.account_login.as_str()).filter(|login| !login.is_empty());
 
     match event.kind {

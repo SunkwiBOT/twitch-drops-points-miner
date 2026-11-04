@@ -369,6 +369,7 @@
   "error_too_many_attempts": "Muitas senhas erradas: tente de novo daqui a pouco.",
   "error_https_required": "Abra o painel pelo endereço HTTPS.",
   "error_forwarded_for_required": "O proxy HTTPS na frente do painel precisa enviar o endereço do visitante (X-Forwarded-For).",
+  "error_proxy_not_local": "O painel só aceita seu proxy HTTPS a partir desta máquina ou da rede local dela.",
   "error_cross_site_request": "Recusada: a solicitação veio de uma página de outro site.",
   "error_update_signature_refused": "O download não corresponde à assinatura da versão: nada foi instalado.",
   "error_update_install_failed": "Não foi possível instalar a atualização: o app continua na versão atual.",
@@ -1005,8 +1006,6 @@
   "spam_channels": "Canais",
   "spam_search_placeholder": "Buscar um canal da Twitch",
   "spam_search_hint": "Busque qualquer canal da Twitch, mesmo fora da sua lista de Pontos.",
-  "spam_last_used": "usado {time}",
-  "spam_never_used": "nunca usado",
   "spam_in_points": "Na sua lista de Pontos",
   "spam_in_history": "Já está no seu histórico",
   "spam_remove_history": "Remover do histórico",
@@ -1096,6 +1095,7 @@
   "spam_no_rewards": "Nenhuma recompensa disponível no momento.",
   "error_unknown_reward": "Esta recompensa não existe mais no canal.",
   "error_reward_not_redeemable": "Nada foi enviado: a recompensa precisa de uma mensagem, está indisponível ou em recarga, ou o saldo não é suficiente.",
+  "error_burst_running": "Esta recompensa ainda está sendo enviada: espere terminar.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

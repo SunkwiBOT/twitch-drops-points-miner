@@ -372,6 +372,7 @@
   "error_too_many_attempts": "Zbyt wiele błędnych haseł: spróbuj ponownie za chwilę.",
   "error_https_required": "Otwórz panel pod jego adresem HTTPS.",
   "error_forwarded_for_required": "Proxy HTTPS przed panelem musi przekazywać adres odwiedzającego (X-Forwarded-For).",
+  "error_proxy_not_local": "Panel przyjmuje swoje proxy HTTPS tylko z tego komputera lub jego sieci lokalnej.",
   "error_cross_site_request": "Odrzucono: żądanie pochodziło ze strony innej witryny.",
   "error_update_signature_refused": "Pobrany plik nie zgadza się z podpisem wersji: nic nie zostało zainstalowane.",
   "error_update_install_failed": "Nie udało się zainstalować aktualizacji: aplikacja pozostaje w obecnej wersji.",
@@ -1014,8 +1015,6 @@
   "spam_channels": "Kanały",
   "spam_search_placeholder": "Szukaj kanału na Twitchu",
   "spam_search_hint": "Wyszukaj dowolny kanał na Twitchu, także spoza listy Punktów.",
-  "spam_last_used": "użyty {time}",
-  "spam_never_used": "nigdy nieużyty",
   "spam_in_points": "Na twojej liście Punktów",
   "spam_in_history": "Już w twojej historii",
   "spam_remove_history": "Usuń z historii",
@@ -1107,6 +1106,7 @@
   "spam_no_rewards": "Obecnie żadna nagroda nie jest dostępna.",
   "error_unknown_reward": "Tej nagrody nie ma już na kanale.",
   "error_reward_not_redeemable": "Nic nie wysłano: nagroda wymaga wiadomości, jest niedostępna lub się odnawia albo saldo jest za niskie.",
+  "error_burst_running": "Ta nagroda jest jeszcze wysyłana: poczekaj, aż wysyłanie się skończy.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

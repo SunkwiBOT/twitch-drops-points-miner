@@ -125,7 +125,24 @@ impl TwitchHttp {
         token: Option<&str>,
         body: &Value,
     ) -> Result<Value> {
+        self.post_gql_leaving(account_id, operation, token, body, || {})
+            .await
+    }
+
+    // ! `leaving` runs once the request has its slot: from there it may reach
+    // Twitch, before that it never left.
+    pub async fn post_gql_leaving(
+        &self,
+        account_id: Option<&str>,
+        operation: &str,
+        token: Option<&str>,
+        body: &Value,
+        leaving: impl FnOnce(),
+    ) -> Result<Value> {
         let _permit = self.permit().await;
+
+        leaving();
+
         let pending = self
             .requests
             .start(RequestKind::Gql, operation)
@@ -211,6 +228,35 @@ impl TwitchClient {
     pub async fn gql(&self, operation: Operation, variables: Value) -> Result<Value> {
         self.send_gql(operation, &operation.request(variables))
             .await
+    }
+
+    // ! A mutation that spends points goes once: sent again after a lost
+    // answer, Twitch could take it twice.
+    pub async fn gql_once(
+        &self,
+        operation: Operation,
+        variables: Value,
+        leaving: impl FnOnce(),
+    ) -> Result<Value> {
+        let token = self.token.read().await.clone();
+        let sent = self
+            .http
+            .post_gql_leaving(
+                Some(&self.user_id),
+                operation.name(),
+                Some(&token),
+                &operation.request(variables),
+                leaving,
+            )
+            .await;
+
+        match sent {
+            Ok(answer) => check_gql_errors(operation, answer),
+            Err(Error::Status(status)) => match status_outcome(status) {
+                StatusOutcome::Retry(error) | StatusOutcome::Fail(error) => Err(error),
+            },
+            Err(error) => Err(error),
+        }
     }
 
     pub async fn gql_batch(

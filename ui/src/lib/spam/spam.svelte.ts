@@ -14,7 +14,9 @@ export const runningBursts: Partial<Record<string, RunningBurstType>> = $state({
 
 export const burstProgress: Partial<Record<string, number>> = $state({});
 
-const ending = new Map<string, (summary: BurstResultType) => void>();
+type WaitingType = { end: (summary: BurstResultType) => void; restart: () => void };
+
+const waiting = new Map<string, WaitingType>();
 
 export const burstKey = (accountId: string, login: string, rewardId: string): string =>
   `${accountId}/${login}/${rewardId}`;
@@ -26,13 +28,24 @@ export const noteBurstProgress = (progress: BurstProgressType): void => {
 
   burstProgress[progress.burst_id] = progress.done;
 
+  const wait = waiting.get(progress.burst_id);
+
   if (progress.summary) {
-    ending.get(progress.burst_id)?.(progress.summary);
+    wait?.end(progress.summary);
+  } else {
+    wait?.restart();
   }
 };
 
+const cancelBurst = (id: string): void => {
+  // ! Also sent as the page goes away: a refusal (app or dashboard locked) has
+  // nowhere to show, and locking the app stops the bursts on its own.
+  sendCommand({ command: CommandName.CANCEL_BURST, burst_id: id }).catch(() => undefined);
+};
+
 // ! Watched before it is sent: its result can arrive before the answer that
-// accepts it. `null` is a result that never came.
+// accepts it. `null` is a result that never came: no word of the burst for a
+// while, and the requests it has not sent yet are cancelled.
 export const redeemBurst = async (
   order: BurstOrderType,
   delayMs: number,
@@ -41,8 +54,16 @@ export const redeemBurst = async (
   const id = newBurstId();
   let timer: ReturnType<typeof setTimeout> | undefined;
   const ended = new Promise<BurstResultType | null>((resolve) => {
-    ending.set(id, resolve);
-    timer = setTimeout(() => resolve(null), SPAM_RESULT_WAIT_MS + order.count * delayMs);
+    const restart = (): void => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        cancelBurst(id);
+        resolve(null);
+      }, SPAM_RESULT_WAIT_MS + delayMs);
+    };
+
+    waiting.set(id, { end: resolve, restart });
+    restart();
   });
 
   runningBursts[key] = { id, accountId: order.account_id, total: order.count };
@@ -54,7 +75,7 @@ export const redeemBurst = async (
     return await ended;
   } finally {
     clearTimeout(timer);
-    ending.delete(id);
+    waiting.delete(id);
     delete runningBursts[key];
     delete burstProgress[id];
   }
@@ -62,12 +83,8 @@ export const redeemBurst = async (
 
 export const cancelBursts = (accountId: string): void => {
   for (const burst of Object.values(runningBursts)) {
-    if (burst?.accountId !== accountId) {
-      continue;
+    if (burst?.accountId === accountId) {
+      cancelBurst(burst.id);
     }
-
-    // ! Sent as the page goes away: a refusal (app or dashboard locked) has
-    // nowhere to show, and locking the app stops the bursts on its own.
-    sendCommand({ command: CommandName.CANCEL_BURST, burst_id: burst.id }).catch(() => undefined);
   }
 };

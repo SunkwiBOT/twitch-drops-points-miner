@@ -766,11 +766,28 @@ impl Store {
     }
 
     pub fn push_history(&self, event: &MinerEvent) -> Result<u64> {
+        self.insert_history(
+            event,
+            "INSERT INTO history(account_id, at, kind, title, detail, context) VALUES(?1, ?2, ?3, ?4, ?5, ?6)",
+        )?
+        .ok_or_else(|| Error::Storage("history line not written".to_owned()))
+    }
+
+    // ! Checked and written in one statement: a line of an account removed
+    // meanwhile is dropped instead of outliving it.
+    pub fn push_account_history(&self, event: &MinerEvent) -> Result<Option<u64>> {
+        self.insert_history(
+            event,
+            "INSERT INTO history(account_id, at, kind, title, detail, context)
+             SELECT ?1, ?2, ?3, ?4, ?5, ?6 WHERE EXISTS (SELECT 1 FROM account WHERE id = ?1)",
+        )
+    }
+
+    fn insert_history(&self, event: &MinerEvent, sql: &str) -> Result<Option<u64>> {
         let stored = event.stored();
         let connection = self.lock();
-
-        connection.execute(
-            "INSERT INTO history(account_id, at, kind, title, detail, context) VALUES(?1, ?2, ?3, ?4, ?5, ?6)",
+        let written = connection.execute(
+            sql,
             params![
                 stored.account_id,
                 stored.at.timestamp_millis(),
@@ -781,7 +798,12 @@ impl Store {
             ],
         )?;
 
+        if written == 0 {
+            return Ok(None);
+        }
+
         u64::try_from(connection.last_insert_rowid())
+            .map(Some)
             .map_err(|_| Error::Storage("history id out of range".to_owned()))
     }
 

@@ -3,6 +3,5 @@
 export type SpamChannelEntryType = {
   login: string;
   in_points: boolean;
-  used_at?: string;
   balance?: number;
 };

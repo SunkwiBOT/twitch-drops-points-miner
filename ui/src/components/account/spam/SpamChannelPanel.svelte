@@ -207,8 +207,12 @@
   </section>
 {/snippet}
 
-<Card class="gap-0 py-0">
-  <header class="relative isolate flex flex-wrap items-center gap-x-4 gap-y-3 border-b px-5 py-4">
+<Card class="gap-0 overflow-visible py-0">
+  <!-- ! -top-6 undoes PageBody's p-6: stuck, the header sits on the page's very top edge,
+       with no reward scrolling above it. -->
+  <header
+    class="sticky -top-6 z-10 isolate flex flex-wrap items-center gap-x-4 gap-y-3 overflow-hidden rounded-t-xl border-b bg-card px-5 py-4"
+  >
     {#if knownBanners[channel.login]}
       <span
         class="absolute inset-0 -z-10 bg-cover bg-center opacity-20 [mask-image:linear-gradient(to_right,black,transparent_75%)] dark:opacity-30"

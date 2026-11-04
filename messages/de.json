@@ -369,6 +369,7 @@
   "error_too_many_attempts": "Zu viele falsche Passwörter: Versuchen Sie es gleich noch einmal.",
   "error_https_required": "Öffnen Sie das Dashboard über seine HTTPS-Adresse.",
   "error_forwarded_for_required": "Der HTTPS-Proxy vor dem Dashboard muss die Adresse des Besuchers senden (X-Forwarded-For).",
+  "error_proxy_not_local": "Das Dashboard nimmt seinen HTTPS-Proxy nur von diesem Rechner oder dessen lokalem Netzwerk an.",
   "error_cross_site_request": "Abgelehnt: Die Anfrage kam von einer Seite einer anderen Website.",
   "error_update_signature_refused": "Der Download passt nicht zur Signatur der Version: Es wurde nichts installiert.",
   "error_update_install_failed": "Das Update konnte nicht installiert werden: Die App bleibt bei ihrer aktuellen Version.",
@@ -991,8 +992,6 @@
   "spam_channels": "Kanäle",
   "spam_search_placeholder": "Twitch-Kanal suchen",
   "spam_search_hint": "Suche einen beliebigen Twitch-Kanal, auch außerhalb deiner Punkte-Liste.",
-  "spam_last_used": "genutzt {time}",
-  "spam_never_used": "nie genutzt",
   "spam_in_points": "In deiner Punkte-Liste",
   "spam_in_history": "Schon in deinem Verlauf",
   "spam_remove_history": "Aus dem Verlauf entfernen",
@@ -1082,6 +1081,7 @@
   "spam_no_rewards": "Gerade ist keine Belohnung verfügbar.",
   "error_unknown_reward": "Diese Belohnung gibt es auf dem Kanal nicht mehr.",
   "error_reward_not_redeemable": "Nichts wurde gesendet: Die Belohnung braucht eine Nachricht, ist nicht verfügbar oder in Abklingzeit, oder das Guthaben reicht nicht.",
+  "error_burst_running": "Diese Belohnung wird noch gesendet: Warte, bis das Senden fertig ist.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

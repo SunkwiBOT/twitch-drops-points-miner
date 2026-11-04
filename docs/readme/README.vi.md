@@ -287,9 +287,9 @@ Mở <http://localhost:8080> (hoặc địa chỉ của máy đó trong mạng c
 
 | Biến | Mặc định | Công dụng |
 |---|---|---|
-| `MINER_PASSWORD` | không có | Mật khẩu bảng điều khiển, bắt buộc: thiếu nó, máy chủ từ chối khởi động. Từ 12 ký tự trở lên (ngắn hơn thì một cảnh báo sẽ hiện khi khởi động). |
+| `MINER_PASSWORD` | không có | Mật khẩu bảng điều khiển, bắt buộc: thiếu nó, máy chủ từ chối khởi động. Từ 12 ký tự trở lên (ngắn hơn thì một cảnh báo sẽ hiện khi khởi động). Giá trị mẫu `change-me` bị từ chối. |
 | `MINER_PASSWORD_FILE` | không có | Đọc `MINER_PASSWORD` từ một tệp, chẳng hạn một Docker secret. Chỉ dùng một trong hai, không dùng cả hai. |
-| `MINER_PUBLIC_URL` | không có | Chỉ dùng sau một reverse proxy HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel…): địa chỉ `https://` của bảng điều khiển, không kèm đường dẫn, như `https://miner.example.com`. Proxy phải chuyển tiếp `X-Forwarded-Proto`, `X-Forwarded-For` và websocket, điều mà các proxy phổ biến làm sẵn theo mặc định, và cổng của container không được truy cập trực tiếp được. Khi đó bảng điều khiển từ chối mọi truy cập không đi qua proxy bằng HTTPS, và khóa một địa chỉ trong 30 giây sau 5 lần nhập sai mật khẩu. |
+| `MINER_PUBLIC_URL` | không có | Chỉ dùng sau một reverse proxy HTTPS (Caddy, nginx, Traefik, Cloudflare Tunnel…): địa chỉ `https://` của bảng điều khiển, không kèm đường dẫn, như `https://miner.example.com`. Proxy phải chuyển tiếp `X-Forwarded-Proto`, `X-Forwarded-For` và websocket, điều mà các proxy phổ biến làm sẵn theo mặc định, và cổng của container không được truy cập trực tiếp được. Khi đó bảng điều khiển từ chối mọi truy cập không đi qua proxy bằng HTTPS, và khóa một địa chỉ trong 30 giây sau 5 lần nhập sai mật khẩu. Proxy phải chạy trên cùng máy hoặc trong mạng nội bộ của máy: kết nối từ địa chỉ công khai sẽ bị từ chối. |
 | `MINER_TRUSTED_HOPS` | `1` | Chỉ dùng cùng `MINER_PUBLIC_URL`: số proxy thêm một mục vào `X-Forwarded-For`, từ 1 đến 10. Đặt `2` khi có hai proxy nối tiếp nhau, như Cloudflare đứng trước Traefik. |
 | `MINER_VAULT_PASSPHRASE` | không có | Chỉ dành cho thư mục dữ liệu sao chép từ ứng dụng máy tính có mật khẩu ứng dụng: mở khóa thư mục đó khi khởi động. Máy chủ dựng mới từ đầu không bao giờ cần biến này. |
 | `MINER_VAULT_PASSPHRASE_FILE` | không có | Đọc `MINER_VAULT_PASSPHRASE` từ một tệp. Chỉ dùng một trong hai, không dùng cả hai. |

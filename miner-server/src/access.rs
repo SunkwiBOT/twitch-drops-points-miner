@@ -1,7 +1,7 @@
 // ! A browser never sends a `Secure` cookie over plain HTTP: the local mode
 // cannot set one, and the public mode must.
 
-use std::net::IpAddr;
+use std::net::{IpAddr, Ipv4Addr, Ipv6Addr};
 use std::time::Duration;
 
 use axum::http::{header, HeaderMap, HeaderName, HeaderValue, Method};
@@ -95,6 +95,10 @@ impl Access {
         match self {
             Self::Local { .. } => Ok(socket),
             Self::Public { trusted_hops, .. } => {
+                if !from_local_network(socket) {
+                    return Err(ErrorCode::ProxyNotLocal);
+                }
+
                 if !over_https(headers, *trusted_hops) {
                     return Err(ErrorCode::HttpsRequired);
                 }
@@ -103,6 +107,33 @@ impl Access {
             }
         }
     }
+}
+
+// ! The proxy runs on this machine or its local network (Docker's bridge
+// included): a public address reached the published port directly, and the
+// `X-Forwarded-*` it sends are its own words.
+fn from_local_network(socket: IpAddr) -> bool {
+    match socket.to_canonical() {
+        IpAddr::V4(ip) => {
+            ip.is_loopback() || ip.is_private() || ip.is_link_local() || shared_space(ip)
+        }
+        IpAddr::V6(ip) => ip.is_loopback() || unique_local(ip) || link_local(ip),
+    }
+}
+
+// ! 100.64.0.0/10: carrier-grade NAT, and the addresses Tailscale hands out.
+fn shared_space(ip: Ipv4Addr) -> bool {
+    let [first, second, ..] = ip.octets();
+
+    first == 100 && second & 0xc0 == 0x40
+}
+
+fn unique_local(ip: Ipv6Addr) -> bool {
+    ip.segments()[0] & 0xfe00 == 0xfc00
+}
+
+fn link_local(ip: Ipv6Addr) -> bool {
+    ip.segments()[0] & 0xffc0 == 0xfe80
 }
 
 fn entries<'a>(headers: &'a HeaderMap, name: &HeaderName) -> Option<Vec<&'a str>> {

@@ -35,7 +35,7 @@
 
   $effect(() => {
     ensureChannels(
-      account.spam_channels.map((entry) => entry.login).filter((login) => !channelOf(login)),
+      account.spam_channels.map((entry) => entry.login).filter((login) => !channelOf(login)?.id),
     );
   });
 
@@ -48,7 +48,6 @@
         name: channel?.display_name ?? entry.login,
         avatar: channel?.avatar_url,
         live: channel?.live === true,
-        used_at: entry.used_at,
         balance: entry.balance,
         in_points: entry.in_points,
       };
@@ -88,7 +87,7 @@
     }
   };
 
-  const remove = async (login: string): Promise<void> => {
+  const remove = async (login: string): Promise<boolean> => {
     const name = channelOf(login)?.display_name ?? login;
     const removed = await run({
       command: CommandName.FORGET_SPAM_CHANNEL,
@@ -97,7 +96,7 @@
     });
 
     if (!removed) {
-      return;
+      return false;
     }
 
     if (selected === login) {
@@ -105,6 +104,8 @@
     }
 
     toast(ToastKind.SUCCESS, t.spam_removed({ channel: strong(name) }));
+
+    return true;
   };
 
   onDestroy(() => cancelBursts(account.id));

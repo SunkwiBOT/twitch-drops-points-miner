@@ -381,7 +381,17 @@ pub async fn banners(
 }
 
 async fn banner_batch(http: &TwitchHttp, chunk: &[String]) -> Result<Vec<(String, String)>> {
-    let fields: String = chunk
+    // ! The logins are written into the query's text: only a plain login may be.
+    let plain: Vec<&String> = chunk
+        .iter()
+        .filter(|login| crate::util::normalize_login(login).as_ref() == Some(*login))
+        .collect();
+
+    if plain.is_empty() {
+        return Ok(Vec::new());
+    }
+
+    let fields: String = plain
         .iter()
         .enumerate()
         .map(|(index, login)| {
@@ -398,7 +408,7 @@ async fn banner_batch(http: &TwitchHttp, chunk: &[String]) -> Result<Vec<(String
         )
         .await?;
 
-    Ok(parse_banners(&body, chunk.len()))
+    Ok(parse_banners(&body, plain.len()))
 }
 
 pub(crate) fn parse_banners(body: &Value, count: usize) -> Vec<(String, String)> {

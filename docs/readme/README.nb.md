@@ -365,9 +365,9 @@ passordet.
 
 | Variabel | Standard | Formål |
 |---|---|---|
-| `MINER_PASSWORD` | ingen | Passord for oversikten, påkrevd: serveren nekter å starte uten. Minst 12 tegn (et kortere gir en advarsel ved oppstart). |
+| `MINER_PASSWORD` | ingen | Passord for oversikten, påkrevd: serveren nekter å starte uten. Minst 12 tegn (et kortere gir en advarsel ved oppstart). Eksempelverdien `change-me` avvises. |
 | `MINER_PASSWORD_FILE` | ingen | Leser `MINER_PASSWORD` fra en fil, for eksempel en Docker-secret. Den ene eller den andre, ikke begge. |
-| `MINER_PUBLIC_URL` | ingen | Bare bak en omvendt HTTPS-proxy (Caddy, nginx, Traefik, Cloudflare Tunnel …): oversiktens `https://`-adresse, uten sti, for eksempel `https://miner.example.com`. Proxyen må videresende `X-Forwarded-Proto`, `X-Forwarded-For` og websockets, noe vanlige proxyer gjør som standard, og containerens port må ikke kunne nås direkte. Oversikten avviser da alt som ikke kommer gjennom proxyen over HTTPS, og sperrer en adresse i 30 sekunder etter 5 feil passord. |
+| `MINER_PUBLIC_URL` | ingen | Bare bak en omvendt HTTPS-proxy (Caddy, nginx, Traefik, Cloudflare Tunnel …): oversiktens `https://`-adresse, uten sti, for eksempel `https://miner.example.com`. Proxyen må videresende `X-Forwarded-Proto`, `X-Forwarded-For` og websockets, noe vanlige proxyer gjør som standard, og containerens port må ikke kunne nås direkte. Oversikten avviser da alt som ikke kommer gjennom proxyen over HTTPS, og sperrer en adresse i 30 sekunder etter 5 feil passord. Proxyen må kjøre på samme maskin eller i det lokale nettverket dens: en tilkobling fra en offentlig adresse avvises. |
 | `MINER_TRUSTED_HOPS` | `1` | Bare med `MINER_PUBLIC_URL`: hvor mange proxyer som legger til en oppføring i `X-Forwarded-For`, fra 1 til 10. `2` med to proxyer etter hverandre, for eksempel Cloudflare foran Traefik. |
 | `MINER_VAULT_PASSPHRASE` | ingen | Bare for en datamappe kopiert fra skrivebordsappen med et app-passord satt: låser den opp ved oppstart. En server bygget fra bunnen av trenger den aldri. |
 | `MINER_VAULT_PASSPHRASE_FILE` | ingen | Leser `MINER_VAULT_PASSPHRASE` fra en fil. Den ene eller den andre, ikke begge. |

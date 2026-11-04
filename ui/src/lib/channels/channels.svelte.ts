@@ -51,8 +51,10 @@ const flush = async (): Promise<void> => {
   flushing = false;
 };
 
+// ! A channel known only from a search (no id) is read in full: its game, its
+// viewers.
 export const ensureChannels = (logins: string[]): void => {
-  const wanted = logins.filter((login) => !knownChannels[login] && !asked.has(login));
+  const wanted = logins.filter((login) => !knownChannels[login]?.id && !asked.has(login));
 
   if (wanted.length === 0) {
     return;

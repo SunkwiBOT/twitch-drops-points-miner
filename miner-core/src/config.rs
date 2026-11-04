@@ -506,7 +506,7 @@ impl Default for SpamPointsSettings {
         Self {
             show_disabled: true,
             show_out_of_stock: true,
-            delay_ms: 100,
+            delay_ms: 50,
         }
     }
 }

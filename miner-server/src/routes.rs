@@ -53,6 +53,7 @@ const INCOMING_MESSAGE_MAX_BYTES: usize = 4 * 1024;
 
 static PLAIN_HTTP_WARNING: Once = Once::new();
 static UNKNOWN_VISITOR_WARNING: Once = Once::new();
+static DIRECT_VISITOR_WARNING: Once = Once::new();
 static CROSS_SITE_NOTICE: Once = Once::new();
 
 #[derive(rust_embed::Embed)]
@@ -178,6 +179,7 @@ fn status_of(code: ErrorCode) -> StatusCode {
         ErrorCode::WrongPassphrase
         | ErrorCode::HttpsRequired
         | ErrorCode::ForwardedForRequired
+        | ErrorCode::ProxyNotLocal
         | ErrorCode::CrossSiteRequest
         | ErrorCode::UpdateSignatureRefused => StatusCode::FORBIDDEN,
         ErrorCode::InvalidRequest => StatusCode::BAD_REQUEST,
@@ -188,6 +190,7 @@ fn status_of(code: ErrorCode) -> StatusCode {
         ErrorCode::VaultLocked => StatusCode::LOCKED,
         ErrorCode::PassphraseRequired
         | ErrorCode::RewardNotRedeemable
+        | ErrorCode::BurstRunning
         | ErrorCode::DeviceCodePending
         | ErrorCode::DeviceCodeExpired => StatusCode::CONFLICT,
         ErrorCode::InvalidProxy | ErrorCode::InvalidStreamerLogin => {
@@ -386,6 +389,11 @@ fn warn_once(refusal: ErrorCode) {
         ErrorCode::HttpsRequired => PLAIN_HTTP_WARNING.call_once(|| {
             tracing::warn!(
                 "refused a request that did not arrive over HTTPS: open the dashboard at MINER_PUBLIC_URL, through a proxy that sends X-Forwarded-Proto"
+            );
+        }),
+        ErrorCode::ProxyNotLocal => DIRECT_VISITOR_WARNING.call_once(|| {
+            tracing::warn!(
+                "refused a request from a public address that reached the port directly: with MINER_PUBLIC_URL, only the HTTPS proxy on this machine or its local network may connect"
             );
         }),
         _ => UNKNOWN_VISITOR_WARNING.call_once(|| {

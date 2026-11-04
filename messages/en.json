@@ -369,6 +369,7 @@
   "error_too_many_attempts": "Too many wrong passwords: try again in a moment.",
   "error_https_required": "Open the dashboard at its HTTPS address.",
   "error_forwarded_for_required": "The HTTPS proxy in front of the dashboard must send the visitor's address (X-Forwarded-For).",
+  "error_proxy_not_local": "The dashboard only accepts its HTTPS proxy from this machine or its local network.",
   "error_cross_site_request": "Refused: the request came from a page of another site.",
   "error_update_signature_refused": "The download does not match the release's signature: nothing was installed.",
   "error_update_install_failed": "The update could not be installed: the app stays on its current version.",
@@ -1005,8 +1006,6 @@
   "spam_channels": "Channels",
   "spam_search_placeholder": "Search a Twitch channel",
   "spam_search_hint": "Search any Twitch channel, even one outside your Points list.",
-  "spam_last_used": "used {time}",
-  "spam_never_used": "never used",
   "spam_in_points": "In your Points list",
   "spam_in_history": "Already in your history",
   "spam_remove_history": "Remove from history",
@@ -1096,6 +1095,7 @@
   "spam_no_rewards": "No reward available for now.",
   "error_unknown_reward": "This reward is no longer on the channel.",
   "error_reward_not_redeemable": "Nothing was sent: the reward needs a message, is unavailable or on cooldown, or the balance is too low.",
+  "error_burst_running": "This reward is still being sent: wait for it to finish.",
   "ev_rewards_redeemed": [
     {
       "declarations": [

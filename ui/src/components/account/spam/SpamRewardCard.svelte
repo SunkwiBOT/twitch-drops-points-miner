@@ -144,12 +144,15 @@
           disabled={blocked}
           bind:value={message}
           onkeydown={(event) => {
-            if (event.key === "Enter") {
+            if (event.key === "Enter" && !event.isComposing) {
               void redeem();
             }
           }}
         />
       {/if}
+      <span class="sr-only" aria-live="polite"
+        >{sending ? t.spam_redeeming({ done: sending.done, total: sending.total }) : ""}</span
+      >
       <span class="mt-auto">
         {#snippet button(props: Record<string, unknown>)}
           <Button

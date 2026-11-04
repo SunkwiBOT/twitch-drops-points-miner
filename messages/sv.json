@@ -369,6 +369,7 @@
   "error_too_many_attempts": "För många felaktiga lösenord: försök igen om en stund.",
   "error_https_required": "Öppna instrumentpanelen på dess HTTPS-adress.",
   "error_forwarded_for_required": "HTTPS-proxyn framför instrumentpanelen måste skicka besökarens adress (X-Forwarded-For).",
+  "error_proxy_not_local": "Instrumentpanelen tar bara emot sin HTTPS-proxy från den här datorn eller dess lokala nätverk.",
   "error_cross_site_request": "Nekad: förfrågan kom från en sida på en annan webbplats.",
   "error_update_signature_refused": "Nedladdningen stämmer inte med versionens signatur: inget installerades.",
   "error_update_install_failed": "Uppdateringen kunde inte installeras: appen stannar på sin nuvarande version.",
@@ -1005,8 +1006,6 @@
   "spam_channels": "Kanaler",
   "spam_search_placeholder": "Sök en Twitch-kanal",
   "spam_search_hint": "Sök vilken Twitch-kanal som helst, även utanför din Poänglista.",
-  "spam_last_used": "använd {time}",
-  "spam_never_used": "aldrig använd",
   "spam_in_points": "I din Poänglista",
   "spam_in_history": "Redan i din historik",
   "spam_remove_history": "Ta bort från historiken",
@@ -1096,6 +1095,7 @@
   "spam_no_rewards": "Ingen belöning är tillgänglig just nu.",
   "error_unknown_reward": "Den här belöningen finns inte längre på kanalen.",
   "error_reward_not_redeemable": "Inget skickades: belöningen kräver ett meddelande, är inte tillgänglig eller har nedkylning, eller så räcker inte saldot.",
+  "error_burst_running": "Den här belöningen skickas fortfarande: vänta tills det är klart.",
   "ev_rewards_redeemed": [
     {
       "declarations": [
