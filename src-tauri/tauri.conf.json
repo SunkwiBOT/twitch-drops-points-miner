@@ -1,0 +1,74 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Twitch Drops & Points Miner",
+  "version": "0.1.0",
+  "identifier": "io.github.sunkwibot.twitchminer",
+  "mainBinaryName": "twitchminer",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devUrl": "http://localhost:5173",
+    "frontendDist": "../ui/dist"
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDFEOTQ4RDc3MEJCQUJCODcKUldTSHU3b0xkNDJVSFRNT1ZROFBUTUs2YkJGVHJjWHNqeGZBaEtnSlNUM3ZRRmtwV2lMaUFvV1AK",
+      "endpoints": [
+        "https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/latest.json"
+      ]
+    }
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [
+      {
+        "label": "main",
+        "title": "Twitch Drops & Points Miner",
+        "width": 1180,
+        "height": 760,
+        "minWidth": 900,
+        "minHeight": 560,
+        "resizable": true,
+        "center": true,
+        "visible": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' data: https://static-cdn.jtvnw.net https://*.jtvnw.net; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self' ipc: http://ipc.localhost; object-src 'none'; base-uri 'self'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "createUpdaterArtifacts": true,
+    "targets": ["appimage", "rpm", "deb", "nsis", "app", "dmg"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/16x16.png",
+      "icons/24x24.png",
+      "icons/48x48.png",
+      "icons/64x64.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.png",
+      "icons/512x512.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "category": "Utility",
+    "shortDescription": "Mine Twitch Drops and channel points on several accounts",
+    "longDescription": "Watches Twitch streams without video for you: mines timed Drops and channel points on several accounts, with priorities per game and per streamer, auto-claim, predictions, Discord and Telegram notifications. No browser needed: sign in with a code on twitch.tv/activate.",
+    "linux": {
+      "appimage": { "bundleMediaFramework": false },
+      "deb": { "desktopTemplate": "../packaging/twitch-drops-points-miner.desktop" },
+      "rpm": { "epoch": 0, "release": "1", "desktopTemplate": "../packaging/twitch-drops-points-miner.desktop" }
+    },
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": ["English", "French", "German", "Spanish", "SpanishInternational", "Portuguese", "PortugueseBR", "Italian", "Dutch", "Polish", "Russian", "Ukrainian", "Czech", "Hungarian", "Romanian", "Bulgarian", "Greek", "Turkish", "Swedish", "Danish", "Norwegian", "Finnish", "SimpChinese", "TradChinese", "Japanese", "Korean", "Thai", "Vietnamese", "Indonesian"],
+        "displayLanguageSelector": false
+      }
+    },
+    "macOS": { "minimumSystemVersion": "10.15" }
+  }
+}

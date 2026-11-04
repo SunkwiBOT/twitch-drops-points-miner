@@ -1,0 +1,55 @@
+[workspace]
+resolver = "2"
+members = ["miner-core", "miner-server", "src-tauri"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.90"
+license = "MIT"
+repository = "https://github.com/SunkwiBOT/twitch-drops-points-miner"
+
+[workspace.dependencies]
+miner-core = { path = "miner-core" }
+anyhow = "1"
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "sync", "time", "net", "fs", "signal"] }
+tokio-util = { version = "0.7", features = ["rt"] }
+futures-util = { version = "0.3", features = ["sink"] }
+reqwest = { version = "0.13", default-features = false, features = ["rustls", "json", "form", "multipart", "gzip", "http2", "socks"] }
+reqwest-websocket = "0.6"
+chrono = { version = "0.4", features = ["serde"] }
+url = { version = "2", features = ["serde"] }
+regex = "1"
+base64 = "0.22"
+rand = "0.9"
+hex = "0.4"
+rusqlite = { version = "0.40", features = ["bundled"] }
+aes-gcm = "0.10"
+argon2 = "0.5"
+zeroize = { version = "1", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+tracing-appender = "0.2"
+dirs = "6"
+axum = { version = "0.8", features = ["ws", "macros"] }
+tower-http = { version = "0.6", features = ["cors", "compression-gzip", "trace", "set-header"] }
+rust-embed = { version = "8", features = ["interpolate-folder-path"] }
+mime_guess = "2"
+subtle = "2"
+sha2 = "0.10"
+semver = "1"
+ts-rs = { version = "12", features = ["chrono-impl", "no-serde-warnings"] }
+tower = { version = "0.5", features = ["util"] }
+notify-rust = "4.18"
+zbus = "5"
+sys-locale = "0.3"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

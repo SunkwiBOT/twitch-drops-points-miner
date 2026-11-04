@@ -1,0 +1,309 @@
+/* ! Tokens shared with drops.sunkwi.com. */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where([data-theme="DARK"], [data-theme="DARK"] *));
+
+@custom-variant data-open (&:where([data-state="open"], [data-open]:not([data-open="false"])));
+@custom-variant data-closed (&:where([data-state="closed"], [data-closed]:not([data-closed="false"])));
+@custom-variant data-checked (&:where([data-state="checked"], [data-checked]:not([data-checked="false"])));
+@custom-variant data-unchecked (&:where([data-state="unchecked"], [data-unchecked]:not([data-unchecked="false"])));
+@custom-variant data-active (&:where([data-state="active"], [data-active]:not([data-active="false"])));
+@custom-variant data-horizontal (&:where([data-orientation="horizontal"]));
+@custom-variant data-vertical (&:where([data-orientation="vertical"]));
+
+:root,
+:root[data-theme="DARK"] {
+  --brand-discord: #5865f2;
+  --brand-discord-foreground: #ffffff;
+  --brand-telegram: #26a5e4;
+
+  color-scheme: dark;
+  --radius: 0.25rem;
+  --background: #0e0e10;
+  --foreground: #efeff1;
+  --card: #18181b;
+  --card-foreground: #efeff1;
+  --popover: #1f1f23;
+  --popover-foreground: #efeff1;
+  --primary: #9146ff;
+  --primary-foreground: #ffffff;
+  --secondary: #26262c;
+  --secondary-foreground: #efeff1;
+  --muted: #26262c;
+  --muted-foreground: #adadb8;
+  --accent: #34343c;
+  --accent-foreground: #efeff1;
+  --destructive: #ff5c58;
+  --border: #2f2f35;
+  --input: #3d3d44;
+  --ring: #bf94ff;
+  --sidebar: #18181b;
+  --sidebar-foreground: #efeff1;
+  --sidebar-primary: #9146ff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #26262c;
+  --sidebar-accent-foreground: #efeff1;
+  --sidebar-border: #2f2f35;
+  --sidebar-ring: #bf94ff;
+
+  --destructive-foreground: #ff8f8c;
+  --success: #0f2e22;
+  --success-foreground: #4dffb2;
+  --success-emphasis: #00f593;
+  --warning: #33260f;
+  --warning-foreground: #ffc98f;
+  --warning-emphasis: #ffb86b;
+  --info: #0e2338;
+  --info-foreground: #8cc8ff;
+  --info-emphasis: #2b9bff;
+  --live: #eb0400;
+  --live-foreground: #ffffff;
+  --live-emphasis: #ff2a26;
+
+  --selected: #45454f;
+  --selected-foreground: #efeff1;
+  --switch-unchecked: #53535f;
+  --link: #bf94ff;
+  --link-hover: #d1b3ff;
+}
+
+:root[data-theme="LIGHT"] {
+  color-scheme: light;
+  --background: #f4f4f6;
+  --foreground: #0e0e10;
+  --card: #ffffff;
+  --card-foreground: #0e0e10;
+  --popover: #ffffff;
+  --popover-foreground: #0e0e10;
+  --primary: #772ce8;
+  --primary-foreground: #ffffff;
+  --secondary: #f0f0f3;
+  --secondary-foreground: #0e0e10;
+  --muted: #f0f0f3;
+  --muted-foreground: #53535f;
+  --accent: #e6e6ea;
+  --accent-foreground: #0e0e10;
+  --destructive: #c7161a;
+  --border: #e0e0e5;
+  --input: #c9c9d1;
+  --ring: #9146ff;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0e0e10;
+  --sidebar-primary: #772ce8;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f0f0f3;
+  --sidebar-accent-foreground: #0e0e10;
+  --sidebar-border: #e0e0e5;
+  --sidebar-ring: #9146ff;
+  --destructive-foreground: #a3120f;
+  --success: #dff7ec;
+  --success-foreground: #006640;
+  --success-emphasis: #00a368;
+  --warning: #fff0db;
+  --warning-foreground: #874600;
+  --warning-emphasis: #e58900;
+  --info: #e1effd;
+  --info-foreground: #0a58a8;
+  --info-emphasis: #1f86f0;
+  --live: #eb0400;
+  --live-foreground: #ffffff;
+  --live-emphasis: #eb0400;
+  --selected: #d4d4dc;
+  --selected-foreground: #0e0e10;
+  --switch-unchecked: #b3b3bd;
+  --link: #772ce8;
+  --link-hover: #5c16c5;
+}
+
+@theme inline {
+  --font-sans: "Inter Variable", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+  --color-brand-discord: var(--brand-discord);
+  --color-brand-discord-foreground: var(--brand-discord-foreground);
+  --color-brand-telegram: var(--brand-telegram);
+
+  --text-hint: 0.8125rem;
+  --text-hint--line-height: 1.25rem;
+  --text-tiny: 0.6875rem;
+  --text-tiny--line-height: 1rem;
+  --text-nav: 0.9375rem;
+  --text-nav-title: 0.92rem;
+  --text-initial-xs: 0.625rem;
+  --text-initial-sm: 0.6875rem;
+  --text-live-tag-sm: 0.5rem;
+  --text-live-tag: 0.5625rem;
+
+  /* ! svelte-sonner's TOAST_WIDTH: our own card fills that slot exactly. */
+  --container-toast: 356px;
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-3xl: calc(var(--radius) * 2.5);
+  --radius-4xl: calc(var(--radius) * 3);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-emphasis: var(--success-emphasis);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-emphasis: var(--warning-emphasis);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-emphasis: var(--info-emphasis);
+  --color-live: var(--live);
+  --color-live-foreground: var(--live-foreground);
+  --color-live-emphasis: var(--live-emphasis);
+  --color-selected: var(--selected);
+  --color-selected-foreground: var(--selected-foreground);
+  --color-switch-unchecked: var(--switch-unchecked);
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html,
+  body,
+  #app {
+    @apply h-full w-full;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased overflow-hidden text-sm;
+  }
+
+  :where(
+    button,
+    a[href],
+    summary,
+    label:has(input, button, [role="checkbox"], [role="radio"], [role="switch"]),
+    [role="button"],
+    [role="option"],
+    [role="tab"],
+    [role="radio"],
+    [role="switch"],
+    [role="checkbox"],
+    [role="menuitem"],
+    [role="combobox"]
+  ):not(:disabled, [aria-disabled="true"], [data-disabled]) {
+    cursor: pointer;
+  }
+
+  :where(button, [role="option"], [role="tab"], [role="switch"], [role="checkbox"]):is(
+    :disabled,
+    [aria-disabled="true"],
+    [data-disabled]
+  ) {
+    cursor: not-allowed;
+  }
+
+  :where(:not([data-slot])):focus-visible {
+    @apply rounded-sm outline-2 outline-offset-2 outline-ring;
+  }
+
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--input);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  /* ! Deliberate: every animation plays whatever the "reduce motion" setting,
+     so svelte-sonner's own values are put back. In a layer, an !important
+     rule beats the library's unlayered one. */
+  @media (prefers-reduced-motion: reduce) {
+    [data-sonner-toast] {
+      transition:
+        transform 400ms,
+        opacity 400ms,
+        height 400ms,
+        box-shadow 200ms !important;
+    }
+
+    [data-sonner-toast] > * {
+      transition: opacity 400ms !important;
+    }
+
+    [data-sonner-toast][data-removed="true"][data-front="false"][data-swipe-out="false"][data-expanded="false"] {
+      transition:
+        transform 500ms,
+        opacity 200ms !important;
+    }
+
+    [data-sonner-toast][data-swiping="true"] {
+      transition: none !important;
+    }
+
+    [data-sonner-toast][data-swipe-out="true"] {
+      animation-duration: 200ms !important;
+      animation-timing-function: ease-out !important;
+      animation-fill-mode: forwards !important;
+    }
+
+    [data-sonner-toast][data-swipe-out="true"][data-swipe-direction="left"] {
+      animation-name: swipe-out-left !important;
+    }
+
+    [data-sonner-toast][data-swipe-out="true"][data-swipe-direction="right"] {
+      animation-name: swipe-out-right !important;
+    }
+
+    [data-sonner-toast][data-swipe-out="true"][data-swipe-direction="up"] {
+      animation-name: swipe-out-up !important;
+    }
+
+    [data-sonner-toast][data-swipe-out="true"][data-swipe-direction="down"] {
+      animation-name: swipe-out-down !important;
+    }
+  }
+}

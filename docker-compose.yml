@@ -1,0 +1,17 @@
+services:
+  miner:
+    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    container_name: twitch-miner
+    pull_policy: always
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      MINER_PASSWORD: "change-me"
+    volumes:
+      # ! A named volume: a ./data folder would be created by root and refused by
+      # the server's user.
+      - miner-data:/data
+
+volumes:
+  miner-data:

@@ -1,0 +1,10 @@
+/target
+/node_modules
+/ui/dist
+/ui/src/lib/paraglide
+/src-tauri/gen
+/data
+*.log
+.env
+.DS_Store
+/temp/

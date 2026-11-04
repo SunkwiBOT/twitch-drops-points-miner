@@ -1,0 +1,16 @@
+target
+node_modules
+ui/dist
+ui/src/lib/paraglide
+src-tauri/gen
+src-tauri/target
+data
+.git
+.env
+*.log
+
+temp
+docs
+.github
+packaging
+*.md

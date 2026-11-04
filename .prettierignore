@@ -1,0 +1,4 @@
+ui/src/lib/paraglide
+ui/dist
+target
+src-tauri/gen

@@ -1,0 +1,209 @@
+name: release
+run-name: release v${{ inputs.version }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish, without the leading v (for example 0.2.0)"
+        required: true
+        type: string
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.check.outputs.version }}
+      tagged: ${{ steps.tag.outputs.tagged }}
+      image: ${{ steps.check.outputs.image }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check the version
+        id: check
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: |
+          python3 .github/bump-version.py --check-next "$RELEASE_VERSION"
+          echo "version=$RELEASE_VERSION" >> "$GITHUB_OUTPUT"
+          echo "image=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+
+      - name: Write it into the project
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: python3 .github/bump-version.py "$RELEASE_VERSION"
+
+      - name: Tag the release
+        id: tag
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: |
+          version="v$RELEASE_VERSION"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No version change to commit"
+          else
+            git commit -m "chore(release): $version"
+          fi
+
+          git tag -a "$version" -m "$version - Twitch Drops & Points Miner"
+          # ! Only the tag is pushed: the release commit stays off `main` on purpose.
+          git push origin "refs/tags/$version"
+          echo "tagged=true" >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: version
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: ubuntu-22.04
+            args: --bundles appimage,rpm,deb -- --locked
+          - platform: windows-latest
+            args: --bundles nsis -- --locked
+          - platform: macos-latest
+            # ! The macOS updater installs the signed `.app.tar.gz` that only the `app`
+            # bundle produces.
+            args: --bundles app,dmg --target universal-apple-darwin -- --locked
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v${{ needs.version.outputs.version }}
+
+      - name: Install WebKitGTK and packaging tools
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev \
+            librsvg2-dev patchelf rpm file
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+      - uses: Swatinem/rust-cache@v2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install the interface dependencies
+        run: npm ci
+
+      - name: Build, sign and publish
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NO_STRIP: "true"
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          tagName: v${{ needs.version.outputs.version }}
+          releaseName: "v${{ needs.version.outputs.version }} - Twitch Drops & Points Miner"
+          releaseBody: "Download the installer for your system, or run the Docker image ${{ needs.version.outputs.image }}:${{ needs.version.outputs.version }} (also tagged latest) on a home server. macOS builds are not notarized: right-click the app and choose Open the first time."
+          releaseDraft: true
+          prerelease: false
+          includeUpdaterJson: true
+          # ! A fixed file name without the product name's "&": GitHub drops it from
+          # asset names but tauri-action does not, so it would not find the signatures
+          # and would skip latest.json.
+          assetNamePattern: "twitch-drops-points-miner_[version]_[platform]_[arch][setup][ext]"
+          args: ${{ matrix.args }}
+
+      - name: Attach the portable Windows executable
+        if: matrix.platform == 'windows-latest'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cp target/release/twitchminer.exe TwitchDropsPointsMiner-portable.exe
+          gh release upload "v${{ needs.version.outputs.version }}" TwitchDropsPointsMiner-portable.exe --clobber
+
+  # ! Only the versioned image here: `latest` moves in `finalize`, once the
+  # release is out, so a withdrawn run never moves it.
+  docker:
+    needs: version
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v${{ needs.version.outputs.version }}
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ needs.version.outputs.image }}:${{ needs.version.outputs.version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  finalize:
+    needs: [version, publish, docker]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Publish the complete release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_VERSION: ${{ needs.version.outputs.version }}
+        run: gh release edit "v$RELEASE_VERSION" --draft=false
+
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tag the image as latest
+        env:
+          IMAGE: ${{ needs.version.outputs.image }}
+          RELEASE_VERSION: ${{ needs.version.outputs.version }}
+        run: docker buildx imagetools create --tag "$IMAGE:latest" "$IMAGE:$RELEASE_VERSION"
+
+  # ! After a failed run start a NEW run: "Re-run failed jobs" would check out
+  # the withdrawn tag and fail.
+  withdraw:
+    needs: [version, publish, docker]
+    # ! Only a run that created its own tag may remove it: a refused version must
+    # never delete the release already published under that number.
+    if: failure() && needs.version.outputs.tagged == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove the tag and the draft release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_VERSION: ${{ needs.version.outputs.version }}
+        run: |
+          gh release delete "v$RELEASE_VERSION" --yes --cleanup-tag || true
+          gh api -X DELETE "repos/$GH_REPO/git/refs/tags/v$RELEASE_VERSION" || true
