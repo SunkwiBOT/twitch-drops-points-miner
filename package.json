@@ -1,7 +1,7 @@
 {
   "name": "twitch-drops-points-miner",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.2.4",
   "description": "Mines Twitch Drops and channel points on several accounts, with no browser and no Twitch tab open.",
   "license": "MIT",
   "repository": {
