@@ -1,12 +1,8 @@
 # syntax=docker/dockerfile:1.7
 
-ARG NODE_VERSION=24
-ARG RUST_VERSION=1.99
-ARG XX_VERSION=1.10.0
+FROM --platform=$BUILDPLATFORM docker.io/tonistiigi/xx:1.10.0@sha256:40fe21f44bb8cddf1eb1226db190d0a984118f62ee02a91b77d99448d28264a6 AS xx
 
-FROM --platform=$BUILDPLATFORM docker.io/tonistiigi/xx:${XX_VERSION} AS xx
-
-FROM --platform=$BUILDPLATFORM docker.io/library/node:${NODE_VERSION}-alpine AS dashboard
+FROM --platform=$BUILDPLATFORM docker.io/library/node:24-alpine@sha256:8a32c8cf649a49915a66e81e7a609223c708d0adabf288ee3f4077d765542f85 AS dashboard
 
 WORKDIR /build
 
@@ -21,7 +17,7 @@ COPY ui ./ui
 
 RUN npm run build
 
-FROM --platform=$BUILDPLATFORM docker.io/library/rust:${RUST_VERSION}-alpine AS build
+FROM --platform=$BUILDPLATFORM docker.io/library/rust:1.99-alpine@sha256:27cd9befd4a05d6f6eb407c3e28365f5092f008bfc5946207cca76ae5179ef23 AS build
 
 COPY --from=xx / /
 
