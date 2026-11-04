@@ -64,6 +64,8 @@
   "dashboard_queue_reason_lowest_remaining": "Почти готово",
   "dashboard_linked": "Привязан",
   "dashboard_not_linked": "Не привязан",
+  "dashboard_updated": "Панель обновлена до версии {version}: перезагрузите страницу, чтобы пользоваться ей.",
+  "dashboard_reload": "Перезагрузить",
   "dashboard_ends_in": "заканчивается {time}",
   "dashboard_remaining": "осталось {minutes} мин",
   "accounts_add": "Добавить аккаунт",

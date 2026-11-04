@@ -48,6 +48,8 @@
   "dashboard_queue_reason_lowest_remaining": "거의 완료",
   "dashboard_linked": "연동됨",
   "dashboard_not_linked": "연동 안 됨",
+  "dashboard_updated": "대시보드가 {version} 버전으로 업데이트됐어요. 사용하려면 페이지를 새로고침하세요.",
+  "dashboard_reload": "새로고침",
   "dashboard_ends_in": "{time} 종료",
   "dashboard_remaining": "{minutes}분 남음",
   "accounts_add": "계정 추가",

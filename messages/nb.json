@@ -63,6 +63,8 @@
   "dashboard_queue_reason_lowest_remaining": "Nesten ferdig",
   "dashboard_linked": "Koblet",
   "dashboard_not_linked": "Ikke koblet",
+  "dashboard_updated": "Dashbordet er oppdatert til versjon {version}: last inn siden på nytt for å bruke den.",
+  "dashboard_reload": "Last inn på nytt",
   "dashboard_ends_in": "slutter {time}",
   "dashboard_remaining": "{minutes} min igjen",
   "accounts_add": "Legg til konto",

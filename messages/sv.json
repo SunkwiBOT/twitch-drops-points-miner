@@ -63,6 +63,8 @@
   "dashboard_queue_reason_lowest_remaining": "Nästan klar",
   "dashboard_linked": "Länkat",
   "dashboard_not_linked": "Inte länkat",
+  "dashboard_updated": "Instrumentpanelen har uppdaterats till version {version}: ladda om sidan för att använda den.",
+  "dashboard_reload": "Ladda om",
   "dashboard_ends_in": "slutar {time}",
   "dashboard_remaining": "{minutes} min kvar",
   "accounts_add": "Lägg till konto",

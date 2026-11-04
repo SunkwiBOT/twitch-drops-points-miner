@@ -63,6 +63,8 @@
   "dashboard_queue_reason_lowest_remaining": "Presque terminé",
   "dashboard_linked": "Lié",
   "dashboard_not_linked": "Non lié",
+  "dashboard_updated": "Le tableau de bord est passé en version {version} : rechargez la page pour l'utiliser.",
+  "dashboard_reload": "Recharger",
   "dashboard_ends_in": "se termine {time}",
   "dashboard_remaining": "reste {minutes} min",
   "accounts_add": "Ajouter un compte",

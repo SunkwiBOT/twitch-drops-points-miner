@@ -64,6 +64,8 @@
   "dashboard_queue_reason_lowest_remaining": "Téměř hotovo",
   "dashboard_linked": "Propojeno",
   "dashboard_not_linked": "Nepropojeno",
+  "dashboard_updated": "Panel byl aktualizován na verzi {version}: obnovte stránku, abyste ji mohli používat.",
+  "dashboard_reload": "Obnovit",
   "dashboard_ends_in": "končí {time}",
   "dashboard_remaining": "zbývá {minutes} min",
   "accounts_add": "Přidat účet",

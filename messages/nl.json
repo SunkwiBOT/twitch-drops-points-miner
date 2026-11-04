@@ -63,6 +63,8 @@
   "dashboard_queue_reason_lowest_remaining": "Bijna klaar",
   "dashboard_linked": "Gekoppeld",
   "dashboard_not_linked": "Niet gekoppeld",
+  "dashboard_updated": "Het dashboard is bijgewerkt naar versie {version}: laad de pagina opnieuw om die te gebruiken.",
+  "dashboard_reload": "Opnieuw laden",
   "dashboard_ends_in": "eindigt {time}",
   "dashboard_remaining": "nog {minutes} min",
   "accounts_add": "Account toevoegen",

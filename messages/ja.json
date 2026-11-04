@@ -48,6 +48,8 @@
   "dashboard_queue_reason_lowest_remaining": "もうすぐ完了",
   "dashboard_linked": "連携済み",
   "dashboard_not_linked": "未連携",
+  "dashboard_updated": "ダッシュボードがバージョン {version} に更新されました。使うにはページを再読み込みしてください。",
+  "dashboard_reload": "再読み込み",
   "dashboard_ends_in": "{time}に終了",
   "dashboard_remaining": "残り {minutes} 分",
   "accounts_add": "アカウントを追加",

@@ -73,7 +73,7 @@ impl SnapshotFeed {
             return;
         }
 
-        let snapshot = match self.manager.snapshot().await {
+        let mut snapshot = match self.manager.snapshot().await {
             Ok(snapshot) => snapshot,
             Err(error) => {
                 tracing::warn!(%error, "snapshot not built, the clients keep the last one");
@@ -81,6 +81,8 @@ impl SnapshotFeed {
                 return;
             }
         };
+        snapshot.build = crate::routes::ui_build();
+
         let message = ServerMessage::Snapshot {
             snapshot: Box::new(snapshot),
         };

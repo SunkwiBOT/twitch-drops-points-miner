@@ -64,6 +64,8 @@
   "dashboard_queue_reason_lowest_remaining": "Майже готово",
   "dashboard_linked": "Прив'язано",
   "dashboard_not_linked": "Не прив'язано",
+  "dashboard_updated": "Панель оновлено до версії {version}: перезавантажте сторінку, щоб нею користуватися.",
+  "dashboard_reload": "Перезавантажити",
   "dashboard_ends_in": "завершується {time}",
   "dashboard_remaining": "залишилось {minutes} хв",
   "accounts_add": "Додати обліковий запис",

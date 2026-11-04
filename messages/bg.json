@@ -63,6 +63,8 @@
   "dashboard_queue_reason_lowest_remaining": "Почти готово",
   "dashboard_linked": "Свързан",
   "dashboard_not_linked": "Несвързан",
+  "dashboard_updated": "Таблото е обновено до версия {version}: презаредете страницата, за да я използвате.",
+  "dashboard_reload": "Презареждане",
   "dashboard_ends_in": "приключва {time}",
   "dashboard_remaining": "остават {minutes} мин",
   "accounts_add": "Добави акаунт",

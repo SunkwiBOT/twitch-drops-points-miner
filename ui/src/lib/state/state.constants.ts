@@ -83,6 +83,8 @@ export const TOAST_DURATION_MS: Record<ToastKind, number> = {
 
 export const TOAST_ACTION_DURATION_MS = 15_000;
 
+export const RELOAD_WAIT_MS = 2_000;
+
 export const LINK_TOAST_KEY = "link-opened";
 
 export const BULK_TOAST_KEY = "bulk-offer";

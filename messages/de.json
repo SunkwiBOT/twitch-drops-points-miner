@@ -63,6 +63,8 @@
   "dashboard_queue_reason_lowest_remaining": "Fast fertig",
   "dashboard_linked": "Verknüpft",
   "dashboard_not_linked": "Nicht verknüpft",
+  "dashboard_updated": "Das Dashboard wurde auf Version {version} aktualisiert: Laden Sie die Seite neu, um sie zu nutzen.",
+  "dashboard_reload": "Neu laden",
   "dashboard_ends_in": "endet {time}",
   "dashboard_remaining": "noch {minutes} Min.",
   "accounts_add": "Konto hinzufügen",

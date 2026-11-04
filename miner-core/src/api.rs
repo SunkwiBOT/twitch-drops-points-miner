@@ -135,6 +135,11 @@ pub struct CatalogView {
 #[ts(rename = "SnapshotType")]
 pub struct Snapshot {
     pub version: String,
+    // ! The dashboard's interface build, set by the server: a tab that loaded
+    // another one reloads, even when a rebuild kept the version.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub build: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[ts(optional)]
     pub update_available: Option<String>,

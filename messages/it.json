@@ -63,6 +63,8 @@
   "dashboard_queue_reason_lowest_remaining": "Quasi completata",
   "dashboard_linked": "Collegato",
   "dashboard_not_linked": "Non collegato",
+  "dashboard_updated": "La dashboard è stata aggiornata alla versione {version}: ricarica la pagina per usarla.",
+  "dashboard_reload": "Ricarica",
   "dashboard_ends_in": "termina {time}",
   "dashboard_remaining": "{minutes} min rimanenti",
   "accounts_add": "Aggiungi un account",

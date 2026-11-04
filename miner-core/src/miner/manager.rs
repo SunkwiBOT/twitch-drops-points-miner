@@ -1414,6 +1414,7 @@ impl Manager {
 
         Ok(Snapshot {
             version: crate::VERSION.to_owned(),
+            build: None,
             update_available,
             update_checked_at,
             accounts,

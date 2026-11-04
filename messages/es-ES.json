@@ -63,6 +63,8 @@
   "dashboard_queue_reason_lowest_remaining": "Casi terminada",
   "dashboard_linked": "Vinculada",
   "dashboard_not_linked": "No vinculada",
+  "dashboard_updated": "El panel se ha actualizado a la versión {version}: recarga la página para usarla.",
+  "dashboard_reload": "Recargar",
   "dashboard_ends_in": "termina {time}",
   "dashboard_remaining": "quedan {minutes} min",
   "accounts_add": "Añadir una cuenta",

@@ -63,6 +63,8 @@
   "dashboard_queue_reason_lowest_remaining": "Almost done",
   "dashboard_linked": "Linked",
   "dashboard_not_linked": "Not linked",
+  "dashboard_updated": "The dashboard was updated to version {version}: reload the page to use it.",
+  "dashboard_reload": "Reload",
   "dashboard_ends_in": "ends {time}",
   "dashboard_remaining": "{minutes} min left",
   "accounts_add": "Add an account",

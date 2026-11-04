@@ -48,6 +48,8 @@
   "dashboard_queue_reason_lowest_remaining": "Majdnem kész",
   "dashboard_linked": "Összekapcsolva",
   "dashboard_not_linked": "Nincs összekapcsolva",
+  "dashboard_updated": "Az irányítópult a(z) {version} verzióra frissült: töltsd újra az oldalt a használatához.",
+  "dashboard_reload": "Újratöltés",
   "dashboard_ends_in": "véget ér: {time}",
   "dashboard_remaining": "{minutes} perc van hátra",
   "accounts_add": "Fiók hozzáadása",

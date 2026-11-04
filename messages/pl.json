@@ -64,6 +64,8 @@
   "dashboard_queue_reason_lowest_remaining": "Prawie gotowe",
   "dashboard_linked": "Połączone",
   "dashboard_not_linked": "Niepołączone",
+  "dashboard_updated": "Panel został zaktualizowany do wersji {version}: odśwież stronę, aby z niej korzystać.",
+  "dashboard_reload": "Odśwież",
   "dashboard_ends_in": "kończy się {time}",
   "dashboard_remaining": "pozostało {minutes} min",
   "accounts_add": "Dodaj konto",

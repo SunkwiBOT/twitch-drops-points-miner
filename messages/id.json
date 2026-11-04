@@ -48,6 +48,8 @@
   "dashboard_queue_reason_lowest_remaining": "Hampir selesai",
   "dashboard_linked": "Tertaut",
   "dashboard_not_linked": "Belum tertaut",
+  "dashboard_updated": "Dasbor diperbarui ke versi {version}: muat ulang halaman untuk memakainya.",
+  "dashboard_reload": "Muat ulang",
   "dashboard_ends_in": "berakhir {time}",
   "dashboard_remaining": "{minutes} mnt tersisa",
   "accounts_add": "Tambah akun",

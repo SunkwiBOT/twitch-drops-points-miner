@@ -38,6 +38,7 @@ import { number } from "../format.utils";
 import { strong } from "../text.utils";
 import { applyLanguage, t } from "../i18n/i18n.svelte";
 import { noteBurstProgress } from "../spam/spam.svelte";
+import { overlay } from "./overlay.svelte";
 import { applyTimePreferences } from "../time/time.svelte";
 import {
   ACCOUNT_PAGES,
@@ -50,6 +51,7 @@ import {
   SETTINGS_SAVE_DELAY_MS,
   SETTINGS_SETTLE_MS,
   TOAST_ACTION_DURATION_MS,
+  RELOAD_WAIT_MS,
   TOAST_DURATION_MS,
   ToastKind,
 } from "./state.constants";
@@ -242,7 +244,57 @@ const applyTheme = (theme: Theme): void => {
   document.documentElement.dataset.theme = theme;
 };
 
+let pageBuild: string | null = null;
+let reloadWait: ReturnType<typeof setInterval> | undefined;
+
+const busy = (): boolean =>
+  overlay.unsaved ||
+  pendingSettings.size > 0 ||
+  pending.theme !== undefined ||
+  pending.language !== undefined ||
+  pendingSpam !== null ||
+  document.querySelector('[role="dialog"]') !== null;
+
+// ! A dashboard tab left open through an update reconnects to the new server
+// but keeps running the old interface: it reloads itself, once nothing is
+// being edited or saved; meanwhile a toast offers to do it now.
+const followServerBuild = (snapshot: SnapshotType): void => {
+  const build = snapshot.build ?? snapshot.version;
+
+  if (isTauri() || build === pageBuild) {
+    return;
+  }
+
+  if (pageBuild === null) {
+    pageBuild = build;
+
+    return;
+  }
+
+  pageBuild = build;
+
+  if (!busy()) {
+    location.reload();
+
+    return;
+  }
+
+  toast(ToastKind.INFO, t.dashboard_updated({ version: snapshot.version }), {
+    key: "dashboard-updated",
+    action: { label: t.dashboard_reload(), run: () => location.reload() },
+  });
+
+  clearInterval(reloadWait);
+  reloadWait = setInterval(() => {
+    if (!busy()) {
+      location.reload();
+    }
+  }, RELOAD_WAIT_MS);
+};
+
 const applySnapshot = (snapshot: SnapshotType): void => {
+  followServerBuild(snapshot);
+
   if (perViewer()) {
     serverPreferences = pickViewer(snapshot.settings);
     Object.assign(snapshot.settings, viewerPreferences());

@@ -48,6 +48,8 @@
   "dashboard_queue_reason_lowest_remaining": "Sắp xong",
   "dashboard_linked": "Đã liên kết",
   "dashboard_not_linked": "Chưa liên kết",
+  "dashboard_updated": "Bảng điều khiển đã cập nhật lên phiên bản {version}: hãy tải lại trang để dùng.",
+  "dashboard_reload": "Tải lại",
   "dashboard_ends_in": "kết thúc {time}",
   "dashboard_remaining": "còn {minutes} phút",
   "accounts_add": "Thêm tài khoản",

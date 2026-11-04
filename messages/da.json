@@ -63,6 +63,8 @@
   "dashboard_queue_reason_lowest_remaining": "Næsten færdig",
   "dashboard_linked": "Tilknyttet",
   "dashboard_not_linked": "Ikke tilknyttet",
+  "dashboard_updated": "Dashboardet er opdateret til version {version}: genindlæs siden for at bruge den.",
+  "dashboard_reload": "Genindlæs",
   "dashboard_ends_in": "slutter {time}",
   "dashboard_remaining": "{minutes} min tilbage",
   "accounts_add": "Tilføj en konto",

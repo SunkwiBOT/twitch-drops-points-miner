@@ -64,6 +64,8 @@
   "dashboard_queue_reason_lowest_remaining": "Aproape gata",
   "dashboard_linked": "Conectat",
   "dashboard_not_linked": "Neconectat",
+  "dashboard_updated": "Panoul a fost actualizat la versiunea {version}: reîncarcă pagina pentru a o folosi.",
+  "dashboard_reload": "Reîncarcă",
   "dashboard_ends_in": "se încheie {time}",
   "dashboard_remaining": "{minutes} min rămase",
   "accounts_add": "Adaugă un cont",

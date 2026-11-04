@@ -48,6 +48,8 @@
   "dashboard_queue_reason_lowest_remaining": "即將完成",
   "dashboard_linked": "已連結",
   "dashboard_not_linked": "未連結",
+  "dashboard_updated": "控制面板已更新至 {version} 版：請重新載入頁面後使用。",
+  "dashboard_reload": "重新載入",
   "dashboard_ends_in": "{time}結束",
   "dashboard_remaining": "剩餘 {minutes} 分鐘",
   "accounts_add": "新增帳號",

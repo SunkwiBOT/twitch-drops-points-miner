@@ -63,6 +63,8 @@
   "dashboard_queue_reason_lowest_remaining": "Melkein valmis",
   "dashboard_linked": "Linkitetty",
   "dashboard_not_linked": "Ei linkitetty",
+  "dashboard_updated": "Hallintapaneeli päivitettiin versioon {version}: lataa sivu uudelleen käyttääksesi sitä.",
+  "dashboard_reload": "Lataa uudelleen",
   "dashboard_ends_in": "päättyy {time}",
   "dashboard_remaining": "{minutes} min jäljellä",
   "accounts_add": "Lisää tili",

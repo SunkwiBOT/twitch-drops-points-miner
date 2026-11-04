@@ -8,6 +8,7 @@ import type { VaultStatusType } from "./VaultStatusType";
 
 export type SnapshotType = {
   version: string;
+  build?: string;
   update_available?: string;
   update_checked_at?: string;
   accounts: Array<AccountSnapshotType>;

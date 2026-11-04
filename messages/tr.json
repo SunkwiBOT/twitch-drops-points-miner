@@ -48,6 +48,8 @@
   "dashboard_queue_reason_lowest_remaining": "Neredeyse bitti",
   "dashboard_linked": "Bağlı",
   "dashboard_not_linked": "Bağlı değil",
+  "dashboard_updated": "Panel {version} sürümüne güncellendi: kullanmak için sayfayı yeniden yükleyin.",
+  "dashboard_reload": "Yeniden yükle",
   "dashboard_ends_in": "{time} bitiyor",
   "dashboard_remaining": "{minutes} dk kaldı",
   "accounts_add": "Hesap ekle",

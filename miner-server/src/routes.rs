@@ -1,5 +1,5 @@
 use std::net::{IpAddr, SocketAddr};
-use std::sync::{Arc, Once};
+use std::sync::{Arc, LazyLock, Once};
 use std::time::Duration;
 
 use axum::extract::rejection::{JsonRejection, QueryRejection};
@@ -59,6 +59,14 @@ static CROSS_SITE_NOTICE: Once = Once::new();
 #[derive(rust_embed::Embed)]
 #[folder = "$CARGO_MANIFEST_DIR/../ui/dist/"]
 struct Assets;
+
+static UI_BUILD: LazyLock<Option<String>> = LazyLock::new(|| {
+    Assets::get("index.html").map(|file| hex::encode(&file.metadata.sha256_hash()[..8]))
+});
+
+pub fn ui_build() -> Option<String> {
+    UI_BUILD.clone()
+}
 
 pub struct AppState {
     pub manager: Arc<Manager>,
@@ -486,9 +494,11 @@ async fn activity(lease: Option<Extension<SessionLease>>) -> StatusCode {
 }
 
 async fn snapshot(State(state): State<Shared>) -> Result<Json<SnapshotResponse>, Failure> {
-    Ok(Json(SnapshotResponse {
-        snapshot: state.manager.snapshot().await?,
-    }))
+    let mut snapshot = state.manager.snapshot().await?;
+
+    snapshot.build = ui_build();
+
+    Ok(Json(SnapshotResponse { snapshot }))
 }
 
 async fn command(

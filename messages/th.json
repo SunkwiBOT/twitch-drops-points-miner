@@ -48,6 +48,8 @@
   "dashboard_queue_reason_lowest_remaining": "ใกล้เสร็จ",
   "dashboard_linked": "เชื่อมแล้ว",
   "dashboard_not_linked": "ยังไม่เชื่อม",
+  "dashboard_updated": "แดชบอร์ดอัปเดตเป็นเวอร์ชัน {version} แล้ว: โหลดหน้าใหม่เพื่อใช้งาน",
+  "dashboard_reload": "โหลดใหม่",
   "dashboard_ends_in": "สิ้นสุด{time}",
   "dashboard_remaining": "เหลือ {minutes} นาที",
   "accounts_add": "เพิ่มบัญชี",

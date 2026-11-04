@@ -63,6 +63,8 @@
   "dashboard_queue_reason_lowest_remaining": "Σχεδόν έτοιμο",
   "dashboard_linked": "Συνδεδεμένο",
   "dashboard_not_linked": "Μη συνδεδεμένο",
+  "dashboard_updated": "Ο πίνακας ελέγχου ενημερώθηκε στην έκδοση {version}: φορτώστε ξανά τη σελίδα για να τη χρησιμοποιήσετε.",
+  "dashboard_reload": "Επαναφόρτωση",
   "dashboard_ends_in": "λήγει {time}",
   "dashboard_remaining": "{minutes} λεπ. απομένουν",
   "accounts_add": "Προσθήκη λογαριασμού",
