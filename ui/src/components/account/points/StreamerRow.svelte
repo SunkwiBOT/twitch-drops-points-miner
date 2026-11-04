@@ -40,7 +40,7 @@
   ]}
 >
   <span class={["inline-flex transition", !streamer.enabled && "opacity-50"]}>
-    <LinkTwin url={channelUrl(streamer.login)}>
+    <LinkTwin url={channelUrl(streamer.login)} live={isLive(streamer.login)}>
       <ChannelAvatar
         url={channel?.avatar_url}
         name={channel?.display_name ?? streamer.login}

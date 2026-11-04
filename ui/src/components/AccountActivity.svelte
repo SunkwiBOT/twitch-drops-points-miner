@@ -96,7 +96,7 @@
 
 {#snippet streamer(slot: SlotViewType)}
   <span class="group/twin flex max-w-36 shrink-0 flex-col items-end gap-1.5 text-right">
-    <LinkTwin url={channelUrl(slot.channel.login)}>
+    <LinkTwin url={channelUrl(slot.channel.login)} live={slot.channel.live}>
       <ChannelAvatar
         url={slot.channel.avatar_url}
         name={slot.channel.display_name}
@@ -193,7 +193,7 @@
     <div
       class="group/twin grid grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-x-3.5 gap-y-1.5 border-b px-5 py-4 last:border-b-0"
     >
-      <LinkTwin url={channelUrl(slot.channel.login)}>
+      <LinkTwin url={channelUrl(slot.channel.login)} live={slot.channel.live}>
         <ChannelAvatar
           url={slot.channel.avatar_url}
           name={slot.channel.display_name}

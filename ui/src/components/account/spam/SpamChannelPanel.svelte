@@ -222,7 +222,7 @@
         aria-hidden="true"
       ></span>
     {/if}
-    <LinkTwin url={channelUrl(channel.login)}>
+    <LinkTwin url={channelUrl(channel.login)} live={channel.live}>
       <ChannelAvatar
         url={channel.avatar}
         name={channel.name}
