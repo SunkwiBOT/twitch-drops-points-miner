@@ -139,7 +139,7 @@ funcionando.
   Bitácora.
 
   <details open><summary>Verlo en acción</summary>
-  <img src="../media/es-419/spam-points.avif" alt="Spam Points: un canal elegido, 5 × una recompensa canjeada y, después, la línea de la Bitácora">
+  <img src="../media/es-419/spam-points.avif" alt="Spam Points: un canal elegido, 10 × una recompensa con mensaje canjeada, los canjes llegan al chat de Twitch del canal y, después, la línea de la Bitácora">
   </details>
 
 ### Drops
@@ -271,6 +271,7 @@ Verificado en su código y sus README en noviembre de 2026.
 |---|:---:|:---:|:---:|
 | Campañas de Drops: las encuentra, las mina y las reclama | ✅ | ❌ ¹ | ✅ |
 | Puntos del canal: cofres, raids, momentos, predicciones | ✅ | ✅ | ❌ |
+| Spam Points: una recompensa personalizada de un canal canjeada varias veces seguidas | ✅ | ❌ | ❌ |
 | Drops y puntos del canal al mismo tiempo en una cuenta | ✅ | en parte ¹ | ❌ |
 | Varias cuentas en una sola app | ✅ | ❌ ² | ❌ |
 | Cambiar la configuración de varias cuentas a la vez | ✅ | ❌ | ❌ |

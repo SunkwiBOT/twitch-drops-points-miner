@@ -137,7 +137,7 @@ funcionando.
   muestra al terminar la ráfaga, y cada ráfaga tiene su línea en el Diario.
 
   <details open><summary>Verlo en acción</summary>
-  <img src="../media/es-ES/spam-points.avif" alt="Spam Points: un canal elegido, 5 × una recompensa canjeada y, después, la línea del Diario">
+  <img src="../media/es-ES/spam-points.avif" alt="Spam Points: un canal elegido, 10 × una recompensa con mensaje canjeada, los canjes llegan al chat de Twitch del canal y, después, la línea del Diario">
   </details>
 
 ### Drops
@@ -266,6 +266,7 @@ Comprobado en su código y sus README en noviembre de 2026.
 |---|:---:|:---:|:---:|
 | Campañas de Drops: las encuentra, las mina y las reclama | ✅ | ❌ ¹ | ✅ |
 | Puntos del canal: cofres, raids, momentos, predicciones | ✅ | ✅ | ❌ |
+| Spam Points: una recompensa personalizada de un canal canjeada varias veces seguidas | ✅ | ❌ | ❌ |
 | Drops y puntos del canal a la vez en una misma cuenta | ✅ | en parte ¹ | ❌ |
 | Varias cuentas en una sola app | ✅ | ❌ ² | ❌ |
 | Cambiar los ajustes de varias cuentas a la vez | ✅ | ❌ | ❌ |

@@ -137,7 +137,7 @@ la lucru.
   iar fiecare serie are rândul ei în Jurnal.
 
   <details open><summary>Vezi în acțiune</summary>
-  <img src="../media/ro/spam-points.avif" alt="Spam Points: un canal ales, 5 × o recompensă revendicată, apoi rândul din Jurnal">
+  <img src="../media/ro/spam-points.avif" alt="Spam Points: un canal ales, 10 × o recompensă cu mesaj revendicată, revendicările apar în chatul Twitch al canalului, apoi rândul din Jurnal">
   </details>
 
 ### Drops
@@ -264,6 +264,7 @@ Verificat în codul și în README-urile lor în noiembrie 2026.
 |---|:---:|:---:|:---:|
 | Campanii Drops: le găsește, le minează și le revendică | ✅ | ❌ ¹ | ✅ |
 | Puncte de canal: cufere, raiduri, momente, predicții | ✅ | ✅ | ❌ |
+| Spam Points: o recompensă personalizată a unui canal revendicată de mai multe ori la rând | ✅ | ❌ | ❌ |
 | Drops și puncte de canal simultan pe același cont | ✅ | parțial ¹ | ❌ |
 | Mai multe conturi într-o singură aplicație | ✅ | ❌ ² | ❌ |
 | Modificarea setărilor mai multor conturi deodată | ✅ | ❌ | ❌ |

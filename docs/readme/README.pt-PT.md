@@ -136,7 +136,7 @@ funcionar.
   resultado aparece no fim da rajada, e cada rajada tem a sua linha no Diário.
 
   <details open><summary>Ver em ação</summary>
-  <img src="../media/pt-PT/spam-points.avif" alt="Spam Points: um canal escolhido, 5 × uma recompensa resgatada e, depois, a linha do Diário">
+  <img src="../media/pt-PT/spam-points.avif" alt="Spam Points: um canal escolhido, 10 × uma recompensa com mensagem resgatada, os resgates chegam ao chat da Twitch do canal e, depois, a linha do Diário">
   </details>
 
 ### Drops
@@ -265,6 +265,7 @@ Verificado no código e nos README de cada um em novembro de 2026.
 |---|:---:|:---:|:---:|
 | Campanhas de Drops: encontra-as, minera-as e reclama-as | ✅ | ❌ ¹ | ✅ |
 | Pontos do canal: baús, raids, momentos, previsões | ✅ | ✅ | ❌ |
+| Spam Points: uma recompensa personalizada de um canal resgatada várias vezes seguidas | ✅ | ❌ | ❌ |
 | Drops e pontos do canal em simultâneo numa só conta | ✅ | em parte ¹ | ❌ |
 | Várias contas numa só app | ✅ | ❌ ² | ❌ |
 | Alterar as definições de várias contas de uma vez | ✅ | ❌ | ❌ |

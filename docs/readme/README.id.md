@@ -117,7 +117,7 @@ Hal-hal yang membedakannya dari penambang lain. “Lihat langsung” di bawah se
 - **Spam Points.** Tukarkan hadiah kustom sebuah channel beberapa kali berturut-turut. Pilih channel dari daftar Poin Anda, atau channel mana pun yang ditemukan lewat pencarian Twitch: hadiahnya tampil beserta saldo akun, yang dibaca ulang secara langsung. Atur jumlahnya (hingga 25, sesuai saldo), lalu “Tukar”. Hasilnya tampil saat rentetan selesai, dan setiap rentetan punya barisnya sendiri di Jurnal.
 
   <details open><summary>Lihat langsung</summary>
-  <img src="../media/id/spam-points.avif" alt="Spam Points: sebuah channel dipilih, 5 × sebuah hadiah ditukar, lalu barisnya di Jurnal">
+  <img src="../media/id/spam-points.avif" alt="Spam Points: sebuah channel dipilih, 10 × sebuah hadiah dengan pesan ditukar, penukarannya muncul di obrolan Twitch channel, lalu barisnya di Jurnal">
   </details>
 
 ### Drops
@@ -205,6 +205,7 @@ Posisi [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-p
 |---|:---:|:---:|:---:|
 | Kampanye Drops: menemukan, menambang, dan mengklaimnya | ✅ | ❌ ¹ | ✅ |
 | Poin channel: peti, raid, momen, prediksi | ✅ | ✅ | ❌ |
+| Spam Points: hadiah kustom sebuah channel ditukarkan beberapa kali berturut-turut | ✅ | ❌ | ❌ |
 | Drops dan poin channel sekaligus di satu akun | ✅ | sebagian ¹ | ❌ |
 | Banyak akun dalam satu aplikasi | ✅ | ❌ ² | ❌ |
 | Ubah pengaturan beberapa akun sekaligus | ✅ | ❌ | ❌ |

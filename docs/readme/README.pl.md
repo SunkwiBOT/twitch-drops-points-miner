@@ -136,7 +136,7 @@ działa.
   seria ma swój wiersz w Dzienniku.
 
   <details open><summary>Zobacz w akcji</summary>
-  <img src="../media/pl/spam-points.avif" alt="Spam Points: wybrany kanał, 5 × odebrana nagroda, a potem wiersz w Dzienniku">
+  <img src="../media/pl/spam-points.avif" alt="Spam Points: wybrany kanał, 10 × odebrana nagroda z wiadomością, odbiory pojawiają się na czacie kanału na Twitchu, a potem wiersz w Dzienniku">
   </details>
 
 ### Drops
@@ -264,6 +264,7 @@ Sprawdzone w ich kodzie i plikach README w listopadzie 2026 r.
 |---|:---:|:---:|:---:|
 | Kampanie Drops: znajduje je, kopie i odbiera | ✅ | ❌ ¹ | ✅ |
 | Punkty kanału: skrzynki, rajdy, momenty, prognozy | ✅ | ✅ | ❌ |
+| Spam Points: niestandardowa nagroda kanału odebrana kilka razy z rzędu | ✅ | ❌ | ❌ |
 | Drops i punkty kanału jednocześnie na jednym koncie | ✅ | częściowo ¹ | ❌ |
 | Wiele kont w jednej aplikacji | ✅ | ❌ ² | ❌ |
 | Zmiana ustawień wielu kont naraz | ✅ | ❌ | ❌ |

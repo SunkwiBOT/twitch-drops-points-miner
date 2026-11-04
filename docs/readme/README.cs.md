@@ -135,7 +135,7 @@
   svůj řádek.
 
   <details open><summary>Ukázka v akci</summary>
-  <img src="../media/cs/spam-points.avif" alt="Spam Points: vybraný kanál, 5 × uplatněná odměna, pak řádek v Deníku">
+  <img src="../media/cs/spam-points.avif" alt="Spam Points: vybraný kanál, 10 × uplatněná odměna se zprávou, uplatnění se objevují v chatu kanálu na Twitchi, pak řádek v Deníku">
   </details>
 
 ### Drops
@@ -258,6 +258,7 @@ Ověřeno v jejich kódu a souborech README v listopadu 2026.
 |---|:---:|:---:|:---:|
 | Kampaně Drops: najde je, těží a vyzvedává | ✅ | ❌ ¹ | ✅ |
 | Body kanálu: truhly, raidy, momenty, předpovědi | ✅ | ✅ | ❌ |
+| Spam Points: vlastní odměna kanálu uplatněná několikrát za sebou | ✅ | ❌ | ❌ |
 | Drops a body kanálu současně na jednom účtu | ✅ | částečně ¹ | ❌ |
 | Více účtů v jedné aplikaci | ✅ | ❌ ² | ❌ |
 | Změna nastavení více účtů najednou | ✅ | ❌ | ❌ |

@@ -138,7 +138,7 @@ ominaisuuden käytössä.
   sarjasta jää oma rivinsä Päiväkirjaan.
 
   <details open><summary>Katso toiminnassa</summary>
-  <img src="../media/fi/spam-points.avif" alt="Spam Points: valittu kanava, 5 × lunastettu palkinto ja sitten rivi Päiväkirjassa">
+  <img src="../media/fi/spam-points.avif" alt="Spam Points: valittu kanava, 10 × lunastettu viestillinen palkinto, lunastukset ilmestyvät kanavan Twitch-chattiin ja sitten rivi Päiväkirjassa">
   </details>
 
 ### Drops
@@ -271,6 +271,7 @@ Tarkistettu niiden koodista ja README-tiedostoista marraskuussa 2026.
 |---|:---:|:---:|:---:|
 | Drops-kampanjat: löytää, louhii ja lunastaa ne | ✅ | ❌ ¹ | ✅ |
 | Kanavapisteet: arkut, raidit, hetket, ennustukset | ✅ | ✅ | ❌ |
+| Spam Points: kanavan oma palkinto lunastettuna useita kertoja peräkkäin | ✅ | ❌ | ❌ |
 | Drops ja kanavapisteet samanaikaisesti yhdellä tilillä | ✅ | osittain ¹ | ❌ |
 | Useita tilejä yhdessä sovelluksessa | ✅ | ❌ ² | ❌ |
 | Usean tilin asetusten muuttaminen kerralla | ✅ | ❌ | ❌ |

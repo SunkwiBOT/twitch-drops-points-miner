@@ -138,7 +138,7 @@ bruk.
   ferdig, og hver serie får sin egen linje i Journalen.
 
   <details open><summary>Se det i aksjon</summary>
-  <img src="../media/nb/spam-points.avif" alt="Spam Points: en kanal valgt, 5 × en belønning innløst, deretter linjen i Journalen">
+  <img src="../media/nb/spam-points.avif" alt="Spam Points: en kanal valgt, 10 × en belønning med melding innløst, innløsningene dukker opp i kanalens Twitch-chat, deretter linjen i Journalen">
   </details>
 
 ### Drops
@@ -270,6 +270,7 @@ Kontrollert mot koden og README-filene deres i november 2026.
 |---|:---:|:---:|:---:|
 | Drops-kampanjer: finner, miner og henter dem | ✅ | ❌ ¹ | ✅ |
 | Kanalpoeng: kister, raids, øyeblikk, spådommer | ✅ | ✅ | ❌ |
+| Spam Points: en kanals tilpassede belønning løst inn flere ganger på rad | ✅ | ❌ | ❌ |
 | Drops og kanalpoeng samtidig på én konto | ✅ | delvis ¹ | ❌ |
 | Flere kontoer i én app | ✅ | ❌ ² | ❌ |
 | Endre innstillinger på flere kontoer samtidig | ✅ | ❌ | ❌ |

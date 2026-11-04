@@ -138,7 +138,7 @@ Ce qui le distingue des autres mineurs. « Voir en image » montre chaque poin
   ligne dans le Journal.
 
   <details open><summary>Voir en image</summary>
-  <img src="../media/fr/spam-points.avif" alt="Spam Points : une chaîne choisie, 5 × une récompense échangée, puis la ligne du Journal">
+  <img src="../media/fr/spam-points.avif" alt="Spam Points : une chaîne choisie, 10 × une récompense avec message échangée, les échanges arrivent dans le chat Twitch de la chaîne, puis la ligne du Journal">
   </details>
 
 ### Drops
@@ -268,6 +268,7 @@ Vérifié dans leur code et leur README en novembre 2026.
 |---|:---:|:---:|:---:|
 | Campagnes de Drops : il les trouve, les mine et les réclame | ✅ | ❌ ¹ | ✅ |
 | Points de chaîne : coffres, raids, moments, prédictions | ✅ | ✅ | ❌ |
+| Spam Points : une récompense personnalisée d'une chaîne échangée plusieurs fois d'affilée | ✅ | ❌ | ❌ |
 | Drops et points de chaîne en même temps sur un seul compte | ✅ | en partie ¹ | ❌ |
 | Plusieurs comptes dans une seule application | ✅ | ❌ ² | ❌ |
 | Modifier les réglages de plusieurs comptes d'un coup | ✅ | ❌ | ❌ |

@@ -140,7 +140,7 @@ het werkt.
   in het Journaal.
 
   <details open><summary>Bekijk het in actie</summary>
-  <img src="../media/nl/spam-points.avif" alt="Spam Points: een kanaal gekozen, 5 × een beloning ingewisseld, daarna de regel in het Journaal">
+  <img src="../media/nl/spam-points.avif" alt="Spam Points: een kanaal gekozen, 10 × een beloning met bericht ingewisseld, de inwisselingen verschijnen in de Twitch-chat van het kanaal, daarna de regel in het Journaal">
   </details>
 
 ### Drops
@@ -269,6 +269,7 @@ Gecontroleerd aan de hand van hun code en README's in november 2026.
 |---|:---:|:---:|:---:|
 | Drops-campagnes: vindt, mint en claimt ze | ✅ | ❌ ¹ | ✅ |
 | Kanaalpunten: kisten, raids, momenten, voorspellingen | ✅ | ✅ | ❌ |
+| Spam Points: een aangepaste beloning van een kanaal meerdere keren achter elkaar ingewisseld | ✅ | ❌ | ❌ |
 | Drops en kanaalpunten tegelijk op één account | ✅ | deels ¹ | ❌ |
 | Meerdere accounts in één app | ✅ | ❌ ² | ❌ |
 | Instellingen van meerdere accounts tegelijk wijzigen | ✅ | ❌ | ❌ |

@@ -117,7 +117,7 @@ Những gì làm nên khác biệt so với các trình đào khác. “Xem minh
 - **Spam Points.** Đổi một phần thưởng tùy chỉnh của kênh nhiều lần liên tiếp. Chọn một kênh trong danh sách Điểm của bạn, hoặc bất kỳ kênh nào tìm được qua tìm kiếm Twitch: các phần thưởng của kênh hiện cùng số dư của tài khoản, được đọc lại trực tiếp. Đặt số lượng (tối đa 25, trong giới hạn số dư), rồi “Đổi”. Kết quả hiện khi loạt kết thúc, và mỗi loạt có một dòng riêng trong Nhật ký.
 
   <details open><summary>Xem minh họa</summary>
-  <img src="../media/vi/spam-points.avif" alt="Spam Points: một kênh được chọn, 5 × một phần thưởng được đổi, rồi dòng trong Nhật ký">
+  <img src="../media/vi/spam-points.avif" alt="Spam Points: một kênh được chọn, 10 × một phần thưởng kèm tin nhắn được đổi, các lượt đổi hiện trong khung chat Twitch của kênh, rồi dòng trong Nhật ký">
   </details>
 
 ### Drops
@@ -205,6 +205,7 @@ So sánh [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops
 |---|:---:|:---:|:---:|
 | Chiến dịch Drops: tìm, đào và nhận | ✅ | ❌ ¹ | ✅ |
 | Điểm kênh: rương, raid, khoảnh khắc, dự đoán | ✅ | ✅ | ❌ |
+| Spam Points: đổi một phần thưởng tùy chỉnh của kênh nhiều lần liên tiếp | ✅ | ❌ | ❌ |
 | Drops và điểm kênh cùng lúc trên một tài khoản | ✅ | một phần ¹ | ❌ |
 | Nhiều tài khoản trong một ứng dụng | ✅ | ❌ ² | ❌ |
 | Đổi cài đặt của nhiều tài khoản cùng lúc | ✅ | ❌ | ❌ |

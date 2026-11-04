@@ -137,7 +137,7 @@ arbete.
   får en egen rad i Journalen.
 
   <details open><summary>Se det i aktion</summary>
-  <img src="../media/sv/spam-points.avif" alt="Spam Points: en kanal vald, 5 × en belöning inlöst, sedan raden i Journalen">
+  <img src="../media/sv/spam-points.avif" alt="Spam Points: en kanal vald, 10 × en belöning med meddelande inlöst, inlösningarna dyker upp i kanalens Twitch-chatt, sedan raden i Journalen">
   </details>
 
 ### Drops
@@ -266,6 +266,7 @@ Kontrollerat mot deras kod och README-filer i november 2026.
 |---|:---:|:---:|:---:|
 | Drops-kampanjer: hittar, minar och hämtar dem | ✅ | ❌ ¹ | ✅ |
 | Kanalpoäng: kistor, raids, moments, förutsägelser | ✅ | ✅ | ❌ |
+| Spam Points: en kanals anpassade belöning inlöst flera gånger i rad | ✅ | ❌ | ❌ |
 | Drops och kanalpoäng samtidigt på ett konto | ✅ | delvis ¹ | ❌ |
 | Flera konton i en app | ✅ | ❌ ² | ❌ |
 | Ändra inställningar på flera konton samtidigt | ✅ | ❌ | ❌ |

@@ -140,7 +140,7 @@ im Einsatz.
   Serie hat ihre eigene Zeile im Journal.
 
   <details open><summary>In Aktion ansehen</summary>
-  <img src="../media/de/spam-points.avif" alt="Spam Points: ein Kanal gewählt, 5 × eine Belohnung eingelöst, dann die Zeile im Journal">
+  <img src="../media/de/spam-points.avif" alt="Spam Points: ein Kanal gewählt, 10 × eine Belohnung mit Nachricht eingelöst, die Einlösungen erscheinen im Twitch-Chat des Kanals, dann die Zeile im Journal">
   </details>
 
 ### Drops
@@ -272,6 +272,7 @@ im Vergleich zu
 |---|:---:|:---:|:---:|
 | Drops-Kampagnen: findet, mint und holt sie ab | ✅ | ❌ ¹ | ✅ |
 | Kanalpunkte: Truhen, Raids, Momente, Vorhersagen | ✅ | ✅ | ❌ |
+| Spam Points: eine benutzerdefinierte Belohnung eines Kanals mehrmals hintereinander eingelöst | ✅ | ❌ | ❌ |
 | Drops und Kanalpunkte gleichzeitig auf einem Konto | ✅ | teilweise ¹ | ❌ |
 | Mehrere Konten in einer App | ✅ | ❌ ² | ❌ |
 | Einstellungen mehrerer Konten auf einmal ändern | ✅ | ❌ | ❌ |

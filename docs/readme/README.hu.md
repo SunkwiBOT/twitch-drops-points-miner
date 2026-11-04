@@ -139,7 +139,7 @@ láthatod, hogyan működnek.
   a sorozat végén jelenik meg, és minden sorozatnak saját sora van a Naplóban.
 
   <details open><summary>Működés közben</summary>
-  <img src="../media/hu/spam-points.avif" alt="Spam Points: egy kiválasztott csatorna, 5 × beváltott jutalom, majd a Napló sora">
+  <img src="../media/hu/spam-points.avif" alt="Spam Points: egy kiválasztott csatorna, 10 × beváltott üzenetes jutalom, a beváltások megjelennek a csatorna Twitch-csevegőjében, majd a Napló sora">
   </details>
 
 ### Drops
@@ -268,6 +268,7 @@ mellett. A kódjuk és a README-jük alapján ellenőrizve, 2026 novemberében.
 |---|:---:|:---:|:---:|
 | Drops-kampányok: megtalálja, bányássza és begyűjti őket | ✅ | ❌ ¹ | ✅ |
 | Csatornapontok: ládák, raidek, pillanatok, előrejelzések | ✅ | ✅ | ❌ |
+| Spam Points: egy csatorna egyedi jutalma többször egymás után beváltva | ✅ | ❌ | ❌ |
 | Drops és csatornapontok egyszerre egy fiókon | ✅ | részben ¹ | ❌ |
 | Több fiók egy alkalmazásban | ✅ | ❌ ² | ❌ |
 | Több fiók beállításainak módosítása egyszerre | ✅ | ❌ | ❌ |

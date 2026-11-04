@@ -136,7 +136,7 @@ What sets it apart from other miners. “See it in action” under a point shows
   Journal.
 
   <details open><summary>See it in action</summary>
-  <img src="docs/media/en/spam-points.avif" alt="Spam Points: a channel picked, 5 × a reward redeemed, then the Journal line">
+  <img src="docs/media/en/spam-points.avif" alt="Spam Points: a channel picked, 10 × a reward with a message redeemed, the redemptions landing in the channel's Twitch chat, then the Journal line">
   </details>
 
 ### Drops
@@ -261,6 +261,7 @@ Checked against their code and READMEs in November 2026.
 |---|:---:|:---:|:---:|
 | Drops campaigns: finds, mines and claims them | ✅ | ❌ ¹ | ✅ |
 | Channel points: chests, raids, moments, predictions | ✅ | ✅ | ❌ |
+| Spam Points: a channel's custom reward redeemed several times in a row | ✅ | ❌ | ❌ |
 | Drops and channel points at the same time on one account | ✅ | partly ¹ | ❌ |
 | Several accounts in one app | ✅ | ❌ ² | ❌ |
 | Change the settings of several accounts at once | ✅ | ❌ | ❌ |

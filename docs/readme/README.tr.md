@@ -117,7 +117,7 @@ Onu diğer madencilerden ayıran şeyler. Bir maddenin altındaki “Çalışır
 - **Spam Points.** Bir kanalın özel ödülünü art arda birkaç kez kullanın. Puan listenizden bir kanal ya da Twitch aramasıyla bulunan herhangi bir kanal seçin: ödülleri, canlı olarak yeniden okunan hesap bakiyesiyle birlikte görünür. Adedi ayarlayın (bakiyenin yettiği kadar, en fazla 25), ardından “Kullan”. Sonuç seri bittiğinde görünür ve her serinin Günlük'te kendi satırı olur.
 
   <details open><summary>Çalışırken görün</summary>
-  <img src="../media/tr/spam-points.avif" alt="Spam Points: seçilen bir kanal, 5 × kullanılan bir ödül, ardından Günlük satırı">
+  <img src="../media/tr/spam-points.avif" alt="Spam Points: seçilen bir kanal, 10 × kullanılan mesajlı bir ödül, kullanımlar kanalın Twitch sohbetine düşüyor, ardından Günlük satırı">
   </details>
 
 ### Drops
@@ -205,6 +205,7 @@ Onu diğer madencilerden ayıran şeyler. Bir maddenin altındaki “Çalışır
 |---|:---:|:---:|:---:|
 | Drops kampanyaları: bulur, kazar ve alır | ✅ | ❌ ¹ | ✅ |
 | Kanal puanları: sandıklar, baskınlar, anlar, tahminler | ✅ | ✅ | ❌ |
+| Spam Points: bir kanalın özel ödülü art arda birkaç kez kullanılır | ✅ | ❌ | ❌ |
 | Tek hesapta aynı anda Drops ve kanal puanları | ✅ | kısmen ¹ | ❌ |
 | Tek uygulamada birden fazla hesap | ✅ | ❌ ² | ❌ |
 | Birden fazla hesabın ayarlarını aynı anda değiştirme | ✅ | ❌ | ❌ |

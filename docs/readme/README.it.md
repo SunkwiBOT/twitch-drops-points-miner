@@ -137,7 +137,7 @@ all'opera.
   fine della raffica, e ogni raffica ha la sua riga nel Registro.
 
   <details open><summary>Vedilo in azione</summary>
-  <img src="../media/it/spam-points.avif" alt="Spam Points: un canale scelto, 5 × un premio riscattato, poi la riga del Registro">
+  <img src="../media/it/spam-points.avif" alt="Spam Points: un canale scelto, 10 × un premio con messaggio riscattato, i riscatti arrivano nella chat Twitch del canale, poi la riga del Registro">
   </details>
 
 ### Drops
@@ -266,6 +266,7 @@ Verificato sul loro codice e sui loro README a novembre 2026.
 |---|:---:|:---:|:---:|
 | Campagne Drops: le trova, le mina e le riscatta | ✅ | ❌ ¹ | ✅ |
 | Punti canale: forzieri, raid, momenti, previsioni | ✅ | ✅ | ❌ |
+| Spam Points: un premio personalizzato di un canale riscattato più volte di fila | ✅ | ❌ | ❌ |
 | Drops e punti canale contemporaneamente su un solo account | ✅ | in parte ¹ | ❌ |
 | Più account in un'unica app | ✅ | ❌ ² | ❌ |
 | Modificare le impostazioni di più account in una volta | ✅ | ❌ | ❌ |
