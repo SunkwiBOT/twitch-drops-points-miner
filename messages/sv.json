@@ -732,6 +732,7 @@
   "nav_account_inventory": "Inventarie",
   "inventory_hint": "Belöningarna från dina Drops-kampanjer, lästa från ditt Twitch-inventarie. Hämta dem här när automatisk hämtning är avstängd.",
   "inventory_claimable": "Att hämta",
+  "inventory_waiting_link": "Väntar på att spelkontot kopplas",
   "inventory_claim_all": "Hämta alla",
   "inventory_in_progress": "Pågår",
   "inventory_claimed": "Hämtade",

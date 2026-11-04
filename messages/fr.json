@@ -732,6 +732,7 @@
   "nav_account_inventory": "Inventaire",
   "inventory_hint": "Les récompenses de vos campagnes Drops, lues dans votre inventaire Twitch. Réclamez-les ici quand la réclamation automatique est désactivée.",
   "inventory_claimable": "À réclamer",
+  "inventory_waiting_link": "En attente de liaison du compte de jeu",
   "inventory_claim_all": "Tout réclamer",
   "inventory_in_progress": "En cours",
   "inventory_claimed": "Réclamés",

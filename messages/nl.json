@@ -732,6 +732,7 @@
   "nav_account_inventory": "Inventaris",
   "inventory_hint": "De beloningen van je Drops-campagnes, gelezen uit je Twitch-inventaris. Claim ze hier als automatisch claimen uit staat.",
   "inventory_claimable": "Te claimen",
+  "inventory_waiting_link": "Wachten op koppeling van het gameaccount",
   "inventory_claim_all": "Alles claimen",
   "inventory_in_progress": "Lopend",
   "inventory_claimed": "Geclaimd",

@@ -738,6 +738,7 @@
   "nav_account_inventory": "Ekwipunek",
   "inventory_hint": "Nagrody z Twoich kampanii Drops, odczytane z Twojego ekwipunku Twitch. Odbierz je tutaj, gdy automatyczne odbieranie jest wyłączone.",
   "inventory_claimable": "Do odebrania",
+  "inventory_waiting_link": "Czekają na połączenie konta gry",
   "inventory_claim_all": "Odbierz wszystkie",
   "inventory_in_progress": "W toku",
   "inventory_claimed": "Odebrane",

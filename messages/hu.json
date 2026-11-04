@@ -674,6 +674,7 @@
   "nav_account_inventory": "Leltár",
   "inventory_hint": "A Drops-kampányaid jutalmai, a Twitch-leltáradból beolvasva. Itt gyűjtheted be őket, ha az automatikus begyűjtés ki van kapcsolva.",
   "inventory_claimable": "Begyűjthető",
+  "inventory_waiting_link": "A játékfiók összekapcsolására várnak",
   "inventory_claim_all": "Összes begyűjtése",
   "inventory_in_progress": "Folyamatban",
   "inventory_claimed": "Begyűjtve",

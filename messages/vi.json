@@ -646,6 +646,7 @@
   "nav_account_inventory": "Kho đồ",
   "inventory_hint": "Phần thưởng từ các chiến dịch Drops của bạn, được đọc từ kho đồ Twitch của bạn. Hãy nhận chúng tại đây khi tắt tự động nhận.",
   "inventory_claimable": "Có thể nhận",
+  "inventory_waiting_link": "Đang chờ liên kết tài khoản game",
   "inventory_claim_all": "Nhận tất cả",
   "inventory_in_progress": "Đang tiến hành",
   "inventory_claimed": "Đã nhận",

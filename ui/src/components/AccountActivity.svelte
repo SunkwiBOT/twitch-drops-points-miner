@@ -26,6 +26,7 @@
   import CampaignDialog from "./catalogue/CampaignDialog.svelte";
   import RichText from "./ui/RichText.svelte";
   import ExternalLink from "./ui/ExternalLink.svelte";
+  import LinkTwin from "./ui/LinkTwin.svelte";
   import Icon from "./ui/Icon.svelte";
   import PointsBalance from "./ui/PointsBalance.svelte";
   import MiningBadge from "./ui/MiningBadge.svelte";
@@ -94,13 +95,15 @@
 {/snippet}
 
 {#snippet streamer(slot: SlotViewType)}
-  <span class="flex max-w-36 shrink-0 flex-col items-end gap-1.5 text-right">
-    <ChannelAvatar
-      url={slot.channel.avatar_url}
-      name={slot.channel.display_name}
-      size={AvatarSize.LG}
-      live={slot.channel.live}
-    />
+  <span class="group/twin flex max-w-36 shrink-0 flex-col items-end gap-1.5 text-right">
+    <LinkTwin url={channelUrl(slot.channel.login)}>
+      <ChannelAvatar
+        url={slot.channel.avatar_url}
+        name={slot.channel.display_name}
+        size={AvatarSize.LG}
+        live={slot.channel.live}
+      />
+    </LinkTwin>
     <span class="flex max-w-full flex-col items-end gap-0.5">
       <ExternalLink
         url={channelUrl(slot.channel.login)}
@@ -108,6 +111,7 @@
         mark={LinkMark.START}
         look={LinkLook.HOVER}
         size={LinkSize.MD}
+        twin={true}
       />
       {#if slot.channel.viewers !== undefined}<ViewerCount count={slot.channel.viewers} />{/if}
     </span>
@@ -125,12 +129,13 @@
     {@const c = campaignOf(progress.campaign_id)}
     {@const d = c?.drops.find((x) => x.id === progress.drop_id)}
     <div
-      class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-x-3.5 gap-y-1.5 border-b px-5 py-4 last:border-b-0"
+      class="group/game grid grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-x-3.5 gap-y-1.5 border-b px-5 py-4 last:border-b-0"
     >
       <button
         class="shrink-0 rounded-md"
         type="button"
         aria-label={progress.campaign_name}
+        data-game-twin
         onclick={() => (open = c ?? null)}
       >
         <Thumb
@@ -144,13 +149,15 @@
       </button>
       <div class="flex min-w-0 flex-col gap-1.5">
         <span class="flex"><MiningBadge kind={SlotPurposeKind.DROP} /></span>
+        <!-- ! Hovering the box art beside lights this up too: both open the campaign. -->
         <button
-          class="group flex min-w-0 flex-col text-left transition-colors hover:text-link"
+          class="group flex min-w-0 flex-col text-left transition-colors group-has-[[data-game-twin]:hover]/game:text-link hover:text-link"
           type="button"
           onclick={() => (open = c ?? null)}
         >
           <span class="truncate font-semibold">{progress.game}</span>
-          <span class="truncate text-hint text-muted-foreground group-hover:text-link"
+          <span
+            class="truncate text-hint text-muted-foreground group-hover:text-link group-has-[[data-game-twin]:hover]/game:text-link"
             >{progress.campaign_name}</span
           >
         </button>
@@ -184,14 +191,16 @@
     </div>
   {:else}
     <div
-      class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-x-3.5 gap-y-1.5 border-b px-5 py-4 last:border-b-0"
+      class="group/twin grid grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-x-3.5 gap-y-1.5 border-b px-5 py-4 last:border-b-0"
     >
-      <ChannelAvatar
-        url={slot.channel.avatar_url}
-        name={slot.channel.display_name}
-        size={AvatarSize.LG}
-        live={slot.channel.live}
-      />
+      <LinkTwin url={channelUrl(slot.channel.login)}>
+        <ChannelAvatar
+          url={slot.channel.avatar_url}
+          name={slot.channel.display_name}
+          size={AvatarSize.LG}
+          live={slot.channel.live}
+        />
+      </LinkTwin>
       <div class="flex min-w-0 flex-col gap-1">
         {@render points(slot.purpose.kind === SlotPurposeKind.POINTS ? slot.purpose.reason : null)}
         <ExternalLink
@@ -200,6 +209,7 @@
           mark={LinkMark.END}
           look={LinkLook.HOVER}
           size={LinkSize.MD}
+          twin={true}
         />
         <span class="flex min-w-0 items-center gap-2 text-hint text-muted-foreground">
           {#if slot.channel.game}<span class="truncate">{slot.channel.game.name}</span>{/if}

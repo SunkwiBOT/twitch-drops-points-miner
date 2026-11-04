@@ -16,9 +16,11 @@
   import { ticker } from "../../lib/state/ticker.svelte";
   import { escapeEmphasis, strong } from "../../lib/text.utils";
   import CampaignDialog from "../catalogue/CampaignDialog.svelte";
+  import LinkBadge from "../catalogue/LinkBadge.svelte";
   import ActionButton from "../ui/ActionButton.svelte";
   import Badge from "../ui/Badge.svelte";
   import EmptyState from "../ui/EmptyState.svelte";
+  import ExternalButton from "../ui/ExternalButton.svelte";
   import List from "../ui/List.svelte";
   import ListRow from "../ui/ListRow.svelte";
   import Notice from "../ui/Notice.svelte";
@@ -51,11 +53,16 @@
 
   let claimedHere = $state<string[]>([]);
 
-  const claimable = $derived(
+  const ready = $derived(
     rewards.filter(
       ({ drop }) => !drop.claimed && drop.instance_id && !claimedHere.includes(drop.instance_id),
     ),
   );
+
+  // ! Twitch takes a claim on a game the account has not linked and gives
+  // nothing: those drops wait for the link.
+  const claimable = $derived(ready.filter(({ campaign }) => campaign.linked !== false));
+  const waitingLink = $derived(ready.filter(({ campaign }) => campaign.linked === false));
 
   let open = $state<CampaignType | null>(null);
 
@@ -198,6 +205,40 @@
       </List>
     {/if}
   </Panel>
+
+  {#if waitingLink.length > 0}
+    <Panel
+      title={t.inventory_waiting_link()}
+      count={waitingLink.length}
+      description={t.badge_hint_not_linked()}
+    >
+      <List>
+        {#each waitingLink as item (item.drop.id)}
+          <ListRow
+            title={item.drop.name}
+            subtitle={`${escapeEmphasis(item.campaign.game.name)} · ${escapeEmphasis(item.campaign.name)}`}
+            onopen={() => (open = item.campaign)}
+            muted={false}
+          >
+            {#snippet lead()}{@render reward(item, ThumbSize.MD)}{/snippet}
+            {#snippet trailing()}
+              {#if item.campaign.link_url}
+                <ExternalButton
+                  url={item.campaign.link_url}
+                  label={t.campaign_link_game()}
+                  variant={ButtonVariant.OUTLINE}
+                  size={ButtonSize.SM}
+                  icon={IconName.LINK}
+                />
+              {:else}
+                <LinkBadge linked={false} />
+              {/if}
+            {/snippet}
+          </ListRow>
+        {/each}
+      </List>
+    </Panel>
+  {/if}
 
   <Panel title={t.inventory_in_progress()} count={inProgress.length}>
     {#if inProgress.length === 0}

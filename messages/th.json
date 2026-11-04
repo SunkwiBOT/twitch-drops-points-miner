@@ -646,6 +646,7 @@
   "nav_account_inventory": "คลัง",
   "inventory_hint": "รางวัลจากแคมเปญ Drops ของคุณ อ่านจากคลัง Twitch ของคุณ รับรางวัลได้ที่นี่เมื่อปิดการรับอัตโนมัติ",
   "inventory_claimable": "รอรับ",
+  "inventory_waiting_link": "รอเชื่อมบัญชีเกม",
   "inventory_claim_all": "รับทั้งหมด",
   "inventory_in_progress": "กำลังดำเนินการ",
   "inventory_claimed": "รับแล้ว",

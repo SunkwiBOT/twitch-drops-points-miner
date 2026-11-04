@@ -1873,7 +1873,7 @@ impl<T: TwitchApi> AccountMiner<T> {
         let claimable: Vec<(String, String, String, String, Option<String>)> = self
             .campaigns
             .values()
-            .filter(|c| !scheduler::excluded(&self.settings, c))
+            .filter(|c| !scheduler::excluded(&self.settings, c) && c.claims_delivered())
             .flat_map(|c| {
                 c.drops
                     .iter()
@@ -1995,6 +1995,20 @@ impl<T: TwitchApi> AccountMiner<T> {
     }
 
     async fn claim_instance(&mut self, instance: &str) -> Result<()> {
+        let unlinked = self.campaigns.values().any(|campaign| {
+            !campaign.claims_delivered()
+                && campaign
+                    .drops
+                    .iter()
+                    .any(|drop| drop.instance_id.as_deref() == Some(instance))
+        });
+
+        if unlinked {
+            return Err(Error::ClaimRefused(
+                "the game account is not linked".to_owned(),
+            ));
+        }
+
         let target = self.campaigns.values().find_map(|campaign| {
             campaign
                 .drops

@@ -31,6 +31,7 @@
   import ChannelAvatar from "../../ui/ChannelAvatar.svelte";
   import EmptyState from "../../ui/EmptyState.svelte";
   import ExternalLink from "../../ui/ExternalLink.svelte";
+  import LinkTwin from "../../ui/LinkTwin.svelte";
   import IconButton from "../../ui/IconButton.svelte";
   import ViewerCount from "../../ui/ViewerCount.svelte";
   import {
@@ -212,7 +213,7 @@
   <!-- ! -top-6 undoes PageBody's p-6: stuck, the header sits on the page's very top edge,
        with no reward scrolling above it. -->
   <header
-    class="sticky -top-6 z-10 isolate flex flex-wrap items-center gap-x-4 gap-y-3 overflow-hidden rounded-t-xl border-b bg-card px-5 py-4"
+    class="group/twin sticky -top-6 z-10 isolate flex flex-wrap items-center gap-x-4 gap-y-3 overflow-hidden rounded-t-xl border-b bg-card px-5 py-4"
   >
     {#if knownBanners[channel.login]}
       <span
@@ -221,12 +222,14 @@
         aria-hidden="true"
       ></span>
     {/if}
-    <ChannelAvatar
-      url={channel.avatar}
-      name={channel.name}
-      size={AvatarSize.LG}
-      live={channel.live}
-    />
+    <LinkTwin url={channelUrl(channel.login)}>
+      <ChannelAvatar
+        url={channel.avatar}
+        name={channel.name}
+        size={AvatarSize.LG}
+        live={channel.live}
+      />
+    </LinkTwin>
     <div class="flex min-w-0 flex-[1_1_12rem] flex-col gap-1">
       <h2 class="flex min-w-0 text-lg font-semibold">
         <ExternalLink
@@ -235,6 +238,7 @@
           mark={LinkMark.END}
           look={LinkLook.HOVER}
           size={LinkSize.LG}
+          twin={true}
         />
       </h2>
       <span class="flex min-w-0 flex-wrap items-center gap-x-2 text-xs text-muted-foreground">

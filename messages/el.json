@@ -732,6 +732,7 @@
   "nav_account_inventory": "Απόθεμα",
   "inventory_hint": "Οι ανταμοιβές των καμπανιών Drops σας, όπως διαβάζονται από το απόθεμά σας στο Twitch. Παραλάβετέ τες εδώ όταν η αυτόματη παραλαβή είναι απενεργοποιημένη.",
   "inventory_claimable": "Προς παραλαβή",
+  "inventory_waiting_link": "Περιμένουν σύνδεση του λογαριασμού παιχνιδιού",
   "inventory_claim_all": "Παραλαβή όλων",
   "inventory_in_progress": "Σε εξέλιξη",
   "inventory_claimed": "Παραλήφθηκαν",

@@ -738,6 +738,7 @@
   "nav_account_inventory": "Інвентар",
   "inventory_hint": "Нагороди ваших кампаній Drops, прочитані з вашого інвентаря Twitch. Отримуйте їх тут, коли автоматичне отримання вимкнено.",
   "inventory_claimable": "До отримання",
+  "inventory_waiting_link": "Чекають на прив'язку ігрового акаунта",
   "inventory_claim_all": "Отримати все",
   "inventory_in_progress": "У процесі",
   "inventory_claimed": "Отримано",

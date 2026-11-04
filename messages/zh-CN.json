@@ -646,6 +646,7 @@
   "nav_account_inventory": "库存",
   "inventory_hint": "你的 Drops 活动奖励，读取自你的 Twitch 库存。关闭自动领取时，请在这里领取。",
   "inventory_claimable": "待领取",
+  "inventory_waiting_link": "等待关联游戏账号",
   "inventory_claim_all": "全部领取",
   "inventory_in_progress": "进行中",
   "inventory_claimed": "已领取",

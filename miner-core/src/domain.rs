@@ -150,6 +150,12 @@ pub struct Campaign {
 }
 
 impl Campaign {
+    // ! Twitch answers a claim on a game the account has not linked as if it
+    // took it, and gives nothing: the drop waits for the link.
+    pub fn claims_delivered(&self) -> bool {
+        self.linked != Some(false)
+    }
+
     pub fn active_at(&self, now: DateTime<Utc>) -> bool {
         self.status == CampaignStatus::Active && self.starts_at <= now && now < self.ends_at
     }

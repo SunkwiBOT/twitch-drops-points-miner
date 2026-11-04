@@ -646,6 +646,7 @@
   "nav_account_inventory": "인벤토리",
   "inventory_hint": "Drops 캠페인의 보상이에요. Twitch 인벤토리에서 읽어 와요. 자동 수령이 꺼져 있으면 여기서 받으세요.",
   "inventory_claimable": "받을 수 있음",
+  "inventory_waiting_link": "게임 계정 연동 대기 중",
   "inventory_claim_all": "모두 받기",
   "inventory_in_progress": "진행 중",
   "inventory_claimed": "수령함",

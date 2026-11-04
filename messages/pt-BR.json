@@ -732,6 +732,7 @@
   "nav_account_inventory": "Inventário",
   "inventory_hint": "As recompensas das suas campanhas de Drops, lidas do seu inventário da Twitch. Resgate-as aqui quando o resgate automático estiver desativado.",
   "inventory_claimable": "Para resgatar",
+  "inventory_waiting_link": "Aguardando a vinculação da conta do jogo",
   "inventory_claim_all": "Resgatar tudo",
   "inventory_in_progress": "Em andamento",
   "inventory_claimed": "Resgatadas",

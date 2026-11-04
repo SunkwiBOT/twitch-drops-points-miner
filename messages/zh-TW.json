@@ -646,6 +646,7 @@
   "nav_account_inventory": "收藏庫",
   "inventory_hint": "你的 Drops 活動獎勵，讀取自你的 Twitch 收藏庫。關閉自動領取時，請在這裡領取。",
   "inventory_claimable": "待領取",
+  "inventory_waiting_link": "等待連結遊戲帳號",
   "inventory_claim_all": "全部領取",
   "inventory_in_progress": "進行中",
   "inventory_claimed": "已領取",

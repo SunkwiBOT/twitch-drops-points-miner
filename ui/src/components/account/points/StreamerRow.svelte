@@ -11,6 +11,7 @@
   import Badge from "../../ui/Badge.svelte";
   import ChannelAvatar from "../../ui/ChannelAvatar.svelte";
   import ExternalLink from "../../ui/ExternalLink.svelte";
+  import LinkTwin from "../../ui/LinkTwin.svelte";
   import PointsBalance from "../../ui/PointsBalance.svelte";
   import RichText from "../../ui/RichText.svelte";
   import ViewerCount from "../../ui/ViewerCount.svelte";
@@ -33,15 +34,20 @@
 </script>
 
 <div
-  class={["flex min-w-0 flex-1 items-center gap-3 transition", !streamer.enabled && "grayscale"]}
+  class={[
+    "group/twin flex min-w-0 flex-1 items-center gap-3 transition",
+    !streamer.enabled && "grayscale",
+  ]}
 >
   <span class={["inline-flex transition", !streamer.enabled && "opacity-50"]}>
-    <ChannelAvatar
-      url={channel?.avatar_url}
-      name={channel?.display_name ?? streamer.login}
-      size={AvatarSize.MD}
-      live={isLive(streamer.login)}
-    />
+    <LinkTwin url={channelUrl(streamer.login)}>
+      <ChannelAvatar
+        url={channel?.avatar_url}
+        name={channel?.display_name ?? streamer.login}
+        size={AvatarSize.MD}
+        live={isLive(streamer.login)}
+      />
+    </LinkTwin>
   </span>
   <div class="flex min-w-0 flex-1 flex-col gap-0.5">
     <span class="flex min-w-0 flex-wrap items-center gap-1.5">
@@ -51,6 +57,7 @@
         mark={LinkMark.END}
         look={LinkLook.HOVER}
         size={LinkSize.MD}
+        twin={true}
       />
       {#if view?.watching}<Badge
           text={t.streamer_watching()}

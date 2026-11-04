@@ -646,6 +646,7 @@
   "nav_account_inventory": "インベントリ",
   "inventory_hint": "Drops キャンペーンの報酬です。Twitch のインベントリから読み込みます。自動受け取りがオフのときは、ここで受け取ってください。",
   "inventory_claimable": "受け取り可能",
+  "inventory_waiting_link": "ゲームアカウントの連携待ち",
   "inventory_claim_all": "すべて受け取る",
   "inventory_in_progress": "進行中",
   "inventory_claimed": "受け取り済み",

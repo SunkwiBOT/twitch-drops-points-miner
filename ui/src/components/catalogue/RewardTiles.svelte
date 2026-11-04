@@ -169,6 +169,8 @@
               required={d.required_minutes}
               stacked={true}
             />
+          {:else if state === RewardState.READY && campaign.linked === false}
+            <small class="text-tiny text-muted-foreground">{t.badge_hint_not_linked()}</small>
           {:else if state === RewardState.READY && d.instance_id && onclaim}
             {@const instanceId = d.instance_id}
             <ActionButton

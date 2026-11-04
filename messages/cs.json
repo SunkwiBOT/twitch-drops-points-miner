@@ -738,6 +738,7 @@
   "nav_account_inventory": "Inventář",
   "inventory_hint": "Odměny z vašich kampaní Drops, načtené z vašeho inventáře Twitch. Vyzvedněte si je zde, když je automatické vyzvedávání vypnuté.",
   "inventory_claimable": "K vyzvednutí",
+  "inventory_waiting_link": "Čekají na propojení herního účtu",
   "inventory_claim_all": "Vyzvednout vše",
   "inventory_in_progress": "Probíhá",
   "inventory_claimed": "Vyzvednuto",

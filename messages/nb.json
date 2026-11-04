@@ -732,6 +732,7 @@
   "nav_account_inventory": "Inventar",
   "inventory_hint": "Belønningene fra Drops-kampanjene dine, lest fra Twitch-inventaret ditt. Hent dem her når automatisk henting er slått av.",
   "inventory_claimable": "Klar til henting",
+  "inventory_waiting_link": "Venter på kobling av spillkontoen",
   "inventory_claim_all": "Hent alle",
   "inventory_in_progress": "Pågår",
   "inventory_claimed": "Hentet",

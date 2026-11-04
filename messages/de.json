@@ -732,6 +732,7 @@
   "nav_account_inventory": "Inventar",
   "inventory_hint": "Die Belohnungen Ihrer Drops-Kampagnen, aus Ihrem Twitch-Inventar gelesen. Holen Sie sie hier ab, wenn das automatische Abholen aus ist.",
   "inventory_claimable": "Abzuholen",
+  "inventory_waiting_link": "Warten auf die Verknüpfung des Spielkontos",
   "inventory_claim_all": "Alle abholen",
   "inventory_in_progress": "Laufend",
   "inventory_claimed": "Abgeholt",

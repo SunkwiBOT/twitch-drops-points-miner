@@ -646,6 +646,7 @@
   "nav_account_inventory": "Inventaris",
   "inventory_hint": "Hadiah dari kampanye Drops Anda, dibaca dari inventaris Twitch Anda. Klaim hadiahnya di sini saat klaim otomatis dimatikan.",
   "inventory_claimable": "Siap diklaim",
+  "inventory_waiting_link": "Menunggu akun game ditautkan",
   "inventory_claim_all": "Klaim semua",
   "inventory_in_progress": "Sedang berjalan",
   "inventory_claimed": "Sudah diklaim",

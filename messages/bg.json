@@ -732,6 +732,7 @@
   "nav_account_inventory": "Инвентар",
   "inventory_hint": "Наградите от вашите кампании за Drops, прочетени от инвентара ви в Twitch. Вземете ги оттук, когато автоматичното вземане е изключено.",
   "inventory_claimable": "За вземане",
+  "inventory_waiting_link": "Чакат свързване на акаунта на играта",
   "inventory_claim_all": "Вземи всички",
   "inventory_in_progress": "В ход",
   "inventory_claimed": "Взети",
