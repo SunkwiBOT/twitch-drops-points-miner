@@ -13,6 +13,7 @@ const BET_GAP_PERCENT: RangeInclusive<u8> = 0..=100;
 const BET_DELAY_SECONDS_MAX: u32 = 300;
 const TEXT_MAX_CHARS: usize = 2048;
 const TIME_ZONE_MAX_CHARS: usize = 64;
+pub const SPAM_DELAY_MAX_MS: u32 = 5_000;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default, TS)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
@@ -350,6 +351,12 @@ impl GlobalSettings {
             return invalid("time_zone");
         }
 
+        within(
+            "spam_points.delay_ms",
+            self.spam_points.delay_ms,
+            &(0..=SPAM_DELAY_MAX_MS),
+        )?;
+
         let notifications = &self.notifications;
 
         [
@@ -482,6 +489,26 @@ pub struct GlobalSettings {
     pub date_format: DateFormat,
     pub clock_format: ClockFormat,
     pub history_retention: HistoryRetention,
+    pub spam_points: SpamPointsSettings,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, TS)]
+#[serde(default)]
+#[ts(rename = "SpamPointsSettingsType")]
+pub struct SpamPointsSettings {
+    pub show_disabled: bool,
+    pub show_out_of_stock: bool,
+    pub delay_ms: u32,
+}
+
+impl Default for SpamPointsSettings {
+    fn default() -> Self {
+        Self {
+            show_disabled: true,
+            show_out_of_stock: true,
+            delay_ms: 100,
+        }
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default, TS)]
@@ -619,6 +646,7 @@ impl Default for GlobalSettings {
             date_format: DateFormat::Auto,
             clock_format: ClockFormat::Auto,
             history_retention: HistoryRetention::Days30,
+            spam_points: SpamPointsSettings::default(),
         }
     }
 }
@@ -754,6 +782,12 @@ strict_input!(NotificationSettingsInput => NotificationSettings {
     events: NotificationEventsInput,
 });
 
+strict_input!(SpamPointsSettingsInput => SpamPointsSettings {
+    show_disabled: bool,
+    show_out_of_stock: bool,
+    delay_ms: u32,
+});
+
 strict_input!(GlobalSettingsInput => GlobalSettings {
     language: String,
     default_proxy: String,
@@ -767,6 +801,7 @@ strict_input!(GlobalSettingsInput => GlobalSettings {
     date_format: DateFormat,
     clock_format: ClockFormat,
     history_retention: HistoryRetention,
+    spam_points: SpamPointsSettingsInput,
 });
 
 pub fn strict_account_settings<'de, D: Deserializer<'de>>(

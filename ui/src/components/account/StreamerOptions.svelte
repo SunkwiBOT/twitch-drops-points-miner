@@ -9,6 +9,7 @@
   import type { StreamerSettingsType } from "../../lib/bindings/StreamerSettingsType";
   import { Strategy } from "../../lib/bindings/Strategy";
   import { t } from "../../lib/i18n/i18n.svelte";
+  import { boundNumberInput } from "../../lib/input.utils";
   import { Input } from "$lib/components/ui/input";
   import FormField from "../ui/FormField.svelte";
   import Select from "../ui/Select.svelte";
@@ -97,17 +98,12 @@
     min: number,
     max: number,
   ): void => {
-    const raw = input.value;
-
-    if (raw.trim() === "" && isMixed(option)) {
+    if (input.value.trim() === "" && isMixed(option)) {
       return;
     }
 
-    const value = Math.min(max, Math.max(min, Math.round(Number(raw) || 0)));
+    const value = boundNumberInput(input, min, max);
 
-    // ! Bounded back to the value already set, the option does not change and
-    // the field would keep the number typed: it is written back.
-    input.value = String(value);
     change(option, () => {
       options.predictions[field] = value;
     });

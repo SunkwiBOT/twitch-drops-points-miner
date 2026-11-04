@@ -5,6 +5,7 @@
     POINTS_REASON_ICONS,
     POINTS_REASON_LABELS,
   } from "../lib/accounts/accounts.utils";
+  import { SLOTS_MAX } from "../lib/accounts/slots.constants";
   import type { PointsReason } from "../lib/bindings/PointsReason";
   import ChannelAvatar from "./ui/ChannelAvatar.svelte";
   import { AccountStatus } from "../lib/bindings/AccountStatus";
@@ -27,6 +28,7 @@
   import ExternalLink from "./ui/ExternalLink.svelte";
   import Icon from "./ui/Icon.svelte";
   import PointsBalance from "./ui/PointsBalance.svelte";
+  import MiningBadge from "./ui/MiningBadge.svelte";
   import ProgressLine from "./ui/ProgressLine.svelte";
   import Thumb from "./ui/Thumb.svelte";
   import ViewerCount from "./ui/ViewerCount.svelte";
@@ -46,8 +48,6 @@
   import type { SlotViewType } from "../lib/bindings/SlotViewType";
 
   type AccountActivityPropsType = { account: AccountSnapshotType };
-
-  const SLOTS_MAX = 2;
 
   let { account }: AccountActivityPropsType = $props();
 
@@ -81,27 +81,9 @@
   </span>
 {/snippet}
 
-{#snippet drops()}
-  <span class="flex"
-    ><Badge
-      text={t.badge_mining_drops()}
-      tone={BadgeTone.ACCENT}
-      dot={false}
-      icon={IconName.GIFT}
-      hint={t.badge_hint_mining_drops()}
-    /></span
-  >
-{/snippet}
-
 {#snippet points(reason: PointsReason | null)}
   <span class="flex flex-wrap gap-1.5"
-    ><Badge
-      text={t.badge_mining_points()}
-      tone={BadgeTone.SUCCESS}
-      dot={false}
-      icon={IconName.CHANNEL_POINTS}
-      hint={t.badge_hint_mining_points()}
-    />{#if reason}<Badge
+    ><MiningBadge kind={SlotPurposeKind.POINTS} />{#if reason}<Badge
         text={POINTS_REASON_LABELS[reason]()}
         tone={BadgeTone.NEUTRAL}
         dot={false}
@@ -161,7 +143,7 @@
         />
       </button>
       <div class="flex min-w-0 flex-col gap-1.5">
-        {@render drops()}
+        <span class="flex"><MiningBadge kind={SlotPurposeKind.DROP} /></span>
         <button
           class="group flex min-w-0 flex-col text-left transition-colors hover:text-link"
           type="button"

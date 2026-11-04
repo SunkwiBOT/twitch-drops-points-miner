@@ -1,4 +1,19 @@
+use std::sync::{Mutex, MutexGuard, PoisonError, RwLock, RwLockReadGuard, RwLockWriteGuard};
+
 use rand::RngCore;
+
+// ! A panic while the lock was held leaves plain data behind: it is used as is.
+pub fn locked<T: ?Sized>(mutex: &Mutex<T>) -> MutexGuard<'_, T> {
+    mutex.lock().unwrap_or_else(PoisonError::into_inner)
+}
+
+pub fn read_locked<T: ?Sized>(lock: &RwLock<T>) -> RwLockReadGuard<'_, T> {
+    lock.read().unwrap_or_else(PoisonError::into_inner)
+}
+
+pub fn write_locked<T: ?Sized>(lock: &RwLock<T>) -> RwLockWriteGuard<'_, T> {
+    lock.write().unwrap_or_else(PoisonError::into_inner)
+}
 
 pub fn random_hex(bytes: usize) -> String {
     let mut buffer = vec![0u8; bytes];

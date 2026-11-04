@@ -8,11 +8,15 @@ use ts_rs::TS;
 
 use crate::config::{AccountSettings, GlobalSettings};
 use crate::domain::{Campaign, Channel, PointsState};
-use crate::error::ErrorCode;
+use crate::error::{Error, ErrorCode};
 use crate::events::{EventCategory, EventKind, MinerEvent};
 use crate::logs::{LogLevel, LogLine};
 use crate::requests::{RequestEntry, RequestKind};
 use crate::scheduler::{QueueItem, SlotPurpose};
+use crate::spam::{
+    valid_burst_id, BurstProgress, SpamBalance, SpamChannelEntry, SpamChannelView, BURST_MAX,
+    REDEEM_TEXT_MAX_CHARS, REWARD_ID_MAX_CHARS,
+};
 use crate::store::VaultStatus;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default, TS)]
@@ -106,6 +110,8 @@ pub struct AccountSnapshot {
     pub campaigns: Vec<Campaign>,
     pub stats: AccountStats,
     pub updated_at: DateTime<Utc>,
+    #[serde(default)]
+    pub spam_channels: Vec<SpamChannelEntry>,
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, Default, TS)]
@@ -224,6 +230,17 @@ pub enum Command {
         campaign_id: String,
         position: Option<u32>,
     },
+    AddSpamChannel {
+        account_id: String,
+        login: String,
+    },
+    ForgetSpamChannel {
+        account_id: String,
+        login: String,
+    },
+    CancelBurst {
+        burst_id: String,
+    },
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, TS)]
@@ -241,6 +258,9 @@ pub enum CommandName {
     Unlock,
     Lock,
     OrderCampaign,
+    AddSpamChannel,
+    ForgetSpamChannel,
+    CancelBurst,
 }
 
 // ! Written by hand so a passphrase, a webhook or a proxy password never
@@ -290,6 +310,20 @@ impl std::fmt::Debug for Command {
                 .field("campaign_id", campaign_id)
                 .field("position", position)
                 .finish(),
+            Self::AddSpamChannel { account_id, login } => f
+                .debug_struct("AddSpamChannel")
+                .field("account_id", account_id)
+                .field("login", login)
+                .finish(),
+            Self::ForgetSpamChannel { account_id, login } => f
+                .debug_struct("ForgetSpamChannel")
+                .field("account_id", account_id)
+                .field("login", login)
+                .finish(),
+            Self::CancelBurst { burst_id } => f
+                .debug_struct("CancelBurst")
+                .field("burst_id", burst_id)
+                .finish(),
         }
     }
 }
@@ -308,6 +342,9 @@ impl Command {
             Self::Unlock { .. } => CommandName::Unlock,
             Self::Lock {} => CommandName::Lock,
             Self::OrderCampaign { .. } => CommandName::OrderCampaign,
+            Self::AddSpamChannel { .. } => CommandName::AddSpamChannel,
+            Self::ForgetSpamChannel { .. } => CommandName::ForgetSpamChannel,
+            Self::CancelBurst { .. } => CommandName::CancelBurst,
         }
     }
 }
@@ -658,6 +695,94 @@ pub struct SearchQuery {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, TS)]
 #[serde(deny_unknown_fields)]
+#[ts(rename = "SpamChannelQueryType")]
+pub struct SpamChannelQuery {
+    pub account_id: String,
+    pub login: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, TS)]
+#[ts(rename = "SpamChannelResponseType")]
+pub struct SpamChannelResponse {
+    pub channel: SpamChannelView,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, TS)]
+#[ts(rename = "SpamBalanceResponseType")]
+pub struct SpamBalanceResponse {
+    pub balance: SpamBalance,
+}
+
+#[derive(Clone, PartialEq, Eq, Serialize, Deserialize, TS)]
+#[serde(deny_unknown_fields)]
+#[ts(rename = "RedeemRequestType")]
+pub struct RedeemRequest {
+    pub account_id: String,
+    pub login: String,
+    pub burst_id: String,
+    pub reward_id: String,
+    pub count: u32,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub text: Option<String>,
+}
+
+// ! The text is the viewer's own message to the streamer: it stays out of the logs.
+impl std::fmt::Debug for RedeemRequest {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("RedeemRequest")
+            .field("account_id", &self.account_id)
+            .field("login", &self.login)
+            .field("burst_id", &self.burst_id)
+            .field("reward_id", &self.reward_id)
+            .field("count", &self.count)
+            .finish_non_exhaustive()
+    }
+}
+
+impl RedeemRequest {
+    pub fn message(&self) -> Option<&str> {
+        self.text
+            .as_deref()
+            .map(str::trim)
+            .filter(|text| !text.is_empty())
+    }
+
+    pub fn validate(&self) -> crate::error::Result<()> {
+        if !(1..=BURST_MAX).contains(&self.count) {
+            return Err(Error::InvalidRequest(format!(
+                "{} redemptions, 1 to {BURST_MAX}",
+                self.count
+            )));
+        }
+
+        if !valid_burst_id(&self.burst_id) {
+            return Err(Error::InvalidRequest("malformed burst id".to_owned()));
+        }
+
+        if self.reward_id.is_empty() || self.reward_id.chars().count() > REWARD_ID_MAX_CHARS {
+            return Err(Error::InvalidRequest("malformed reward id".to_owned()));
+        }
+
+        if self
+            .message()
+            .is_some_and(|text| text.chars().count() > REDEEM_TEXT_MAX_CHARS)
+        {
+            return Err(Error::InvalidRequest("message too long".to_owned()));
+        }
+
+        Ok(())
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, TS)]
+#[ts(rename = "RedeemResponseType")]
+pub struct RedeemResponse {
+    pub burst_id: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, TS)]
+#[serde(deny_unknown_fields)]
 #[ts(rename = "ProxyTestRequestType")]
 pub struct ProxyTestRequest {
     pub url: String,
@@ -697,6 +822,7 @@ pub const REQUESTS_LIMIT_MAX: u32 = 500;
 pub enum ServerMessage {
     Snapshot { snapshot: Box<Snapshot> },
     Event { event: Box<MinerEvent> },
+    Burst { progress: BurstProgress },
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, TS)]
@@ -705,6 +831,7 @@ pub enum ServerMessage {
 pub enum ServerMessageKind {
     Snapshot,
     Event,
+    Burst,
 }
 
 impl ServerMessage {
@@ -712,6 +839,7 @@ impl ServerMessage {
         match self {
             Self::Snapshot { .. } => ServerMessageKind::Snapshot,
             Self::Event { .. } => ServerMessageKind::Event,
+            Self::Burst { .. } => ServerMessageKind::Burst,
         }
     }
 }
@@ -723,6 +851,7 @@ pub enum DesktopEvent {
     Snapshot,
     MinerEvent,
     CloseRequested,
+    BurstProgress,
 }
 
 impl DesktopEvent {
@@ -731,6 +860,7 @@ impl DesktopEvent {
             Self::Snapshot => "SNAPSHOT",
             Self::MinerEvent => "MINER_EVENT",
             Self::CloseRequested => "CLOSE_REQUESTED",
+            Self::BurstProgress => "BURST_PROGRESS",
         }
     }
 }
@@ -780,6 +910,12 @@ pub enum ApiRoute {
     RequestsReport,
     #[serde(rename = "/api/events")]
     Events,
+    #[serde(rename = "/api/spam/channel")]
+    SpamChannel,
+    #[serde(rename = "/api/spam/balance")]
+    SpamBalance,
+    #[serde(rename = "/api/spam/redeem")]
+    SpamRedeem,
 }
 
 impl ApiRoute {
@@ -806,6 +942,9 @@ impl ApiRoute {
             Self::Requests => "/api/requests",
             Self::RequestsReport => "/api/requests/report",
             Self::Events => "/api/events",
+            Self::SpamChannel => "/api/spam/channel",
+            Self::SpamBalance => "/api/spam/balance",
+            Self::SpamRedeem => "/api/spam/redeem",
         }
     }
 }

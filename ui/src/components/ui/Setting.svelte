@@ -5,6 +5,7 @@
   import Badge from "./Badge.svelte";
   import Toggle from "./Toggle.svelte";
   import { BadgeTone } from "./ui.constants";
+  import { YES_NO_CHOICES } from "./ui.utils";
 
   type SettingPropsType = {
     title: string;
@@ -17,11 +18,6 @@
   };
 
   let { title, description, checked, disabled, onchange, lead, mark }: SettingPropsType = $props();
-
-  const CHOICES = [
-    { value: true, label: () => t.common_yes() },
-    { value: false, label: () => t.common_no() },
-  ];
 
   let toggle = $state<ReturnType<typeof Toggle> | null>(null);
 
@@ -55,7 +51,7 @@
       aria-label={t.setting_with_mark({ option: title, mark })}
       class="flex shrink-0 overflow-hidden rounded-md border border-input"
     >
-      {#each CHOICES as choice (choice.value)}
+      {#each YES_NO_CHOICES as choice (choice.value)}
         <button
           type="button"
           class="h-8 px-3 text-sm font-medium text-muted-foreground transition-colors outline-none hover:bg-muted hover:text-foreground focus-visible:z-10 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none [&+&]:border-l [&+&]:border-input"

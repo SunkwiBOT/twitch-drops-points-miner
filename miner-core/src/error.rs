@@ -64,6 +64,10 @@ pub enum Error {
     UnknownAccount(String),
     #[error("no Twitch channel named {0}")]
     UnknownChannel(String),
+    #[error("no custom reward {0} on the channel")]
+    UnknownReward(String),
+    #[error("the reward cannot be redeemed now: {0}")]
+    RewardNotRedeemable(String),
     #[error("invalid proxy: {0}")]
     InvalidProxy(String),
     #[error("invalid streamer login: {0}")]
@@ -99,6 +103,8 @@ pub enum ErrorCode {
     InvalidVault,
     UnknownAccount,
     UnknownChannel,
+    UnknownReward,
+    RewardNotRedeemable,
     InvalidProxy,
     InvalidStreamerLogin,
     PassphraseRequired,
@@ -148,6 +154,8 @@ impl Error {
             Error::InvalidVault => ErrorCode::InvalidVault,
             Error::UnknownAccount(_) => ErrorCode::UnknownAccount,
             Error::UnknownChannel(_) => ErrorCode::UnknownChannel,
+            Error::UnknownReward(_) => ErrorCode::UnknownReward,
+            Error::RewardNotRedeemable(_) => ErrorCode::RewardNotRedeemable,
             Error::InvalidRequest(_) => ErrorCode::InvalidRequest,
             Error::InvalidProxy(_) => ErrorCode::InvalidProxy,
             Error::InvalidStreamerLogin(_) => ErrorCode::InvalidStreamerLogin,
@@ -169,6 +177,8 @@ impl Error {
                 | Error::WrongPassphrase
                 | Error::UnknownAccount(_)
                 | Error::UnknownChannel(_)
+                | Error::UnknownReward(_)
+                | Error::RewardNotRedeemable(_)
                 | Error::InvalidProxy(_)
                 | Error::InvalidStreamerLogin(_)
                 | Error::PassphraseRequired

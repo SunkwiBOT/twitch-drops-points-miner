@@ -52,7 +52,7 @@
 
 <Card
   bind:ref={bar}
-  class="sticky bottom-0 z-10 mt-auto flex-row flex-wrap items-center justify-between gap-3 bg-[color-mix(in_oklab,var(--primary)_16%,var(--popover))] px-4 py-3 shadow-lg ring-2 ring-primary"
+  class="sticky bottom-0 z-10 mt-auto flex-row flex-wrap items-center justify-between gap-3 bg-unsaved px-4 py-3 shadow-lg ring-2 ring-primary"
 >
   <span class="flex items-center gap-2 text-hint font-medium text-foreground">
     <span class="text-link"><Icon name={IconName.ALERT} size={16} /></span>

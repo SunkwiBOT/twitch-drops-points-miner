@@ -1,7 +1,7 @@
 // ! The cookie carries a random value; the server keeps only its SHA-256, so a
 // memory dump never yields a usable cookie.
 
-use std::sync::{Arc, Mutex, PoisonError};
+use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
 use base64::Engine;
@@ -32,7 +32,7 @@ struct Session {
 }
 
 fn read(active_at: &ActiveAt) -> Instant {
-    *active_at.lock().unwrap_or_else(PoisonError::into_inner)
+    *miner_core::util::locked(active_at)
 }
 
 impl Session {
@@ -67,10 +67,7 @@ impl SessionLease {
     // ! Only the activity route calls it: what the interface asks on its own (the
     // logs every five seconds, a snapshot) keeps no session open.
     pub fn touch(&self) {
-        *self
-            .active_at
-            .lock()
-            .unwrap_or_else(PoisonError::into_inner) = Instant::now();
+        *miner_core::util::locked(&self.active_at) = Instant::now();
     }
 }
 

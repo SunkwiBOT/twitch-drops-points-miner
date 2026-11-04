@@ -4,11 +4,11 @@
   import {
     Dialog as DialogRoot,
     DialogContent,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
   } from "$lib/components/ui/dialog";
   import { cn } from "$lib/utils";
+  import DialogActions from "./DialogActions.svelte";
   import IconButton from "./IconButton.svelte";
   import { ButtonSize, ButtonVariant, IconName } from "./ui.constants";
 
@@ -93,9 +93,7 @@
     </div>
     {@render children()}
     {#if footer}
-      <DialogFooter class="sticky -bottom-5 z-10 -mx-5 -mb-5 bg-popover px-5 py-3.5">
-        {@render footer()}
-      </DialogFooter>
+      <DialogActions>{@render footer()}</DialogActions>
     {/if}
   </DialogContent>
 </DialogRoot>

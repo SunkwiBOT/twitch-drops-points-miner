@@ -11,6 +11,7 @@ pub mod notifications;
 pub mod predictions;
 pub mod requests;
 pub mod scheduler;
+pub mod spam;
 pub mod store;
 pub mod twitch;
 pub mod updates;

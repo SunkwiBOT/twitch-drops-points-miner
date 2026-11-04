@@ -1,5 +1,7 @@
 import { fetchBanners, lookupChannels } from "../api/client";
+import type { AccountSnapshotType } from "../bindings/AccountSnapshotType";
 import type { ChannelType } from "../bindings/ChannelType";
+import type { SearchChannelType } from "../bindings/SearchChannelType";
 import { app } from "../state/state.svelte";
 import { CHANNELS_LOOKUP_MAX } from "./channels.constants";
 
@@ -15,6 +17,21 @@ export const rememberChannels = (channels: ChannelType[]): void => {
   }
 };
 
+export const accountChannel = (
+  account: AccountSnapshotType,
+  login: string,
+): ChannelType | undefined =>
+  account.streamers.find((s) => s.login === login)?.channel ?? knownChannels[login];
+
+export const searchedChannel = (found: SearchChannelType): ChannelType => ({
+  id: "",
+  login: found.login,
+  display_name: found.display_name,
+  avatar_url: found.avatar_url,
+  live: found.live,
+  drops_enabled: false,
+});
+
 const flush = async (): Promise<void> => {
   flushing = true;
 
@@ -25,6 +42,9 @@ const flush = async (): Promise<void> => {
       rememberChannels((await lookupChannels(batch)).channels);
     } catch (e: any) {
       // ! Pictures are a nicety: the names show anyway.
+      for (const login of batch) {
+        asked.delete(login);
+      }
     }
   }
 
@@ -77,12 +97,15 @@ const bannersAsked = new Set<string>();
 
 const fetchBannerBatches = async (logins: string[]): Promise<void> => {
   for (let from = 0; from < logins.length; from += CHANNELS_LOOKUP_MAX) {
+    const batch = logins.slice(from, from + CHANNELS_LOOKUP_MAX);
+
     try {
-      Object.assign(
-        knownBanners,
-        await fetchBanners(logins.slice(from, from + CHANNELS_LOOKUP_MAX)),
-      );
-    } catch (e: any) {}
+      Object.assign(knownBanners, await fetchBanners(batch));
+    } catch (e: any) {
+      for (const login of batch) {
+        bannersAsked.delete(login);
+      }
+    }
   }
 };
 

@@ -16,7 +16,7 @@
     setDropIgnored,
   } from "../../lib/state/state.svelte";
   import { ticker } from "../../lib/state/ticker.svelte";
-  import { URGENT_MS } from "../pages/pages.constants";
+  import { URGENT_MS, URGENT_TONE } from "./catalogue.constants";
   import ActionButton from "../ui/ActionButton.svelte";
   import Badge from "../ui/Badge.svelte";
   import Dialog from "../ui/Dialog.svelte";
@@ -48,7 +48,6 @@
   let chosen = $state<string[] | null>(null);
 
   const selected = $derived(chosen ?? (context ? [context.id] : accounts.map((a) => a.id)));
-  const targets = $derived(selected);
   const viewer = $derived(accounts.find((a) => selected.includes(a.id)) ?? context);
 
   const allIgnore = $derived(
@@ -65,7 +64,7 @@
 
   const ignoredDrops = $derived(
     accounts
-      .filter((a) => targets.includes(a.id))
+      .filter((a) => selected.includes(a.id))
       .flatMap((a) => a.settings.drops.exclude_drop_ids),
   );
 
@@ -118,7 +117,7 @@
             text={left(view) > 0
               ? t.campaign_time_left({ time: shortDuration(left(view)) })
               : t.campaign_ended()}
-            tone={left(view) < URGENT_MS ? BadgeTone.DANGER : BadgeTone.NEUTRAL}
+            tone={left(view) < URGENT_MS ? URGENT_TONE : BadgeTone.NEUTRAL}
             dot={false}
             icon={IconName.CLOCK}
           />
@@ -187,8 +186,8 @@
       campaign={view}
       ignored={ignoredDrops}
       onclaim={viewer ? claim : undefined}
-      onignore={targets.length
-        ? (drop, ignored) => setDropIgnored(targets, drop, ignored)
+      onignore={selected.length
+        ? (drop, ignored) => setDropIgnored(selected, drop, ignored)
         : undefined}
     />
   {/if}
@@ -204,7 +203,7 @@
             label: a.display_name,
             image: a.avatar_url,
           }))}
-          label={t.campaign_account()}
+          label={t.common_account()}
           allLabel={t.accounts_all()}
           noneLabel={t.accounts_none()}
           countLabel={(count) => t.accounts_count({ count })}

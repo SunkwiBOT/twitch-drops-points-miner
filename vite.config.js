@@ -13,6 +13,7 @@ export default defineConfig({
       project: fileURLToPath(new URL("./project.inlang", import.meta.url)),
       outdir: fileURLToPath(new URL("./ui/src/lib/paraglide", import.meta.url)),
       strategy: ["globalVariable", "baseLocale"],
+      outputStructure: "locale-modules",
       emitTsDeclarations: true,
     }),
     tailwindcss(),
@@ -37,7 +38,7 @@ export default defineConfig({
   envPrefix: ["VITE_", "TAURI_ENV_*"],
   build: {
     outDir: "dist",
-    chunkSizeWarningLimit: 2000,
+    chunkSizeWarningLimit: 1000,
     emptyOutDir: true,
     target: process.env.TAURI_ENV_PLATFORM === "windows" ? "chrome105" : "safari13",
     minify: !process.env.TAURI_ENV_DEBUG,

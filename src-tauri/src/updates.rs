@@ -1,7 +1,7 @@
 // ! The update a check found is kept: it is the one downloaded and installed, so
 // only the version the user was shown and confirmed is ever installed.
 
-use std::sync::{Arc, Mutex, PoisonError};
+use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
 use miner_core::error::{ApiError, ErrorCode};
@@ -137,7 +137,7 @@ fn record(app: &AppHandle, update: Option<Update>) -> Option<UpdateInfoDto> {
     }
 
     let found = app.state::<FoundUpdate>();
-    let mut found = found.0.lock().unwrap_or_else(PoisonError::into_inner);
+    let mut found = miner_core::util::locked(&found.0);
 
     let Some(update) = update else {
         *found = None;
@@ -195,10 +195,7 @@ pub async fn check_for_update(app: AppHandle) -> Answer<Option<UpdateInfoDto>> {
 // version exists, with nothing to install.
 #[tauri::command]
 pub fn found_update(found: State<'_, FoundUpdate>) -> Option<UpdateInfoDto> {
-    found
-        .0
-        .lock()
-        .unwrap_or_else(PoisonError::into_inner)
+    miner_core::util::locked(&found.0)
         .as_ref()
         .filter(|found| found.first)
         .map(|found| UpdateInfoDto::of(&found.update))
@@ -254,10 +251,7 @@ pub async fn download_update(
 ) -> Answer<String> {
     unlocked(&app).await?;
 
-    let update = found
-        .0
-        .lock()
-        .unwrap_or_else(PoisonError::into_inner)
+    let update = miner_core::util::locked(&found.0)
         .as_ref()
         .map(|found| found.update.clone())
         .ok_or_else(|| ApiError::new(ErrorCode::NotFound))?;
@@ -310,8 +304,7 @@ pub async fn download_update(
         ApiError::new(ErrorCode::NetworkError)
     })?;
 
-    *pending.0.lock().unwrap_or_else(PoisonError::into_inner) =
-        Some(DownloadedUpdate { update, bytes });
+    *miner_core::util::locked(&pending.0) = Some(DownloadedUpdate { update, bytes });
 
     Ok(version)
 }
@@ -325,7 +318,7 @@ pub async fn apply_update(
     unlocked(&app).await?;
 
     let downloaded = {
-        let mut slot = pending.0.lock().unwrap_or_else(PoisonError::into_inner);
+        let mut slot = miner_core::util::locked(&pending.0);
 
         match slot.as_ref() {
             Some(candidate) if candidate.update.version == version => slot.take(),

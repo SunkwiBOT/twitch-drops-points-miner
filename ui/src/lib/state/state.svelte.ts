@@ -28,13 +28,16 @@ import { EventKind } from "../bindings/EventKind";
 import type { GlobalSettingsType } from "../bindings/GlobalSettingsType";
 import type { MinerEventType } from "../bindings/MinerEventType";
 import type { SnapshotType } from "../bindings/SnapshotType";
+import type { SpamPointsSettingsType } from "../bindings/SpamPointsSettingsType";
 import type { StartupProblemType } from "../bindings/StartupProblemType";
 import { Theme } from "../bindings/Theme";
+import { sameValue } from "../compare.utils";
 import { describeError, toApiError } from "../errors/errors.utils";
 import { eventText } from "../events/events.utils";
 import { number } from "../format.utils";
 import { strong } from "../text.utils";
 import { applyLanguage, t } from "../i18n/i18n.svelte";
+import { noteBurstProgress } from "../spam/spam.svelte";
 import { applyTimePreferences } from "../time/time.svelte";
 import {
   ACCOUNT_PAGES,
@@ -51,6 +54,7 @@ import {
   ToastKind,
 } from "./state.constants";
 import { parseRoute, routePath } from "./routes.utils";
+import { recall, remember } from "./storage.utils";
 import {
   KEY_STORAGE_ACCOUNT,
   KEY_STORAGE_PAGE,
@@ -108,6 +112,12 @@ export const app = $state<AppStateType>({
 });
 
 export const isAccountPage = (page: Page): boolean => ACCOUNT_PAGES.has(page);
+
+export const isDashboardLocked = (): boolean => !isTauri() && !app.auth.authorized;
+
+export const isVaultLocked = (): boolean => app.snapshot?.vault.unlocked === false;
+
+export const isLocked = (): boolean => isDashboardLocked() || isVaultLocked();
 
 const addressTab = (): string => location.hash.slice(1);
 
@@ -177,6 +187,8 @@ export const accountImage = (accountId: string, fallback: string): ToastImageTyp
 
 const pending: PreferencesType = {};
 
+let pendingSpam: SpamPointsSettingsType | null = null;
+
 type ViewerPreferencesType = Partial<
   Pick<GlobalSettingsType, "language" | "theme" | "time_zone" | "date_format" | "clock_format">
 >;
@@ -218,6 +230,14 @@ const pickViewer = (settings: GlobalSettingsType): ViewerPreferencesType => ({
 
 let serverPreferences: ViewerPreferencesType = {};
 
+const switchLanguage = (preference: string): void => {
+  void applyLanguage(preference).then((shown) => {
+    if (!shown) {
+      toast(ToastKind.ERROR, t.language_load_failed());
+    }
+  });
+};
+
 const applyTheme = (theme: Theme): void => {
   document.documentElement.dataset.theme = theme;
 };
@@ -244,9 +264,17 @@ const applySnapshot = (snapshot: SnapshotType): void => {
     }
   }
 
+  if (pendingSpam) {
+    if (sameValue(snapshot.settings.spam_points, pendingSpam)) {
+      pendingSpam = null;
+    } else {
+      snapshot.settings.spam_points = pendingSpam;
+    }
+  }
+
   keepPendingSettings(snapshot);
   app.snapshot = snapshot;
-  applyLanguage(snapshot.settings.language);
+  switchLanguage(snapshot.settings.language);
   applyTimePreferences(snapshot.settings);
   applyTheme(snapshot.settings.theme);
 
@@ -277,15 +305,7 @@ export const refresh = async (): Promise<void> => {
   try {
     applySnapshot(await fetchSnapshot());
   } catch (e: any) {
-    const error = toApiError(e);
-
-    if (error.code === ErrorApiMessage.UNAUTHORIZED) {
-      app.auth = { ...app.auth, authorized: false, checked: true };
-
-      return;
-    }
-
-    toast(ToastKind.ERROR, describeError(error));
+    reportFailure(e);
   }
 };
 
@@ -300,6 +320,27 @@ export const sessionEnded = (): void => {
   app.loginDialog = false;
   app.feedbackDialog = false;
   sonner.dismiss();
+};
+
+export const sessionEndedBy = (e: unknown): boolean => {
+  if (toApiError(e).code !== ErrorApiMessage.UNAUTHORIZED) {
+    return false;
+  }
+
+  sessionEnded();
+
+  return true;
+};
+
+// ! False when a 401 ended the session instead: nothing is left to refresh.
+export const reportFailure = (e: unknown): boolean => {
+  if (sessionEndedBy(e)) {
+    return false;
+  }
+
+  toast(ToastKind.ERROR, describeError(e));
+
+  return true;
 };
 
 // ! A command on an account first waits for that account's pending settings
@@ -318,15 +359,7 @@ export const run = async (command: CommandType, success?: string): Promise<boole
 
     return true;
   } catch (e: any) {
-    const error = toApiError(e);
-
-    if (error.code === ErrorApiMessage.UNAUTHORIZED) {
-      sessionEnded();
-
-      return false;
-    }
-
-    toast(ToastKind.ERROR, describeError(error));
+    reportFailure(e);
 
     return false;
   }
@@ -344,7 +377,7 @@ export const saveGlobalSettings = (settings: GlobalSettingsType): Promise<boolea
   }
 
   remember(KEY_STORAGE_PREFERENCES, JSON.stringify(pickViewer(settings)));
-  applyLanguage(settings.language);
+  switchLanguage(settings.language);
   applyTimePreferences(settings);
   applyTheme(settings.theme);
 
@@ -420,8 +453,10 @@ const flushSettings = async (accountId: string): Promise<void> => {
     }
   } catch (e: any) {
     finishSave(accountId, entry, false);
-    toast(ToastKind.ERROR, describeError(e));
-    await refresh();
+
+    if (reportFailure(e)) {
+      await refresh();
+    }
   }
 };
 
@@ -501,7 +536,9 @@ export const refreshCatalog = async (): Promise<void> => {
 
     toast(ToastKind.SUCCESS, t.catalogue_refreshed({ count, shown: strong(number(count)) }));
   } catch (e: any) {
-    toast(ToastKind.ERROR, describeError(e));
+    if (!reportFailure(e)) {
+      return;
+    }
   }
 
   await refresh();
@@ -522,7 +559,7 @@ export const setPreference = async (change: PreferencesType): Promise<void> => {
     }
 
     if (change.language !== undefined) {
-      applyLanguage(change.language);
+      switchLanguage(change.language);
     }
 
     app.snapshot.settings = settings;
@@ -537,7 +574,7 @@ export const setPreference = async (change: PreferencesType): Promise<void> => {
 
   if (change.language !== undefined) {
     pending.language = change.language;
-    applyLanguage(change.language);
+    switchLanguage(change.language);
   }
 
   app.snapshot.settings = settings;
@@ -547,28 +584,36 @@ export const setPreference = async (change: PreferencesType): Promise<void> => {
   } catch (e: any) {
     delete pending.theme;
     delete pending.language;
-    toast(ToastKind.ERROR, describeError(e));
+    reportFailure(e);
+  }
+};
+
+export const saveSpamSettings = async (spam: SpamPointsSettingsType): Promise<void> => {
+  if (!app.snapshot) {
+    return;
+  }
+
+  pendingSpam = spam;
+  app.snapshot.settings.spam_points = spam;
+
+  const settings = $state.snapshot(app.snapshot.settings);
+
+  try {
+    await sendCommand({
+      command: CommandName.SET_GLOBAL_SETTINGS,
+      settings: perViewer() ? { ...settings, ...serverPreferences } : settings,
+    });
+  } catch (e: any) {
+    pendingSpam = null;
+
+    if (reportFailure(e)) {
+      await refresh();
+    }
   }
 };
 
 export const toggleTheme = (): Promise<void> =>
   setPreference({ theme: app.snapshot?.settings.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT });
-
-const remember = (key: string, value: string): void => {
-  try {
-    localStorage.setItem(key, value);
-  } catch (e: any) {
-    // ! Storage can be off (private window); what it keeps is only a convenience.
-  }
-};
-
-const recall = (key: string): string | null => {
-  try {
-    return localStorage.getItem(key);
-  } catch (e: any) {
-    return null;
-  }
-};
 
 let pendingLogin: string | null = null;
 
@@ -695,6 +740,7 @@ export const connect = async (): Promise<void> => {
         toast(ToastKind.INFO, eventText(event, false).text, { image, title });
       }
     },
+    onBurst: noteBurstProgress,
     onConnection: (connected) => {
       app.connected = connected;
 

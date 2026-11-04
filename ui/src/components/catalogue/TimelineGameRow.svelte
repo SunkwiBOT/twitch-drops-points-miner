@@ -24,8 +24,8 @@
 </script>
 
 <li class="game-row group border-b last:border-b-0">
-  <!-- ! Mouse targets only: the bars stay the keyboard controls, so these skip
-       the tab order. -->
+  <!-- ! Mouse targets only: the bars stay the keyboard and screen reader controls,
+       so these skip the tab order and the lane targets are hidden from screen readers. -->
   <button
     class="game flex min-w-0 items-center gap-2.5 border-r bg-card px-3 py-1.5 text-left transition-colors group-hover:bg-accent"
     type="button"
@@ -58,7 +58,7 @@
         class="lane-hit"
         type="button"
         tabindex="-1"
-        aria-label={first.name}
+        aria-hidden="true"
         style:top="0"
         style:height="{layout.height}px"
         onclick={() => onopen(first)}
@@ -68,7 +68,7 @@
           class="lane-hit"
           type="button"
           tabindex="-1"
-          aria-label={item.campaign.name}
+          aria-hidden="true"
           style:top="{getLaneTop(layout, index)}px"
           style:height="{layout.laneHeight}px"
           onclick={() => onopen(item.campaign)}

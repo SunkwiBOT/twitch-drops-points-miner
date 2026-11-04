@@ -33,6 +33,14 @@
       : null;
   });
 
+  const spoken = $derived.by((): string => {
+    if (updates.stage === UpdateStage.INSTALLING) {
+      return t.updates_restarting({ version });
+    }
+
+    return updates.stage === UpdateStage.DOWNLOADING ? t.updates_downloading({ version }) : "";
+  });
+
   const close = (): void => {
     updates.confirming = false;
   };
@@ -55,7 +63,8 @@
         })}
       />
     </p>
-    <div aria-live="polite">
+    <p class="sr-only" aria-live="polite">{spoken}</p>
+    <div>
       {#if status}
         <div class="mt-3 flex flex-col gap-2">
           <p class="text-hint"><RichText text={status} /></p>

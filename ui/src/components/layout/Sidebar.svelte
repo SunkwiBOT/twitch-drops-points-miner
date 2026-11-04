@@ -7,7 +7,8 @@
   import { t } from "../../lib/i18n/i18n.svelte";
   import { REPO_URL } from "../../lib/partners.constants";
   import { Page } from "../../lib/state/state.constants";
-  import { app, isAccountPage, navigate, openLink, run } from "../../lib/state/state.svelte";
+  import { followLink } from "../../lib/links/links.utils";
+  import { app, isAccountPage, navigate, run } from "../../lib/state/state.svelte";
   import { ticker } from "../../lib/state/ticker.svelte";
   import { number } from "../../lib/format.utils";
   import Avatar from "../ui/Avatar.svelte";
@@ -23,9 +24,8 @@
     IconName,
     KeyboardKey,
   } from "../ui/ui.constants";
+  import { REORDER_HINT_ID } from "./layout.constants";
   import PoweredBy from "./PoweredBy.svelte";
-
-  const REORDER_HINT_ID = "account-reorder-hint";
 
   type NavItemType = { page: Page; icon: IconName; label: string; count?: number };
 
@@ -68,6 +68,7 @@
       label: t.nav_account_inventory(),
     },
     { page: Page.ACCOUNT_POINTS, icon: IconName.CHANNEL_POINTS, label: t.nav_account_points() },
+    { page: Page.ACCOUNT_SPAM, icon: IconName.ZAP, label: t.nav_account_spam() },
     { page: Page.ACCOUNT_HISTORY, icon: IconName.HISTORY, label: t.nav_account_history() },
     { page: Page.ACCOUNT_SETTINGS, icon: IconName.SETTINGS, label: t.nav_account_settings() },
   ]);
@@ -79,25 +80,18 @@
       active &&
         "border-primary/50 bg-primary/15 font-semibold text-link hover:bg-primary/15 hover:text-link",
     );
-
-  const external =
-    (url: string) =>
-    (event: MouseEvent): void => {
-      event.preventDefault();
-      void openLink(url);
-    };
 </script>
 
 <nav
   class="flex min-h-0 flex-col border-r bg-sidebar text-sidebar-foreground"
-  aria-label={t.nav_home()}
+  aria-label={t.nav_main()}
 >
   <div class="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto px-2.5 py-3">
     <a
       class="mb-2 flex items-center gap-2.5 rounded-md border border-transparent px-2 py-1.5 text-nav-title leading-tight font-bold text-foreground no-underline hover:border-border hover:bg-sidebar-accent"
       href={REPO_URL}
       rel="noreferrer"
-      onclick={external(REPO_URL)}
+      onclick={(event) => followLink(event, REPO_URL)}
     >
       <img class="size-8 shrink-0 [image-rendering:pixelated]" src="/app-icon.svg" alt="" />
       <span>Twitch Drops<br />& Points Miner</span>
@@ -187,7 +181,9 @@
               aria-current={app.page === item.page ? "page" : undefined}
               onclick={() => navigate(item.page, a.id)}
             >
-              <Icon name={item.icon} size={16} /><span class="truncate">{item.label}</span>
+              <Icon name={item.icon} size={16} class="shrink-0" /><span
+                class="min-w-0 py-1 leading-tight break-words">{item.label}</span
+              >
             </button>
           {/each}
         </div>
@@ -211,7 +207,8 @@
       class="no-underline underline-offset-3 transition-colors hover:text-link hover:underline"
       href={REPO_URL}
       rel="noreferrer"
-      onclick={external(REPO_URL)}>v{app.snapshot?.version ?? app.info?.version ?? ""}</a
+      onclick={(event) => followLink(event, REPO_URL)}
+      >v{app.snapshot?.version ?? app.info?.version ?? ""}</a
     >
     {#if !app.connected}<span class="text-destructive">· {t.topbar_disconnected()}</span>{/if}
     <span class="h-px flex-1 bg-border"></span>

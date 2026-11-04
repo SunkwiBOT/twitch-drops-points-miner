@@ -13,21 +13,14 @@
     account: AccountSnapshotType;
     streamers: StreamerSettingsType[];
     channelFor: (login: string) => ChannelType | undefined;
-    importAction: ImportActionType | null;
     onadd: (logins: string[], channels: ChannelType[]) => void;
     onremove: (login: string) => void;
   };
 
-  let {
-    account,
-    streamers,
-    channelFor,
-    importAction = $bindable(),
-    onadd,
-    onremove,
-  }: SetupStreamersStepPropsType = $props();
+  let { account, streamers, channelFor, onadd, onremove }: SetupStreamersStepPropsType = $props();
 
   let removing = $state<string | null>(null);
+  let importer = $state<ReturnType<typeof StreamerImport>>();
 
   const removingChannel = $derived(removing ? channelFor(removing) : undefined);
 
@@ -40,6 +33,8 @@
       onremove(login);
     }
   };
+
+  export const importAction = (): ImportActionType | null => importer?.primary() ?? null;
 </script>
 
 {#if streamers.length === 0}
@@ -54,7 +49,7 @@
   </div>
 {/if}
 <StreamerImport
-  bind:primary={importAction}
+  bind:this={importer}
   target={account}
   existing={streamers.map((s) => s.login)}
   {onadd}

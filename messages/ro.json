@@ -9,6 +9,7 @@
   "theme_dark": "Întunecată",
   "theme_light": "Luminoasă",
   "language_auto": "Limba sistemului",
+  "language_load_failed": "Această limbă nu a putut fi încărcată.",
   "common_save": "Salvează",
   "common_cancel": "Anulează",
   "common_close": "Închide",
@@ -127,6 +128,7 @@
   "history_title": "Jurnal",
   "history_filter_all": "Toate conturile",
   "history_empty": "Nimic încă.",
+  "history_load_failed": "Jurnalul nu a putut fi citit.",
   "event_kind_info": "Info",
   "event_kind_error": "Eroare",
   "event_kind_watch_started": "Se urmărește",
@@ -224,6 +226,7 @@
   "time_in_hours": "în {count} h",
   "time_in_days": "în {count} z",
   "nav_home": "Acasă",
+  "nav_main": "Meniu principal",
   "nav_catalogue": "Catalog",
   "nav_logs": "Loguri tehnice",
   "nav_account_overview": "Prezentare",
@@ -297,7 +300,7 @@
   "campaign_ended": "Încheiată",
   "campaign_channels_any": "Orice canal care transmite jocul",
   "campaign_channels_some": "Canale permise: {count}",
-  "campaign_account": "Cont",
+  "common_account": "Cont",
   "campaign_progress": "{current}/{required} min",
   "campaign_link_game": "Conectează contul de joc",
   "campaign_open_twitch": "Deschide pe Twitch",
@@ -308,6 +311,7 @@
   "logs_copied": "Loguri copiate",
   "logs_open_folder": "Deschide dosarul de loguri",
   "logs_empty": "Nimic înregistrat încă.",
+  "logs_load_failed": "Logurile nu au putut fi citite.",
   "logs_load_more": "Încarcă liniile mai vechi",
   "logs_report": "Raportează o eroare",
   "logs_tab_lines": "Loguri",
@@ -1006,5 +1010,143 @@
   "common_select_all_count": "Selectează tot ({count})",
   "common_select_none_count": "Deselectează tot ({count})",
   "nav_support_project": "Susține proiectul",
-  "nav_star_github": "Dă o ⭐ pe GitHub"
+  "nav_star_github": "Dă o ⭐ pe GitHub",
+  "nav_account_spam": "Spam Points",
+  "event_kind_reward_redeemed": "Spam Points",
+  "spam_channels": "Canale",
+  "spam_search_placeholder": "Caută un canal Twitch",
+  "spam_search_hint": "Caută orice canal Twitch, chiar și în afara listei tale de Puncte.",
+  "spam_last_used": "folosit {time}",
+  "spam_never_used": "niciodată folosit",
+  "spam_in_points": "În lista ta de Puncte",
+  "spam_in_history": "Deja în istoricul tău",
+  "spam_remove_history": "Elimină din istoric",
+  "spam_removed": "{channel} a fost eliminat din istoric",
+  "spam_pick_title": "Alege un canal",
+  "spam_pick_text": "Aici apar recompensele lui personalizate, cu soldul acestui cont pe canal.",
+  "spam_balance": "Soldul punctelor de canal: {points}",
+  "spam_balance_changed": "actualizat {time}",
+  "spam_balance_live_hint": "Recitit la fiecare 2–3 s cât timp pagina e deschisă. Ora este cea a ultimei schimbări a soldului.",
+  "spam_balance_paused": "urmărire în pauză",
+  "spam_balance_paused_hint": "Soldul este recitit imediat ce fereastra primește focusul.",
+  "spam_balance_failing": "citire eșuată",
+  "spam_balance_failing_hint": "Ultimele citiri ale soldului au eșuat. Este recitit la fiecare 2–3 s.",
+  "spam_seconds_ago": "acum {count} s",
+  "spam_settings": "Setări Spam Points",
+  "spam_show_disabled": "Afișează-le pe cele dezactivate și în pauză",
+  "spam_show_out_of_stock": "Afișează-le pe cele epuizate",
+  "spam_delay": "Pauză între cereri",
+  "spam_delay_hint": "Între două revendicări din aceeași serie, de la 0 la 5.000 ms.",
+  "spam_delay_unit": "ms",
+  "spam_refresh": "Reîmprospătează recompensele",
+  "spam_load_failed": "Recompensele nu au putut fi citite",
+  "spam_rewards": "Recompense",
+  "spam_unavailable": "Indisponibile",
+  "spam_reward_disabled": "Dezactivată",
+  "spam_reward_paused": "În pauză",
+  "spam_reward_out_of_stock": "Epuizată",
+  "spam_reward_cooldown": "Disponibilă în {time}",
+  "spam_hint_disabled": "Dezactivată de canal: nu apare pe Twitch.",
+  "spam_hint_paused": "Pusă în pauză de canal în timpul acestui live.",
+  "spam_hint_out_of_stock": "Limită atinsă pentru acest live sau pentru tine.",
+  "spam_message_placeholder": "Mesajul tău…",
+  "spam_message_label": "Mesaj pentru {reward}",
+  "spam_message_needed": "Scrie mai întâi mesajul",
+  "spam_quantity": "Cantitate",
+  "spam_decrease": "Scade",
+  "spam_increase": "Crește",
+  "spam_max_balance": "Soldul tău nu permite mai mult",
+  "spam_max_count": "Cel mult 25 pe serie",
+  "spam_redeem": "Revendică",
+  "spam_redeeming": "Se trimite {done}/{total}…",
+  "spam_missing": "Lipsesc",
+  "spam_description": "Descriere: {text}",
+  "spam_sent_all": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "Revendicată!",
+        "countPlural=few": "{shown} trimise!",
+        "countPlural=*": "{shown} de trimise!"
+      }
+    }
+  ],
+  "spam_sent_partial": "{sent}/{count} trimise — {reason}",
+  "spam_sent_none": "Eșec — {reason}",
+  "spam_toast": "{count} × {reward} pe {channel}: {result}",
+  "spam_cancelled": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "{shown} anulată la ieșirea din pagină",
+        "countPlural=few": "{shown} anulate la ieșirea din pagină",
+        "countPlural=*": "{shown} de anulate la ieșirea din pagină"
+      }
+    }
+  ],
+  "spam_reason_not_enough_points": "puncte insuficiente",
+  "spam_reason_max_per_stream": "limita pe live atinsă",
+  "spam_reason_cooldown": "recompensă în reîncărcare",
+  "spam_reason_disabled": "recompensă dezactivată",
+  "spam_reason_paused": "recompensă în pauză",
+  "spam_reason_out_of_stock": "recompensă epuizată",
+  "spam_reason_text_required": "mesaj lipsă",
+  "spam_reason_unknown": "refuzat de Twitch ({code})",
+  "spam_no_rewards": "Nicio recompensă disponibilă deocamdată.",
+  "error_unknown_reward": "Această recompensă nu mai există pe canal.",
+  "error_reward_not_redeemable": "Nu s-a trimis nimic: recompensa cere un mesaj, nu este disponibilă sau e în reîncărcare, ori soldul nu ajunge.",
+  "ev_rewards_redeemed": [
+    {
+      "declarations": [
+        "input sent",
+        "input shown",
+        "input count",
+        "input reward",
+        "input channel",
+        "input points",
+        "local sentPlural = sent: plural"
+      ],
+      "selectors": [
+        "sentPlural"
+      ],
+      "match": {
+        "sentPlural=one": "{count} × {reward} pe {channel} — {shown} trimisă, {points} puncte",
+        "sentPlural=few": "{count} × {reward} pe {channel} — {shown} trimise, {points} puncte",
+        "sentPlural=*": "{count} × {reward} pe {channel} — {shown} de trimise, {points} puncte"
+      }
+    }
+  ],
+  "ev_rewards_redeemed_partial": "{count} × {reward} pe {channel} — {sent}/{total} trimise, {points} puncte",
+  "ev_rewards_refused": [
+    {
+      "declarations": [
+        "input refused",
+        "input reason",
+        "local refusedPlural = refused: plural"
+      ],
+      "selectors": [
+        "refusedPlural"
+      ],
+      "match": {
+        "refusedPlural=one": "{refused} refuzată: {reason}",
+        "refusedPlural=few": "{refused} refuzate: {reason}",
+        "refusedPlural=*": "{refused} de refuzate: {reason}"
+      }
+    }
+  ],
+  "spam_result_lost": "Nu a sosit niciun rezultat pentru {reward}: Jurnalul arată ce s-a trimis."
 }

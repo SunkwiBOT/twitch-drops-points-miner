@@ -2,7 +2,7 @@
   import { cn } from "$lib/utils";
   import { t } from "../../lib/i18n/i18n.svelte";
   import { DISCORD_NAME, DISCORD_URL, GITHUB_NAME, ISSUES_URL } from "../../lib/partners.constants";
-  import { openLink } from "../../lib/state/state.svelte";
+  import { followLink } from "../../lib/links/links.utils";
   import Icon from "../ui/Icon.svelte";
   import { IconName } from "../ui/ui.constants";
 
@@ -28,11 +28,6 @@
       tile: "bg-foreground text-background",
     },
   ]);
-
-  const choose = (choice: ChoiceType): void => {
-    onchosen?.();
-    void openLink(choice.url);
-  };
 </script>
 
 <div class="grid gap-2">
@@ -42,8 +37,8 @@
       href={choice.url}
       rel="noreferrer"
       onclick={(event) => {
-        event.preventDefault();
-        choose(choice);
+        onchosen?.();
+        followLink(event, choice.url);
       }}
     >
       <span class={cn("flex size-10 shrink-0 items-center justify-center rounded-lg", choice.tile)}

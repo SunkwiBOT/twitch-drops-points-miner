@@ -3,4 +3,5 @@
 export enum ServerMessageKind {
   SNAPSHOT = "SNAPSHOT",
   EVENT = "EVENT",
+  BURST = "BURST",
 }

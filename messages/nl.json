@@ -9,6 +9,7 @@
   "theme_dark": "Donker",
   "theme_light": "Licht",
   "language_auto": "Systeemtaal",
+  "language_load_failed": "Deze taal kon niet worden geladen.",
   "common_save": "Opslaan",
   "common_cancel": "Annuleren",
   "common_close": "Sluiten",
@@ -126,6 +127,7 @@
   "history_title": "Journaal",
   "history_filter_all": "Alle accounts",
   "history_empty": "Nog niets.",
+  "history_load_failed": "Het Journaal kon niet worden gelezen.",
   "event_kind_info": "Info",
   "event_kind_error": "Fout",
   "event_kind_watch_started": "Kijken",
@@ -223,6 +225,7 @@
   "time_in_hours": "over {count} u",
   "time_in_days": "over {count} d",
   "nav_home": "Home",
+  "nav_main": "Hoofdmenu",
   "nav_catalogue": "Catalogus",
   "nav_logs": "Technisch logboek",
   "nav_account_overview": "Overzicht",
@@ -294,7 +297,7 @@
   "campaign_ended": "Afgelopen",
   "campaign_channels_any": "Elk kanaal dat de game streamt",
   "campaign_channels_some": "Toegestane kanalen: {count}",
-  "campaign_account": "Account",
+  "common_account": "Account",
   "campaign_progress": "{current}/{required} min",
   "campaign_link_game": "Game-account koppelen",
   "campaign_open_twitch": "Openen op Twitch",
@@ -305,6 +308,7 @@
   "logs_copied": "Logboek gekopieerd",
   "logs_open_folder": "Logmap openen",
   "logs_empty": "Nog niets gelogd.",
+  "logs_load_failed": "Het logboek kon niet worden gelezen.",
   "logs_load_more": "Oudere regels laden",
   "logs_report": "Bug melden",
   "logs_tab_lines": "Logboek",
@@ -995,5 +999,139 @@
   "common_select_all_count": "Alles selecteren ({count})",
   "common_select_none_count": "Niets selecteren ({count})",
   "nav_support_project": "Project steunen",
-  "nav_star_github": "Een ⭐ geven op GitHub"
+  "nav_star_github": "Een ⭐ geven op GitHub",
+  "nav_account_spam": "Spam Points",
+  "event_kind_reward_redeemed": "Spam Points",
+  "spam_channels": "Kanalen",
+  "spam_search_placeholder": "Een Twitch-kanaal zoeken",
+  "spam_search_hint": "Zoek elk Twitch-kanaal, ook buiten je Puntenlijst.",
+  "spam_last_used": "gebruikt {time}",
+  "spam_never_used": "nooit gebruikt",
+  "spam_in_points": "In je Puntenlijst",
+  "spam_in_history": "Staat al in je geschiedenis",
+  "spam_remove_history": "Uit de geschiedenis verwijderen",
+  "spam_removed": "{channel} uit de geschiedenis verwijderd",
+  "spam_pick_title": "Kies een kanaal",
+  "spam_pick_text": "Hier verschijnen de eigen beloningen, met het saldo van dit account op het kanaal.",
+  "spam_balance": "Saldo kanaalpunten: {points}",
+  "spam_balance_changed": "bijgewerkt {time}",
+  "spam_balance_live_hint": "Elke 2 tot 3 s opnieuw gelezen zolang deze pagina open is. De tijd is die van de laatste wijziging van het saldo.",
+  "spam_balance_paused": "volgen gepauzeerd",
+  "spam_balance_paused_hint": "Het saldo wordt opnieuw gelezen zodra het venster de focus heeft.",
+  "spam_balance_failing": "lezen mislukt",
+  "spam_balance_failing_hint": "De laatste lezingen van het saldo zijn mislukt. Het wordt elke 2 tot 3 s opnieuw gelezen.",
+  "spam_seconds_ago": "{count} s geleden",
+  "spam_settings": "Instellingen van Spam Points",
+  "spam_show_disabled": "Uitgeschakelde en gepauzeerde tonen",
+  "spam_show_out_of_stock": "Uitverkochte tonen",
+  "spam_delay": "Pauze tussen verzoeken",
+  "spam_delay_hint": "Tussen twee inwisselingen van één reeks, 0 tot 5.000 ms.",
+  "spam_delay_unit": "ms",
+  "spam_refresh": "Beloningen vernieuwen",
+  "spam_load_failed": "De beloningen konden niet worden gelezen",
+  "spam_rewards": "Beloningen",
+  "spam_unavailable": "Niet beschikbaar",
+  "spam_reward_disabled": "Uitgeschakeld",
+  "spam_reward_paused": "Gepauzeerd",
+  "spam_reward_out_of_stock": "Uitverkocht",
+  "spam_reward_cooldown": "Beschikbaar over {time}",
+  "spam_hint_disabled": "Uitgeschakeld door het kanaal: hij verschijnt niet op Twitch.",
+  "spam_hint_paused": "Door het kanaal gepauzeerd tijdens deze stream.",
+  "spam_hint_out_of_stock": "Limiet bereikt voor deze stream of voor jou.",
+  "spam_message_placeholder": "Je bericht…",
+  "spam_message_label": "Bericht voor {reward}",
+  "spam_message_needed": "Typ eerst het bericht",
+  "spam_quantity": "Aantal",
+  "spam_decrease": "Verlagen",
+  "spam_increase": "Verhogen",
+  "spam_max_balance": "Je saldo laat niet meer toe",
+  "spam_max_count": "Hoogstens 25 per reeks",
+  "spam_redeem": "Inwisselen",
+  "spam_redeeming": "Verzenden {done}/{total}…",
+  "spam_missing": "Tekort",
+  "spam_description": "Beschrijving: {text}",
+  "spam_sent_all": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "Ingewisseld!",
+        "countPlural=*": "{shown} verzonden!"
+      }
+    }
+  ],
+  "spam_sent_partial": "{sent}/{count} verzonden — {reason}",
+  "spam_sent_none": "Mislukt — {reason}",
+  "spam_toast": "{count} × {reward} op {channel}: {result}",
+  "spam_cancelled": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "{shown} geannuleerd bij het verlaten van de pagina",
+        "countPlural=*": "{shown} geannuleerd bij het verlaten van de pagina"
+      }
+    }
+  ],
+  "spam_reason_not_enough_points": "niet genoeg punten",
+  "spam_reason_max_per_stream": "limiet per stream bereikt",
+  "spam_reason_cooldown": "beloning in afkoeltijd",
+  "spam_reason_disabled": "beloning uitgeschakeld",
+  "spam_reason_paused": "beloning gepauzeerd",
+  "spam_reason_out_of_stock": "beloning uitverkocht",
+  "spam_reason_text_required": "bericht ontbreekt",
+  "spam_reason_unknown": "geweigerd door Twitch ({code})",
+  "spam_no_rewards": "Op dit moment is er geen beloning beschikbaar.",
+  "error_unknown_reward": "Deze beloning bestaat niet meer op het kanaal.",
+  "error_reward_not_redeemable": "Er is niets verzonden: de beloning vraagt een bericht, is niet beschikbaar of in afkoeltijd, of het saldo is te laag.",
+  "ev_rewards_redeemed": [
+    {
+      "declarations": [
+        "input sent",
+        "input shown",
+        "input count",
+        "input reward",
+        "input channel",
+        "input points",
+        "local sentPlural = sent: plural"
+      ],
+      "selectors": [
+        "sentPlural"
+      ],
+      "match": {
+        "sentPlural=one": "{count} × {reward} op {channel} — {shown} verzonden, {points} punten",
+        "sentPlural=*": "{count} × {reward} op {channel} — {shown} verzonden, {points} punten"
+      }
+    }
+  ],
+  "ev_rewards_redeemed_partial": "{count} × {reward} op {channel} — {sent}/{total} verzonden, {points} punten",
+  "ev_rewards_refused": [
+    {
+      "declarations": [
+        "input refused",
+        "input reason",
+        "local refusedPlural = refused: plural"
+      ],
+      "selectors": [
+        "refusedPlural"
+      ],
+      "match": {
+        "refusedPlural=one": "{refused} geweigerd: {reason}",
+        "refusedPlural=*": "{refused} geweigerd: {reason}"
+      }
+    }
+  ],
+  "spam_result_lost": "Er kwam geen resultaat terug voor {reward}: het Journaal toont wat er is verzonden."
 }

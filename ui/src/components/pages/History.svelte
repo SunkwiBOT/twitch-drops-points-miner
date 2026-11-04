@@ -28,7 +28,7 @@
             <Select
               value={accountId}
               {options}
-              label={t.campaign_account()}
+              label={t.common_account()}
               align={MenuAlign.LEFT}
               onchange={(id) => (accountId = id)}
             />

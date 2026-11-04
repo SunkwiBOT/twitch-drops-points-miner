@@ -22,8 +22,12 @@
   import SearchField from "../ui/SearchField.svelte";
   import Segmented from "../ui/Segmented.svelte";
   import { IconName } from "../ui/ui.constants";
-  import { CATALOGUE_VIEW_SLUGS, CatalogueSort, CatalogueView } from "./pages.constants";
-  import { ZOOM_LABELS } from "./pages.utils";
+  import {
+    CATALOGUE_VIEW_SLUGS,
+    CatalogueSort,
+    CatalogueView,
+  } from "../catalogue/catalogue.constants";
+  import { ZOOM_LABELS } from "../catalogue/catalogue.utils";
 
   type CataloguePropsType = { snapshot: SnapshotType };
 

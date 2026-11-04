@@ -4,3 +4,5 @@ export enum LockKind {
 }
 
 export const APP_TITLE = "Twitch Drops & Points Miner";
+
+export const REORDER_HINT_ID = "account-reorder-hint";

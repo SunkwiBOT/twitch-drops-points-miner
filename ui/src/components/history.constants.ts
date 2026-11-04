@@ -1,0 +1,3 @@
+export const HISTORY_PAGE_SIZE = 100;
+export const HISTORY_SKELETON_ROWS = 8;
+export const HISTORY_MORE_SKELETON_ROWS = 2;

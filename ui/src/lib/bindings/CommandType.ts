@@ -13,4 +13,7 @@ export type CommandType =
   | { command: "SET_PASSPHRASE"; current: string | null; next: string | null }
   | { command: "UNLOCK"; passphrase: string }
   | { command: "LOCK" }
-  | { command: "ORDER_CAMPAIGN"; account_id: string; campaign_id: string; position: number | null };
+  | { command: "ORDER_CAMPAIGN"; account_id: string; campaign_id: string; position: number | null }
+  | { command: "ADD_SPAM_CHANNEL"; account_id: string; login: string }
+  | { command: "FORGET_SPAM_CHANNEL"; account_id: string; login: string }
+  | { command: "CANCEL_BURST"; burst_id: string };

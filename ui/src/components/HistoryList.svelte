@@ -16,7 +16,6 @@
   import type { HistoryQueryType } from "../lib/bindings/HistoryQueryType";
   import type { MinerEventType } from "../lib/bindings/MinerEventType";
   import { ensureChannels } from "../lib/channels/channels.svelte";
-  import { describeError } from "../lib/errors/errors.utils";
   import {
     EVENT_ICONS,
     EVENT_KIND_LABELS,
@@ -27,15 +26,19 @@
     kindGroupsOf,
   } from "../lib/events/events.utils";
   import { shownEvent, unnamedChannels } from "../lib/events/shown.svelte";
+  import { PagedFeed } from "../lib/feed/feed.svelte";
   import { t } from "../lib/i18n/i18n.svelte";
-  import { ToastKind } from "../lib/state/state.constants";
-  import { app, openTab, showTab, toast } from "../lib/state/state.svelte";
+  import { app, openTab, showTab } from "../lib/state/state.svelte";
+  import {
+    HISTORY_MORE_SKELETON_ROWS,
+    HISTORY_PAGE_SIZE,
+    HISTORY_SKELETON_ROWS,
+  } from "./history.constants";
   import HistoryRow from "./HistoryRow.svelte";
-  import { HISTORY_PAGE_SIZE, HISTORY_SKELETON_ROWS } from "./pages/pages.constants";
+  import LoadMoreSentinel from "./ui/LoadMoreSentinel.svelte";
   import MultiSelect from "./ui/MultiSelect.svelte";
   import Segmented from "./ui/Segmented.svelte";
-  import TextButton from "./ui/TextButton.svelte";
-  import { ButtonSize, ButtonType, ButtonVariant, MenuAlign } from "./ui/ui.constants";
+  import { IconName, MenuAlign } from "./ui/ui.constants";
 
   type HistoryListPropsType = {
     accountId: string | null;
@@ -54,12 +57,6 @@
   );
 
   let hidden = $state<EventKind[]>([]);
-  let events = $state<MinerEventType[]>([]);
-  const shown = $derived(events.map(shownEvent));
-  let cursor = $state<number | null>(null);
-  let loading = $state(true);
-  let loadingMore = $state(false);
-  let sentinel: HTMLDivElement | undefined = $state();
 
   const groups = $derived(kindGroupsOf(filter));
   const offered = $derived([...new Set(groups.flatMap((entry) => entry.kinds))]);
@@ -76,13 +73,26 @@
     ),
   );
 
-  const query = (before?: number): HistoryQueryType => ({
+  const query = (): HistoryQueryType => ({
     account_id: accountId ?? undefined,
     category: filter === JOURNAL_ALL ? undefined : filter,
     kinds: ticked.length === offered.length ? undefined : ticked,
-    before_id: before,
-    limit: HISTORY_PAGE_SIZE,
   });
+
+  const feed = new PagedFeed<HistoryQueryType, MinerEventType, number>({
+    fetch: async (request, before) => {
+      const page = await fetchHistory({
+        ...request,
+        before_id: before ?? undefined,
+        limit: HISTORY_PAGE_SIZE,
+      });
+
+      return { items: page.events, next: page.next_before_id ?? null };
+    },
+    isOlder: (event, oldest) => event.id < oldest.id,
+  });
+
+  const shown = $derived(feed.items.map(shownEvent));
 
   const showKinds = (values: EventKind[]): void => {
     hidden = [
@@ -91,80 +101,13 @@
     ];
   };
 
-  let loadedFor = "";
-
   $effect(() => {
-    const request = query();
-    const key = JSON.stringify(request);
     void app.liveEvents.length;
-    let current = true;
-
-    if (key !== loadedFor) {
-      loadedFor = key;
-      events = [];
-      cursor = null;
-      loading = true;
-    }
-
-    fetchHistory(request)
-      .then((page) => {
-        if (!current) {
-          return;
-        }
-
-        const oldest = page.events.at(-1)?.id ?? 0;
-        const older = cursor === null ? [] : events.filter((event) => event.id < oldest);
-
-        events = [...page.events, ...older];
-
-        if (older.length === 0) {
-          cursor = page.next_before_id ?? null;
-        }
-      })
-      .catch((e: unknown) => toast(ToastKind.ERROR, describeError(e)))
-      .finally(() => (loading = false));
-
-    return () => {
-      current = false;
-    };
-  });
-
-  const loadMore = async (): Promise<void> => {
-    if (cursor === null || loadingMore) {
-      return;
-    }
-
-    loadingMore = true;
-
-    try {
-      const page = await fetchHistory(query(cursor));
-      events = [...events, ...page.events];
-      cursor = page.next_before_id ?? null;
-    } catch (e: any) {
-      toast(ToastKind.ERROR, describeError(e));
-    } finally {
-      loadingMore = false;
-    }
-  };
-
-  $effect(() => {
-    if (!sentinel) {
-      return;
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        void loadMore();
-      }
-    });
-
-    observer.observe(sentinel);
-
-    return () => observer.disconnect();
+    void feed.show(query());
   });
 
   $effect(() => {
-    ensureChannels(unnamedChannels(events));
+    ensureChannels(unnamedChannels(feed.items));
   });
 </script>
 
@@ -226,12 +169,14 @@
   {/each}
 {/snippet}
 
-{#if loading && events.length === 0}
+{#if feed.loading && feed.items.length === 0}
   <Table class="text-hint">
     {@render head()}
     <TableBody>{@render skeleton(HISTORY_SKELETON_ROWS)}</TableBody>
   </Table>
-{:else if events.length === 0}
+{:else if feed.items.length === 0 && feed.problem}
+  <EmptyState title={t.history_load_failed()} text={feed.problem} icon={IconName.ALERT} />
+{:else if feed.items.length === 0}
   <EmptyState text={t.history_empty()} />
 {:else}
   <Table class="text-hint">
@@ -240,19 +185,13 @@
       {#each shown as event (event.id)}
         <HistoryRow {event} {showAccount} />
       {/each}
-      {#if loadingMore}{@render skeleton(2)}{/if}
+      {#if feed.loadingMore}{@render skeleton(HISTORY_MORE_SKELETON_ROWS)}{/if}
     </TableBody>
   </Table>
-  <div class="flex justify-center pt-3" bind:this={sentinel}>
-    {#if !loadingMore && cursor !== null}
-      <TextButton
-        label={t.history_load_more()}
-        variant={ButtonVariant.OUTLINE}
-        size={ButtonSize.SM}
-        type={ButtonType.BUTTON}
-        disabled={false}
-        onclick={loadMore}
-      />
-    {/if}
-  </div>
+  <LoadMoreSentinel
+    label={t.history_load_more()}
+    busy={feed.loadingMore}
+    more={feed.hasMore}
+    onmore={feed.loadMore}
+  />
 {/if}

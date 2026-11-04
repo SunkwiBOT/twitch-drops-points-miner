@@ -14,10 +14,9 @@
   type FollowsImportPropsType = {
     open: boolean;
     target: AccountSnapshotType;
-    offered: ImportCandidateType[] | null;
   };
 
-  let { open, target, offered = $bindable() }: FollowsImportPropsType = $props();
+  let { open, target }: FollowsImportPropsType = $props();
 
   let follows = $state<ChannelType[] | null>(null);
   let loading = $state(false);
@@ -43,9 +42,9 @@
     }
   });
 
-  $effect(() => {
-    offered = follows ? fromChannels(follows) : null;
-  });
+  const candidates = $derived(follows ? fromChannels(follows) : null);
+
+  export const offered = (): ImportCandidateType[] | null => candidates;
 </script>
 
 {#if open}

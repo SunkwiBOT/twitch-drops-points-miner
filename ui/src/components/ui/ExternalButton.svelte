@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button } from "$lib/components/ui/button";
   import { cn } from "$lib/utils";
-  import { openLink } from "../../lib/state/state.svelte";
+  import { followLink } from "../../lib/links/links.utils";
   import Icon from "./Icon.svelte";
   import {
     BUTTON_SIZES,
@@ -32,10 +32,7 @@
   variant={BUTTON_VARIANTS[variant]}
   size={BUTTON_SIZES[size]}
   class={cn("no-underline hover:no-underline", BUTTON_VARIANT_CLASSES[variant], className)}
-  onclick={(event: MouseEvent) => {
-    event.preventDefault();
-    void openLink(url);
-  }}
+  onclick={(event: MouseEvent) => followLink(event, url)}
 >
   {#if icon}<Icon name={icon} size={iconSize} />{/if}
   <span class="truncate">{label}</span>

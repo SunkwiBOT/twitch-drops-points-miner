@@ -7,6 +7,7 @@
   import { TWITCH_CONNECTIONS_URL } from "../../lib/partners.constants";
   import { refresh } from "../../lib/state/state.svelte";
   import { linkMarker } from "../../lib/text.utils";
+  import { SECOND_MS } from "../../lib/time/time.constants";
   import { Progress } from "$lib/components/ui/progress";
   import { cn } from "$lib/utils";
   import CopyButton from "../ui/CopyButton.svelte";
@@ -21,7 +22,7 @@
     LinkMark,
     LinkSize,
   } from "../ui/ui.constants";
-  import { COUNTDOWN_TICK_MS, LOW_TIME_MS } from "./accounts.constants";
+  import { LOW_TIME_MS } from "./accounts.constants";
 
   type LoginCodePropsType = { flow: LoginFlowViewType };
 
@@ -30,7 +31,7 @@
   let now = $state(Date.now());
 
   onMount(() => {
-    const timer = setInterval(() => (now = Date.now()), COUNTDOWN_TICK_MS);
+    const timer = setInterval(() => (now = Date.now()), SECOND_MS);
 
     return () => clearInterval(timer);
   });

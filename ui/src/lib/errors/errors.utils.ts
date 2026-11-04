@@ -53,6 +53,8 @@ const MESSAGES: Record<ErrorApiMessage, (code: ErrorApiMessage) => string> = {
   [ErrorApiMessage.INVALID_VAULT]: () => t.error_invalid_vault(),
   [ErrorApiMessage.UNKNOWN_ACCOUNT]: () => t.error_unknown_account(),
   [ErrorApiMessage.UNKNOWN_CHANNEL]: () => t.error_unknown_channel(),
+  [ErrorApiMessage.UNKNOWN_REWARD]: () => t.error_unknown_reward(),
+  [ErrorApiMessage.REWARD_NOT_REDEEMABLE]: () => t.error_reward_not_redeemable(),
   [ErrorApiMessage.INVALID_PROXY]: () => t.error_invalid_proxy(),
   [ErrorApiMessage.INVALID_STREAMER_LOGIN]: () => t.error_invalid_streamer_login(),
   [ErrorApiMessage.PASSPHRASE_REQUIRED]: () => t.error_passphrase_required(),

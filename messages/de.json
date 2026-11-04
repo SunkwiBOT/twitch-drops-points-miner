@@ -9,6 +9,7 @@
   "theme_dark": "Dunkel",
   "theme_light": "Hell",
   "language_auto": "Systemsprache",
+  "language_load_failed": "Diese Sprache konnte nicht geladen werden.",
   "common_save": "Speichern",
   "common_cancel": "Abbrechen",
   "common_close": "Schließen",
@@ -126,6 +127,7 @@
   "history_title": "Journal",
   "history_filter_all": "Alle Konten",
   "history_empty": "Noch nichts.",
+  "history_load_failed": "Das Journal konnte nicht gelesen werden.",
   "event_kind_info": "Info",
   "event_kind_error": "Fehler",
   "event_kind_watch_started": "Schaut",
@@ -223,6 +225,7 @@
   "time_in_hours": "in {count} Std.",
   "time_in_days": "in {count} T.",
   "nav_home": "Startseite",
+  "nav_main": "Hauptmenü",
   "nav_catalogue": "Katalog",
   "nav_logs": "Technische Protokolle",
   "nav_account_overview": "Übersicht",
@@ -294,7 +297,7 @@
   "campaign_ended": "Beendet",
   "campaign_channels_any": "Jeder Kanal, der das Spiel streamt",
   "campaign_channels_some": "Erlaubte Kanäle: {count}",
-  "campaign_account": "Konto",
+  "common_account": "Konto",
   "campaign_progress": "{current}/{required} Min.",
   "campaign_link_game": "Spielkonto verknüpfen",
   "campaign_open_twitch": "Auf Twitch öffnen",
@@ -305,6 +308,7 @@
   "logs_copied": "Protokolle kopiert",
   "logs_open_folder": "Protokollordner öffnen",
   "logs_empty": "Noch nichts protokolliert.",
+  "logs_load_failed": "Die Protokolle konnten nicht gelesen werden.",
   "logs_load_more": "Ältere Zeilen laden",
   "logs_report": "Fehler melden",
   "logs_tab_lines": "Protokolle",
@@ -981,5 +985,139 @@
   "common_select_all_count": "Alle auswählen ({count})",
   "common_select_none_count": "Keine auswählen ({count})",
   "nav_support_project": "Projekt unterstützen",
-  "nav_star_github": "Auf GitHub einen ⭐ geben"
+  "nav_star_github": "Auf GitHub einen ⭐ geben",
+  "nav_account_spam": "Spam Points",
+  "event_kind_reward_redeemed": "Spam Points",
+  "spam_channels": "Kanäle",
+  "spam_search_placeholder": "Twitch-Kanal suchen",
+  "spam_search_hint": "Suche einen beliebigen Twitch-Kanal, auch außerhalb deiner Punkte-Liste.",
+  "spam_last_used": "genutzt {time}",
+  "spam_never_used": "nie genutzt",
+  "spam_in_points": "In deiner Punkte-Liste",
+  "spam_in_history": "Schon in deinem Verlauf",
+  "spam_remove_history": "Aus dem Verlauf entfernen",
+  "spam_removed": "{channel} aus dem Verlauf entfernt",
+  "spam_pick_title": "Wähle einen Kanal",
+  "spam_pick_text": "Hier erscheinen seine eigenen Belohnungen, mit dem Guthaben dieses Kontos auf dem Kanal.",
+  "spam_balance": "Kanalpunkte-Guthaben: {points}",
+  "spam_balance_changed": "aktualisiert {time}",
+  "spam_balance_live_hint": "Wird alle 2 bis 3 s neu gelesen, solange diese Seite offen ist. Die Zeit ist die der letzten Änderung des Guthabens.",
+  "spam_balance_paused": "Verfolgung pausiert",
+  "spam_balance_paused_hint": "Das Guthaben wird wieder gelesen, sobald das Fenster den Fokus hat.",
+  "spam_balance_failing": "Lesen fehlgeschlagen",
+  "spam_balance_failing_hint": "Die letzten Abfragen des Guthabens sind fehlgeschlagen. Es wird alle 2 bis 3 s neu gelesen.",
+  "spam_seconds_ago": "vor {count} s",
+  "spam_settings": "Spam-Points-Einstellungen",
+  "spam_show_disabled": "Deaktivierte und pausierte anzeigen",
+  "spam_show_out_of_stock": "Ausverkaufte anzeigen",
+  "spam_delay": "Pause zwischen den Anfragen",
+  "spam_delay_hint": "Zwischen zwei Einlösungen einer Serie, 0 bis 5.000 ms.",
+  "spam_delay_unit": "ms",
+  "spam_refresh": "Belohnungen aktualisieren",
+  "spam_load_failed": "Die Belohnungen konnten nicht gelesen werden",
+  "spam_rewards": "Belohnungen",
+  "spam_unavailable": "Nicht verfügbar",
+  "spam_reward_disabled": "Deaktiviert",
+  "spam_reward_paused": "Pausiert",
+  "spam_reward_out_of_stock": "Ausverkauft",
+  "spam_reward_cooldown": "Verfügbar in {time}",
+  "spam_hint_disabled": "Vom Kanal deaktiviert: Sie erscheint nicht auf Twitch.",
+  "spam_hint_paused": "Vom Kanal während dieses Streams pausiert.",
+  "spam_hint_out_of_stock": "Limit für diesen Stream oder für dich erreicht.",
+  "spam_message_placeholder": "Deine Nachricht…",
+  "spam_message_label": "Nachricht für {reward}",
+  "spam_message_needed": "Gib zuerst die Nachricht ein",
+  "spam_quantity": "Anzahl",
+  "spam_decrease": "Verringern",
+  "spam_increase": "Erhöhen",
+  "spam_max_balance": "Dein Guthaben reicht nicht für mehr",
+  "spam_max_count": "Höchstens 25 pro Serie",
+  "spam_redeem": "Einlösen",
+  "spam_redeeming": "Sende {done}/{total}…",
+  "spam_missing": "Es fehlen",
+  "spam_description": "Beschreibung: {text}",
+  "spam_sent_all": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "Eingelöst!",
+        "countPlural=*": "{shown} gesendet!"
+      }
+    }
+  ],
+  "spam_sent_partial": "{sent}/{count} gesendet — {reason}",
+  "spam_sent_none": "Fehlgeschlagen — {reason}",
+  "spam_toast": "{count} × {reward} auf {channel}: {result}",
+  "spam_cancelled": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "{shown} beim Verlassen der Seite abgebrochen",
+        "countPlural=*": "{shown} beim Verlassen der Seite abgebrochen"
+      }
+    }
+  ],
+  "spam_reason_not_enough_points": "nicht genug Punkte",
+  "spam_reason_max_per_stream": "Limit pro Stream erreicht",
+  "spam_reason_cooldown": "Belohnung in Abklingzeit",
+  "spam_reason_disabled": "Belohnung deaktiviert",
+  "spam_reason_paused": "Belohnung pausiert",
+  "spam_reason_out_of_stock": "Belohnung ausverkauft",
+  "spam_reason_text_required": "Nachricht fehlt",
+  "spam_reason_unknown": "von Twitch abgelehnt ({code})",
+  "spam_no_rewards": "Gerade ist keine Belohnung verfügbar.",
+  "error_unknown_reward": "Diese Belohnung gibt es auf dem Kanal nicht mehr.",
+  "error_reward_not_redeemable": "Nichts wurde gesendet: Die Belohnung braucht eine Nachricht, ist nicht verfügbar oder in Abklingzeit, oder das Guthaben reicht nicht.",
+  "ev_rewards_redeemed": [
+    {
+      "declarations": [
+        "input sent",
+        "input shown",
+        "input count",
+        "input reward",
+        "input channel",
+        "input points",
+        "local sentPlural = sent: plural"
+      ],
+      "selectors": [
+        "sentPlural"
+      ],
+      "match": {
+        "sentPlural=one": "{count} × {reward} auf {channel} — {shown} gesendet, {points} Punkte",
+        "sentPlural=*": "{count} × {reward} auf {channel} — {shown} gesendet, {points} Punkte"
+      }
+    }
+  ],
+  "ev_rewards_redeemed_partial": "{count} × {reward} auf {channel} — {sent}/{total} gesendet, {points} Punkte",
+  "ev_rewards_refused": [
+    {
+      "declarations": [
+        "input refused",
+        "input reason",
+        "local refusedPlural = refused: plural"
+      ],
+      "selectors": [
+        "refusedPlural"
+      ],
+      "match": {
+        "refusedPlural=one": "{refused} abgelehnt: {reason}",
+        "refusedPlural=*": "{refused} abgelehnt: {reason}"
+      }
+    }
+  ],
+  "spam_result_lost": "Für {reward} kam kein Ergebnis zurück: Das Journal zeigt, was gesendet wurde."
 }

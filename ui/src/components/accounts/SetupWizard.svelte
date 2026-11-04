@@ -1,11 +1,10 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
-
   import { SetupEnd, SetupSource, SetupStep } from "../../lib/accounts/accounts.constants";
-  import { newStreamer, type ImportActionType } from "../../lib/accounts/import.svelte";
+  import { newStreamer } from "../../lib/accounts/import.svelte";
+  import { dropsScopeChoices } from "../../lib/accounts/scope.utils";
   import type { AccountSnapshotType } from "../../lib/bindings/AccountSnapshotType";
   import type { ChannelType } from "../../lib/bindings/ChannelType";
-  import { DropsScope } from "../../lib/bindings/DropsScope";
+  import type { DropsScope } from "../../lib/bindings/DropsScope";
   import { Mode } from "../../lib/bindings/Mode";
   import type { StreamerSettingsType } from "../../lib/bindings/StreamerSettingsType";
   import {
@@ -17,6 +16,7 @@
   import { account as accountOf, app, saveAccountSettings } from "../../lib/state/state.svelte";
   import { personMarker } from "../../lib/text.utils";
   import ChoiceCards from "../ui/ChoiceCards.svelte";
+  import DialogActions from "../ui/DialogActions.svelte";
   import FormField from "../ui/FormField.svelte";
   import RichText from "../ui/RichText.svelte";
   import Select from "../ui/Select.svelte";
@@ -31,16 +31,10 @@
   type SetupWizardPropsType = {
     account: AccountSnapshotType;
     onclose: () => void;
-    footer: Snippet | undefined;
     finishing: boolean;
   };
 
-  let {
-    account,
-    onclose,
-    footer = $bindable(),
-    finishing = $bindable(),
-  }: SetupWizardPropsType = $props();
+  let { account, onclose, finishing = $bindable() }: SetupWizardPropsType = $props();
 
   const others = $derived((app.snapshot?.accounts ?? []).filter((a) => a.id !== account.id));
 
@@ -57,12 +51,13 @@
   let pickedScope = $state<DropsScope | null>(null);
   let pickedAutoClaim = $state<boolean | null>(null);
   let pickedStreamers = $state<StreamerSettingsType[] | null>(null);
-  let importAction = $state<ImportActionType | null>(null);
+  let streamersStep = $state<ReturnType<typeof SetupStreamersStep>>();
 
   const mode = $derived(pickedMode ?? base.mode);
   const scope = $derived(pickedScope ?? base.drops.scope);
   const autoClaim = $derived(pickedAutoClaim ?? base.drops.auto_claim);
   const streamers = $derived(pickedStreamers ?? base.points.streamers);
+  const importAction = $derived(streamersStep?.importAction() ?? null);
 
   const sameLogins = (a: StreamerSettingsType[], b: StreamerSettingsType[]): boolean =>
     a.length === b.length && a.every((item, index) => item.login === b[index].login);
@@ -96,23 +91,7 @@
     pickedStreamers = null;
   };
 
-  const scopeChoices = $derived([
-    { value: DropsScope.ALL, title: t.drops_scope_all(), description: t.drops_scope_all_hint() },
-    {
-      value: DropsScope.LINKED_ONLY,
-      title: t.drops_scope_linked_only(),
-      description: t.drops_scope_linked_hint(),
-    },
-    ...(base.drops.priority_games.length > 0
-      ? [
-          {
-            value: DropsScope.PRIORITY_ONLY,
-            title: t.drops_scope_priority_only(),
-            description: t.drops_scope_priority_hint(),
-          },
-        ]
-      : []),
-  ]);
+  const scopeChoices = $derived(dropsScopeChoices(base.drops.priority_games.length > 0));
 
   const channelFor = (login: string): ChannelType | undefined =>
     sourceAccount?.streamers.find((view) => view.login === login)?.channel ?? knownChannels[login];
@@ -173,14 +152,6 @@
       onclose();
     }
   };
-
-  $effect(() => {
-    footer = buttons;
-
-    return () => {
-      footer = undefined;
-    };
-  });
 </script>
 
 {#snippet stepTitle(title: string, hint: string)}
@@ -188,18 +159,6 @@
     <h3 class="text-base font-semibold">{title}</h3>
     <p class="text-hint text-muted-foreground"><RichText text={hint} /></p>
   </div>
-{/snippet}
-
-{#snippet buttons()}
-  <SetupActions
-    {step}
-    {stepIndex}
-    total={steps.length}
-    {importAction}
-    {ending}
-    ongo={goTo}
-    onfinish={finish}
-  />
 {/snippet}
 
 <div class="flex flex-col gap-5">
@@ -255,10 +214,10 @@
   {:else if step === SetupStep.STREAMERS}
     {@render stepTitle(t.login_setup_streamers_title(), t.login_setup_streamers_hint())}
     <SetupStreamersStep
+      bind:this={streamersStep}
       {account}
       {streamers}
       {channelFor}
-      bind:importAction
       onadd={addStreamers}
       onremove={removeStreamer}
     />
@@ -276,3 +235,15 @@
     <p class="text-hint text-muted-foreground">{t.login_setup_later_hint()}</p>
   {/if}
 </div>
+
+<DialogActions>
+  <SetupActions
+    {step}
+    {stepIndex}
+    total={steps.length}
+    {importAction}
+    {ending}
+    ongo={goTo}
+    onfinish={finish}
+  />
+</DialogActions>

@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
 
   import { cn } from "$lib/utils";
-  import { openLink } from "../../lib/state/state.svelte";
+  import { followLink } from "../../lib/links/links.utils";
   import { t } from "../../lib/i18n/i18n.svelte";
   import { PARTNERS, REPO_URL, ROTATION_FADE_MS, ROTATION_MS } from "../../lib/partners.constants";
   import Icon from "../ui/Icon.svelte";
@@ -12,6 +12,8 @@
 
   let index = $state(0);
   let fading = $state(false);
+  let hovered = false;
+  let focused = false;
 
   const entries = $derived<EntryType[]>([
     ...PARTNERS.map((partner) => ({
@@ -29,6 +31,10 @@
     let fade: ReturnType<typeof setTimeout> | null = null;
 
     const timer = setInterval(() => {
+      if (hovered || focused) {
+        return;
+      }
+
       fading = true;
       fade = setTimeout(() => {
         index = (index + 1) % entries.length;
@@ -53,10 +59,11 @@
   )}
   href={entry.url}
   rel="noreferrer"
-  onclick={(event) => {
-    event.preventDefault();
-    void openLink(entry.url);
-  }}
+  onclick={(event) => followLink(event, entry.url)}
+  onpointerenter={() => (hovered = true)}
+  onpointerleave={() => (hovered = false)}
+  onfocus={() => (focused = true)}
+  onblur={() => (focused = false)}
 >
   {#if entry.mark}
     <img class="size-7 shrink-0 rounded-md" src={entry.mark} alt="" />

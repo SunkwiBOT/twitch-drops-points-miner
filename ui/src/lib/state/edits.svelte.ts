@@ -5,6 +5,7 @@ import { SvelteMap } from "svelte/reactivity";
 
 import type { AccountSettingsType } from "../bindings/AccountSettingsType";
 import type { AccountSnapshotType } from "../bindings/AccountSnapshotType";
+import { sameValue } from "../compare.utils";
 import { t } from "../i18n/i18n.svelte";
 import { changed } from "./bulk.svelte";
 import { AccountField, ToastKind } from "./state.constants";
@@ -36,7 +37,7 @@ export class SettingsEdits<T, F extends string> {
       return false;
     }
 
-    return JSON.stringify(this.applied(settings)) !== JSON.stringify($state.snapshot(settings));
+    return !sameValue(this.applied(settings), $state.snapshot(settings));
   }
 
   entries(): [F, EditType<T>][] {
@@ -45,6 +46,14 @@ export class SettingsEdits<T, F extends string> {
 
   clear(): void {
     this.#changes.clear();
+  }
+
+  forget(entries: [F, EditType<T>][]): void {
+    for (const [field, change] of entries) {
+      if (this.#changes.get(field) === change) {
+        this.#changes.delete(field);
+      }
+    }
   }
 }
 
@@ -76,7 +85,7 @@ export const saveAccountEdits = async (account: AccountSnapshotType): Promise<bo
     return false;
   }
 
-  edits.clear();
+  edits.forget(entries);
 
   const shared = entries.filter(([field]) => field !== AccountField.PROXY);
 

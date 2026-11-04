@@ -9,6 +9,7 @@
   "theme_dark": "Mørkt",
   "theme_light": "Lyst",
   "language_auto": "Systemets sprog",
+  "language_load_failed": "Dette sprog kunne ikke indlæses.",
   "common_save": "Gem",
   "common_cancel": "Annuller",
   "common_close": "Luk",
@@ -126,6 +127,7 @@
   "history_title": "Journal",
   "history_filter_all": "Alle konti",
   "history_empty": "Intet endnu.",
+  "history_load_failed": "Journalen kunne ikke læses.",
   "event_kind_info": "Info",
   "event_kind_error": "Fejl",
   "event_kind_watch_started": "Ser med",
@@ -223,6 +225,7 @@
   "time_in_hours": "om {count} t",
   "time_in_days": "om {count} d",
   "nav_home": "Hjem",
+  "nav_main": "Hovedmenu",
   "nav_catalogue": "Katalog",
   "nav_logs": "Tekniske logfiler",
   "nav_account_overview": "Oversigt",
@@ -294,7 +297,7 @@
   "campaign_ended": "Afsluttet",
   "campaign_channels_any": "Enhver kanal, der streamer spillet",
   "campaign_channels_some": "Tilladte kanaler: {count}",
-  "campaign_account": "Konto",
+  "common_account": "Konto",
   "campaign_progress": "{current}/{required} min.",
   "campaign_link_game": "Tilknyt spilkontoen",
   "campaign_open_twitch": "Åbn på Twitch",
@@ -305,6 +308,7 @@
   "logs_copied": "Logfiler kopieret",
   "logs_open_folder": "Åbn logmappen",
   "logs_empty": "Intet logget endnu.",
+  "logs_load_failed": "Logfilerne kunne ikke læses.",
   "logs_load_more": "Indlæs ældre linjer",
   "logs_report": "Rapportér en fejl",
   "logs_tab_lines": "Logfiler",
@@ -528,7 +532,7 @@
   "login_setup_defaults": "Standardindstillinger",
   "login_setup_copy_from": "Indstillinger fra {name}",
   "login_setup_copy_hint": "Kopierer den valgte kontos indstillinger, som de er (mining-rækkefølgen for Drops-kampagner, udelukkelser, streamerlisten), undtagen proxyen.",
-  "login_setup_finish": "Start mining",
+  "login_setup_finish": "Begynd at mine",
   "login_setup_later": "Gem og start senere",
   "error_not_supported": "Ikke tilgængelig i denne version af appen.",
   "common_copy_named": "Kopiér {name}",
@@ -995,5 +999,139 @@
   "common_select_all_count": "Vælg alle ({count})",
   "common_select_none_count": "Fravælg alle ({count})",
   "nav_support_project": "Støt projektet",
-  "nav_star_github": "Giv en ⭐ på GitHub"
+  "nav_star_github": "Giv en ⭐ på GitHub",
+  "nav_account_spam": "Spam Points",
+  "event_kind_reward_redeemed": "Spam Points",
+  "spam_channels": "Kanaler",
+  "spam_search_placeholder": "Søg efter en Twitch-kanal",
+  "spam_search_hint": "Søg efter en hvilken som helst Twitch-kanal, også uden for din Point-liste.",
+  "spam_last_used": "brugt {time}",
+  "spam_never_used": "aldrig brugt",
+  "spam_in_points": "På din Point-liste",
+  "spam_in_history": "Allerede i din historik",
+  "spam_remove_history": "Fjern fra historikken",
+  "spam_removed": "{channel} fjernet fra historikken",
+  "spam_pick_title": "Vælg en kanal",
+  "spam_pick_text": "Her vises kanalens egne belønninger med kontoens saldo på kanalen.",
+  "spam_balance": "Saldo af kanalpoint: {points}",
+  "spam_balance_changed": "opdateret {time}",
+  "spam_balance_live_hint": "Læses igen hvert 2.–3. sekund, mens siden er åben. Tidspunktet er saldoens seneste ændring.",
+  "spam_balance_paused": "sporing på pause",
+  "spam_balance_paused_hint": "Saldoen læses igen, så snart vinduet har fokus.",
+  "spam_balance_failing": "læsning mislykkedes",
+  "spam_balance_failing_hint": "De seneste læsninger af saldoen mislykkedes. Den læses igen hvert 2.–3. sekund.",
+  "spam_seconds_ago": "for {count} s siden",
+  "spam_settings": "Indstillinger for Spam Points",
+  "spam_show_disabled": "Vis deaktiverede og dem på pause",
+  "spam_show_out_of_stock": "Vis udsolgte",
+  "spam_delay": "Pause mellem anmodningerne",
+  "spam_delay_hint": "Mellem to indløsninger i samme serie, 0 til 5.000 ms.",
+  "spam_delay_unit": "ms",
+  "spam_refresh": "Opdater belønningerne",
+  "spam_load_failed": "Belønningerne kunne ikke læses",
+  "spam_rewards": "Belønninger",
+  "spam_unavailable": "Ikke tilgængelige",
+  "spam_reward_disabled": "Deaktiveret",
+  "spam_reward_paused": "På pause",
+  "spam_reward_out_of_stock": "Udsolgt",
+  "spam_reward_cooldown": "Tilgængelig om {time}",
+  "spam_hint_disabled": "Deaktiveret af kanalen: den vises ikke på Twitch.",
+  "spam_hint_paused": "Sat på pause af kanalen under denne stream.",
+  "spam_hint_out_of_stock": "Grænsen er nået for denne stream eller for dig.",
+  "spam_message_placeholder": "Din besked…",
+  "spam_message_label": "Besked til {reward}",
+  "spam_message_needed": "Skriv beskeden først",
+  "spam_quantity": "Antal",
+  "spam_decrease": "Mindsk",
+  "spam_increase": "Øg",
+  "spam_max_balance": "Din saldo rækker ikke til flere",
+  "spam_max_count": "Højst 25 pr. serie",
+  "spam_redeem": "Indløs",
+  "spam_redeeming": "Sender {done}/{total}…",
+  "spam_missing": "Der mangler",
+  "spam_description": "Beskrivelse: {text}",
+  "spam_sent_all": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "Indløst!",
+        "countPlural=*": "{shown} sendt!"
+      }
+    }
+  ],
+  "spam_sent_partial": "{sent}/{count} sendt — {reason}",
+  "spam_sent_none": "Mislykkedes — {reason}",
+  "spam_toast": "{count} × {reward} på {channel}: {result}",
+  "spam_cancelled": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "{shown} annulleret, da siden blev forladt",
+        "countPlural=*": "{shown} annulleret, da siden blev forladt"
+      }
+    }
+  ],
+  "spam_reason_not_enough_points": "ikke nok point",
+  "spam_reason_max_per_stream": "grænsen pr. stream er nået",
+  "spam_reason_cooldown": "belønningen har nedkøling",
+  "spam_reason_disabled": "belønningen er deaktiveret",
+  "spam_reason_paused": "belønningen er på pause",
+  "spam_reason_out_of_stock": "belønningen er udsolgt",
+  "spam_reason_text_required": "beskeden mangler",
+  "spam_reason_unknown": "afvist af Twitch ({code})",
+  "spam_no_rewards": "Ingen belønning er tilgængelig lige nu.",
+  "error_unknown_reward": "Denne belønning findes ikke længere på kanalen.",
+  "error_reward_not_redeemable": "Intet blev sendt: belønningen kræver en besked, er ikke tilgængelig eller har nedkøling, eller saldoen rækker ikke.",
+  "ev_rewards_redeemed": [
+    {
+      "declarations": [
+        "input sent",
+        "input shown",
+        "input count",
+        "input reward",
+        "input channel",
+        "input points",
+        "local sentPlural = sent: plural"
+      ],
+      "selectors": [
+        "sentPlural"
+      ],
+      "match": {
+        "sentPlural=one": "{count} × {reward} på {channel} — {shown} sendt, {points} point",
+        "sentPlural=*": "{count} × {reward} på {channel} — {shown} sendt, {points} point"
+      }
+    }
+  ],
+  "ev_rewards_redeemed_partial": "{count} × {reward} på {channel} — {sent}/{total} sendt, {points} point",
+  "ev_rewards_refused": [
+    {
+      "declarations": [
+        "input refused",
+        "input reason",
+        "local refusedPlural = refused: plural"
+      ],
+      "selectors": [
+        "refusedPlural"
+      ],
+      "match": {
+        "refusedPlural=one": "{refused} afvist: {reason}",
+        "refusedPlural=*": "{refused} afvist: {reason}"
+      }
+    }
+  ],
+  "spam_result_lost": "Der kom intet resultat for {reward}: Journalen viser, hvad der blev sendt."
 }

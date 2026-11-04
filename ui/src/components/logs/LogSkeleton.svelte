@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Skeleton } from "$lib/components/ui/skeleton";
-  import { LOG_LINE_CLASSES, LOG_LIST_CLASSES } from "../pages/pages.constants";
+  import { LOG_LINE_CLASSES, LOG_LIST_CLASSES } from "./logs.constants";
 
   type LogSkeletonPropsType = { rows: number };
 

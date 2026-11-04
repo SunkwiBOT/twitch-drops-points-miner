@@ -39,15 +39,17 @@
   );
 </script>
 
-<div aria-live="polite" class="flex flex-col gap-1">
-  {#if status}
-    <p class="text-hint" class:text-success-foreground={current}>
-      <RichText text={status} />
-    </p>
-  {/if}
-  {#if updates.check === UpdateCheck.FAILED}
-    <p class="text-hint text-destructive">{t.updates_check_failed()}</p>
-  {/if}
+<div class="flex flex-col gap-1">
+  <div aria-live="polite" class="flex flex-col gap-1 empty:hidden">
+    {#if status}
+      <p class="text-hint" class:text-success-foreground={current}>
+        <RichText text={status} />
+      </p>
+    {/if}
+    {#if updates.check === UpdateCheck.FAILED}
+      <p class="text-hint text-destructive">{t.updates_check_failed()}</p>
+    {/if}
+  </div>
   <p class="text-hint text-muted-foreground"><RichText text={lastChecked} /></p>
 </div>
 {#if !isTauri() && version}

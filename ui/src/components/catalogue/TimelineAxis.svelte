@@ -64,7 +64,7 @@
 <style>
   .axis {
     position: sticky;
-    top: calc(var(--timeline-sticky-top, 0px) - var(--scroller-padding));
+    top: calc(-1 * var(--scroller-padding));
     z-index: 8;
     display: grid;
     grid-template-columns: var(--head-width) minmax(0, 1fr);

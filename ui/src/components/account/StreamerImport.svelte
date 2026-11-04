@@ -22,16 +22,9 @@
     existing: string[];
     onadd: (logins: string[], channels: ChannelType[]) => void;
     searchable: boolean;
-    primary: ImportActionType | null;
   };
 
-  let {
-    target,
-    existing,
-    onadd,
-    searchable,
-    primary = $bindable(),
-  }: StreamerImportPropsType = $props();
+  let { target, existing, onadd, searchable }: StreamerImportPropsType = $props();
 
   let source = $state<ImportSource>(
     untrack(() => searchable) ? ImportSource.SEARCH : ImportSource.PASTE,
@@ -44,22 +37,22 @@
     { value: ImportSource.FOLLOWS, label: t.import_tab_follows() },
   ]);
 
-  // ! Raw: the streamers offered are handed on as they are, and a proxy cannot be
-  // cloned.
-  let pasteOffer = $state.raw<ImportCandidateType[] | null>(null);
-  let accountOffer = $state.raw<ImportCandidateType[] | null>(null);
-  let followsOffer = $state.raw<ImportCandidateType[] | null>(null);
-  let check = $state.raw<ImportActionType | null>(null);
   let paste = $state<ReturnType<typeof PasteImport>>();
+  let fromAccount = $state<ReturnType<typeof AccountImport>>();
+  let follows = $state<ReturnType<typeof FollowsImport>>();
 
-  const offered = $derived(
-    {
-      [ImportSource.SEARCH]: null,
-      [ImportSource.PASTE]: pasteOffer,
-      [ImportSource.ACCOUNT]: accountOffer,
-      [ImportSource.FOLLOWS]: followsOffer,
-    }[source],
-  );
+  const offered = $derived.by((): ImportCandidateType[] | null => {
+    switch (source) {
+      case ImportSource.PASTE:
+        return paste?.offered() ?? null;
+      case ImportSource.ACCOUNT:
+        return fromAccount?.offered() ?? null;
+      case ImportSource.FOLLOWS:
+        return follows?.offered() ?? null;
+      default:
+        return null;
+    }
+  });
   const candidates = $derived((offered ?? []).filter((c) => !existing.includes(c.login)));
 
   $effect(() => {
@@ -67,15 +60,15 @@
   });
 
   const already = $derived((offered?.length ?? 0) - candidates.length);
-  let selected = $state<string[]>([]);
 
   // ! Keyed on the logins: a snapshot that only refreshes the same channels keeps
   // what the user unticked.
   const offeredLogins = $derived(candidates.map((c) => c.login).join("\n"));
 
-  $effect(() => {
-    selected = offeredLogins ? offeredLogins.split("\n") : [];
-  });
+  let picked = $state<{ offered: string; logins: string[] }>({ offered: "", logins: [] });
+  const selected = $derived(
+    picked.offered === offeredLogins ? picked.logins : candidates.map((c) => c.login),
+  );
 
   const items = $derived(
     candidates.map((c) => ({
@@ -100,11 +93,15 @@
     }
   };
 
-  $effect(() => {
-    if (source === ImportSource.PASTE && check) {
-      primary = check;
-    } else if (offered && items.length > 0) {
-      primary = {
+  const action = $derived.by((): ImportActionType | null => {
+    const check = source === ImportSource.PASTE ? (paste?.checkAction() ?? null) : null;
+
+    if (check) {
+      return check;
+    }
+
+    if (offered && items.length > 0) {
+      return {
         label: t.import_add({ count: selected.length }),
         icon: IconName.PLUS,
         busy: false,
@@ -112,10 +109,12 @@
         disabled: selected.length === 0,
         run: add,
       };
-    } else {
-      primary = null;
     }
+
+    return null;
   });
+
+  export const primary = (): ImportActionType | null => action;
 </script>
 
 <div class="flex flex-col gap-3">
@@ -129,15 +128,9 @@
   {#if searchable}
     <SearchImport open={source === ImportSource.SEARCH} {existing} {onadd} />
   {/if}
-  <PasteImport
-    bind:this={paste}
-    bind:offered={pasteOffer}
-    bind:check
-    open={source === ImportSource.PASTE}
-    {existing}
-  />
-  <AccountImport bind:offered={accountOffer} open={source === ImportSource.ACCOUNT} {target} />
-  <FollowsImport bind:offered={followsOffer} open={source === ImportSource.FOLLOWS} {target} />
+  <PasteImport bind:this={paste} open={source === ImportSource.PASTE} {existing} />
+  <AccountImport bind:this={fromAccount} open={source === ImportSource.ACCOUNT} {target} />
+  <FollowsImport bind:this={follows} open={source === ImportSource.FOLLOWS} {target} />
 
   {#if offered}
     <CheckList
@@ -148,7 +141,7 @@
       noneLabel={t.common_select_none()}
       countLabel={t.common_selected_count({ count: selected.length, total: items.length })}
       empty={already > 0 ? t.import_none_new() : t.import_nothing()}
-      onchange={(value) => (selected = value)}
+      onchange={(logins) => (picked = { offered: offeredLogins, logins })}
     />
     {#if already > 0 && candidates.length > 0}
       <p class="text-hint text-muted-foreground">

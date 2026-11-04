@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { Progress } from "$lib/components/ui/progress";
   import { BenefitKind } from "../../lib/bindings/BenefitKind";
   import type { CampaignType } from "../../lib/bindings/CampaignType";
   import type { TimedDropType } from "../../lib/bindings/TimedDropType";
-  import { percent, shortDuration } from "../../lib/format.utils";
+  import { shortDuration } from "../../lib/format.utils";
   import { t } from "../../lib/i18n/i18n.svelte";
   import { strong } from "../../lib/text.utils";
   import { MINUTE_MS } from "../../lib/time/time.constants";
@@ -12,9 +11,11 @@
   import Badge from "../ui/Badge.svelte";
   import Icon from "../ui/Icon.svelte";
   import IconButton from "../ui/IconButton.svelte";
+  import ProgressLine from "../ui/ProgressLine.svelte";
   import RichText from "../ui/RichText.svelte";
   import { BadgeTone, ButtonSize, ButtonType, ButtonVariant, IconName } from "../ui/ui.constants";
-  import { RewardState } from "./rewards.constants";
+  import { RewardState, TILE_BADGE_CLASS } from "./rewards.constants";
+  import { BENEFIT_KIND_LABELS } from "./rewards.utils";
 
   type RewardTilesPropsType = {
     campaign: CampaignType;
@@ -28,12 +29,6 @@
   let claiming = $state<string | null>(null);
   let claimedHere = $state<string[]>([]);
   let toggling = $state<string | null>(null);
-
-  const KIND_LABELS: Record<BenefitKind, (() => string) | null> = {
-    [BenefitKind.BADGE]: () => t.reward_kind_badge(),
-    [BenefitKind.IN_GAME_ITEM]: () => t.reward_kind_item(),
-    [BenefitKind.OTHER]: null,
-  };
 
   const stateOf = (drop: TimedDropType): RewardState => {
     if (drop.claimed || (drop.instance_id && claimedHere.includes(drop.instance_id))) {
@@ -94,7 +89,7 @@
   {#each campaign.drops as d (d.id)}
     {@const state = stateOf(d)}
     {@const benefit = d.benefits.at(0)}
-    {@const kind = benefit ? KIND_LABELS[benefit.kind] : null}
+    {@const kind = benefit ? BENEFIT_KIND_LABELS[benefit.kind] : null}
     <div
       class={cn(
         "group flex flex-col overflow-hidden rounded-md bg-background ring-1 ring-border",
@@ -112,30 +107,33 @@
             alt=""
             loading="lazy"
           />{:else}<Icon name={IconName.GIFT} size={28} />{/if}
-        {#if d.required_subs > 0}<span class="absolute top-1.5 left-1.5"
-            ><Badge
-              text={t.reward_sub_only()}
-              tone={BadgeTone.WARNING}
-              dot={false}
-              hint={t.badge_hint_sub_only()}
-            /></span
-          >{/if}
-        {#if state === RewardState.CLAIMED}<span class="absolute top-1.5 left-1.5"
-            ><Badge
-              text={t.reward_state_claimed()}
-              tone={BadgeTone.SUCCESS}
-              dot={false}
-              icon={IconName.CHECK}
-              hint={t.badge_hint_claimed()}
-            /></span
-          >{:else if state === RewardState.READY}<span class="absolute top-1.5 left-1.5"
-            ><Badge
-              text={t.reward_state_ready()}
-              tone={BadgeTone.PRIMARY}
-              dot={false}
-              hint={t.badge_hint_ready()}
-            /></span
-          >{/if}
+        {#if d.required_subs > 0 || state === RewardState.CLAIMED || state === RewardState.READY}
+          <span
+            class="absolute top-1.5 left-1.5 flex max-w-[calc(100%-0.75rem)] flex-col items-start gap-1"
+          >
+            {#if d.required_subs > 0}<Badge
+                text={t.reward_sub_only()}
+                tone={BadgeTone.WARNING}
+                dot={false}
+                hint={t.badge_hint_sub_only()}
+                class={TILE_BADGE_CLASS}
+              />{/if}
+            {#if state === RewardState.CLAIMED}<Badge
+                text={t.reward_state_claimed()}
+                tone={BadgeTone.SUCCESS}
+                dot={false}
+                icon={IconName.CHECK}
+                hint={t.badge_hint_claimed()}
+                class={TILE_BADGE_CLASS}
+              />{:else if state === RewardState.READY}<Badge
+                text={t.reward_state_ready()}
+                tone={BadgeTone.PRIMARY}
+                dot={false}
+                hint={t.badge_hint_ready()}
+                class={TILE_BADGE_CLASS}
+              />{/if}
+          </span>
+        {/if}
         {#if onignore && d.required_subs === 0 && state !== RewardState.CLAIMED && state !== RewardState.READY}
           <span
             class={cn(
@@ -162,25 +160,15 @@
             tone={BadgeTone.ACCENT}
             dot={false}
             hint={benefit?.kind === BenefitKind.IN_GAME_ITEM ? t.badge_hint_item() : undefined}
+            class={TILE_BADGE_CLASS}
           />{/if}
         <span class="mt-auto flex w-full flex-col items-center gap-1">
           {#if state === RewardState.IN_PROGRESS}
-            <Progress
-              value={percent(d.current_minutes, d.required_minutes)}
-              class="h-1.5 w-full"
-              aria-label={t.campaign_progress({
-                current: String(d.current_minutes),
-                required: String(d.required_minutes),
-              })}
+            <ProgressLine
+              current={d.current_minutes}
+              required={d.required_minutes}
+              stacked={true}
             />
-            <small class="text-tiny text-muted-foreground tabular-nums"
-              ><RichText
-                text={t.campaign_progress({
-                  current: strong(d.current_minutes),
-                  required: strong(d.required_minutes),
-                })}
-              /></small
-            >
           {:else if state === RewardState.READY && d.instance_id && onclaim}
             {@const instanceId = d.instance_id}
             <ActionButton
@@ -192,7 +180,7 @@
               variant={ButtonVariant.PRIMARY}
               size={ButtonSize.SM}
               type={ButtonType.BUTTON}
-              class="w-full"
+              class="w-full px-2"
               onclick={() => claim(instanceId)}
             />
           {:else if state === RewardState.TO_EARN || state === RewardState.SKIPPED}

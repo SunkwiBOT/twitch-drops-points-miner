@@ -64,6 +64,7 @@
   let current = $state("");
   let next = $state("");
   let confirm = $state("");
+  let removal = $state("");
   let savingPassword = $state(false);
   let removingPassword = $state(false);
   let locking = $state(false);
@@ -75,6 +76,23 @@
       next === confirm &&
       (!hasPassword || current.length > 0),
   );
+
+  const clearForms = (): void => {
+    current = "";
+    next = "";
+    confirm = "";
+    removal = "";
+  };
+
+  const startEditing = (): void => {
+    clearForms();
+    editing = true;
+  };
+
+  const cancelEditing = (): void => {
+    clearForms();
+    editing = false;
+  };
 
   const changePassword = async (remove: boolean): Promise<void> => {
     if (!remove && !canSave) {
@@ -90,7 +108,7 @@
     const saved = await run(
       {
         command: CommandName.SET_PASSPHRASE,
-        current: hasPassword ? current : null,
+        current: hasPassword ? (remove ? removal : current) : null,
         next: remove ? null : next,
       },
       t.common_saved(),
@@ -100,10 +118,7 @@
     removingPassword = false;
 
     if (saved) {
-      current = "";
-      next = "";
-      confirm = "";
-      editing = false;
+      cancelEditing();
     }
   };
 
@@ -168,7 +183,7 @@
                 size={ButtonSize.MD}
                 type={ButtonType.BUTTON}
                 disabled={savingPassword}
-                onclick={() => (editing = false)}
+                onclick={cancelEditing}
               />
             {/if}
             <ActionButton
@@ -202,7 +217,7 @@
             size={ButtonSize.MD}
             type={ButtonType.BUTTON}
             disabled={false}
-            onclick={() => (editing = true)}
+            onclick={startEditing}
           />
         </div>
         <form
@@ -213,7 +228,7 @@
           }}
         >
           <FormField id="pw-remove" label={t.settings_vault_current()}>
-            <SecretInput id="pw-remove" bind:value={current} autocomplete="current-password" />
+            <SecretInput id="pw-remove" bind:value={removal} autocomplete="current-password" />
           </FormField>
           <div class="flex justify-end">
             <ActionButton
@@ -221,7 +236,7 @@
               label={t.security_disable()}
               busyLabel={t.common_removing()}
               busy={removingPassword}
-              disabled={!current}
+              disabled={!removal}
               variant={ButtonVariant.DANGER}
               size={ButtonSize.MD}
               type={ButtonType.SUBMIT}

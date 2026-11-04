@@ -9,6 +9,7 @@
   "theme_dark": "Tmavý",
   "theme_light": "Světlý",
   "language_auto": "Jazyk systému",
+  "language_load_failed": "Tento jazyk se nepodařilo načíst.",
   "common_save": "Uložit",
   "common_cancel": "Zrušit",
   "common_close": "Zavřít",
@@ -127,6 +128,7 @@
   "history_title": "Deník",
   "history_filter_all": "Všechny účty",
   "history_empty": "Zatím nic.",
+  "history_load_failed": "Deník se nepodařilo načíst.",
   "event_kind_info": "Info",
   "event_kind_error": "Chyba",
   "event_kind_watch_started": "Sleduje se",
@@ -224,6 +226,7 @@
   "time_in_hours": "za {count} h",
   "time_in_days": "za {count} d",
   "nav_home": "Domů",
+  "nav_main": "Hlavní nabídka",
   "nav_catalogue": "Katalog",
   "nav_logs": "Technické protokoly",
   "nav_account_overview": "Přehled",
@@ -297,7 +300,7 @@
   "campaign_ended": "Skončila",
   "campaign_channels_any": "Jakýkoli kanál streamující hru",
   "campaign_channels_some": "Povolené kanály: {count}",
-  "campaign_account": "Účet",
+  "common_account": "Účet",
   "campaign_progress": "{current}/{required} min",
   "campaign_link_game": "Propojit herní účet",
   "campaign_open_twitch": "Otevřít na Twitchi",
@@ -308,6 +311,7 @@
   "logs_copied": "Protokoly zkopírovány",
   "logs_open_folder": "Otevřít složku protokolů",
   "logs_empty": "Zatím nic nezaznamenáno.",
+  "logs_load_failed": "Protokoly se nepodařilo načíst.",
   "logs_load_more": "Načíst starší řádky",
   "logs_report": "Nahlásit chybu",
   "logs_tab_lines": "Protokoly",
@@ -980,8 +984,8 @@
   "requests_max": "max. {duration}",
   "request_kind_gql": "GraphQL",
   "request_kind_auth": "Přihlášení k Twitchi",
-  "request_kind_playlist": "Video playlist",
-  "request_kind_segment": "Video segment",
+  "request_kind_playlist": "Playlist videa",
+  "request_kind_segment": "Segment videa",
   "request_kind_channel_page": "Stránka kanálu",
   "request_kind_beacon": "Signál sledování",
   "request_kind_pubsub": "PubSub",
@@ -1006,5 +1010,143 @@
   "common_select_all_count": "Vybrat vše ({count})",
   "common_select_none_count": "Zrušit výběr ({count})",
   "nav_support_project": "Podpořit projekt",
-  "nav_star_github": "Dát ⭐ na GitHubu"
+  "nav_star_github": "Dát ⭐ na GitHubu",
+  "nav_account_spam": "Spam Points",
+  "event_kind_reward_redeemed": "Spam Points",
+  "spam_channels": "Kanály",
+  "spam_search_placeholder": "Hledat kanál na Twitchi",
+  "spam_search_hint": "Vyhledejte jakýkoli kanál na Twitchi, i mimo váš seznam Bodů.",
+  "spam_last_used": "použito {time}",
+  "spam_never_used": "nikdy nepoužito",
+  "spam_in_points": "Ve vašem seznamu Bodů",
+  "spam_in_history": "Už je ve vaší historii",
+  "spam_remove_history": "Odebrat z historie",
+  "spam_removed": "{channel} odebrán z historie",
+  "spam_pick_title": "Vyberte kanál",
+  "spam_pick_text": "Zde se zobrazí jeho vlastní odměny spolu se zůstatkem tohoto účtu na kanálu.",
+  "spam_balance": "Zůstatek bodů kanálu: {points}",
+  "spam_balance_changed": "aktualizováno {time}",
+  "spam_balance_live_hint": "Načítá se znovu každé 2 až 3 s, dokud je stránka otevřená. Čas je čas poslední změny zůstatku.",
+  "spam_balance_paused": "sledování pozastaveno",
+  "spam_balance_paused_hint": "Zůstatek se znovu načte, jakmile má okno fokus.",
+  "spam_balance_failing": "čtení selhalo",
+  "spam_balance_failing_hint": "Poslední načtení zůstatku selhala. Načítá se znovu každé 2 až 3 s.",
+  "spam_seconds_ago": "před {count} s",
+  "spam_settings": "Nastavení Spam Points",
+  "spam_show_disabled": "Zobrazit vypnuté a pozastavené",
+  "spam_show_out_of_stock": "Zobrazit vyprodané",
+  "spam_delay": "Prodleva mezi požadavky",
+  "spam_delay_hint": "Mezi dvěma uplatněními jedné série, 0 až 5 000 ms.",
+  "spam_delay_unit": "ms",
+  "spam_refresh": "Obnovit odměny",
+  "spam_load_failed": "Odměny se nepodařilo načíst",
+  "spam_rewards": "Odměny",
+  "spam_unavailable": "Nedostupné",
+  "spam_reward_disabled": "Vypnutá",
+  "spam_reward_paused": "Pozastavená",
+  "spam_reward_out_of_stock": "Vyprodaná",
+  "spam_reward_cooldown": "Dostupná za {time}",
+  "spam_hint_disabled": "Vypnutá kanálem: na Twitchi se nezobrazuje.",
+  "spam_hint_paused": "Pozastavená kanálem během tohoto streamu.",
+  "spam_hint_out_of_stock": "Limit dosažen pro tento stream nebo pro vás.",
+  "spam_message_placeholder": "Vaše zpráva…",
+  "spam_message_label": "Zpráva pro {reward}",
+  "spam_message_needed": "Nejdřív napište zprávu",
+  "spam_quantity": "Počet",
+  "spam_decrease": "Snížit",
+  "spam_increase": "Zvýšit",
+  "spam_max_balance": "Váš zůstatek víc nedovolí",
+  "spam_max_count": "Nejvýše 25 v sérii",
+  "spam_redeem": "Uplatnit",
+  "spam_redeeming": "Odesílání {done}/{total}…",
+  "spam_missing": "Chybí",
+  "spam_description": "Popis: {text}",
+  "spam_sent_all": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "Uplatněno!",
+        "countPlural=few": "Odeslány {shown}!",
+        "countPlural=*": "Odesláno {shown}!"
+      }
+    }
+  ],
+  "spam_sent_partial": "Odesláno {sent}/{count} — {reason}",
+  "spam_sent_none": "Nezdařilo se — {reason}",
+  "spam_toast": "{count} × {reward} na kanálu {channel}: {result}",
+  "spam_cancelled": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "{shown} zrušen při opuštění stránky",
+        "countPlural=few": "{shown} zrušeny při opuštění stránky",
+        "countPlural=*": "{shown} zrušeno při opuštění stránky"
+      }
+    }
+  ],
+  "spam_reason_not_enough_points": "málo bodů",
+  "spam_reason_max_per_stream": "dosažen limit na stream",
+  "spam_reason_cooldown": "odměna se obnovuje",
+  "spam_reason_disabled": "odměna vypnutá",
+  "spam_reason_paused": "odměna pozastavená",
+  "spam_reason_out_of_stock": "odměna vyprodaná",
+  "spam_reason_text_required": "chybí zpráva",
+  "spam_reason_unknown": "Twitch odmítl ({code})",
+  "spam_no_rewards": "Momentálně není k dispozici žádná odměna.",
+  "error_unknown_reward": "Tato odměna už na kanálu není.",
+  "error_reward_not_redeemable": "Nic nebylo odesláno: odměna vyžaduje zprávu, není dostupná nebo se obnovuje, nebo je zůstatek příliš nízký.",
+  "ev_rewards_redeemed": [
+    {
+      "declarations": [
+        "input sent",
+        "input shown",
+        "input count",
+        "input reward",
+        "input channel",
+        "input points",
+        "local sentPlural = sent: plural"
+      ],
+      "selectors": [
+        "sentPlural"
+      ],
+      "match": {
+        "sentPlural=one": "{count} × {reward} na kanálu {channel} — odesláno {shown}, {points} bodů",
+        "sentPlural=few": "{count} × {reward} na kanálu {channel} — odeslány {shown}, {points} bodů",
+        "sentPlural=*": "{count} × {reward} na kanálu {channel} — odesláno {shown}, {points} bodů"
+      }
+    }
+  ],
+  "ev_rewards_redeemed_partial": "{count} × {reward} na kanálu {channel} — odesláno {sent}/{total}, {points} bodů",
+  "ev_rewards_refused": [
+    {
+      "declarations": [
+        "input refused",
+        "input reason",
+        "local refusedPlural = refused: plural"
+      ],
+      "selectors": [
+        "refusedPlural"
+      ],
+      "match": {
+        "refusedPlural=one": "{refused} odmítnut: {reason}",
+        "refusedPlural=few": "{refused} odmítnuty: {reason}",
+        "refusedPlural=*": "{refused} odmítnuto: {reason}"
+      }
+    }
+  ],
+  "spam_result_lost": "Pro {reward} nepřišel žádný výsledek: Deník ukazuje, co bylo odesláno."
 }

@@ -9,6 +9,7 @@
   "theme_dark": "Tumma",
   "theme_light": "Vaalea",
   "language_auto": "Järjestelmän kieli",
+  "language_load_failed": "Tätä kieltä ei voitu ladata.",
   "common_save": "Tallenna",
   "common_cancel": "Peruuta",
   "common_close": "Sulje",
@@ -126,6 +127,7 @@
   "history_title": "Päiväkirja",
   "history_filter_all": "Kaikki tilit",
   "history_empty": "Ei vielä mitään.",
+  "history_load_failed": "Päiväkirjaa ei voitu lukea.",
   "event_kind_info": "Info",
   "event_kind_error": "Virhe",
   "event_kind_watch_started": "Katsotaan",
@@ -223,6 +225,7 @@
   "time_in_hours": "{count} t kuluttua",
   "time_in_days": "{count} pv kuluttua",
   "nav_home": "Etusivu",
+  "nav_main": "Päävalikko",
   "nav_catalogue": "Luettelo",
   "nav_logs": "Tekniset lokit",
   "nav_account_overview": "Yleiskatsaus",
@@ -294,7 +297,7 @@
   "campaign_ended": "Päättynyt",
   "campaign_channels_any": "Mikä tahansa peliä striimaava kanava",
   "campaign_channels_some": "Sallitut kanavat: {count}",
-  "campaign_account": "Tili",
+  "common_account": "Tili",
   "campaign_progress": "{current}/{required} min",
   "campaign_link_game": "Linkitä pelitili",
   "campaign_open_twitch": "Avaa Twitchissä",
@@ -305,6 +308,7 @@
   "logs_copied": "Lokit kopioitu",
   "logs_open_folder": "Avaa lokikansio",
   "logs_empty": "Ei vielä mitään lokissa.",
+  "logs_load_failed": "Lokeja ei voitu lukea.",
   "logs_load_more": "Lataa vanhemmat rivit",
   "logs_report": "Ilmoita bugista",
   "logs_tab_lines": "Lokit",
@@ -491,7 +495,7 @@
   "reward_watch_stream": "Katso lähetystä",
   "reward_subscribe": "Tilaa: ei louhita",
   "reward_kind_badge": "Merkki",
-  "reward_kind_item": "Pelin sisäinen esine",
+  "reward_kind_item": "Peliesine",
   "reward_sub_only": "Sub",
   "reward_ignore": "Ohita tämä esine",
   "reward_unignore": "Louhi tämä esine taas",
@@ -967,5 +971,139 @@
   "common_select_all_count": "Valitse kaikki ({count})",
   "common_select_none_count": "Poista valinnat ({count})",
   "nav_support_project": "Tue projektia",
-  "nav_star_github": "Anna ⭐ GitHubissa"
+  "nav_star_github": "Anna ⭐ GitHubissa",
+  "nav_account_spam": "Spam Points",
+  "event_kind_reward_redeemed": "Spam Points",
+  "spam_channels": "Kanavat",
+  "spam_search_placeholder": "Hae Twitch-kanavaa",
+  "spam_search_hint": "Hae mitä tahansa Twitch-kanavaa, myös Pisteet-listasi ulkopuolelta.",
+  "spam_last_used": "käytetty {time}",
+  "spam_never_used": "ei koskaan käytetty",
+  "spam_in_points": "Pisteet-listassasi",
+  "spam_in_history": "Jo historiassasi",
+  "spam_remove_history": "Poista historiasta",
+  "spam_removed": "{channel} poistettiin historiasta",
+  "spam_pick_title": "Valitse kanava",
+  "spam_pick_text": "Kanavan omat palkinnot näkyvät tässä, ja niiden kanssa tämän tilin saldo kanavalla.",
+  "spam_balance": "Kanavapisteiden saldo: {points}",
+  "spam_balance_changed": "päivitetty {time}",
+  "spam_balance_live_hint": "Luetaan uudelleen 2–3 sekunnin välein, kun tämä sivu on auki. Aika on saldon viimeisimmän muutoksen.",
+  "spam_balance_paused": "seuranta keskeytetty",
+  "spam_balance_paused_hint": "Saldo luetaan uudelleen heti, kun ikkuna saa kohdistuksen.",
+  "spam_balance_failing": "luku epäonnistui",
+  "spam_balance_failing_hint": "Saldon viimeisimmät luvut epäonnistuivat. Se luetaan uudelleen 2–3 sekunnin välein.",
+  "spam_seconds_ago": "{count} s sitten",
+  "spam_settings": "Spam Pointsin asetukset",
+  "spam_show_disabled": "Näytä poistetut käytöstä ja keskeytetyt",
+  "spam_show_out_of_stock": "Näytä loppuneet",
+  "spam_delay": "Tauko pyyntöjen välillä",
+  "spam_delay_hint": "Saman sarjan kahden lunastuksen välillä, 0–5 000 ms.",
+  "spam_delay_unit": "ms",
+  "spam_refresh": "Päivitä palkinnot",
+  "spam_load_failed": "Palkintoja ei voitu lukea",
+  "spam_rewards": "Palkinnot",
+  "spam_unavailable": "Ei saatavilla",
+  "spam_reward_disabled": "Pois käytöstä",
+  "spam_reward_paused": "Keskeytetty",
+  "spam_reward_out_of_stock": "Loppunut",
+  "spam_reward_cooldown": "Saatavilla {time} päästä",
+  "spam_hint_disabled": "Kanava on poistanut sen käytöstä: se ei näy Twitchissä.",
+  "spam_hint_paused": "Kanava on keskeyttänyt sen tämän lähetyksen ajaksi.",
+  "spam_hint_out_of_stock": "Raja täynnä tässä lähetyksessä tai sinulle.",
+  "spam_message_placeholder": "Viestisi…",
+  "spam_message_label": "Viesti palkintoon {reward}",
+  "spam_message_needed": "Kirjoita ensin viesti",
+  "spam_quantity": "Määrä",
+  "spam_decrease": "Vähennä",
+  "spam_increase": "Lisää",
+  "spam_max_balance": "Saldosi ei riitä useampaan",
+  "spam_max_count": "Enintään 25 sarjaa kohden",
+  "spam_redeem": "Lunasta",
+  "spam_redeeming": "Lähetetään {done}/{total}…",
+  "spam_missing": "Puuttuu",
+  "spam_description": "Kuvaus: {text}",
+  "spam_sent_all": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "Lunastettu!",
+        "countPlural=*": "{shown} lähetetty!"
+      }
+    }
+  ],
+  "spam_sent_partial": "{sent}/{count} lähetetty — {reason}",
+  "spam_sent_none": "Epäonnistui — {reason}",
+  "spam_toast": "{count} × {reward} kanavalla {channel}: {result}",
+  "spam_cancelled": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "{shown} peruttiin sivulta poistuttaessa",
+        "countPlural=*": "{shown} peruttiin sivulta poistuttaessa"
+      }
+    }
+  ],
+  "spam_reason_not_enough_points": "pisteet eivät riitä",
+  "spam_reason_max_per_stream": "lähetyskohtainen raja täynnä",
+  "spam_reason_cooldown": "palkinto on jäähtymässä",
+  "spam_reason_disabled": "palkinto pois käytöstä",
+  "spam_reason_paused": "palkinto keskeytetty",
+  "spam_reason_out_of_stock": "palkinto loppunut",
+  "spam_reason_text_required": "viesti puuttuu",
+  "spam_reason_unknown": "Twitch hylkäsi ({code})",
+  "spam_no_rewards": "Yhtään palkintoa ei ole nyt saatavilla.",
+  "error_unknown_reward": "Tätä palkintoa ei enää ole kanavalla.",
+  "error_reward_not_redeemable": "Mitään ei lähetetty: palkinto vaatii viestin, ei ole saatavilla tai on jäähtymässä, tai pisteet eivät riitä.",
+  "ev_rewards_redeemed": [
+    {
+      "declarations": [
+        "input sent",
+        "input shown",
+        "input count",
+        "input reward",
+        "input channel",
+        "input points",
+        "local sentPlural = sent: plural"
+      ],
+      "selectors": [
+        "sentPlural"
+      ],
+      "match": {
+        "sentPlural=one": "{count} × {reward} kanavalla {channel} — {shown} lähetetty, {points} pistettä",
+        "sentPlural=*": "{count} × {reward} kanavalla {channel} — {shown} lähetetty, {points} pistettä"
+      }
+    }
+  ],
+  "ev_rewards_redeemed_partial": "{count} × {reward} kanavalla {channel} — {sent}/{total} lähetetty, {points} pistettä",
+  "ev_rewards_refused": [
+    {
+      "declarations": [
+        "input refused",
+        "input reason",
+        "local refusedPlural = refused: plural"
+      ],
+      "selectors": [
+        "refusedPlural"
+      ],
+      "match": {
+        "refusedPlural=one": "{refused} hylätty: {reason}",
+        "refusedPlural=*": "{refused} hylätty: {reason}"
+      }
+    }
+  ],
+  "spam_result_lost": "Palkinnolle {reward} ei tullut tulosta: Päiväkirja näyttää, mitä lähetettiin."
 }

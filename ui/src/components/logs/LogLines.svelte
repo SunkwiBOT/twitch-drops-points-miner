@@ -1,11 +1,12 @@
 <script lang="ts">
   import { fetchLogs, fetchLogsReport, openLogsDirectory } from "../../lib/api/client";
   import { isTauri } from "../../lib/api/tauri";
-  import { LogLevel } from "../../lib/bindings/LogLevel";
+  import type { LogLevel } from "../../lib/bindings/LogLevel";
   import type { LogLineType } from "../../lib/bindings/LogLineType";
   import type { LogsQueryType } from "../../lib/bindings/LogsQueryType";
   import type { SnapshotType } from "../../lib/bindings/SnapshotType";
   import { describeError } from "../../lib/errors/errors.utils";
+  import { PagedFeed } from "../../lib/feed/feed.svelte";
   import { formatClockWithSeconds } from "../../lib/time/time.utils";
   import { t } from "../../lib/i18n/i18n.svelte";
   import { ToastKind } from "../../lib/state/state.constants";
@@ -15,8 +16,8 @@
   import { cn } from "$lib/utils";
   import Avatar from "../ui/Avatar.svelte";
   import CopyButton from "../ui/CopyButton.svelte";
-  import LogSkeleton from "../ui/LogSkeleton.svelte";
   import EmptyState from "../ui/EmptyState.svelte";
+  import LoadMoreSentinel from "../ui/LoadMoreSentinel.svelte";
   import MultiSelect from "../ui/MultiSelect.svelte";
   import PageHeader from "../ui/PageHeader.svelte";
   import Select from "../ui/Select.svelte";
@@ -29,16 +30,18 @@
     IconName,
     MenuAlign,
   } from "../ui/ui.constants";
+  import LogSkeleton from "./LogSkeleton.svelte";
   import {
     LOG_LEVEL_CLASSES,
     LOG_LEVELS_KEPT,
     LOG_LINE_CLASSES,
     LOG_LIST_CLASSES,
+    LOGS_MORE_SKELETON_ROWS,
     LOGS_PAGE_SIZE,
     LOGS_REFRESH_MS,
     LOGS_SKELETON_ROWS,
-  } from "../pages/pages.constants";
-  import { LOG_LEVEL_LABELS } from "../pages/pages.utils";
+  } from "./logs.constants";
+  import { LOG_LEVEL_LABELS } from "./logs.utils";
 
   type LogLinesPropsType = { snapshot: SnapshotType };
 
@@ -52,12 +55,6 @@
 
   let levels = $state<LogLevel[]>([...LOG_LEVELS_KEPT]);
 
-  let lines = $state<LogLineType[]>([]);
-  let cursor = $state<number | null>(null);
-  let loading = $state(true);
-  let loadingMore = $state(false);
-  let sentinel: HTMLDivElement | undefined = $state();
-
   const options = $derived([
     { value: "", label: t.logs_filter_all() },
     ...snapshot.accounts.map((a) => ({ value: a.id, label: a.display_name, image: a.avatar_url })),
@@ -68,101 +65,28 @@
     levels: levels.length === LOG_LEVELS_KEPT.length ? undefined : levels,
   });
 
-  const query = (before?: number): LogsQueryType => ({
-    ...filters(),
-    before_id: before,
-    limit: LOGS_PAGE_SIZE,
+  const feed = new PagedFeed<LogsQueryType, LogLineType, number>({
+    fetch: async (query, before) => {
+      const page = await fetchLogs({
+        ...query,
+        before_id: before ?? undefined,
+        limit: LOGS_PAGE_SIZE,
+      });
+
+      return { items: [...page.lines].reverse(), next: page.next_before_id ?? null };
+    },
+    isOlder: (line, oldest) => line.id < oldest.id,
   });
 
   $effect(() => {
-    const request = query();
-    let current = true;
+    void feed.show(filters());
+    const timer = setInterval(() => void feed.refresh(), LOGS_REFRESH_MS);
 
-    const load = async (): Promise<void> => {
-      try {
-        const page = await fetchLogs(request);
-
-        if (!current) {
-          return;
-        }
-
-        const newest = [...page.lines].reverse();
-        const oldest = newest.at(-1)?.id ?? 0;
-        const older = cursor === null ? [] : lines.filter((line) => line.id < oldest);
-
-        lines = [...newest, ...older];
-
-        if (older.length === 0) {
-          cursor = page.next_before_id ?? null;
-        }
-      } catch (e: any) {
-        console.warn("log refresh failed", e);
-      } finally {
-        loading = false;
-      }
-    };
-
-    void load();
-    const timer = setInterval(() => void load(), LOGS_REFRESH_MS);
-
-    return () => {
-      current = false;
-      clearInterval(timer);
-    };
+    return () => clearInterval(timer);
   });
-
-  const loadMore = async (): Promise<void> => {
-    if (cursor === null || loadingMore) {
-      return;
-    }
-
-    loadingMore = true;
-
-    try {
-      const page = await fetchLogs(query(cursor));
-      lines = [...lines, ...[...page.lines].reverse()];
-      cursor = page.next_before_id ?? null;
-    } catch (e: any) {
-      toast(ToastKind.ERROR, describeError(e));
-    } finally {
-      loadingMore = false;
-    }
-  };
-
-  $effect(() => {
-    if (!sentinel) {
-      return;
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        void loadMore();
-      }
-    });
-
-    observer.observe(sentinel);
-
-    return () => observer.disconnect();
-  });
-
-  const restart = (): void => {
-    lines = [];
-    cursor = null;
-    loading = true;
-  };
-
-  const filterBy = (next: string): void => {
-    if (next === filter) {
-      return;
-    }
-
-    filter = next;
-    restart();
-  };
 
   const filterLevels = (next: LogLevel[]): void => {
     levels = LOG_LEVELS_KEPT.filter((level) => next.includes(level));
-    restart();
   };
 
   const report = (): Promise<string> => fetchLogsReport(filters());
@@ -210,9 +134,9 @@
     <Select
       value={filter}
       {options}
-      label={t.campaign_account()}
+      label={t.common_account()}
       align={MenuAlign.LEFT}
-      onchange={filterBy}
+      onchange={(next) => (filter = next)}
     />
   </div>
   <div class="w-56">
@@ -233,13 +157,15 @@
 </PageHeader>
 
 <Card class="gap-0 px-5 py-3">
-  {#if loading && lines.length === 0}
+  {#if feed.loading && feed.items.length === 0}
     <LogSkeleton rows={LOGS_SKELETON_ROWS} />
-  {:else if lines.length === 0}
+  {:else if feed.items.length === 0 && feed.problem}
+    <EmptyState title={t.logs_load_failed()} text={feed.problem} icon={IconName.ALERT} />
+  {:else if feed.items.length === 0}
     <EmptyState text={t.logs_empty()} />
   {:else}
     <div class={LOG_LIST_CLASSES}>
-      {#each lines as line (line.id)}
+      {#each feed.items as line (line.id)}
         <div class={LOG_LINE_CLASSES}>
           <span class="whitespace-nowrap text-muted-foreground"
             >{formatClockWithSeconds(line.at)}</span
@@ -260,18 +186,12 @@
         </div>
       {/each}
     </div>
-    {#if loadingMore}<LogSkeleton rows={2} />{/if}
-    <div class="flex justify-center pt-3" bind:this={sentinel}>
-      {#if !loadingMore && cursor !== null}
-        <TextButton
-          label={t.logs_load_more()}
-          variant={ButtonVariant.OUTLINE}
-          size={ButtonSize.SM}
-          type={ButtonType.BUTTON}
-          disabled={false}
-          onclick={loadMore}
-        />
-      {/if}
-    </div>
+    {#if feed.loadingMore}<LogSkeleton rows={LOGS_MORE_SKELETON_ROWS} />{/if}
+    <LoadMoreSentinel
+      label={t.logs_load_more()}
+      busy={feed.loadingMore}
+      more={feed.hasMore}
+      onmore={feed.loadMore}
+    />
   {/if}
 </Card>

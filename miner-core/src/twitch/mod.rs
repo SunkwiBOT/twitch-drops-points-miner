@@ -6,6 +6,7 @@ pub mod operations;
 pub mod playback;
 pub mod points;
 pub mod pubsub;
+pub mod rewards;
 pub mod search;
 pub mod spade;
 
@@ -42,6 +43,10 @@ pub const CHAT_URL: &str = "wss://irc-ws.chat.twitch.tv:443";
 
 const REQUEST_TIMEOUT: Duration = Duration::from_secs(20);
 const MAX_CONCURRENT: usize = 6;
+// ! Below MAX_CONCURRENT, so the slots and claims still get a request in
+// while balances, directories or redemptions are on their way.
+pub const POINTS_READS_AT_ONCE: usize = 4;
+pub const DIRECTORY_READS_AT_ONCE: usize = 4;
 const GQL_ATTEMPTS: u32 = 3;
 const GQL_BACKOFF: Duration = Duration::from_millis(400);
 const PROXY_TEST_TIMEOUT: Duration = Duration::from_secs(15);
@@ -176,7 +181,6 @@ pub struct TwitchClient {
 
 #[derive(Debug, PartialEq, Eq)]
 enum StatusOutcome {
-    Read,
     Retry(Error),
     Fail(Error),
 }
@@ -241,7 +245,6 @@ impl TwitchClient {
                 Err(Error::Status(status)) => match status_outcome(status) {
                     StatusOutcome::Retry(error) => error,
                     StatusOutcome::Fail(error) => return Err(error),
-                    StatusOutcome::Read => return Err(Error::Status(status)),
                 },
                 Err(error) => error,
             };
@@ -264,19 +267,11 @@ fn status_outcome(status: StatusCode) -> StatusOutcome {
         return StatusOutcome::Fail(Error::Unauthorized);
     }
 
-    let transient = status == StatusCode::FORBIDDEN
-        || status == StatusCode::TOO_MANY_REQUESTS
-        || status.is_server_error();
-
-    if transient {
+    if retried_status(status) {
         return StatusOutcome::Retry(Error::Status(status));
     }
 
-    if !status.is_success() {
-        return StatusOutcome::Fail(Error::Status(status));
-    }
-
-    StatusOutcome::Read
+    StatusOutcome::Fail(Error::Status(status))
 }
 
 const SERVICE_ERRORS: [&str; 2] = ["service error", "service timeout"];
@@ -321,10 +316,22 @@ fn check_gql_errors(operation: Operation, body: Value) -> Result<Value> {
     }
 }
 
-// ! Twitch's own "service error" or "service timeout" passes like a busy
-// server: the request is tried again.
+fn retried_status(status: StatusCode) -> bool {
+    status == StatusCode::FORBIDDEN
+        || status == StatusCode::TOO_MANY_REQUESTS
+        || status.is_server_error()
+}
+
 fn busy(error: &Error) -> bool {
     matches!(error, Error::Gql { code, .. } if SERVICE_ERRORS.contains(&code.as_str()))
+}
+
+pub fn transient(error: &Error) -> bool {
+    match error {
+        Error::Status(status) => retried_status(*status),
+        Error::Transport(kind) => *kind == NetworkErrorKind::Timeout,
+        other => busy(other),
+    }
 }
 
 // ! The messages never quote the URL: it can carry the proxy password.

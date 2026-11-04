@@ -14,7 +14,7 @@ import { describeCode, toApiError } from "../errors/errors.utils";
 import { percent } from "../format.utils";
 import { t } from "../i18n/i18n.svelte";
 import { Page, ToastKind } from "../state/state.constants";
-import { app, dismissToast, navigate, toast } from "../state/state.svelte";
+import { app, dismissToast, isVaultLocked, navigate, toast } from "../state/state.svelte";
 import { strong } from "../text.utils";
 import { UPDATE_TOAST_KEY, UpdateCheck, UpdateStage } from "./updates.constants";
 
@@ -37,8 +37,6 @@ export const updates = $state<UpdatesStateType>({
 });
 
 let offered: string | null = null;
-
-const locked = (): boolean => app.snapshot?.vault.unlocked === false;
 
 export const availableVersion = (): string | null =>
   updates.available ?? app.snapshot?.update_available ?? null;
@@ -82,7 +80,7 @@ export const checkUpdates = async (): Promise<void> => {
 };
 
 export const askInstall = (): void => {
-  if (!isTauri() || locked() || !availableVersion() || updates.stage !== UpdateStage.IDLE) {
+  if (!isTauri() || isVaultLocked() || !availableVersion() || updates.stage !== UpdateStage.IDLE) {
     return;
   }
 
@@ -107,7 +105,7 @@ const installFailure = (code: ErrorApiMessage): string => {
 export const installUpdate = async (): Promise<void> => {
   const confirmed = availableVersion();
 
-  if (!confirmed || locked() || updates.stage !== UpdateStage.IDLE) {
+  if (!confirmed || isVaultLocked() || updates.stage !== UpdateStage.IDLE) {
     return;
   }
 
@@ -163,7 +161,7 @@ const offer = (found: UpdateInfoType): void => {
 
   offered = found.version;
 
-  if (locked()) {
+  if (isVaultLocked()) {
     toast(ToastKind.INFO, t.updates_available_locked({ version: found.version }), {
       key: UPDATE_TOAST_KEY,
     });

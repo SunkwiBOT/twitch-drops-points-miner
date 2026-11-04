@@ -80,8 +80,6 @@ export const applyToAccounts = async (accountIds: string[]): Promise<void> => {
     }),
   );
 
-  closeBulk();
-
   const applied = results.filter(Boolean).length;
 
   if (applied > 0) {

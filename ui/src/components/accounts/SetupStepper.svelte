@@ -1,9 +1,9 @@
 <script lang="ts">
   import { SetupStep } from "../../lib/accounts/accounts.constants";
-  import { t } from "../../lib/i18n/i18n.svelte";
   import { cn } from "$lib/utils";
   import Icon from "../ui/Icon.svelte";
   import { IconName } from "../ui/ui.constants";
+  import { SETUP_STEP_LABELS } from "./accounts.utils";
 
   type SetupStepperPropsType = {
     steps: SetupStep[];
@@ -13,14 +13,6 @@
   };
 
   let { steps, current, disabled, ongo }: SetupStepperPropsType = $props();
-
-  const STEP_LABELS: Record<SetupStep, () => string> = {
-    [SetupStep.START]: () => t.login_setup_step_start(),
-    [SetupStep.MODE]: () => t.login_setup_step_mode(),
-    [SetupStep.DROPS]: () => t.login_setup_step_drops(),
-    [SetupStep.STREAMERS]: () => t.login_setup_step_streamers(),
-    [SetupStep.SUMMARY]: () => t.login_setup_step_summary(),
-  };
 </script>
 
 <ol class="m-0 flex list-none flex-wrap items-center gap-x-2 gap-y-1.5 p-0">
@@ -46,7 +38,7 @@
         >
           {#if index < current}<Icon name={IconName.CHECK} size={11} />{:else}{index + 1}{/if}
         </span>
-        {STEP_LABELS[item]()}
+        {SETUP_STEP_LABELS[item]()}
       </button>
     </li>
   {/each}

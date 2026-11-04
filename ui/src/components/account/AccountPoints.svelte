@@ -6,15 +6,22 @@
   import AccountSaveBar from "./AccountSaveBar.svelte";
   import ConfirmDialog from "../ui/ConfirmDialog.svelte";
   import { CopySection, type StreamerOption } from "../../lib/accounts/accounts.constants";
-  import { moveLike, placeOf, reorderBy } from "../../lib/accounts/changes.utils";
-  import { copyOptions, differingOptions } from "../../lib/accounts/options.utils";
+  import { placeOf } from "../../lib/accounts/changes.utils";
+  import { differingOptions } from "../../lib/accounts/options.utils";
+  import {
+    moveStreamer,
+    removeStreamer,
+    setStreamerDefaults,
+    setStreamerEnabled,
+    setStreamersOptions,
+  } from "../../lib/accounts/points.utils";
   import type { AccountSettingsType } from "../../lib/bindings/AccountSettingsType";
   import type { AccountSnapshotType } from "../../lib/bindings/AccountSnapshotType";
   import type { ChannelType } from "../../lib/bindings/ChannelType";
   import type { StreamerSettingsType } from "../../lib/bindings/StreamerSettingsType";
   import {
+    accountChannel,
     ensureChannels,
-    knownChannels,
     rememberChannels,
   } from "../../lib/channels/channels.svelte";
   import { t } from "../../lib/i18n/i18n.svelte";
@@ -41,11 +48,7 @@
   const streamers = $derived(account.settings.points.streamers);
   const hasOthers = $derived((app.snapshot?.accounts.length ?? 0) > 1);
 
-  const update = (mutate: (list: StreamerSettingsType[]) => void): Promise<boolean> =>
-    updateAccountSettings(account.id, (settings) => mutate(settings.points.streamers));
-
-  const channelOf = (login: string): ChannelType | undefined =>
-    account.streamers.find((s) => s.login === login)?.channel ?? knownChannels[login];
+  const channelOf = (login: string): ChannelType | undefined => accountChannel(account, login);
 
   $effect(() => {
     ensureChannels(streamers.map((s) => s.login).filter((login) => !channelOf(login)));
@@ -55,6 +58,15 @@
     const channel = channelOf(login);
 
     return { url: channel?.avatar_url, name: channel?.display_name ?? login, channel: login };
+  };
+
+  const saveChange = (
+    text: string,
+    apply: (settings: AccountSettingsType) => void,
+    subject?: ToastImageType,
+  ): void => {
+    void updateAccountSettings(account.id, apply);
+    changed(account.id, text, apply, subject);
   };
 
   let adding = $state(false);
@@ -91,16 +103,9 @@
       return;
     }
 
-    const apply = (settings: AccountSettingsType): void => {
-      for (const streamer of settings.points.streamers) {
-        if (logins.has(streamer.login)) {
-          copyOptions(values, streamer, changes);
-        }
-      }
-    };
-
-    void updateAccountSettings(account.id, apply);
-    changed(account.id, t.change_streamers_edited({ count: strong(logins.size) }), apply);
+    saveChange(t.change_streamers_edited({ count: strong(logins.size) }), (settings) =>
+      setStreamersOptions(settings, logins, values, changes),
+    );
 
     const offered =
       logins.size > 1
@@ -122,33 +127,18 @@
 
     const { options, values } = offer;
 
-    const apply = (settings: AccountSettingsType): void => {
-      copyOptions(values, settings.points.streamer_defaults, options);
-    };
-
-    void updateAccountSettings(account.id, apply);
-    changed(account.id, t.change_streamer_defaults(), apply);
+    saveChange(t.change_streamer_defaults(), (settings) =>
+      setStreamerDefaults(settings, values, options),
+    );
   };
 
   const setEnabled = (login: string, enabled: boolean): void => {
     const subject = subjectOf(login);
+    const streamer = strong(subject.name);
 
-    const apply = (list: StreamerSettingsType[]): void => {
-      const streamer = list.find((item) => item.login === login);
-
-      if (streamer) {
-        streamer.enabled = enabled;
-      }
-    };
-
-    void update(apply);
-
-    changed(
-      account.id,
-      enabled
-        ? t.change_streamer_enabled({ streamer: strong(subject.name) })
-        : t.change_streamer_disabled({ streamer: strong(subject.name) }),
-      (settings) => apply(settings.points.streamers),
+    saveChange(
+      enabled ? t.change_streamer_enabled({ streamer }) : t.change_streamer_disabled({ streamer }),
+      (settings) => setStreamerEnabled(settings, login, enabled),
       subject,
     );
   };
@@ -159,44 +149,23 @@
   const remove = (login: string): void => {
     const subject = subjectOf(login);
 
-    void update((list) => {
-      const index = list.findIndex((item) => item.login === login);
-
-      if (index >= 0) {
-        list.splice(index, 1);
-      }
-    });
-
-    changed(
-      account.id,
+    saveChange(
       t.change_streamer_removed({ streamer: strong(subject.name) }),
-      (settings) => {
-        settings.points.streamers = settings.points.streamers.filter((s) => s.login !== login);
-      },
+      (settings) => removeStreamer(settings, login),
       subject,
     );
   };
 
   const reorder = (list: StreamerSettingsType[], moved: StreamerSettingsType): void => {
-    const order = list.map((item) => item.login);
-    const place = placeOf(order, moved.login);
+    const place = placeOf(
+      list.map((item) => item.login),
+      moved.login,
+    );
     const subject = subjectOf(moved.login);
 
-    void update((current) => {
-      current.splice(0, current.length, ...reorderBy(current, (item) => item.login, order));
-    });
-
-    changed(
-      account.id,
+    saveChange(
       t.change_streamer_moved({ streamer: strong(subject.name) }),
-      (settings) => {
-        const logins = settings.points.streamers.map((s) => s.login);
-        const next = moveLike(logins, moved.login, place);
-
-        if (next) {
-          settings.points.streamers = reorderBy(settings.points.streamers, (s) => s.login, next);
-        }
-      },
+      (settings) => moveStreamer(settings, moved.login, place),
       subject,
     );
   };

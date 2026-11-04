@@ -2,10 +2,12 @@
   import EmptyState from "./ui/EmptyState.svelte";
   import { EventKind } from "../lib/bindings/EventKind";
   import type { MinerEventType } from "../lib/bindings/MinerEventType";
+  import { eventDetail, redeemedReward } from "../lib/events/detail.utils";
   import {
     EVENT_ICONS,
     EVENT_KIND_LABELS,
     EVENT_TONES,
+    eventIcon,
     eventText,
   } from "../lib/events/events.utils";
   import { ensureChannels } from "../lib/channels/channels.svelte";
@@ -18,9 +20,10 @@
   import Avatar from "./ui/Avatar.svelte";
   import Badge from "./ui/Badge.svelte";
   import ChannelAvatar from "./ui/ChannelAvatar.svelte";
+  import RewardImage from "./ui/RewardImage.svelte";
   import RichText from "./ui/RichText.svelte";
   import Thumb from "./ui/Thumb.svelte";
-  import { AvatarSize, IconName, ThumbShape, ThumbSize } from "./ui/ui.constants";
+  import { AvatarSize, THUMB_PIXELS, ThumbShape, ThumbSize } from "./ui/ui.constants";
 
   type ActivityFeedPropsType = {
     events: MinerEventType[];
@@ -82,8 +85,10 @@
   <ul class="m-0 flex list-none flex-col p-0">
     {#each shown as e (e.id + e.at + e.title)}
       {@const p = picture(e)}
+      {@const reward = redeemedReward(e)}
       {@const acc = accountOf(e.account_id)}
       {@const sentence = eventText(e, true)}
+      {@const detail = eventDetail(e)}
       <li
         class={cn(
           "grid items-center gap-3 border-b py-2.5 last:border-b-0",
@@ -95,7 +100,9 @@
         <span class="text-xs text-muted-foreground tabular-nums">
           {wide ? formatShortDateTime(e.at) : formatClock(e.at)}
         </span>
-        {#if p.channel}
+        {#if reward}
+          <RewardImage url={reward.url} color={reward.color} size={THUMB_PIXELS[ThumbSize.MD]} />
+        {:else if p.channel}
           <span class="flex justify-center">
             <ChannelAvatar
               url={p.src}
@@ -111,14 +118,14 @@
             contain={p.contain}
             size={ThumbSize.MD}
             shape={ThumbShape.SQUARE}
-            fallback={e.account_id ? IconName.CLOCK : EVENT_ICONS[e.kind]}
+            fallback={eventIcon(e)}
           />
         {/if}
         <span class="flex min-w-0 flex-col gap-0.5">
           <span class="text-sm leading-snug break-words"
             ><RichText text={sentence.text} links={sentence.links} /></span
           >
-          {#if (showAccount && e.account_id) || e.detail}
+          {#if (showAccount && e.account_id) || detail}
             <span class="flex min-w-0 items-center gap-1.5 text-xs text-muted-foreground">
               {#if showAccount && e.account_id}
                 <Avatar
@@ -130,8 +137,8 @@
                   >{acc?.display_name ?? e.account_login}</span
                 >
               {/if}
-              {#if e.detail}<span class="truncate"
-                  >{showAccount && e.account_id ? "· " : ""}{e.detail}</span
+              {#if detail}<span class="truncate"
+                  >{showAccount && e.account_id ? "· " : ""}{detail}</span
                 >{/if}
             </span>
           {/if}

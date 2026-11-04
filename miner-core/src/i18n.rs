@@ -180,6 +180,7 @@ pub fn kind_label(language: &str, kind: EventKind) -> String {
         EventKind::SessionExpired => "event_kind_session_expired",
         EventKind::LoginCompleted => "event_kind_login_completed",
         EventKind::UpdateAvailable => "event_kind_update_available",
+        EventKind::RewardRedeemed => "event_kind_reward_redeemed",
     };
 
     text(language, key, &[])
@@ -337,7 +338,7 @@ pub fn event_text(language: &str, event: &MinerEvent) -> String {
             ),
             _ => None,
         },
-        EventKind::Info | EventKind::Error => None,
+        EventKind::Info | EventKind::Error | EventKind::RewardRedeemed => None,
     };
 
     sentence.unwrap_or_else(|| event.title.clone())

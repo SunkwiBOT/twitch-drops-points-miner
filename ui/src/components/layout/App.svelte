@@ -5,13 +5,21 @@
   import { noteActivity, noteReturn, watchSession } from "../../lib/state/autolock";
   import { closeBulk } from "../../lib/state/bulk.svelte";
   import { Page } from "../../lib/state/state.constants";
-  import { account, app, isAccountPage, navigate } from "../../lib/state/state.svelte";
+  import {
+    account,
+    app,
+    isAccountPage,
+    isDashboardLocked,
+    isVaultLocked,
+    navigate,
+  } from "../../lib/state/state.svelte";
   import AccountDrops from "../account/AccountDrops.svelte";
   import AccountHistory from "../account/AccountHistory.svelte";
   import AccountInventory from "../account/AccountInventory.svelte";
   import AccountOverview from "../account/AccountOverview.svelte";
   import AccountPoints from "../account/AccountPoints.svelte";
   import AccountSettings from "../account/AccountSettings.svelte";
+  import AccountSpamPoints from "../account/AccountSpamPoints.svelte";
   import ApplyToAccountsDialog from "../accounts/ApplyToAccountsDialog.svelte";
   import LoginDialog from "../accounts/LoginDialog.svelte";
   import Catalogue from "../pages/Catalogue.svelte";
@@ -31,8 +39,8 @@
 
   const current = $derived(account(app.selectedAccount));
 
-  const dashboardLocked = $derived(!isTauri() && !app.auth.authorized);
-  const vaultLocked = $derived(app.snapshot !== null && !app.snapshot.vault.unlocked);
+  const dashboardLocked = $derived(isDashboardLocked());
+  const vaultLocked = $derived(isVaultLocked());
 
   const title = $derived.by(() => {
     switch (app.page) {
@@ -57,6 +65,8 @@
         return t.nav_account_drops();
       case Page.ACCOUNT_POINTS:
         return t.nav_account_points();
+      case Page.ACCOUNT_SPAM:
+        return t.nav_account_spam();
       case Page.ACCOUNT_INVENTORY:
         return t.nav_account_inventory();
       case Page.ACCOUNT_HISTORY:
@@ -142,6 +152,8 @@ timers and its push channel never do. -->
               <AccountDrops account={current} snapshot={app.snapshot} />
             {:else if app.page === Page.ACCOUNT_POINTS}
               <AccountPoints account={current} />
+            {:else if app.page === Page.ACCOUNT_SPAM}
+              <AccountSpamPoints account={current} snapshot={app.snapshot} />
             {:else if app.page === Page.ACCOUNT_INVENTORY}
               <AccountInventory account={current} />
             {:else if app.page === Page.ACCOUNT_HISTORY}

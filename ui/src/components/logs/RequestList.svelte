@@ -6,7 +6,7 @@
   import type { RequestKind } from "../../lib/bindings/RequestKind";
   import type { RequestsQueryType } from "../../lib/bindings/RequestsQueryType";
   import type { SnapshotType } from "../../lib/bindings/SnapshotType";
-  import { describeError } from "../../lib/errors/errors.utils";
+  import { PagedFeed } from "../../lib/feed/feed.svelte";
   import { t } from "../../lib/i18n/i18n.svelte";
   import {
     DESKTOP_ONLY_KINDS,
@@ -22,11 +22,10 @@
     requestKey,
     type RequestCursorType,
   } from "../../lib/requests/requests.utils";
-  import { ToastKind } from "../../lib/state/state.constants";
-  import { app, toast } from "../../lib/state/state.svelte";
+  import { app } from "../../lib/state/state.svelte";
   import CopyButton from "../ui/CopyButton.svelte";
   import EmptyState from "../ui/EmptyState.svelte";
-  import LogSkeleton from "../ui/LogSkeleton.svelte";
+  import LoadMoreSentinel from "../ui/LoadMoreSentinel.svelte";
   import MultiSelect from "../ui/MultiSelect.svelte";
   import PageHeader from "../ui/PageHeader.svelte";
   import Select from "../ui/Select.svelte";
@@ -40,7 +39,8 @@
     IconName,
     MenuAlign,
   } from "../ui/ui.constants";
-  import { LOGS_REFRESH_MS, LOGS_SKELETON_ROWS } from "../pages/pages.constants";
+  import LogSkeleton from "./LogSkeleton.svelte";
+  import { LOGS_MORE_SKELETON_ROWS, LOGS_REFRESH_MS, LOGS_SKELETON_ROWS } from "./logs.constants";
   import RequestRow from "./RequestRow.svelte";
 
   type RequestListPropsType = { snapshot: SnapshotType };
@@ -56,14 +56,6 @@
   let accountId = $state("");
   let hidden = $state<RequestKind[]>([]);
   let errorsOnly = $state(false);
-
-  let entries = $state<RequestEntryType[]>([]);
-  let cursor = $state<RequestCursorType | null>(null);
-  let loading = $state(true);
-  let loadingMore = $state(false);
-  let problem = $state<string | null>(null);
-  let sentinel: HTMLDivElement | undefined = $state();
-  let generation = 0;
 
   const ticked = $derived(offered.filter((kind) => !hidden.includes(kind)));
 
@@ -91,134 +83,21 @@
     errors_only: errorsOnly || undefined,
   });
 
-  const query = (from: RequestCursorType | null): RequestsQueryType => ({
-    ...filters(),
-    ...from,
-    limit: REQUESTS_PAGE_SIZE,
+  const feed = new PagedFeed<RequestsQueryType, RequestEntryType, RequestCursorType>({
+    fetch: async (query, from) => {
+      const page = await fetchRequests({ ...query, ...from, limit: REQUESTS_PAGE_SIZE });
+
+      return { items: page.requests, next: nextCursor(page) };
+    },
+    isOlder,
   });
 
   $effect(() => {
-    const request = query(null);
-    let current = true;
-    let refreshing = false;
+    void feed.show(filters());
+    const timer = setInterval(() => void feed.refresh(), LOGS_REFRESH_MS);
 
-    const load = async (): Promise<void> => {
-      if (refreshing) {
-        return;
-      }
-
-      refreshing = true;
-
-      try {
-        const page = await fetchRequests(request);
-
-        if (!current) {
-          return;
-        }
-
-        const oldest = page.requests.at(-1);
-        const older = oldest ? entries.filter((entry) => isOlder(entry, oldest)) : [];
-
-        entries = [...page.requests, ...older];
-        problem = null;
-
-        if (older.length === 0) {
-          cursor = nextCursor(page);
-        }
-      } catch (e: any) {
-        if (current) {
-          problem = describeError(e);
-        }
-      } finally {
-        refreshing = false;
-
-        if (current) {
-          loading = false;
-        }
-      }
-    };
-
-    void load();
-    const timer = setInterval(() => void load(), LOGS_REFRESH_MS);
-
-    return () => {
-      current = false;
-      clearInterval(timer);
-    };
+    return () => clearInterval(timer);
   });
-
-  const loadMore = async (): Promise<void> => {
-    if (cursor === null || loadingMore) {
-      return;
-    }
-
-    const asked = generation;
-
-    loadingMore = true;
-
-    try {
-      const page = await fetchRequests(query(cursor));
-
-      if (asked !== generation) {
-        return;
-      }
-
-      entries = [...entries, ...page.requests];
-      cursor = nextCursor(page);
-    } catch (e: any) {
-      if (asked === generation) {
-        toast(ToastKind.ERROR, describeError(e));
-      }
-    } finally {
-      if (asked === generation) {
-        loadingMore = false;
-      }
-    }
-  };
-
-  $effect(() => {
-    if (!sentinel) {
-      return;
-    }
-
-    const observer = new IntersectionObserver((seen) => {
-      if (seen.some((entry) => entry.isIntersecting)) {
-        void loadMore();
-      }
-    });
-
-    observer.observe(sentinel);
-
-    return () => observer.disconnect();
-  });
-
-  const restart = (): void => {
-    generation += 1;
-    entries = [];
-    cursor = null;
-    problem = null;
-    loading = true;
-    loadingMore = false;
-  };
-
-  const filterAccount = (next: string): void => {
-    if (next === accountId) {
-      return;
-    }
-
-    accountId = next;
-    restart();
-  };
-
-  const filterKinds = (next: RequestKind[]): void => {
-    hidden = offered.filter((kind) => !next.includes(kind));
-    restart();
-  };
-
-  const filterErrors = (next: boolean): void => {
-    errorsOnly = next;
-    restart();
-  };
 
   const report = (): Promise<string> => fetchRequestsReport(filters());
 </script>
@@ -246,9 +125,9 @@
     <Select
       value={accountId}
       options={accountOptions}
-      label={t.campaign_account()}
+      label={t.common_account()}
       align={MenuAlign.LEFT}
-      onchange={filterAccount}
+      onchange={(next) => (accountId = next)}
     />
   </div>
   <div class="w-56">
@@ -260,7 +139,7 @@
       noneLabel={t.requests_types_none()}
       countLabel={(count) => t.requests_types_count({ count })}
       align={MenuAlign.LEFT}
-      onchange={filterKinds}
+      onchange={(next) => (hidden = offered.filter((kind) => !next.includes(kind)))}
     />
   </div>
   <label class="flex cursor-pointer items-center gap-2 text-hint">
@@ -268,37 +147,31 @@
       checked={errorsOnly}
       disabled={false}
       label={t.requests_errors_only()}
-      onchange={filterErrors}
+      onchange={(next) => (errorsOnly = next)}
     />
     <span>{t.requests_errors_only()}</span>
   </label>
 </PageHeader>
 
 <Card class="@container gap-0 px-5 py-3">
-  {#if loading && entries.length === 0}
+  {#if feed.loading && feed.items.length === 0}
     <LogSkeleton rows={LOGS_SKELETON_ROWS} />
-  {:else if entries.length === 0 && problem}
-    <EmptyState title={t.requests_load_failed()} text={problem} icon={IconName.ALERT} />
-  {:else if entries.length === 0}
+  {:else if feed.items.length === 0 && feed.problem}
+    <EmptyState title={t.requests_load_failed()} text={feed.problem} icon={IconName.ALERT} />
+  {:else if feed.items.length === 0}
     <EmptyState text={errorsOnly ? t.requests_empty_errors() : t.requests_empty()} />
   {:else}
     <div class={REQUEST_LIST_CLASSES} role="list" aria-label={t.logs_tab_requests()}>
-      {#each entries as entry (requestKey(entry))}
+      {#each feed.items as entry (requestKey(entry))}
         <RequestRow {entry} account={accountOf(entry.account_id)} />
       {/each}
     </div>
-    {#if loadingMore}<LogSkeleton rows={2} />{/if}
-    <div class="flex justify-center pt-3" bind:this={sentinel}>
-      {#if !loadingMore && cursor !== null}
-        <TextButton
-          label={t.requests_load_more()}
-          variant={ButtonVariant.OUTLINE}
-          size={ButtonSize.SM}
-          type={ButtonType.BUTTON}
-          disabled={false}
-          onclick={loadMore}
-        />
-      {/if}
-    </div>
+    {#if feed.loadingMore}<LogSkeleton rows={LOGS_MORE_SKELETON_ROWS} />{/if}
+    <LoadMoreSentinel
+      label={t.requests_load_more()}
+      busy={feed.loadingMore}
+      more={feed.hasMore}
+      onmore={feed.loadMore}
+    />
   {/if}
 </Card>

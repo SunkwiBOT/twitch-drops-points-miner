@@ -20,6 +20,7 @@ export const EVENT_KIND_LABELS: Record<EventKind, () => string> = {
   [EventKind.CAMPAIGN_FINISHED]: () => t.event_kind_campaign_finished(),
   [EventKind.POINTS_EARNED]: () => t.event_kind_points_earned(),
   [EventKind.POINTS_SPENT]: () => t.event_kind_points_spent(),
+  [EventKind.REWARD_REDEEMED]: () => t.event_kind_reward_redeemed(),
   [EventKind.BONUS_CLAIMED]: () => t.event_kind_bonus_claimed(),
   [EventKind.PREDICTION_PLACED]: () => t.event_kind_prediction_placed(),
   [EventKind.PREDICTION_RESULT]: () => t.event_kind_prediction_result(),
@@ -45,6 +46,7 @@ export const EVENT_TONES: Record<EventKind, BadgeTone> = {
   [EventKind.CAMPAIGN_FINISHED]: BadgeTone.ACCENT,
   [EventKind.POINTS_EARNED]: BadgeTone.SUCCESS,
   [EventKind.POINTS_SPENT]: BadgeTone.NEUTRAL,
+  [EventKind.REWARD_REDEEMED]: BadgeTone.NEUTRAL,
   [EventKind.BONUS_CLAIMED]: BadgeTone.SUCCESS,
   [EventKind.PREDICTION_PLACED]: BadgeTone.NEUTRAL,
   [EventKind.PREDICTION_RESULT]: BadgeTone.WARNING,
@@ -70,6 +72,7 @@ export const EVENT_ICONS: Record<EventKind, IconName> = {
   [EventKind.CAMPAIGN_FINISHED]: IconName.CHECK,
   [EventKind.POINTS_EARNED]: IconName.CHANNEL_POINTS,
   [EventKind.POINTS_SPENT]: IconName.CHANNEL_POINTS,
+  [EventKind.REWARD_REDEEMED]: IconName.ZAP,
   [EventKind.BONUS_CLAIMED]: IconName.CHANNEL_POINTS,
   [EventKind.PREDICTION_PLACED]: IconName.TARGET,
   [EventKind.PREDICTION_RESULT]: IconName.TROPHY,
@@ -182,6 +185,27 @@ export const eventText = (event: MinerEventType, linked: boolean): EventTextType
         return channel && context.balance !== undefined
           ? t.ev_points_spent_balance({ channel, balance: bold(context.balance) ?? "" })
           : fallback;
+      case EventKind.REWARD_REDEEMED: {
+        if (!channel || !context.reward_title || context.count === undefined) {
+          return fallback;
+        }
+
+        const sent = context.sent ?? 0;
+        const parts = {
+          count: bold(context.count) ?? "",
+          reward: strong(context.reward_title),
+          channel,
+          points: bold(context.spent ?? 0) ?? "",
+        };
+
+        return sent === context.count
+          ? t.ev_rewards_redeemed({ ...parts, sent, shown: number(sent) })
+          : t.ev_rewards_redeemed_partial({
+              ...parts,
+              sent: number(sent),
+              total: number(context.count),
+            });
+      }
       case EventKind.STREAM_ONLINE:
         return channel ? t.ev_online({ channel }) : fallback;
       case EventKind.STREAM_OFFLINE:
@@ -306,6 +330,7 @@ export const KIND_GROUPS: { group: KindGroup; kinds: EventKind[]; categories: Ev
       kinds: [
         EventKind.POINTS_EARNED,
         EventKind.POINTS_SPENT,
+        EventKind.REWARD_REDEEMED,
         EventKind.BONUS_CLAIMED,
         EventKind.PREDICTION_PLACED,
         EventKind.PREDICTION_RESULT,

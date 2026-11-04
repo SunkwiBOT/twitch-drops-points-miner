@@ -1,13 +1,12 @@
 <script lang="ts">
   import { CommandName } from "../../lib/bindings/CommandName";
-  import { untrack, type Snippet } from "svelte";
+  import { untrack } from "svelte";
 
   import { startLogin } from "../../lib/api/client";
   import { LoginFlowStatus } from "../../lib/bindings/LoginFlowStatus";
   import { describeCode, describeError } from "../../lib/errors/errors.utils";
   import { t } from "../../lib/i18n/i18n.svelte";
-  import { ToastKind } from "../../lib/state/state.constants";
-  import { account, app, refresh, run, toast } from "../../lib/state/state.svelte";
+  import { account, app, refresh, run } from "../../lib/state/state.svelte";
   import { strong } from "../../lib/text.utils";
   import ActionButton from "../ui/ActionButton.svelte";
   import Dialog from "../ui/Dialog.svelte";
@@ -25,6 +24,8 @@
   // that clears it can land mid-animation.
   let shown = $state<typeof flow>(null);
   let starting = $state(false);
+  let startError = $state<string | null>(null);
+  let autoStarted = false;
 
   $effect.pre(() => {
     if (app.loginDialog) {
@@ -38,12 +39,15 @@
     try {
       await startLogin();
       await refresh();
+      startError = null;
     } catch (e: any) {
-      toast(ToastKind.ERROR, describeError(e));
+      startError = describeError(e);
     } finally {
       starting = false;
     }
   };
+
+  const failure = $derived(shown?.status === LoginFlowStatus.PENDING ? null : startError);
 
   let knownAccounts = $state<KnownAccountsType | null>(null);
 
@@ -68,7 +72,6 @@
       : null,
   );
 
-  let setupButtons = $state<Snippet>();
   let finishing = $state(false);
 
   const close = (): void => {
@@ -79,17 +82,21 @@
     }
   };
 
+  // ! One automatic start per opening: a failed start stays on screen with its Restart
+  // button instead of retrying in a loop.
   $effect(() => {
-    if (app.loginDialog && !flow && !starting && app.snapshot?.vault.unlocked) {
+    if (!app.loginDialog) {
+      autoStarted = false;
+    } else if (!autoStarted && !flow && app.snapshot?.vault.unlocked) {
+      autoStarted = true;
+      startError = null;
       void start();
     }
   });
 </script>
 
 {#snippet actions()}
-  {#if newAccount}
-    {@render setupButtons?.()}
-  {:else if shown?.status === LoginFlowStatus.COMPLETED}
+  {#if shown?.status === LoginFlowStatus.COMPLETED}
     <TextButton
       label={t.common_close()}
       variant={ButtonVariant.PRIMARY}
@@ -98,7 +105,7 @@
       disabled={false}
       onclick={close}
     />
-  {:else if shown && shown.status !== LoginFlowStatus.PENDING}
+  {:else if failure !== null || (shown && shown.status !== LoginFlowStatus.PENDING)}
     <TextButton
       label={t.common_close()}
       variant={ButtonVariant.OUTLINE}
@@ -128,16 +135,22 @@
   closable={!finishing}
   closeLabel={t.common_close()}
   onclose={close}
-  footer={shown && shown.status !== LoginFlowStatus.PENDING ? actions : undefined}
+  footer={!newAccount && (failure !== null || (shown && shown.status !== LoginFlowStatus.PENDING))
+    ? actions
+    : undefined}
 >
   {#if !app.snapshot?.vault.unlocked}
     <p class="text-hint text-muted-foreground">{t.login_vault_locked()}</p>
+  {:else if failure !== null}
+    <p class="text-destructive">
+      <RichText text={t.login_failed({ error: strong(failure) })} />
+    </p>
   {:else if !shown}
     <p class="text-hint text-muted-foreground">{t.common_loading()}</p>
   {:else if shown.status === LoginFlowStatus.PENDING}
     <LoginCode flow={shown} />
   {:else if shown.status === LoginFlowStatus.COMPLETED && newAccount}
-    <SetupWizard account={newAccount} onclose={close} bind:footer={setupButtons} bind:finishing />
+    <SetupWizard account={newAccount} onclose={close} bind:finishing />
   {:else if shown.status === LoginFlowStatus.COMPLETED}
     <p class="flex items-center gap-2 text-success-foreground">
       <Icon name={IconName.CHECK} size={18} />

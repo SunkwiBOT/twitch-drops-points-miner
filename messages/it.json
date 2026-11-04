@@ -9,6 +9,7 @@
   "theme_dark": "Scuro",
   "theme_light": "Chiaro",
   "language_auto": "Lingua di sistema",
+  "language_load_failed": "Non è stato possibile caricare questa lingua.",
   "common_save": "Salva",
   "common_cancel": "Annulla",
   "common_close": "Chiudi",
@@ -126,6 +127,7 @@
   "history_title": "Registro",
   "history_filter_all": "Tutti gli account",
   "history_empty": "Ancora niente.",
+  "history_load_failed": "Impossibile leggere il Registro.",
   "event_kind_info": "Info",
   "event_kind_error": "Errore",
   "event_kind_watch_started": "In visione",
@@ -223,6 +225,7 @@
   "time_in_hours": "tra {count} h",
   "time_in_days": "tra {count} g",
   "nav_home": "Home",
+  "nav_main": "Menu principale",
   "nav_catalogue": "Catalogo",
   "nav_logs": "Log tecnici",
   "nav_account_overview": "Panoramica",
@@ -294,7 +297,7 @@
   "campaign_ended": "Terminata",
   "campaign_channels_any": "Qualsiasi canale che trasmette il gioco",
   "campaign_channels_some": "Canali ammessi: {count}",
-  "campaign_account": "Account",
+  "common_account": "Account",
   "campaign_progress": "{current}/{required} min",
   "campaign_link_game": "Collega l'account di gioco",
   "campaign_open_twitch": "Apri su Twitch",
@@ -305,6 +308,7 @@
   "logs_copied": "Log copiati",
   "logs_open_folder": "Apri la cartella dei log",
   "logs_empty": "Ancora nulla nei log.",
+  "logs_load_failed": "Impossibile leggere i log.",
   "logs_load_more": "Carica le righe precedenti",
   "logs_report": "Segnala un bug",
   "logs_tab_lines": "Log",
@@ -981,5 +985,139 @@
   "common_select_all_count": "Seleziona tutto ({count})",
   "common_select_none_count": "Deseleziona tutto ({count})",
   "nav_support_project": "Sostieni il progetto",
-  "nav_star_github": "Lascia una ⭐ su GitHub"
+  "nav_star_github": "Lascia una ⭐ su GitHub",
+  "nav_account_spam": "Spam Points",
+  "event_kind_reward_redeemed": "Spam Points",
+  "spam_channels": "Canali",
+  "spam_search_placeholder": "Cerca un canale Twitch",
+  "spam_search_hint": "Cerca qualsiasi canale Twitch, anche fuori dalla tua lista Punti.",
+  "spam_last_used": "usato {time}",
+  "spam_never_used": "mai usato",
+  "spam_in_points": "Nella tua lista Punti",
+  "spam_in_history": "Già nella tua cronologia",
+  "spam_remove_history": "Rimuovi dalla cronologia",
+  "spam_removed": "{channel} rimosso dalla cronologia",
+  "spam_pick_title": "Scegli un canale",
+  "spam_pick_text": "Qui compaiono i suoi premi personalizzati, con il saldo di questo account sul canale.",
+  "spam_balance": "Saldo punti canale: {points}",
+  "spam_balance_changed": "aggiornato {time}",
+  "spam_balance_live_hint": "Riletto ogni 2-3 s finché questa pagina è aperta. L'ora è quella dell'ultima variazione del saldo.",
+  "spam_balance_paused": "monitoraggio in pausa",
+  "spam_balance_paused_hint": "Il saldo viene riletto appena la finestra torna in primo piano.",
+  "spam_balance_failing": "lettura non riuscita",
+  "spam_balance_failing_hint": "Le ultime letture del saldo non sono riuscite. Viene riletto ogni 2-3 s.",
+  "spam_seconds_ago": "{count} s fa",
+  "spam_settings": "Impostazioni di Spam Points",
+  "spam_show_disabled": "Mostra quelli disattivati e in pausa",
+  "spam_show_out_of_stock": "Mostra quelli esauriti",
+  "spam_delay": "Pausa tra gli invii",
+  "spam_delay_hint": "Tra due riscatti della stessa raffica, da 0 a 5000 ms.",
+  "spam_delay_unit": "ms",
+  "spam_refresh": "Aggiorna i premi",
+  "spam_load_failed": "Impossibile leggere i premi",
+  "spam_rewards": "Premi",
+  "spam_unavailable": "Non disponibili",
+  "spam_reward_disabled": "Disattivato",
+  "spam_reward_paused": "In pausa",
+  "spam_reward_out_of_stock": "Esaurito",
+  "spam_reward_cooldown": "Disponibile tra {time}",
+  "spam_hint_disabled": "Disattivato dal canale: non compare su Twitch.",
+  "spam_hint_paused": "Messo in pausa dal canale durante questa live.",
+  "spam_hint_out_of_stock": "Limite raggiunto per questa live o per te.",
+  "spam_message_placeholder": "Il tuo messaggio…",
+  "spam_message_label": "Messaggio per {reward}",
+  "spam_message_needed": "Scrivi prima il messaggio",
+  "spam_quantity": "Quantità",
+  "spam_decrease": "Diminuisci",
+  "spam_increase": "Aumenta",
+  "spam_max_balance": "Il tuo saldo non basta per altri",
+  "spam_max_count": "Al massimo 25 per raffica",
+  "spam_redeem": "Riscatta",
+  "spam_redeeming": "Invio {done}/{total}…",
+  "spam_missing": "Mancano",
+  "spam_description": "Descrizione: {text}",
+  "spam_sent_all": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "Riscattato!",
+        "countPlural=*": "{shown} inviati!"
+      }
+    }
+  ],
+  "spam_sent_partial": "{sent}/{count} inviati — {reason}",
+  "spam_sent_none": "Non riuscito — {reason}",
+  "spam_toast": "{count} × {reward} su {channel}: {result}",
+  "spam_cancelled": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "{shown} annullato lasciando la pagina",
+        "countPlural=*": "{shown} annullati lasciando la pagina"
+      }
+    }
+  ],
+  "spam_reason_not_enough_points": "punti insufficienti",
+  "spam_reason_max_per_stream": "limite per live raggiunto",
+  "spam_reason_cooldown": "premio in ricarica",
+  "spam_reason_disabled": "premio disattivato",
+  "spam_reason_paused": "premio in pausa",
+  "spam_reason_out_of_stock": "premio esaurito",
+  "spam_reason_text_required": "messaggio mancante",
+  "spam_reason_unknown": "rifiutato da Twitch ({code})",
+  "spam_no_rewards": "Nessun premio disponibile per ora.",
+  "error_unknown_reward": "Questo premio non esiste più sul canale.",
+  "error_reward_not_redeemable": "Non è stato inviato nulla: il premio richiede un messaggio, non è disponibile o è in ricarica, oppure il saldo non basta.",
+  "ev_rewards_redeemed": [
+    {
+      "declarations": [
+        "input sent",
+        "input shown",
+        "input count",
+        "input reward",
+        "input channel",
+        "input points",
+        "local sentPlural = sent: plural"
+      ],
+      "selectors": [
+        "sentPlural"
+      ],
+      "match": {
+        "sentPlural=one": "{count} × {reward} su {channel} — {shown} inviato, {points} punti",
+        "sentPlural=*": "{count} × {reward} su {channel} — {shown} inviati, {points} punti"
+      }
+    }
+  ],
+  "ev_rewards_redeemed_partial": "{count} × {reward} su {channel} — {sent}/{total} inviati, {points} punti",
+  "ev_rewards_refused": [
+    {
+      "declarations": [
+        "input refused",
+        "input reason",
+        "local refusedPlural = refused: plural"
+      ],
+      "selectors": [
+        "refusedPlural"
+      ],
+      "match": {
+        "refusedPlural=one": "{refused} rifiutato: {reason}",
+        "refusedPlural=*": "{refused} rifiutati: {reason}"
+      }
+    }
+  ],
+  "spam_result_lost": "Nessun risultato ricevuto per {reward}: il Registro mostra cosa è stato inviato."
 }

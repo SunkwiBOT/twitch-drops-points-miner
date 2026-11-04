@@ -1,6 +1,6 @@
 use std::collections::{HashMap, VecDeque};
 use std::sync::mpsc::{sync_channel, Receiver, SyncSender};
-use std::sync::{Arc, Mutex, MutexGuard, PoisonError, Weak};
+use std::sync::{Arc, Mutex, MutexGuard, Weak};
 use std::time::Instant;
 
 use chrono::{DateTime, DurationRound, TimeDelta, Utc};
@@ -389,6 +389,7 @@ struct State {
     failures: Vec<RequestEntry>,
     unsaved: VecDeque<RequestEntry>,
     saving_fails: bool,
+    merged: HashMap<GroupKey, (u64, u64)>,
 }
 
 impl State {
@@ -423,6 +424,7 @@ impl State {
                 let closed = self.grouped(open);
 
                 self.failures.clear();
+                self.merged.clear();
 
                 closed
             }
@@ -459,6 +461,34 @@ impl State {
         }
     }
 
+    // ! A success adds to the live row of the same request in the bucket, as
+    // the stored groups do: pages reading balances every few seconds would
+    // otherwise push every other request out of the ring.
+    fn merge_live(&mut self, key: &GroupKey, done: &Done, now: DateTime<Utc>) -> bool {
+        let Some((id, total_ms)) = self.merged.get_mut(key) else {
+            return false;
+        };
+        let Ok(index) = self.live.binary_search_by_key(id, |entry| entry.id) else {
+            return false;
+        };
+        let row = &mut self.live[index];
+        let (count, max_ms) = row
+            .group
+            .as_ref()
+            .map_or((1, row.duration_ms), |group| (group.count, group.max_ms));
+        let count = count.saturating_add(1);
+
+        *total_ms = total_ms.saturating_add(done.duration_ms);
+        row.duration_ms = *total_ms / u64::from(count);
+        row.group = Some(RequestGroup {
+            count,
+            max_ms: max_ms.max(done.duration_ms),
+            until: now,
+        });
+
+        true
+    }
+
     // ! Live entries are those of the bucket not stored yet: the older ones are
     // in the stored groups already. A failure pushed out of the ring by a burst
     // is still shown from the bucket's own list.
@@ -487,7 +517,7 @@ struct Shared {
 
 impl Shared {
     fn state(&self) -> MutexGuard<'_, State> {
-        self.state.lock().unwrap_or_else(PoisonError::into_inner)
+        crate::util::locked(&self.state)
     }
 
     fn wake(&self) {
@@ -500,7 +530,7 @@ impl Shared {
         let Some(store) = &self.store else {
             return;
         };
-        let _one_writer = self.writing.lock().unwrap_or_else(PoisonError::into_inner);
+        let _one_writer = crate::util::locked(&self.writing);
         let rows: Vec<RequestEntry> = self.state().unsaved.drain(..).collect();
 
         if rows.is_empty() {
@@ -618,25 +648,24 @@ impl RequestLog {
         let closed = state.roll(now);
         let mut unsaved = self.keep(&mut state, closed);
 
+        let key = GroupKey {
+            account_id: done.account_id.clone(),
+            kind: done.kind,
+            target: target.clone(),
+            socket: done.socket,
+            outcome: done.outcome,
+            status: done.status,
+        };
+
         if grouped {
-            let sum = state
-                .groups
-                .entry(GroupKey {
-                    account_id: done.account_id.clone(),
-                    kind: done.kind,
-                    target: target.clone(),
-                    socket: done.socket,
-                    outcome: done.outcome,
-                    status: done.status,
-                })
-                .or_default();
+            let sum = state.groups.entry(key.clone()).or_default();
 
             sum.count = sum.count.saturating_add(1);
             sum.total_ms = sum.total_ms.saturating_add(done.duration_ms);
             sum.max_ms = sum.max_ms.max(done.duration_ms);
         }
 
-        if done.kind == RequestKind::Segment {
+        if done.kind == RequestKind::Segment || (grouped && state.merge_live(&key, &done, now)) {
             drop(state);
 
             if unsaved {
@@ -665,7 +694,9 @@ impl RequestLog {
             group: None,
         };
 
-        if !grouped {
+        if grouped {
+            state.merged.insert(key, (id, entry.duration_ms));
+        } else {
             unsaved |= self.keep(&mut state, vec![entry.clone()]);
             state.failures.push(entry.clone());
         }
@@ -682,15 +713,19 @@ impl RequestLog {
         }
     }
 
+    // ! Waits for a save on its way: rows of the account it took would be
+    // written after the account's own rows are deleted.
     pub fn forget(&self, account_id: &str) {
+        let _one_writer = crate::util::locked(&self.shared.writing);
         let mut state = self.state();
         let other = |entry: &RequestEntry| entry.account_id.as_deref() != Some(account_id);
+        let other_key = |key: &GroupKey| key.account_id.as_deref() != Some(account_id);
 
         state.live.retain(other);
         state.failures.retain(other);
-        state
-            .groups
-            .retain(|key, _| key.account_id.as_deref() != Some(account_id));
+        state.unsaved.retain(other);
+        state.groups.retain(|key, _| other_key(key));
+        state.merged.retain(|key, _| other_key(key));
     }
 
     pub fn close_due(&self) {

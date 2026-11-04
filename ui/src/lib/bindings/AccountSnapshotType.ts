@@ -6,6 +6,7 @@ import type { CampaignType } from "./CampaignType";
 import type { ErrorApiMessage } from "./ErrorApiMessage";
 import type { QueueItemType } from "./QueueItemType";
 import type { SlotViewType } from "./SlotViewType";
+import type { SpamChannelEntryType } from "./SpamChannelEntryType";
 import type { StreamerViewType } from "./StreamerViewType";
 
 export type AccountSnapshotType = {
@@ -22,4 +23,5 @@ export type AccountSnapshotType = {
   campaigns: Array<CampaignType>;
   stats: AccountStatsType;
   updated_at: string;
+  spam_channels: Array<SpamChannelEntryType>;
 };

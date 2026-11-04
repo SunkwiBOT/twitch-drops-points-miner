@@ -6,6 +6,8 @@ export enum IconName {
   HISTORY = "HISTORY",
   SETTINGS = "SETTINGS",
   PLUS = "PLUS",
+  MINUS = "MINUS",
+  INFO = "INFO",
   X = "X",
   REFRESH = "REFRESH",
   TRASH = "TRASH",
@@ -283,6 +285,13 @@ export const ART_TILES: Record<
 // ! Never translated, as on Twitch, so it always fits the picture; screen readers
 // hear the translated "live" instead.
 export const LIVE_TAG = "LIVE";
+
+export const LIVE_TAG_CLASSES: Partial<Record<AvatarSize, string>> = {
+  [AvatarSize.SM]: "px-0.5 text-live-tag-sm/3",
+  [AvatarSize.MD]: "px-1 text-live-tag/3.5",
+  [AvatarSize.LG]: "px-1 text-live-tag/3.5",
+  [AvatarSize.XL]: "px-1 text-live-tag/3.5",
+};
 
 const FIELD_BUTTON_LOOK =
   "grid cursor-pointer place-items-center text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none";

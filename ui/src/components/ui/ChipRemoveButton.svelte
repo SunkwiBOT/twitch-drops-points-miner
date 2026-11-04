@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { cn } from "$lib/utils";
   import Icon from "./Icon.svelte";
   import Tip from "./Tip.svelte";
-  import { IconName } from "./ui.constants";
+  import { BUTTON_VARIANT_CLASSES, ButtonVariant, IconName } from "./ui.constants";
 
   type ChipRemoveButtonPropsType = {
     label: string;
@@ -17,7 +18,10 @@
   {#snippet children(props)}
     <button
       {...props}
-      class="flex size-5 items-center justify-center rounded-full text-destructive hover:bg-destructive/10 dark:hover:bg-destructive/20"
+      class={cn(
+        "flex size-5 items-center justify-center rounded-full",
+        BUTTON_VARIANT_CLASSES[ButtonVariant.DANGER_GHOST],
+      )}
       type="button"
       aria-label={`${label} ${name}`}
       {onclick}

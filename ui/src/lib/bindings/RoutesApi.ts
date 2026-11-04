@@ -22,4 +22,7 @@ export enum RoutesApi {
   REQUESTS = "/api/requests",
   REQUESTS_REPORT = "/api/requests/report",
   EVENTS = "/api/events",
+  SPAM_CHANNEL = "/api/spam/channel",
+  SPAM_BALANCE = "/api/spam/balance",
+  SPAM_REDEEM = "/api/spam/redeem",
 }

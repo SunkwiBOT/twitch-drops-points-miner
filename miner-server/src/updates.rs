@@ -130,6 +130,7 @@ impl Releases {
     }
 
     async fn latest(&self, requests: &RequestLog) -> anyhow::Result<Version> {
+        let pending = requests.start(RequestKind::UpdateCheck, address_target(&self.url));
         let sent = self
             .client
             .get(&self.url)
@@ -137,9 +138,7 @@ impl Releases {
             .send()
             .await;
 
-        requests
-            .start(RequestKind::UpdateCheck, address_target(&self.url))
-            .sent(&sent);
+        pending.sent(&sent);
 
         let mut response = sent.map_err(reqwest::Error::without_url)?;
 

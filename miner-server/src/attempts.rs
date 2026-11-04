@@ -50,10 +50,7 @@ impl SignInAttempts {
         now: Instant,
     ) -> SignIn {
         let client = client_of(client);
-        let mut clients = self
-            .clients
-            .lock()
-            .unwrap_or_else(std::sync::PoisonError::into_inner);
+        let mut clients = miner_core::util::locked(&self.clients);
 
         if let Some(until) = clients.get(&client).and_then(|known| known.locked_until) {
             if now < until {

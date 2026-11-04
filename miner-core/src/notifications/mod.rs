@@ -6,7 +6,7 @@ mod queue;
 mod telegram;
 mod webhook;
 
-use std::sync::{Arc, OnceLock, PoisonError, RwLock};
+use std::sync::{Arc, OnceLock, RwLock};
 use std::time::Duration;
 
 use reqwest::header::RETRY_AFTER;
@@ -18,6 +18,7 @@ use crate::error::{Error, Result};
 use crate::events::{EventContext, EventKind, MinerEvent};
 use crate::i18n;
 use crate::requests::RequestLog;
+use crate::util::{read_locked, write_locked};
 use queue::Queues;
 
 const TEST_PICTURE: (&str, &[u8]) = (
@@ -107,7 +108,8 @@ pub fn wanted(events: &NotificationEvents, kind: EventKind) -> bool {
         | EventKind::PointsSpent
         | EventKind::StreakRecovered
         | EventKind::GoalContributed
-        | EventKind::LoginCompleted => false,
+        | EventKind::LoginCompleted
+        | EventKind::RewardRedeemed => false,
     }
 }
 
@@ -122,14 +124,11 @@ pub(crate) struct Shared {
 
 impl Shared {
     fn settings(&self) -> NotificationSettings {
-        self.settings
-            .read()
-            .unwrap_or_else(PoisonError::into_inner)
-            .clone()
+        read_locked(&self.settings).clone()
     }
 
     pub(crate) fn enabled(&self, target: NotificationTarget) -> bool {
-        let settings = self.settings.read().unwrap_or_else(PoisonError::into_inner);
+        let settings = read_locked(&self.settings);
 
         match target {
             NotificationTarget::Discord => {
@@ -202,26 +201,12 @@ impl Notifier {
     }
 
     pub fn update(&self, settings: NotificationSettings, language: &str) {
-        *self
-            .shared
-            .settings
-            .write()
-            .unwrap_or_else(PoisonError::into_inner) = settings;
-        *self
-            .shared
-            .language
-            .write()
-            .unwrap_or_else(PoisonError::into_inner) = language.to_owned();
+        *write_locked(&self.shared.settings) = settings;
+        *write_locked(&self.shared.language) = language.to_owned();
     }
 
     fn language(&self) -> &'static str {
-        i18n::resolve(
-            &self
-                .shared
-                .language
-                .read()
-                .unwrap_or_else(PoisonError::into_inner),
-        )
+        i18n::resolve(&read_locked(&self.shared.language))
     }
 
     fn queues(&self) -> &Queues {
@@ -231,15 +216,7 @@ impl Notifier {
     }
 
     pub fn notify(&self, event: MinerEvent) {
-        let wanted = wanted(
-            &self
-                .shared
-                .settings
-                .read()
-                .unwrap_or_else(PoisonError::into_inner)
-                .events,
-            event.kind,
-        );
+        let wanted = wanted(&read_locked(&self.shared.settings).events, event.kind);
 
         if !wanted {
             return;

@@ -14,8 +14,9 @@ use miner_core::api::{
     CatalogView, ChannelBannersResponse, ChannelResponse, ChannelsLookupResponse, Command,
     CommandName, DesktopEvent, FollowsResponse, HistoryQuery, HistoryResponse, LoginFlowResponse,
     LogsQuery, LogsReportResponse, LogsResponse, NotificationTestResponse, ProxyTestResponse,
-    RequestsQuery, RequestsResponse, SearchResponse, Shell, Snapshot, SnapshotResponse,
-    StartupProblem, StartupProblemResponse,
+    RedeemRequest, RedeemResponse, RequestsQuery, RequestsResponse, SearchResponse, Shell,
+    Snapshot, SnapshotResponse, SpamBalanceResponse, SpamChannelResponse, StartupProblem,
+    StartupProblemResponse,
 };
 use miner_core::config::{CloseAction, GlobalSettings};
 use miner_core::error::{ApiError, ErrorCode};
@@ -173,6 +174,44 @@ async fn follows(state: tauri::State<'_, AppState>, account_id: String) -> Answe
 
     Ok(FollowsResponse {
         channels: state.manager.followed_channels(&account_id).await?,
+    })
+}
+
+#[tauri::command]
+async fn spam_channel(
+    state: tauri::State<'_, AppState>,
+    account_id: String,
+    login: String,
+) -> Answer<SpamChannelResponse> {
+    unlocked(&state).await?;
+
+    Ok(SpamChannelResponse {
+        channel: state.manager.spam_channel(&account_id, &login).await?,
+    })
+}
+
+#[tauri::command]
+async fn spam_balance(
+    state: tauri::State<'_, AppState>,
+    account_id: String,
+    login: String,
+) -> Answer<SpamBalanceResponse> {
+    unlocked(&state).await?;
+
+    Ok(SpamBalanceResponse {
+        balance: state.manager.spam_balance(&account_id, &login).await?,
+    })
+}
+
+#[tauri::command]
+async fn redeem(
+    state: tauri::State<'_, AppState>,
+    request: RedeemRequest,
+) -> Answer<RedeemResponse> {
+    unlocked(&state).await?;
+
+    Ok(RedeemResponse {
+        burst_id: state.manager.redeem(request).await?,
     })
 }
 
@@ -466,6 +505,9 @@ fn main() {
             search,
             channel_banners,
             follows,
+            spam_channel,
+            spam_balance,
+            redeem,
             test_notifications,
             test_proxy,
             history,
@@ -609,6 +651,7 @@ async fn forward_events(app: AppHandle, manager: Arc<Manager>) {
     .await;
 
     let mut receiver = manager.subscribe();
+    let mut bursts = manager.subscribe_bursts();
     let mut dirty = false;
     let mut tray_view: Option<TrayView> = None;
     let mut debounce = tokio::time::interval(std::time::Duration::from_millis(
@@ -664,6 +707,15 @@ async fn forward_events(app: AppHandle, manager: Arc<Manager>) {
                     }
                 }
                 Err(tokio::sync::broadcast::error::RecvError::Lagged(_)) => { dirty = true; }
+                Err(_) => break,
+            },
+            progress = bursts.recv() => match progress {
+                Ok(progress) => {
+                    if manager.vault_status().await.unlocked {
+                        let _ = app.emit(DesktopEvent::BurstProgress.name(), progress);
+                    }
+                }
+                Err(tokio::sync::broadcast::error::RecvError::Lagged(_)) => {}
                 Err(_) => break,
             }
         }

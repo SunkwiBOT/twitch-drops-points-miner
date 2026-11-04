@@ -9,6 +9,7 @@
   "theme_dark": "Темна",
   "theme_light": "Світла",
   "language_auto": "Мова системи",
+  "language_load_failed": "Не вдалося завантажити цю мову.",
   "common_save": "Зберегти",
   "common_cancel": "Скасувати",
   "common_close": "Закрити",
@@ -127,6 +128,7 @@
   "history_title": "Журнал",
   "history_filter_all": "Усі облікові записи",
   "history_empty": "Поки порожньо.",
+  "history_load_failed": "Не вдалося прочитати журнал.",
   "event_kind_info": "Інфо",
   "event_kind_error": "Помилка",
   "event_kind_watch_started": "Перегляд",
@@ -224,6 +226,7 @@
   "time_in_hours": "через {count} год",
   "time_in_days": "через {count} дн",
   "nav_home": "Головна",
+  "nav_main": "Головне меню",
   "nav_catalogue": "Каталог",
   "nav_logs": "Технічні логи",
   "nav_account_overview": "Огляд",
@@ -297,7 +300,7 @@
   "campaign_ended": "Завершено",
   "campaign_channels_any": "Будь-який канал зі стрімом гри",
   "campaign_channels_some": "Дозволені канали: {count}",
-  "campaign_account": "Обліковий запис",
+  "common_account": "Обліковий запис",
   "campaign_progress": "{current}/{required} хв",
   "campaign_link_game": "Прив'язати ігровий обліковий запис",
   "campaign_open_twitch": "Відкрити на Twitch",
@@ -308,6 +311,7 @@
   "logs_copied": "Логи скопійовано",
   "logs_open_folder": "Відкрити теку логів",
   "logs_empty": "Поки нічого не записано.",
+  "logs_load_failed": "Не вдалося прочитати логи.",
   "logs_load_more": "Завантажити старіші рядки",
   "logs_report": "Повідомити про помилку",
   "logs_tab_lines": "Логи",
@@ -495,7 +499,7 @@
   "reward_watch_stream": "Дивитися стрим",
   "reward_subscribe": "Підписка: не майниться",
   "reward_kind_badge": "Значок",
-  "reward_kind_item": "Внутрішньоігровий предмет",
+  "reward_kind_item": "Ігровий предмет",
   "reward_sub_only": "Саб",
   "reward_ignore": "Ігнорувати цей предмет",
   "reward_unignore": "Знову майнити цей предмет",
@@ -1004,5 +1008,143 @@
   "common_select_all_count": "Вибрати все ({count})",
   "common_select_none_count": "Зняти вибір ({count})",
   "nav_support_project": "Підтримати проєкт",
-  "nav_star_github": "Поставити ⭐ на GitHub"
+  "nav_star_github": "Поставити ⭐ на GitHub",
+  "nav_account_spam": "Spam Points",
+  "event_kind_reward_redeemed": "Spam Points",
+  "spam_channels": "Канали",
+  "spam_search_placeholder": "Знайти канал Twitch",
+  "spam_search_hint": "Знайдіть будь-який канал Twitch, навіть поза вашим списком «Бали».",
+  "spam_last_used": "використано {time}",
+  "spam_never_used": "ще не використано",
+  "spam_in_points": "У вашому списку «Бали»",
+  "spam_in_history": "Уже у вашій історії",
+  "spam_remove_history": "Прибрати з історії",
+  "spam_removed": "{channel} прибрано з історії",
+  "spam_pick_title": "Виберіть канал",
+  "spam_pick_text": "Тут з’являться його власні нагороди та баланс цього облікового запису на каналі.",
+  "spam_balance": "Баланс балів каналу: {points}",
+  "spam_balance_changed": "оновлено {time}",
+  "spam_balance_live_hint": "Перечитується кожні 2–3 с, поки сторінка відкрита. Час — остання зміна балансу.",
+  "spam_balance_paused": "відстеження призупинено",
+  "spam_balance_paused_hint": "Баланс знову прочитається, щойно вікно отримає фокус.",
+  "spam_balance_failing": "помилка читання",
+  "spam_balance_failing_hint": "Останні спроби прочитати баланс не вдалися. Він перечитується кожні 2–3 с.",
+  "spam_seconds_ago": "{count} с тому",
+  "spam_settings": "Налаштування Spam Points",
+  "spam_show_disabled": "Показувати вимкнені та призупинені",
+  "spam_show_out_of_stock": "Показувати вичерпані",
+  "spam_delay": "Пауза між запитами",
+  "spam_delay_hint": "Між двома обмінами однієї серії, від 0 до 5000 мс.",
+  "spam_delay_unit": "мс",
+  "spam_refresh": "Оновити нагороди",
+  "spam_load_failed": "Не вдалося прочитати нагороди",
+  "spam_rewards": "Нагороди",
+  "spam_unavailable": "Недоступні",
+  "spam_reward_disabled": "Вимкнена",
+  "spam_reward_paused": "Призупинена",
+  "spam_reward_out_of_stock": "Вичерпана",
+  "spam_reward_cooldown": "Доступна через {time}",
+  "spam_hint_disabled": "Вимкнена каналом: на Twitch її не видно.",
+  "spam_hint_paused": "Призупинена каналом на час цієї трансляції.",
+  "spam_hint_out_of_stock": "Ліміт вичерпано на цій трансляції або для вас.",
+  "spam_message_placeholder": "Ваше повідомлення…",
+  "spam_message_label": "Повідомлення для «{reward}»",
+  "spam_message_needed": "Спершу введіть повідомлення",
+  "spam_quantity": "Кількість",
+  "spam_decrease": "Зменшити",
+  "spam_increase": "Збільшити",
+  "spam_max_balance": "Балансу більше не вистачає",
+  "spam_max_count": "Не більше 25 за серію",
+  "spam_redeem": "Обміняти",
+  "spam_redeeming": "Надсилання {done}/{total}…",
+  "spam_missing": "Бракує",
+  "spam_description": "Опис: {text}",
+  "spam_sent_all": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "Обміняно!",
+        "countPlural=few": "Надіслано: {shown}!",
+        "countPlural=*": "Надіслано: {shown}!"
+      }
+    }
+  ],
+  "spam_sent_partial": "Надіслано {sent}/{count} — {reason}",
+  "spam_sent_none": "Не вдалося — {reason}",
+  "spam_toast": "{count} × {reward} на каналі {channel}: {result}",
+  "spam_cancelled": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "{shown} скасовано під час виходу зі сторінки",
+        "countPlural=few": "{shown} скасовано під час виходу зі сторінки",
+        "countPlural=*": "{shown} скасовано під час виходу зі сторінки"
+      }
+    }
+  ],
+  "spam_reason_not_enough_points": "не вистачає балів",
+  "spam_reason_max_per_stream": "досягнуто ліміту на трансляцію",
+  "spam_reason_cooldown": "нагорода перезаряджається",
+  "spam_reason_disabled": "нагороду вимкнено",
+  "spam_reason_paused": "нагороду призупинено",
+  "spam_reason_out_of_stock": "нагороду вичерпано",
+  "spam_reason_text_required": "немає повідомлення",
+  "spam_reason_unknown": "відхилено Twitch ({code})",
+  "spam_no_rewards": "Зараз немає доступних нагород.",
+  "error_unknown_reward": "Цієї нагороди на каналі більше немає.",
+  "error_reward_not_redeemable": "Нічого не надіслано: нагороді потрібне повідомлення, вона недоступна чи перезаряджається, або не вистачає балів.",
+  "ev_rewards_redeemed": [
+    {
+      "declarations": [
+        "input sent",
+        "input shown",
+        "input count",
+        "input reward",
+        "input channel",
+        "input points",
+        "local sentPlural = sent: plural"
+      ],
+      "selectors": [
+        "sentPlural"
+      ],
+      "match": {
+        "sentPlural=one": "{count} × {reward} на каналі {channel} — надіслано {shown}, балів: {points}",
+        "sentPlural=few": "{count} × {reward} на каналі {channel} — надіслано {shown}, балів: {points}",
+        "sentPlural=*": "{count} × {reward} на каналі {channel} — надіслано {shown}, балів: {points}"
+      }
+    }
+  ],
+  "ev_rewards_redeemed_partial": "{count} × {reward} на каналі {channel} — надіслано {sent}/{total}, балів: {points}",
+  "ev_rewards_refused": [
+    {
+      "declarations": [
+        "input refused",
+        "input reason",
+        "local refusedPlural = refused: plural"
+      ],
+      "selectors": [
+        "refusedPlural"
+      ],
+      "match": {
+        "refusedPlural=one": "{refused} відхилено: {reason}",
+        "refusedPlural=few": "{refused} відхилено: {reason}",
+        "refusedPlural=*": "{refused} відхилено: {reason}"
+      }
+    }
+  ],
+  "spam_result_lost": "Результат для «{reward}» не надійшов: у журналі видно, що було надіслано."
 }

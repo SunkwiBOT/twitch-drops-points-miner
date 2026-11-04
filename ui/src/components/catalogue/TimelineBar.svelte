@@ -11,7 +11,7 @@
   import { t } from "../../lib/i18n/i18n.svelte";
   import { strong } from "../../lib/text.utils";
   import { formatClock, formatDayMonth, formatWeekdayDayMonth } from "../../lib/time/time.utils";
-  import { BarLabelPlacement, TIMELINE_URGENT_MS } from "./timeline.constants";
+  import { BarLabelPlacement, TIMELINE_PILL_MS } from "./timeline.constants";
   import RichText from "../ui/RichText.svelte";
   import TimeLeftTag from "./TimeLeftTag.svelte";
 
@@ -57,7 +57,7 @@
   const left = $derived(item.end - now);
 
   const pill = $derived(
-    left > 0 && left < TIMELINE_URGENT_MS ? t.timeline_left({ time: shortDuration(left) }) : "",
+    left > 0 && left < TIMELINE_PILL_MS ? t.timeline_left({ time: shortDuration(left) }) : "",
   );
 
   const placement = $derived(
@@ -78,7 +78,7 @@
       return;
     }
 
-    const bars = Array.from(track.querySelectorAll<HTMLButtonElement>(":scope > button"));
+    const bars = Array.from(track.querySelectorAll<HTMLButtonElement>(":scope > [data-bar]"));
     const next = getNextBarIndex(
       bars.findIndex((bar) => bar === event.currentTarget),
       event.key,
@@ -106,6 +106,7 @@
     class:cut-left={geometry.isCutLeft}
     class:cut-right={geometry.isCutRight}
     class:outside={placement !== BarLabelPlacement.INSIDE}
+    data-bar
     type="button"
     title={`${gameName} · ${item.campaign.name}`}
     style:left="{geometry.left}%"

@@ -1,7 +1,7 @@
 use std::collections::VecDeque;
 use std::io::{self, Write};
 use std::path::Path;
-use std::sync::{Arc, Mutex, PoisonError, TryLockError};
+use std::sync::{Arc, Mutex, TryLockError};
 
 use chrono::{DateTime, Utc};
 use regex::Regex;
@@ -165,7 +165,7 @@ impl LogBuffer {
     }
 
     pub fn push(&self, line: LogLine) {
-        let mut ring = self.ring.lock().unwrap_or_else(|p| p.into_inner());
+        let mut ring = crate::util::locked(&self.ring);
         let id = ring.next_id;
         ring.next_id += 1;
 
@@ -177,7 +177,7 @@ impl LogBuffer {
     }
 
     pub fn page(&self, filter: &LogFilter, before_id: Option<u64>, limit: usize) -> LogPage {
-        let ring = self.ring.lock().unwrap_or_else(|p| p.into_inner());
+        let ring = crate::util::locked(&self.ring);
         let mut older = ring
             .lines
             .iter()
@@ -257,7 +257,7 @@ impl Drop for FileWriter {
 }
 
 pub fn keep_file_writer(guard: impl Send + 'static) -> FileWriter {
-    *FILE_WRITER.lock().unwrap_or_else(PoisonError::into_inner) = Some(Box::new(guard));
+    *crate::util::locked(&FILE_WRITER) = Some(Box::new(guard));
 
     FileWriter(())
 }

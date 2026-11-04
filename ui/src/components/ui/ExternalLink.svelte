@@ -2,7 +2,7 @@
   import type { Snippet } from "svelte";
 
   import { cn } from "$lib/utils";
-  import { openLink } from "../../lib/state/state.svelte";
+  import { followLink } from "../../lib/links/links.utils";
   import Icon from "./Icon.svelte";
   import { IconName, LINK_SIZES, LinkLook, LinkMark, LinkSize } from "./ui.constants";
 
@@ -41,10 +41,7 @@
   )}
   href={url}
   rel="noreferrer"
-  onclick={(event) => {
-    event.preventDefault();
-    void openLink(url);
-  }}
+  onclick={(event) => followLink(event, url)}
   >{#if lead}{@render lead()}{/if}{#if mark === LinkMark.START}{@render arrow()}{/if}<span
     class={cn(
       "underline-offset-3 group-hover/link:underline",

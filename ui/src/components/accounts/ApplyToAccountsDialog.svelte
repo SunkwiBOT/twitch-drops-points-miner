@@ -12,8 +12,13 @@
   import RichText from "../ui/RichText.svelte";
   import { ButtonSize, ButtonType, ButtonVariant, IconName } from "../ui/ui.constants";
 
-  const source = $derived(account(bulk.sourceId));
-  const others = $derived((app.snapshot?.accounts ?? []).filter((a) => a.id !== bulk.sourceId));
+  let sourceId = $state<string | null>(null);
+  let count = $state(0);
+  let selected = $state<string[]>([]);
+  let applying = $state(false);
+
+  const source = $derived(account(sourceId));
+  const others = $derived((app.snapshot?.accounts ?? []).filter((a) => a.id !== sourceId));
 
   const items = $derived(
     others.map((a) => ({
@@ -25,12 +30,15 @@
     })),
   );
 
-  let selected = $state<string[]>([]);
-  let applying = $state(false);
-
+  // ! What the dialog shows is kept until it is gone: its closing animation must not
+  // show the emptied offer.
   $effect(() => {
     if (bulk.open) {
-      selected = untrack(() => others.map((a) => a.id));
+      untrack(() => {
+        sourceId = bulk.sourceId;
+        count = bulk.changes.length;
+        selected = others.map((a) => a.id);
+      });
     }
   });
 
@@ -38,6 +46,7 @@
     applying = true;
     await applyToAccounts(selected);
     applying = false;
+    closeBulk();
   };
 </script>
 
@@ -53,7 +62,7 @@
     <p class="text-hint text-muted-foreground">
       <RichText
         text={t.bulk_hint({
-          count: strong(bulk.changes.length),
+          count: strong(count),
           name: personMarker(0),
         })}
         people={[{ name: source?.display_name ?? "", avatar: source?.avatar_url, channel: null }]}

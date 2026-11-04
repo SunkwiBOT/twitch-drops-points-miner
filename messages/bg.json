@@ -9,6 +9,7 @@
   "theme_dark": "Тъмна",
   "theme_light": "Светла",
   "language_auto": "Език на системата",
+  "language_load_failed": "Този език не можа да бъде зареден.",
   "common_save": "Запази",
   "common_cancel": "Отказ",
   "common_close": "Затвори",
@@ -126,6 +127,7 @@
   "history_title": "Дневник",
   "history_filter_all": "Всички акаунти",
   "history_empty": "Все още нищо.",
+  "history_load_failed": "Дневникът не можа да бъде прочетен.",
   "event_kind_info": "Инфо",
   "event_kind_error": "Грешка",
   "event_kind_watch_started": "Гледане",
@@ -223,6 +225,7 @@
   "time_in_hours": "след {count} ч",
   "time_in_days": "след {count} д",
   "nav_home": "Начало",
+  "nav_main": "Основно меню",
   "nav_catalogue": "Каталог",
   "nav_logs": "Технически логове",
   "nav_account_overview": "Преглед",
@@ -294,7 +297,7 @@
   "campaign_ended": "Приключила",
   "campaign_channels_any": "Всеки канал, който стриймва играта",
   "campaign_channels_some": "Разрешени канали: {count}",
-  "campaign_account": "Акаунт",
+  "common_account": "Акаунт",
   "campaign_progress": "{current}/{required} мин",
   "campaign_link_game": "Свържи игровия акаунт",
   "campaign_open_twitch": "Отвори в Twitch",
@@ -305,6 +308,7 @@
   "logs_copied": "Логовете са копирани",
   "logs_open_folder": "Отвори папката с логове",
   "logs_empty": "Още нищо не е записано.",
+  "logs_load_failed": "Логовете не можаха да бъдат прочетени.",
   "logs_load_more": "Зареди по-старите редове",
   "logs_report": "Докладвай бъг",
   "logs_tab_lines": "Логове",
@@ -491,7 +495,7 @@
   "reward_watch_stream": "Гледай стрийма",
   "reward_subscribe": "Абонамент: не се копае",
   "reward_kind_badge": "Значка",
-  "reward_kind_item": "Предмет в играта",
+  "reward_kind_item": "Игрови предмет",
   "reward_sub_only": "Абон.",
   "reward_ignore": "Игнорирай този предмет",
   "reward_unignore": "Копай отново този предмет",
@@ -995,5 +999,139 @@
   "common_select_all_count": "Избери всички ({count})",
   "common_select_none_count": "Отмени избора ({count})",
   "nav_support_project": "Подкрепи проекта",
-  "nav_star_github": "Дай ⭐ в GitHub"
+  "nav_star_github": "Дай ⭐ в GitHub",
+  "nav_account_spam": "Spam Points",
+  "event_kind_reward_redeemed": "Spam Points",
+  "spam_channels": "Канали",
+  "spam_search_placeholder": "Търсене на канал в Twitch",
+  "spam_search_hint": "Потърсете всеки канал в Twitch, дори извън списъка ви „Точки“.",
+  "spam_last_used": "използван {time}",
+  "spam_never_used": "неизползван",
+  "spam_in_points": "В списъка ви „Точки“",
+  "spam_in_history": "Вече е в историята ви",
+  "spam_remove_history": "Премахване от историята",
+  "spam_removed": "{channel} е премахнат от историята",
+  "spam_pick_title": "Изберете канал",
+  "spam_pick_text": "Тук се показват собствените му награди заедно с баланса на този акаунт в канала.",
+  "spam_balance": "Баланс на точките в канала: {points}",
+  "spam_balance_changed": "обновен {time}",
+  "spam_balance_live_hint": "Прочита се отново на всеки 2–3 s, докато страницата е отворена. Часът е на последната промяна на баланса.",
+  "spam_balance_paused": "проследяването е на пауза",
+  "spam_balance_paused_hint": "Балансът се прочита отново, щом прозорецът получи фокус.",
+  "spam_balance_failing": "грешка при четене",
+  "spam_balance_failing_hint": "Последните прочитания на баланса не успяха. Той се прочита отново на всеки 2–3 s.",
+  "spam_seconds_ago": "преди {count} s",
+  "spam_settings": "Настройки на Spam Points",
+  "spam_show_disabled": "Показване на изключените и спрените",
+  "spam_show_out_of_stock": "Показване на изчерпаните",
+  "spam_delay": "Пауза между заявките",
+  "spam_delay_hint": "Между две размени от една серия, от 0 до 5000 ms.",
+  "spam_delay_unit": "ms",
+  "spam_refresh": "Обновяване на наградите",
+  "spam_load_failed": "Наградите не можаха да бъдат прочетени",
+  "spam_rewards": "Награди",
+  "spam_unavailable": "Недостъпни",
+  "spam_reward_disabled": "Изключена",
+  "spam_reward_paused": "Спряна",
+  "spam_reward_out_of_stock": "Изчерпана",
+  "spam_reward_cooldown": "Налична след {time}",
+  "spam_hint_disabled": "Изключена от канала: не се показва в Twitch.",
+  "spam_hint_paused": "Спряна от канала по време на това излъчване.",
+  "spam_hint_out_of_stock": "Лимитът е достигнат за това излъчване или за вас.",
+  "spam_message_placeholder": "Вашето съобщение…",
+  "spam_message_label": "Съобщение за {reward}",
+  "spam_message_needed": "Първо въведете съобщението",
+  "spam_quantity": "Брой",
+  "spam_decrease": "Намаляване",
+  "spam_increase": "Увеличаване",
+  "spam_max_balance": "Балансът ви не стига за повече",
+  "spam_max_count": "Най-много 25 в серия",
+  "spam_redeem": "Размяна",
+  "spam_redeeming": "Изпращане {done}/{total}…",
+  "spam_missing": "Не достигат",
+  "spam_description": "Описание: {text}",
+  "spam_sent_all": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "Разменено!",
+        "countPlural=*": "Изпратени: {shown}!"
+      }
+    }
+  ],
+  "spam_sent_partial": "Изпратени {sent}/{count} — {reason}",
+  "spam_sent_none": "Неуспешно — {reason}",
+  "spam_toast": "{count} × {reward} в {channel}: {result}",
+  "spam_cancelled": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "{shown} отменена при напускане на страницата",
+        "countPlural=*": "{shown} отменени при напускане на страницата"
+      }
+    }
+  ],
+  "spam_reason_not_enough_points": "недостатъчно точки",
+  "spam_reason_max_per_stream": "достигнат лимит за излъчване",
+  "spam_reason_cooldown": "наградата се презарежда",
+  "spam_reason_disabled": "наградата е изключена",
+  "spam_reason_paused": "наградата е спряна",
+  "spam_reason_out_of_stock": "наградата е изчерпана",
+  "spam_reason_text_required": "липсва съобщение",
+  "spam_reason_unknown": "отказано от Twitch ({code})",
+  "spam_no_rewards": "В момента няма налична награда.",
+  "error_unknown_reward": "Тази награда вече не съществува в канала.",
+  "error_reward_not_redeemable": "Нищо не е изпратено: наградата изисква съобщение, не е достъпна или се презарежда, или точките не стигат.",
+  "ev_rewards_redeemed": [
+    {
+      "declarations": [
+        "input sent",
+        "input shown",
+        "input count",
+        "input reward",
+        "input channel",
+        "input points",
+        "local sentPlural = sent: plural"
+      ],
+      "selectors": [
+        "sentPlural"
+      ],
+      "match": {
+        "sentPlural=one": "{count} × {reward} в {channel} — изпратена {shown}, {points} точки",
+        "sentPlural=*": "{count} × {reward} в {channel} — изпратени {shown}, {points} точки"
+      }
+    }
+  ],
+  "ev_rewards_redeemed_partial": "{count} × {reward} в {channel} — изпратени {sent}/{total}, {points} точки",
+  "ev_rewards_refused": [
+    {
+      "declarations": [
+        "input refused",
+        "input reason",
+        "local refusedPlural = refused: plural"
+      ],
+      "selectors": [
+        "refusedPlural"
+      ],
+      "match": {
+        "refusedPlural=one": "{refused} отказана: {reason}",
+        "refusedPlural=*": "{refused} отказани: {reason}"
+      }
+    }
+  ],
+  "spam_result_lost": "Не пристигна резултат за {reward}: Дневникът показва какво е изпратено."
 }

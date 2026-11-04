@@ -9,6 +9,7 @@
   "theme_dark": "Dark",
   "theme_light": "Light",
   "language_auto": "System language",
+  "language_load_failed": "This language could not be loaded.",
   "common_save": "Save",
   "common_cancel": "Cancel",
   "common_close": "Close",
@@ -126,6 +127,7 @@
   "history_title": "Journal",
   "history_filter_all": "All accounts",
   "history_empty": "Nothing yet.",
+  "history_load_failed": "The Journal could not be read.",
   "event_kind_info": "Info",
   "event_kind_error": "Error",
   "event_kind_watch_started": "Watching",
@@ -223,6 +225,7 @@
   "time_in_hours": "in {count} h",
   "time_in_days": "in {count} d",
   "nav_home": "Home",
+  "nav_main": "Main menu",
   "nav_catalogue": "Catalogue",
   "nav_logs": "Technical logs",
   "nav_account_overview": "Overview",
@@ -294,7 +297,7 @@
   "campaign_ended": "Ended",
   "campaign_channels_any": "Any channel streaming the game",
   "campaign_channels_some": "Allowed channels: {count}",
-  "campaign_account": "Account",
+  "common_account": "Account",
   "campaign_progress": "{current}/{required} min",
   "campaign_link_game": "Link the game account",
   "campaign_open_twitch": "Open on Twitch",
@@ -305,6 +308,7 @@
   "logs_copied": "Logs copied",
   "logs_open_folder": "Open the log folder",
   "logs_empty": "Nothing logged yet.",
+  "logs_load_failed": "The logs could not be read.",
   "logs_load_more": "Load older lines",
   "logs_report": "Report a bug",
   "logs_tab_lines": "Logs",
@@ -995,5 +999,139 @@
   "common_select_all_count": "Select all ({count})",
   "common_select_none_count": "Deselect all ({count})",
   "nav_support_project": "Support the project",
-  "nav_star_github": "Give it a ⭐ on GitHub"
+  "nav_star_github": "Give it a ⭐ on GitHub",
+  "nav_account_spam": "Spam Points",
+  "event_kind_reward_redeemed": "Spam Points",
+  "spam_channels": "Channels",
+  "spam_search_placeholder": "Search a Twitch channel",
+  "spam_search_hint": "Search any Twitch channel, even one outside your Points list.",
+  "spam_last_used": "used {time}",
+  "spam_never_used": "never used",
+  "spam_in_points": "In your Points list",
+  "spam_in_history": "Already in your history",
+  "spam_remove_history": "Remove from history",
+  "spam_removed": "{channel} removed from history",
+  "spam_pick_title": "Choose a channel",
+  "spam_pick_text": "Its custom rewards show here, with this account's balance on the channel.",
+  "spam_balance": "Channel points balance: {points}",
+  "spam_balance_changed": "updated {time}",
+  "spam_balance_live_hint": "Read again every 2 to 3 s while this page is open. The time is the balance's last change.",
+  "spam_balance_paused": "tracking paused",
+  "spam_balance_paused_hint": "The balance is read again as soon as the window has the focus.",
+  "spam_balance_failing": "reading failed",
+  "spam_balance_failing_hint": "The last reads of the balance failed. It is read again every 2 to 3 s.",
+  "spam_seconds_ago": "{count} s ago",
+  "spam_settings": "Spam Points settings",
+  "spam_show_disabled": "Show disabled and paused rewards",
+  "spam_show_out_of_stock": "Show out-of-stock rewards",
+  "spam_delay": "Delay between requests",
+  "spam_delay_hint": "Between two redemptions of one burst, 0 to 5,000 ms.",
+  "spam_delay_unit": "ms",
+  "spam_refresh": "Refresh the rewards",
+  "spam_load_failed": "The rewards could not be read",
+  "spam_rewards": "Rewards",
+  "spam_unavailable": "Unavailable",
+  "spam_reward_disabled": "Disabled",
+  "spam_reward_paused": "Paused",
+  "spam_reward_out_of_stock": "Out of stock",
+  "spam_reward_cooldown": "Available in {time}",
+  "spam_hint_disabled": "Disabled by the channel: it does not show on Twitch.",
+  "spam_hint_paused": "Paused by the channel during this stream.",
+  "spam_hint_out_of_stock": "Limit reached for this stream or for you.",
+  "spam_message_placeholder": "Your message…",
+  "spam_message_label": "Message for {reward}",
+  "spam_message_needed": "Type the message first",
+  "spam_quantity": "Quantity",
+  "spam_decrease": "Decrease",
+  "spam_increase": "Increase",
+  "spam_max_balance": "Your balance allows no more",
+  "spam_max_count": "25 at most per burst",
+  "spam_redeem": "Redeem",
+  "spam_redeeming": "Sending {done}/{total}…",
+  "spam_missing": "Short by",
+  "spam_description": "Description: {text}",
+  "spam_sent_all": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "Redeemed!",
+        "countPlural=*": "{shown} sent!"
+      }
+    }
+  ],
+  "spam_sent_partial": "{sent}/{count} sent — {reason}",
+  "spam_sent_none": "Failed — {reason}",
+  "spam_toast": "{count} × {reward} on {channel}: {result}",
+  "spam_cancelled": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "{shown} cancelled on leaving the page",
+        "countPlural=*": "{shown} cancelled on leaving the page"
+      }
+    }
+  ],
+  "spam_reason_not_enough_points": "not enough points",
+  "spam_reason_max_per_stream": "per-stream limit reached",
+  "spam_reason_cooldown": "reward on cooldown",
+  "spam_reason_disabled": "reward disabled",
+  "spam_reason_paused": "reward paused",
+  "spam_reason_out_of_stock": "reward out of stock",
+  "spam_reason_text_required": "message missing",
+  "spam_reason_unknown": "refused by Twitch ({code})",
+  "spam_no_rewards": "No reward available for now.",
+  "error_unknown_reward": "This reward is no longer on the channel.",
+  "error_reward_not_redeemable": "Nothing was sent: the reward needs a message, is unavailable or on cooldown, or the balance is too low.",
+  "ev_rewards_redeemed": [
+    {
+      "declarations": [
+        "input sent",
+        "input shown",
+        "input count",
+        "input reward",
+        "input channel",
+        "input points",
+        "local sentPlural = sent: plural"
+      ],
+      "selectors": [
+        "sentPlural"
+      ],
+      "match": {
+        "sentPlural=one": "{count} × {reward} on {channel} — {shown} sent, {points} points",
+        "sentPlural=*": "{count} × {reward} on {channel} — {shown} sent, {points} points"
+      }
+    }
+  ],
+  "ev_rewards_redeemed_partial": "{count} × {reward} on {channel} — {sent}/{total} sent, {points} points",
+  "ev_rewards_refused": [
+    {
+      "declarations": [
+        "input refused",
+        "input reason",
+        "local refusedPlural = refused: plural"
+      ],
+      "selectors": [
+        "refusedPlural"
+      ],
+      "match": {
+        "refusedPlural=one": "{refused} refused: {reason}",
+        "refusedPlural=*": "{refused} refused: {reason}"
+      }
+    }
+  ],
+  "spam_result_lost": "No result came back for {reward}: the Journal shows what was sent."
 }

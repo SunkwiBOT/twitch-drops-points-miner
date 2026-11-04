@@ -9,12 +9,15 @@ use tokio::sync::{broadcast, oneshot, Mutex, Notify, RwLock};
 use tokio_util::sync::CancellationToken;
 
 use super::account::{self, AccountCommand, AccountContext, AccountHandle};
+use super::banners::Banners;
+use super::record_event;
+use super::spam_points::{spam_channels, SpamAccess, SpamPoints};
 use crate::api::{
     AccountSnapshot, AccountStats, AccountStatus, CatalogRefresh, CatalogView,
     ChannelsLookupResponse, Command, HistoryQuery, HistoryResponse, LoginFlowStatus, LoginFlowView,
     LogsQuery, LogsReportResponse, LogsResponse, NotificationTest, ProxyTestResponse,
-    RequestsQuery, RequestsResponse, Shell, Snapshot, CHANNELS_LOOKUP_MAX, FOLLOWS_MAX,
-    HISTORY_LIMIT_DEFAULT, HISTORY_LIMIT_MAX, LOGS_LIMIT_DEFAULT, LOGS_LIMIT_MAX,
+    RedeemRequest, RequestsQuery, RequestsResponse, Shell, Snapshot, CHANNELS_LOOKUP_MAX,
+    FOLLOWS_MAX, HISTORY_LIMIT_DEFAULT, HISTORY_LIMIT_MAX, LOGS_LIMIT_DEFAULT, LOGS_LIMIT_MAX,
     REQUESTS_LIMIT_DEFAULT, REQUESTS_LIMIT_MAX,
 };
 use crate::catalog::{Catalog, CatalogClient};
@@ -25,10 +28,12 @@ use crate::events::{EventContext, EventKind, MinerEvent};
 use crate::logs::LogFilter;
 use crate::notifications::Notifier;
 use crate::requests::{RequestCursor, RequestFilter, RequestLog, REPORT_MAX};
+use crate::spam::{BurstProgress, SpamBalance, SpamChannelView};
 use crate::store::vault::{random_salt, Vault, VaultMode};
 use crate::store::{AccountRecord, Credential, HistoryFilter, Store, VaultStatus};
 use crate::twitch::auth::{self, DeviceCode, Poll};
 use crate::twitch::{TwitchClient, TwitchHttp};
+use crate::util::{locked, read_locked, write_locked};
 use zeroize::Zeroizing;
 
 const RECENT_EVENTS: usize = 100;
@@ -58,8 +63,6 @@ const CATALOG_CACHE_KEY: &str = "catalog_cache";
 const CATALOG_CACHE_MAX_AGE: chrono::Duration = chrono::Duration::days(7);
 const HISTORY_PRUNE_EVERY: Duration = Duration::from_secs(3600);
 const REQUESTS_TICK: Duration = Duration::from_secs(60);
-// ! Two tasks of one account must never run together: both would send the
-// beacon, and the old one could save a stale session.
 const TASK_STOP_TIMEOUT: Duration = Duration::from_secs(5);
 const PASSPHRASE_MIN_CHARS: usize = 4;
 const PASSPHRASE_TRIES: u32 = 5;
@@ -117,13 +120,13 @@ pub struct Manager {
     events: broadcast::Sender<MinerEvent>,
     notifier: Notifier,
     login: Mutex<Option<LoginFlow>>,
-    pub changed: Notify,
+    pub changed: Arc<Notify>,
     pub logs: crate::logs::LogBuffer,
     pub requests: RequestLog,
     cancel: CancellationToken,
-    banners: RwLock<HashMap<String, Option<String>>>,
+    banners: Banners,
     recent: std::sync::Mutex<VecDeque<MinerEvent>>,
-    start_failures: std::sync::Mutex<HashMap<String, ErrorCode>>,
+    start_failures: std::sync::Mutex<HashMap<String, Error>>,
     announcing: std::sync::Mutex<()>,
     update_available: std::sync::Mutex<Option<String>>,
     update_checked_at: std::sync::Mutex<Option<chrono::DateTime<Utc>>>,
@@ -131,6 +134,7 @@ pub struct Manager {
     deriving: Mutex<()>,
     wrong_passphrases: std::sync::Mutex<WrongPassphrases>,
     restarts: std::sync::Mutex<HashMap<String, Arc<Mutex<()>>>>,
+    spam: Arc<SpamPoints>,
 }
 
 impl Manager {
@@ -156,6 +160,14 @@ impl Manager {
         });
         let recent = read_recent(&store)?;
         let (events, _) = broadcast::channel(512);
+        let changed = Arc::new(Notify::new());
+        let cancel = CancellationToken::new();
+        let spam = SpamPoints::new(
+            store.clone(),
+            events.clone(),
+            changed.clone(),
+            cancel.clone(),
+        );
         let requests = RequestLog::new(Some(store.clone()));
         let http = shared_http(&device_id, &settings.default_proxy, &requests)?;
 
@@ -180,11 +192,11 @@ impl Manager {
             carried_stats: std::sync::Mutex::new(HashMap::new()),
             events,
             login: Mutex::new(None),
-            changed: Notify::new(),
+            changed,
             logs,
             requests,
-            cancel: CancellationToken::new(),
-            banners: RwLock::new(HashMap::new()),
+            cancel,
+            banners: Banners::default(),
             recent: std::sync::Mutex::new(recent.into()),
             start_failures: std::sync::Mutex::new(HashMap::new()),
             announcing: std::sync::Mutex::new(()),
@@ -193,6 +205,7 @@ impl Manager {
             deriving: Mutex::new(()),
             wrong_passphrases: std::sync::Mutex::new(WrongPassphrases::default()),
             restarts: std::sync::Mutex::new(HashMap::new()),
+            spam: Arc::new(spam),
         }))
     }
 
@@ -210,6 +223,7 @@ impl Manager {
 
     pub async fn shutdown(&self) {
         self.cancel.cancel();
+        self.spam.interrupt().await;
 
         let handles: Vec<AccountHandle> =
             self.accounts.lock().await.drain().map(|(_, h)| h).collect();
@@ -221,6 +235,10 @@ impl Manager {
 
     pub fn subscribe(&self) -> broadcast::Receiver<MinerEvent> {
         self.events.subscribe()
+    }
+
+    pub fn subscribe_bursts(&self) -> broadcast::Receiver<BurstProgress> {
+        self.spam.subscribe()
     }
 
     async fn event_loop(self: Arc<Self>) {
@@ -259,9 +277,7 @@ impl Manager {
     }
 
     fn recent(&self) -> std::sync::MutexGuard<'_, VecDeque<MinerEvent>> {
-        self.recent
-            .lock()
-            .unwrap_or_else(std::sync::PoisonError::into_inner)
+        locked(&self.recent)
     }
 
     fn remember(&self, event: &MinerEvent) {
@@ -282,10 +298,8 @@ impl Manager {
         }
     }
 
-    fn start_failures(&self) -> std::sync::MutexGuard<'_, HashMap<String, ErrorCode>> {
-        self.start_failures
-            .lock()
-            .unwrap_or_else(std::sync::PoisonError::into_inner)
+    fn start_failures(&self) -> std::sync::MutexGuard<'_, HashMap<String, Error>> {
+        locked(&self.start_failures)
     }
 
     async fn catalog_loop(self: Arc<Self>) {
@@ -333,57 +347,43 @@ impl Manager {
             Err(_) => Duration::ZERO,
         };
 
-        if let Ok(mut next) = self.catalog_next_manual.lock() {
-            *next = Utc::now() + chrono::Duration::from_std(gap).unwrap_or_default();
-        }
+        *locked(&self.catalog_next_manual) =
+            Utc::now() + chrono::Duration::from_std(gap).unwrap_or_default();
 
-        let result = {
-            let mut catalog = self.catalog.write().await;
+        let result = match fetch.result {
+            Ok(next) => {
+                let count = next.campaigns.len();
+                let json = serde_json::to_string(&next);
 
-            match fetch.result {
-                Ok(next) => {
-                    tracing::info!(campaigns = next.campaigns.len(), "catalogue refreshed");
+                tracing::info!(campaigns = count, "catalogue refreshed");
+                *self.catalog.write().await = next;
+                self.keep_catalog(json).await;
 
-                    let count = next.campaigns.len();
+                Ok(count)
+            }
+            Err(Error::CatalogRateLimited) => {
+                let retry_in_seconds = CatalogClient::interval().max(fetch.retry_after).as_secs();
+                let mut catalog = self.catalog.write().await;
 
-                    match serde_json::to_string(&next) {
-                        Ok(json) => {
-                            if let Err(error) = self.store.set_setting(CATALOG_CACHE_KEY, &json) {
-                                tracing::warn!(%error, "catalogue not kept for the next start");
-                            }
-                        }
-                        Err(error) => {
-                            tracing::warn!(%error, "catalogue not kept for the next start")
-                        }
-                    }
-
-                    *catalog = next;
-                    Ok(count)
+                if catalog.campaigns.is_empty() {
+                    tracing::info!(
+                        retry_in_seconds,
+                        "catalogue refresh postponed: the Twitch Drops API asks to wait"
+                    );
+                } else {
+                    tracing::info!(
+                        retry_in_seconds,
+                        "catalogue refresh postponed: the Twitch Drops API asks to wait, the saved catalogue is used"
+                    );
                 }
-                Err(Error::CatalogRateLimited) => {
-                    let retry_in_seconds =
-                        CatalogClient::interval().max(fetch.retry_after).as_secs();
 
-                    if catalog.campaigns.is_empty() {
-                        tracing::info!(
-                            retry_in_seconds,
-                            "catalogue refresh postponed: the Twitch Drops API asks to wait"
-                        );
-                    } else {
-                        tracing::info!(
-                            retry_in_seconds,
-                            "catalogue refresh postponed: the Twitch Drops API asks to wait, the saved catalogue is used"
-                        );
-                    }
-
-                    catalog.problem = Some(Error::CatalogRateLimited.code());
-                    Err(Error::CatalogRateLimited)
-                }
-                Err(error) => {
-                    tracing::warn!(%error, "catalogue refresh failed");
-                    catalog.problem = Some(error.code());
-                    Err(error)
-                }
+                catalog.problem = Some(Error::CatalogRateLimited.code());
+                Err(Error::CatalogRateLimited)
+            }
+            Err(error) => {
+                tracing::warn!(%error, "catalogue refresh failed");
+                self.catalog.write().await.problem = Some(error.code());
+                Err(error)
             }
         };
 
@@ -396,11 +396,24 @@ impl Manager {
         (result, fetch.retry_after)
     }
 
+    async fn keep_catalog(&self, json: serde_json::Result<String>) {
+        let kept = async {
+            let json = json?;
+            let store = self.store.clone();
+
+            tokio::task::spawn_blocking(move || store.set_setting(CATALOG_CACHE_KEY, &json))
+                .await
+                .map_err(|error| Error::Storage(error.to_string()))?
+        }
+        .await;
+
+        if let Err(error) = kept {
+            tracing::warn!(%error, "catalogue not kept for the next start");
+        }
+    }
+
     fn next_manual_refresh(&self) -> chrono::DateTime<Utc> {
-        self.catalog_next_manual
-            .lock()
-            .map(|next| *next)
-            .unwrap_or_else(|_| Utc::now())
+        *locked(&self.catalog_next_manual)
     }
 
     pub async fn refresh_catalog(&self) -> Result<CatalogRefresh> {
@@ -635,9 +648,7 @@ impl Manager {
     }
 
     fn wrong_passphrases(&self) -> std::sync::MutexGuard<'_, WrongPassphrases> {
-        self.wrong_passphrases
-            .lock()
-            .unwrap_or_else(std::sync::PoisonError::into_inner)
+        locked(&self.wrong_passphrases)
     }
 
     // ! Kept exactly as typed: unlocking compares it as typed too.
@@ -699,6 +710,7 @@ impl Manager {
         }
 
         self.cancel_login().await;
+        self.spam.cancel_bursts(None);
         self.stop_all_accounts().await;
         *self.vault.write().await = None;
         self.changed.notify_waiters();
@@ -707,10 +719,7 @@ impl Manager {
     }
 
     fn http(&self) -> Arc<TwitchHttp> {
-        self.http
-            .read()
-            .unwrap_or_else(std::sync::PoisonError::into_inner)
-            .clone()
+        read_locked(&self.http).clone()
     }
 
     async fn vault(&self) -> Result<Vault> {
@@ -757,12 +766,12 @@ impl Manager {
                 Ok(())
             }
             Err(error) => {
-                let code = match error {
-                    Error::WrongPassphrase => ErrorCode::InvalidVault,
-                    ref other => other.code(),
+                let failure = match error {
+                    Error::WrongPassphrase => Error::InvalidVault,
+                    ref other => other.clone(),
                 };
 
-                self.start_failures().insert(id, code);
+                self.start_failures().insert(id, failure);
 
                 Err(error)
             }
@@ -779,36 +788,29 @@ impl Manager {
             .load_credential(&record.id, vault)?
             .ok_or_else(|| Error::UnknownAccount(record.id.clone()))?;
         let proxy = self.effective_proxy(&record.settings.proxy).await;
-
-        let http = match TwitchHttp::new(
+        // ! Never without the proxy: the account would reach Twitch from the
+        // real address.
+        let http = TwitchHttp::new(
             self.device_id.clone(),
             proxy.as_deref(),
             self.requests.clone(),
-        ) {
-            Ok(http) => Arc::new(http),
-            Err(error) => {
-                tracing::warn!(account = %record.login, %error, "proxy rejected, account started without it");
-                Arc::new(TwitchHttp::new(
-                    self.device_id.clone(),
-                    None,
-                    self.requests.clone(),
-                )?)
-            }
-        };
-
-        let stats = self
-            .carried_stats
-            .lock()
-            .ok()
-            .and_then(|mut carried| carried.remove(&record.id))
+        )
+        .map_err(|error| match (error, &proxy) {
+            (Error::InvalidProxy(why), _) => Error::InvalidProxy(why),
+            (other, Some(_)) => Error::InvalidProxy(other.to_string()),
+            (other, None) => other,
+        })?;
+        let stats = locked(&self.carried_stats)
+            .remove(&record.id)
             .unwrap_or_default();
         let context = AccountContext {
             store: self.store.clone(),
             vault: vault.clone(),
-            http,
+            http: Arc::new(http),
             catalog: self.catalog.clone(),
             events: self.events.clone(),
             stats,
+            spends: self.spam.spends(&record.id),
         };
         let handle = account::spawn(record, credential, context);
         let mut watcher = handle.snapshot.clone();
@@ -838,15 +840,11 @@ impl Manager {
     fn keep_stats(&self, handle: &AccountHandle) {
         let stats = handle.snapshot.borrow().stats.clone();
 
-        if let Ok(mut carried) = self.carried_stats.lock() {
-            carried.insert(handle.id.clone(), stats);
-        }
+        locked(&self.carried_stats).insert(handle.id.clone(), stats);
     }
 
     fn restart_lock(&self, account_id: &str) -> Arc<Mutex<()>> {
-        self.restarts
-            .lock()
-            .unwrap_or_else(std::sync::PoisonError::into_inner)
+        locked(&self.restarts)
             .entry(account_id.to_owned())
             .or_default()
             .clone()
@@ -993,6 +991,8 @@ impl Manager {
         let _one_at_a_time = restart.lock().await;
         let running = self.accounts.lock().await.remove(account_id);
 
+        self.spam.forget_account(account_id);
+
         if let Some(handle) = running {
             stop_task(handle).await;
         }
@@ -1008,8 +1008,8 @@ impl Manager {
             }
         }
 
-        self.store.delete_account(account_id)?;
         self.requests.forget(account_id);
+        self.store.delete_account(account_id)?;
         self.recent().retain(|event| event.account_id != account_id);
         self.start_failures().remove(account_id);
         self.changed.notify_waiters();
@@ -1181,7 +1181,7 @@ impl Manager {
 
                     self.spawn_account(record, vault).await?;
 
-                    let mut event = MinerEvent::new(
+                    let event = MinerEvent::new(
                         &id,
                         &validation.login,
                         EventKind::LoginCompleted,
@@ -1189,12 +1189,7 @@ impl Manager {
                     )
                     .context(context);
 
-                    match self.store.push_history(&event) {
-                        Ok(history_id) => event.id = history_id,
-                        Err(error) => tracing::warn!(%error, "history write failed"),
-                    }
-
-                    let _ = self.events.send(event);
+                    record_event(&self.store, &self.events, event);
 
                     return Ok(id);
                 }
@@ -1203,11 +1198,7 @@ impl Manager {
     }
 
     pub fn clear_update(&self) {
-        let shown = self
-            .update_available
-            .lock()
-            .unwrap_or_else(std::sync::PoisonError::into_inner)
-            .take();
+        let shown = locked(&self.update_available).take();
 
         if shown.is_some() {
             self.changed.notify_waiters();
@@ -1215,10 +1206,7 @@ impl Manager {
     }
 
     pub fn update_checked(&self) {
-        *self
-            .update_checked_at
-            .lock()
-            .unwrap_or_else(std::sync::PoisonError::into_inner) = Some(Utc::now());
+        *locked(&self.update_checked_at) = Some(Utc::now());
 
         self.changed.notify_waiters();
     }
@@ -1238,16 +1226,8 @@ impl Manager {
     }
 
     pub fn announce_update(&self, version: &str) -> Result<bool> {
-        let _one_at_a_time = self
-            .announcing
-            .lock()
-            .unwrap_or_else(std::sync::PoisonError::into_inner);
-
-        let shown = self
-            .update_available
-            .lock()
-            .unwrap_or_else(std::sync::PoisonError::into_inner)
-            .replace(version.to_owned());
+        let _one_at_a_time = locked(&self.announcing);
+        let shown = locked(&self.update_available).replace(version.to_owned());
 
         if shown.as_deref() != Some(version) {
             self.changed.notify_waiters();
@@ -1259,7 +1239,7 @@ impl Manager {
 
         self.store.set_setting(UPDATE_ANNOUNCED_KEY, version)?;
 
-        let mut event = MinerEvent::new(
+        let event = MinerEvent::new(
             "",
             "",
             EventKind::UpdateAvailable,
@@ -1270,12 +1250,7 @@ impl Manager {
             ..EventContext::default()
         });
 
-        match self.store.push_history(&event) {
-            Ok(history_id) => event.id = history_id,
-            Err(error) => tracing::warn!(%error, "history write failed"),
-        }
-
-        let _ = self.events.send(event);
+        record_event(&self.store, &self.events, event);
 
         Ok(true)
     }
@@ -1312,10 +1287,7 @@ impl Manager {
         *self.settings.write().await = settings;
 
         if let Some(http) = http {
-            *self
-                .http
-                .write()
-                .unwrap_or_else(std::sync::PoisonError::into_inner) = Arc::new(http);
+            *write_locked(&self.http) = Arc::new(http);
 
             let ids: Vec<String> = self
                 .store
@@ -1363,7 +1335,11 @@ impl Manager {
         let records = self.store.accounts()?;
         let vault = self.vault_status().await;
         let accounts_lock = self.accounts.lock().await;
-        let start_failures = self.start_failures().clone();
+        let start_failures: HashMap<String, ErrorCode> = self
+            .start_failures()
+            .iter()
+            .map(|(id, error)| (id.clone(), error.code()))
+            .collect();
         let accounts: Vec<AccountSnapshot> = records
             .iter()
             .map(|record| match accounts_lock.get(&record.id) {
@@ -1384,7 +1360,7 @@ impl Manager {
                 None => {
                     let (status, problem) = match (vault.unlocked, start_failures.get(&record.id)) {
                         (false, _) => (AccountStatus::LoginRequired, Some(ErrorCode::VaultLocked)),
-                        (true, Some(code)) => (AccountStatus::LoginRequired, Some(*code)),
+                        (true, Some(code)) => (failed_start_status(*code), Some(*code)),
                         (true, None) => (AccountStatus::Starting, None),
                     };
 
@@ -1402,12 +1378,22 @@ impl Manager {
                         campaigns: vec![],
                         stats: Default::default(),
                         updated_at: Utc::now(),
+                        spam_channels: vec![],
                     }
                 }
             })
             .collect();
 
         drop(accounts_lock);
+
+        let mut spam_rows = self.store.spam_rows()?;
+        let mut accounts = accounts;
+
+        for account in &mut accounts {
+            let rows = spam_rows.remove(&account.id).unwrap_or_default();
+
+            account.spam_channels = spam_channels(account, &rows);
+        }
 
         let catalog = self.catalog.read().await;
         let settings = self.settings.read().await.clone();
@@ -1420,15 +1406,8 @@ impl Manager {
             }
         }
 
-        let update_available = self
-            .update_available
-            .lock()
-            .unwrap_or_else(std::sync::PoisonError::into_inner)
-            .clone();
-        let update_checked_at = *self
-            .update_checked_at
-            .lock()
-            .unwrap_or_else(std::sync::PoisonError::into_inner);
+        let update_available = locked(&self.update_available).clone();
+        let update_checked_at = *locked(&self.update_checked_at);
 
         Ok(Snapshot {
             version: crate::VERSION.to_owned(),
@@ -1479,6 +1458,13 @@ impl Manager {
                 self.order_campaign(&account_id, &campaign_id, position.map(|p| p as usize))
                     .await?
             }
+            Command::AddSpamChannel { account_id, login } => {
+                self.add_spam_channel(&account_id, &login)?
+            }
+            Command::ForgetSpamChannel { account_id, login } => {
+                self.forget_spam_channel(&account_id, &login)?
+            }
+            Command::CancelBurst { burst_id } => self.cancel_burst(&burst_id),
         }
 
         Ok(())
@@ -1506,32 +1492,15 @@ impl Manager {
 
         within_lookup_max(wanted.len())?;
 
-        let missing: Vec<String> = {
-            let known = self.banners.read().await;
-
-            wanted
-                .iter()
-                .filter(|login| !known.contains_key(*login))
-                .cloned()
-                .collect()
-        };
+        let missing = self.banners.missing(&wanted);
 
         if !missing.is_empty() {
-            let answered = crate::twitch::channels::banners(&self.http(), &missing).await?;
-            let mut known = self.banners.write().await;
-
-            for (login, banner) in answered {
-                known.insert(login, banner);
-            }
+            self.banners
+                .keep(crate::twitch::channels::banners(&self.http(), &missing).await?);
         }
 
-        let known = self.banners.read().await;
-
         Ok(crate::api::ChannelBannersResponse {
-            banners: wanted
-                .into_iter()
-                .filter_map(|login| known.get(&login).cloned().flatten().map(|url| (login, url)))
-                .collect(),
+            banners: self.banners.found(wanted),
         })
     }
 
@@ -1637,6 +1606,62 @@ impl Manager {
             .collect()
     }
 
+    pub fn cancel_burst(&self, burst_id: &str) {
+        self.spam.cancel_burst(burst_id);
+    }
+
+    pub fn add_spam_channel(&self, account_id: &str, login: &str) -> Result<()> {
+        self.spam.add_channel(account_id, login)
+    }
+
+    pub fn forget_spam_channel(&self, account_id: &str, login: &str) -> Result<()> {
+        self.spam.forget_channel(account_id, login)
+    }
+
+    pub async fn spam_channel(&self, account_id: &str, login: &str) -> Result<SpamChannelView> {
+        self.spam
+            .channel(account_id, login, self.spam_access(account_id))
+            .await
+    }
+
+    pub async fn spam_balance(&self, account_id: &str, login: &str) -> Result<SpamBalance> {
+        self.spam
+            .balance(account_id, login, self.spam_access(account_id))
+            .await
+    }
+
+    pub async fn redeem(&self, request: RedeemRequest) -> Result<String> {
+        let account_id = request.account_id.clone();
+        let delay = Duration::from_millis(self.settings.read().await.spam_points.delay_ms.into());
+
+        self.spam
+            .redeem(request, delay, self.spam_access(&account_id))
+            .await
+    }
+
+    async fn spam_access(&self, account_id: &str) -> Result<SpamAccess> {
+        let access = self
+            .accounts
+            .lock()
+            .await
+            .get(account_id)
+            .map(|handle| SpamAccess {
+                client: handle.client.clone(),
+                commands: handle.commands.clone(),
+                snapshot: handle.snapshot.clone(),
+            });
+
+        match access {
+            Some(access) => Ok(access),
+            None if !self.vault_status().await.unlocked => Err(Error::VaultLocked),
+            None => Err(self
+                .start_failures()
+                .get(account_id)
+                .cloned()
+                .unwrap_or_else(|| Error::UnknownAccount(account_id.to_owned()))),
+        }
+    }
+
     pub async fn test_proxy(&self, url: &str) -> Result<ProxyTestResponse> {
         let latency = crate::twitch::test_proxy(url, self.requests.clone()).await?;
 
@@ -1653,6 +1678,15 @@ fn shared_http(device_id: &str, proxy: &str, requests: &RequestLog) -> Result<Tw
         tracing::warn!(%error, "default proxy rejected, continuing without it");
         TwitchHttp::new(device_id.to_owned(), None, requests.clone())
     })
+}
+
+// ! Only a credential the task could not use asks for a new sign-in: a
+// refused proxy is fixed in the settings.
+fn failed_start_status(code: ErrorCode) -> AccountStatus {
+    match code {
+        ErrorCode::InvalidProxy => AccountStatus::Idle,
+        _ => AccountStatus::LoginRequired,
+    }
 }
 
 fn report_header() -> String {
@@ -1675,6 +1709,8 @@ fn within_lookup_max(count: usize) -> Result<()> {
     Ok(())
 }
 
+// ! Two tasks of one account must never run together: both would send the
+// beacon, and the old one could save a stale session.
 async fn stop_task(handle: AccountHandle) {
     handle.cancel.cancel();
 

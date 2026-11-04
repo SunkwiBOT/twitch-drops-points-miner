@@ -9,6 +9,7 @@
   "theme_dark": "Mörkt",
   "theme_light": "Ljust",
   "language_auto": "Systemets språk",
+  "language_load_failed": "Det gick inte att läsa in det här språket.",
   "common_save": "Spara",
   "common_cancel": "Avbryt",
   "common_close": "Stäng",
@@ -126,6 +127,7 @@
   "history_title": "Journal",
   "history_filter_all": "Alla konton",
   "history_empty": "Inget än.",
+  "history_load_failed": "Journalen kunde inte läsas.",
   "event_kind_info": "Info",
   "event_kind_error": "Fel",
   "event_kind_watch_started": "Tittar",
@@ -223,6 +225,7 @@
   "time_in_hours": "om {count} h",
   "time_in_days": "om {count} d",
   "nav_home": "Hem",
+  "nav_main": "Huvudmeny",
   "nav_catalogue": "Katalog",
   "nav_logs": "Tekniska loggar",
   "nav_account_overview": "Översikt",
@@ -294,7 +297,7 @@
   "campaign_ended": "Avslutad",
   "campaign_channels_any": "Valfri kanal som streamar spelet",
   "campaign_channels_some": "Tillåtna kanaler: {count}",
-  "campaign_account": "Konto",
+  "common_account": "Konto",
   "campaign_progress": "{current}/{required} min",
   "campaign_link_game": "Länka spelkontot",
   "campaign_open_twitch": "Öppna på Twitch",
@@ -305,6 +308,7 @@
   "logs_copied": "Loggar kopierade",
   "logs_open_folder": "Öppna loggmappen",
   "logs_empty": "Inget loggat ännu.",
+  "logs_load_failed": "Loggarna kunde inte läsas.",
   "logs_load_more": "Läs in äldre rader",
   "logs_report": "Rapportera en bugg",
   "logs_tab_lines": "Loggar",
@@ -995,5 +999,139 @@
   "common_select_all_count": "Markera alla ({count})",
   "common_select_none_count": "Avmarkera alla ({count})",
   "nav_support_project": "Stöd projektet",
-  "nav_star_github": "Ge en ⭐ på GitHub"
+  "nav_star_github": "Ge en ⭐ på GitHub",
+  "nav_account_spam": "Spam Points",
+  "event_kind_reward_redeemed": "Spam Points",
+  "spam_channels": "Kanaler",
+  "spam_search_placeholder": "Sök en Twitch-kanal",
+  "spam_search_hint": "Sök vilken Twitch-kanal som helst, även utanför din Poänglista.",
+  "spam_last_used": "använd {time}",
+  "spam_never_used": "aldrig använd",
+  "spam_in_points": "I din Poänglista",
+  "spam_in_history": "Redan i din historik",
+  "spam_remove_history": "Ta bort från historiken",
+  "spam_removed": "{channel} togs bort från historiken",
+  "spam_pick_title": "Välj en kanal",
+  "spam_pick_text": "Här visas kanalens egna belöningar, med kontots saldo på kanalen.",
+  "spam_balance": "Saldo av kanalpoäng: {points}",
+  "spam_balance_changed": "uppdaterad {time}",
+  "spam_balance_live_hint": "Läses om var 2–3 s medan sidan är öppen. Tiden är saldots senaste ändring.",
+  "spam_balance_paused": "bevakning pausad",
+  "spam_balance_paused_hint": "Saldot läses om så snart fönstret har fokus.",
+  "spam_balance_failing": "läsningen misslyckades",
+  "spam_balance_failing_hint": "De senaste läsningarna av saldot misslyckades. Det läses om var 2–3 s.",
+  "spam_seconds_ago": "för {count} s sedan",
+  "spam_settings": "Inställningar för Spam Points",
+  "spam_show_disabled": "Visa inaktiverade och pausade",
+  "spam_show_out_of_stock": "Visa slutsålda",
+  "spam_delay": "Paus mellan förfrågningarna",
+  "spam_delay_hint": "Mellan två inlösningar i samma serie, 0 till 5 000 ms.",
+  "spam_delay_unit": "ms",
+  "spam_refresh": "Uppdatera belöningarna",
+  "spam_load_failed": "Belöningarna kunde inte läsas",
+  "spam_rewards": "Belöningar",
+  "spam_unavailable": "Ej tillgängliga",
+  "spam_reward_disabled": "Inaktiverad",
+  "spam_reward_paused": "Pausad",
+  "spam_reward_out_of_stock": "Slutsåld",
+  "spam_reward_cooldown": "Tillgänglig om {time}",
+  "spam_hint_disabled": "Inaktiverad av kanalen: den syns inte på Twitch.",
+  "spam_hint_paused": "Pausad av kanalen under den här sändningen.",
+  "spam_hint_out_of_stock": "Gränsen nådd för den här sändningen eller för dig.",
+  "spam_message_placeholder": "Ditt meddelande…",
+  "spam_message_label": "Meddelande till {reward}",
+  "spam_message_needed": "Skriv meddelandet först",
+  "spam_quantity": "Antal",
+  "spam_decrease": "Minska",
+  "spam_increase": "Öka",
+  "spam_max_balance": "Ditt saldo räcker inte till fler",
+  "spam_max_count": "Högst 25 per serie",
+  "spam_redeem": "Lös in",
+  "spam_redeeming": "Skickar {done}/{total}…",
+  "spam_missing": "Det saknas",
+  "spam_description": "Beskrivning: {text}",
+  "spam_sent_all": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "Inlöst!",
+        "countPlural=*": "{shown} skickade!"
+      }
+    }
+  ],
+  "spam_sent_partial": "{sent}/{count} skickade — {reason}",
+  "spam_sent_none": "Misslyckades — {reason}",
+  "spam_toast": "{count} × {reward} på {channel}: {result}",
+  "spam_cancelled": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "{shown} avbröts när sidan lämnades",
+        "countPlural=*": "{shown} avbröts när sidan lämnades"
+      }
+    }
+  ],
+  "spam_reason_not_enough_points": "inte tillräckligt med poäng",
+  "spam_reason_max_per_stream": "gränsen per sändning nådd",
+  "spam_reason_cooldown": "belöningen har nedkylning",
+  "spam_reason_disabled": "belöningen inaktiverad",
+  "spam_reason_paused": "belöningen pausad",
+  "spam_reason_out_of_stock": "belöningen slutsåld",
+  "spam_reason_text_required": "meddelande saknas",
+  "spam_reason_unknown": "nekad av Twitch ({code})",
+  "spam_no_rewards": "Ingen belöning är tillgänglig just nu.",
+  "error_unknown_reward": "Den här belöningen finns inte längre på kanalen.",
+  "error_reward_not_redeemable": "Inget skickades: belöningen kräver ett meddelande, är inte tillgänglig eller har nedkylning, eller så räcker inte saldot.",
+  "ev_rewards_redeemed": [
+    {
+      "declarations": [
+        "input sent",
+        "input shown",
+        "input count",
+        "input reward",
+        "input channel",
+        "input points",
+        "local sentPlural = sent: plural"
+      ],
+      "selectors": [
+        "sentPlural"
+      ],
+      "match": {
+        "sentPlural=one": "{count} × {reward} på {channel} — {shown} skickad, {points} poäng",
+        "sentPlural=*": "{count} × {reward} på {channel} — {shown} skickade, {points} poäng"
+      }
+    }
+  ],
+  "ev_rewards_redeemed_partial": "{count} × {reward} på {channel} — {sent}/{total} skickade, {points} poäng",
+  "ev_rewards_refused": [
+    {
+      "declarations": [
+        "input refused",
+        "input reason",
+        "local refusedPlural = refused: plural"
+      ],
+      "selectors": [
+        "refusedPlural"
+      ],
+      "match": {
+        "refusedPlural=one": "{refused} nekad: {reason}",
+        "refusedPlural=*": "{refused} nekade: {reason}"
+      }
+    }
+  ],
+  "spam_result_lost": "Inget resultat kom tillbaka för {reward}: Journalen visar vad som skickades."
 }

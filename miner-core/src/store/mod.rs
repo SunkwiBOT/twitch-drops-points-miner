@@ -1,5 +1,6 @@
 pub mod vault;
 
+use std::collections::HashMap;
 use std::fmt;
 use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex, MutexGuard};
@@ -17,6 +18,7 @@ use crate::requests::{
     bucket_end, RequestEntry, RequestFilter, RequestGroup, RequestKind, RequestOutcome,
     RequestSource, SocketEvent,
 };
+use crate::spam::{SpamBalance, SpamRow};
 use crate::twitch::auth::TokenSet;
 use vault::{Sealed, Vault, VaultMode};
 
@@ -81,6 +83,16 @@ CREATE TABLE IF NOT EXISTS request (
     duration   INTEGER NOT NULL,
     count      INTEGER,
     longest    INTEGER
+) STRICT;
+
+CREATE TABLE IF NOT EXISTS spam_channel (
+    account_id TEXT NOT NULL REFERENCES account(id) ON DELETE CASCADE,
+    login      TEXT NOT NULL,
+    added_at   INTEGER,
+    used_at    INTEGER,
+    balance    INTEGER,
+    balance_at INTEGER,
+    PRIMARY KEY (account_id, login)
 ) STRICT;
 ";
 
@@ -183,8 +195,6 @@ fn history_sql(filter: &HistoryFilter, before: bool) -> String {
     )
 }
 
-// ! Kinds and outcomes are fixed names, never user input: they are written into
-// the SQL.
 fn requests_sql(filter: &RequestFilter, before: bool) -> String {
     let mut conditions = vec!["at < :until".to_owned()];
 
@@ -459,9 +469,7 @@ impl Store {
     }
 
     fn lock(&self) -> MutexGuard<'_, Connection> {
-        self.connection
-            .lock()
-            .unwrap_or_else(|poisoned| poisoned.into_inner())
+        crate::util::locked(&self.connection)
     }
 
     pub fn get_setting(&self, key: &str) -> Result<Option<String>> {
@@ -654,7 +662,9 @@ impl Store {
     }
 
     pub fn save_account_settings(&self, id: &str, settings: &AccountSettings) -> Result<()> {
-        let changed = self.lock().execute(
+        let mut connection = self.lock();
+        let transaction = connection.transaction()?;
+        let changed = transaction.execute(
             "UPDATE account SET settings = ?2 WHERE id = ?1",
             params![id, serde_json::to_string(settings)?],
         )?;
@@ -662,6 +672,25 @@ impl Store {
         if changed == 0 {
             return Err(Error::UnknownAccount(id.to_owned()));
         }
+
+        let balances_only: Vec<String> = transaction
+            .prepare(
+                "SELECT login FROM spam_channel
+                 WHERE account_id = ?1 AND added_at IS NULL AND used_at IS NULL",
+            )?
+            .query_map(params![id], |row| row.get(0))?
+            .collect::<rusqlite::Result<_>>()?;
+
+        for login in balances_only {
+            if !settings.points.streamers.iter().any(|s| s.login == login) {
+                transaction.execute(
+                    "DELETE FROM spam_channel WHERE account_id = ?1 AND login = ?2",
+                    params![id, login],
+                )?;
+            }
+        }
+
+        transaction.commit()?;
 
         Ok(())
     }
@@ -945,6 +974,123 @@ impl Store {
             }
         }
     }
+
+    pub fn spam_rows(&self) -> Result<HashMap<String, Vec<SpamRow>>> {
+        let connection = self.lock();
+        let mut statement = connection.prepare(
+            "SELECT account_id, login, added_at, used_at, balance, balance_at FROM spam_channel",
+        )?;
+        let rows = statement.query_map([], |row| {
+            Ok((
+                row.get::<_, String>(0)?,
+                SpamRow {
+                    login: row.get(1)?,
+                    added_at: row.get::<_, Option<i64>>(2)?.and_then(moment),
+                    used_at: row.get::<_, Option<i64>>(3)?.and_then(moment),
+                    balance: row.get(4)?,
+                    balance_at: row.get::<_, Option<i64>>(5)?.and_then(moment),
+                },
+            ))
+        })?;
+        let mut by_account: HashMap<String, Vec<SpamRow>> = HashMap::new();
+
+        for row in rows {
+            let (account_id, row) = row?;
+
+            by_account.entry(account_id).or_default().push(row);
+        }
+
+        Ok(by_account)
+    }
+
+    pub fn add_spam_channel(&self, account_id: &str, login: &str, at: DateTime<Utc>) -> Result<()> {
+        self.lock().execute(
+            "INSERT INTO spam_channel(account_id, login, added_at) VALUES(?1, ?2, ?3)
+             ON CONFLICT(account_id, login) DO UPDATE
+                 SET added_at = coalesce(spam_channel.added_at, excluded.added_at)",
+            params![account_id, login, at.timestamp_millis()],
+        )?;
+
+        Ok(())
+    }
+
+    pub fn mark_spam_used(&self, account_id: &str, login: &str, at: DateTime<Utc>) -> Result<()> {
+        self.lock().execute(
+            "INSERT INTO spam_channel(account_id, login, used_at) VALUES(?1, ?2, ?3)
+             ON CONFLICT(account_id, login) DO UPDATE SET used_at = excluded.used_at",
+            params![account_id, login, at.timestamp_millis()],
+        )?;
+
+        Ok(())
+    }
+
+    pub fn record_spam_balance(
+        &self,
+        account_id: &str,
+        login: &str,
+        balance: i64,
+        at: DateTime<Utc>,
+        in_points: bool,
+    ) -> Result<(SpamBalance, bool)> {
+        let connection = self.lock();
+        let kept: Option<(Option<i64>, Option<i64>)> = connection
+            .query_row(
+                "SELECT balance, balance_at FROM spam_channel WHERE account_id = ?1 AND login = ?2",
+                params![account_id, login],
+                |row| Ok((row.get(0)?, row.get(1)?)),
+            )
+            .optional()?;
+
+        if let Some((Some(kept), Some(changed_at))) = kept {
+            if let Some(changed_at) = moment(changed_at).filter(|_| kept == balance) {
+                return Ok((
+                    SpamBalance {
+                        balance,
+                        changed_at,
+                    },
+                    false,
+                ));
+            }
+        }
+
+        if kept.is_none() && !in_points {
+            return Ok((
+                SpamBalance {
+                    balance,
+                    changed_at: at,
+                },
+                false,
+            ));
+        }
+
+        connection.execute(
+            "INSERT INTO spam_channel(account_id, login, balance, balance_at) VALUES(?1, ?2, ?3, ?4)
+             ON CONFLICT(account_id, login) DO UPDATE SET balance = excluded.balance,
+                 balance_at = excluded.balance_at",
+            params![account_id, login, balance, at.timestamp_millis()],
+        )?;
+
+        Ok((
+            SpamBalance {
+                balance,
+                changed_at: at,
+            },
+            true,
+        ))
+    }
+
+    pub fn forget_spam_channel(&self, account_id: &str, login: &str) -> Result<()> {
+        self.lock().execute(
+            "DELETE FROM spam_channel WHERE account_id = ?1 AND login = ?2",
+            params![account_id, login],
+        )?;
+
+        Ok(())
+    }
+}
+
+fn moment(millis: i64) -> Option<DateTime<Utc>> {
+    DateTime::from_timestamp_millis(millis)
 }
 
 // ! Created private before SQLite opens it, so the file is never readable by

@@ -1,17 +1,11 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
+  import AvatarImage from "./AvatarImage.svelte";
   import { AVATAR_CLASSES, AvatarSize } from "./ui.constants";
 
   type AvatarPropsType = { url: string | undefined; name: string; size: AvatarSize };
 
   let { url, name, size }: AvatarPropsType = $props();
-
-  let failed = $state(false);
-
-  $effect(() => {
-    void url;
-    failed = false;
-  });
 
   const classes = $derived(
     cn(
@@ -21,14 +15,4 @@
   );
 </script>
 
-{#if url && !failed}
-  <img
-    class={cn(classes, "object-cover")}
-    src={url}
-    alt=""
-    loading="lazy"
-    onerror={() => (failed = true)}
-  />
-{:else}
-  <span class={classes} aria-hidden="true">{name.slice(0, 1)}</span>
-{/if}
+<AvatarImage {url} {name} class={classes} />

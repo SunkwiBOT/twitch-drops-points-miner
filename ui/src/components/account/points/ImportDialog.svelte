@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { newStreamer, type ImportActionType } from "../../../lib/accounts/import.svelte";
+  import { newStreamer } from "../../../lib/accounts/import.svelte";
   import type { AccountSettingsType } from "../../../lib/bindings/AccountSettingsType";
   import type { AccountSnapshotType } from "../../../lib/bindings/AccountSnapshotType";
   import type { ChannelType } from "../../../lib/bindings/ChannelType";
@@ -29,8 +29,10 @@
 
   let { open, account, onclose }: ImportDialogPropsType = $props();
 
-  let importAction = $state<ImportActionType | null>(null);
+  let importer = $state<ReturnType<typeof StreamerImport>>();
   let targetId = $state<string | null>(null);
+
+  const importAction = $derived(importer?.primary() ?? null);
 
   const accounts = $derived(app.snapshot?.accounts ?? []);
   const target = $derived(accounts.find((a) => a.id === targetId) ?? account);
@@ -74,7 +76,7 @@
   {onclose}
 >
   <StreamerImport
-    bind:primary={importAction}
+    bind:this={importer}
     {target}
     existing={target.settings.points.streamers.map((s) => s.login)}
     onadd={imported}

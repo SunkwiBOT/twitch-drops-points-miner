@@ -1,7 +1,5 @@
 import { reportActivity } from "../api/client";
 import type { AutoLock } from "../bindings/AutoLock";
-import { ErrorApiMessage } from "../bindings/ErrorApiMessage";
-import { toApiError } from "../errors/errors.utils";
 import { MINUTE_MS } from "../time/time.constants";
 import {
   ACTIVITY_REPORT_GAP_MS,
@@ -9,7 +7,7 @@ import {
   LOCK_CHECK_DELAY_MS,
   LOCK_CHECK_TIMEOUT_MS,
 } from "./state.constants";
-import { checkSession, sessionEnded } from "./state.svelte";
+import { checkSession, sessionEnded, sessionEndedBy } from "./state.svelte";
 
 type WatchedType = { open: boolean; idleMs: number | null };
 
@@ -73,9 +71,7 @@ const report = async (): Promise<void> => {
   try {
     await reportActivity();
   } catch (e: any) {
-    if (toApiError(e).code === ErrorApiMessage.UNAUTHORIZED) {
-      sessionEnded();
-    }
+    sessionEndedBy(e);
   }
 };
 

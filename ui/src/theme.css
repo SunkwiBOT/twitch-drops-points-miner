@@ -190,6 +190,7 @@
   --color-switch-unchecked: var(--switch-unchecked);
   --color-link: var(--link);
   --color-link-hover: var(--link-hover);
+  --color-unsaved: color-mix(in oklab, var(--primary) 16%, var(--popover));
 }
 
 @layer base {

@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { ChannelType } from "../../../lib/bindings/ChannelType";
   import type { SearchChannelType } from "../../../lib/bindings/SearchChannelType";
+  import { searchedChannel } from "../../../lib/channels/channels.svelte";
   import { t } from "../../../lib/i18n/i18n.svelte";
   import { SEARCH_SHOWN_MAX } from "../../../lib/search/search.constants";
   import { TwitchSearch } from "../../../lib/search/search.svelte";
@@ -33,17 +34,8 @@
   const listed = (login: string): boolean => existing.includes(login);
 
   const addFound = (found: SearchChannelType): void => {
-    const channel: ChannelType = {
-      id: "",
-      login: found.login,
-      display_name: found.display_name,
-      avatar_url: found.avatar_url,
-      live: found.live,
-      drops_enabled: false,
-    };
-
     if (!listed(found.login)) {
-      onadd([found.login], [channel]);
+      onadd([found.login], [searchedChannel(found)]);
     }
   };
 

@@ -4,7 +4,7 @@
   import { boxArt, shortDuration } from "../../lib/format.utils";
   import { t } from "../../lib/i18n/i18n.svelte";
   import { ticker } from "../../lib/state/ticker.svelte";
-  import { NEW_MS, URGENT_MS } from "../pages/pages.constants";
+  import { NEW_MS, URGENT_MS } from "./catalogue.constants";
   import Badge from "../ui/Badge.svelte";
   import { BadgeTone, IconName } from "../ui/ui.constants";
   import LinkBadge from "./LinkBadge.svelte";

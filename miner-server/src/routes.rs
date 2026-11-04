@@ -16,8 +16,9 @@ use miner_core::api::{
     ChannelBannersResponse, ChannelQuery, ChannelResponse, ChannelsLookupRequest,
     ChannelsLookupResponse, Command, DashboardLoginRequest, FollowsQuery, FollowsResponse,
     HistoryQuery, HistoryResponse, LoginFlowResponse, LogsQuery, LogsReportResponse, LogsResponse,
-    NotificationTestResponse, ProxyTestRequest, ProxyTestResponse, RequestsQuery, RequestsResponse,
-    SearchQuery, SearchResponse, ServerMessage, SnapshotResponse, UpdateCheck, UpdateCheckResponse,
+    NotificationTestResponse, ProxyTestRequest, ProxyTestResponse, RedeemRequest, RedeemResponse,
+    RequestsQuery, RequestsResponse, SearchQuery, SearchResponse, ServerMessage, SnapshotResponse,
+    SpamBalanceResponse, SpamChannelQuery, SpamChannelResponse, UpdateCheck, UpdateCheckResponse,
 };
 use miner_core::error::{ApiError, ErrorCode};
 use miner_core::Manager;
@@ -107,6 +108,9 @@ pub fn router(state: Shared) -> Router {
         .route(ApiRoute::Requests.path(), get(requests))
         .route(ApiRoute::RequestsReport.path(), get(requests_report))
         .route(ApiRoute::Events.path(), get(events))
+        .route(ApiRoute::SpamChannel.path(), get(spam_channel))
+        .route(ApiRoute::SpamBalance.path(), get(spam_balance))
+        .route(ApiRoute::SpamRedeem.path(), post(redeem))
         .route_layer(middleware::from_fn_with_state(
             state.clone(),
             require_session,
@@ -177,11 +181,13 @@ fn status_of(code: ErrorCode) -> StatusCode {
         | ErrorCode::CrossSiteRequest
         | ErrorCode::UpdateSignatureRefused => StatusCode::FORBIDDEN,
         ErrorCode::InvalidRequest => StatusCode::BAD_REQUEST,
-        ErrorCode::NotFound | ErrorCode::UnknownAccount | ErrorCode::UnknownChannel => {
-            StatusCode::NOT_FOUND
-        }
+        ErrorCode::NotFound
+        | ErrorCode::UnknownAccount
+        | ErrorCode::UnknownChannel
+        | ErrorCode::UnknownReward => StatusCode::NOT_FOUND,
         ErrorCode::VaultLocked => StatusCode::LOCKED,
         ErrorCode::PassphraseRequired
+        | ErrorCode::RewardNotRedeemable
         | ErrorCode::DeviceCodePending
         | ErrorCode::DeviceCodeExpired => StatusCode::CONFLICT,
         ErrorCode::InvalidProxy | ErrorCode::InvalidStreamerLogin => {
@@ -530,6 +536,44 @@ async fn follows(
     }))
 }
 
+async fn spam_channel(
+    State(state): State<Shared>,
+    Params(query): Params<SpamChannelQuery>,
+) -> Result<Json<SpamChannelResponse>, Failure> {
+    Ok(Json(SpamChannelResponse {
+        channel: state
+            .manager
+            .spam_channel(&query.account_id, &query.login)
+            .await?,
+    }))
+}
+
+async fn spam_balance(
+    State(state): State<Shared>,
+    Params(query): Params<SpamChannelQuery>,
+) -> Result<Json<SpamBalanceResponse>, Failure> {
+    Ok(Json(SpamBalanceResponse {
+        balance: state
+            .manager
+            .spam_balance(&query.account_id, &query.login)
+            .await?,
+    }))
+}
+
+// ! Answered once the burst is accepted: its result comes over the push
+// channel, as a burst can outlast a proxy's read timeout.
+async fn redeem(
+    State(state): State<Shared>,
+    Body(request): Body<RedeemRequest>,
+) -> Result<(StatusCode, Json<RedeemResponse>), Failure> {
+    Ok((
+        StatusCode::ACCEPTED,
+        Json(RedeemResponse {
+            burst_id: state.manager.redeem(request).await?,
+        }),
+    ))
+}
+
 async fn test_notifications(State(state): State<Shared>) -> Json<NotificationTestResponse> {
     Json(NotificationTestResponse {
         targets: state.manager.test_notification_targets().await,
@@ -638,6 +682,7 @@ async fn send_snapshot(socket: &mut WebSocket, text: Option<Utf8Bytes>) -> bool 
 
 async fn stream_events(state: Shared, mut socket: WebSocket, lease: Option<SessionLease>) {
     let mut receiver = state.manager.subscribe();
+    let mut bursts = state.manager.subscribe_bursts();
     let mut snapshots = state.snapshots.subscribe();
 
     state.snapshots.publish().await;
@@ -688,6 +733,15 @@ async fn stream_events(state: Shared, mut socket: WebSocket, lease: Option<Sessi
                     }
                 }
                 Err(tokio::sync::broadcast::error::RecvError::Lagged(_)) => state.snapshots.mark_stale(),
+                Err(_) => return,
+            },
+            progress = bursts.recv() => match progress {
+                Ok(progress) => {
+                    if !send(&mut socket, &ServerMessage::Burst { progress }).await {
+                        return;
+                    }
+                }
+                Err(tokio::sync::broadcast::error::RecvError::Lagged(_)) => {}
                 Err(_) => return,
             },
             incoming = socket.recv() => match incoming {

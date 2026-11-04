@@ -41,6 +41,18 @@
   const listed = (name: string): boolean =>
     account.settings.points.streamers.some((s) => s.login === name);
 
+  const lookUp = async (wanted: string): Promise<void> => {
+    try {
+      const found = await lookupChannel(wanted);
+
+      if (open && login === wanted) {
+        channel = found;
+      }
+    } catch (e: any) {
+      // ! Without an answer, the card names the streamer by login.
+    }
+  };
+
   $effect(() => {
     if (!open) {
       return;
@@ -58,9 +70,7 @@
       channel = login ? (known ?? null) : null;
 
       if (login && !known) {
-        lookupChannel(login)
-          .then((found) => (channel = found))
-          .catch(() => {});
+        void lookUp(login);
       }
     });
   });

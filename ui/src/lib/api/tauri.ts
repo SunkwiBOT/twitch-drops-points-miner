@@ -9,6 +9,7 @@ import type { SearchResponseType } from "../bindings/SearchResponseType";
 import type { DesktopEvent } from "../bindings/DesktopEvent";
 import type { AppInfoResponseType } from "../bindings/AppInfoResponseType";
 import type { AutostartResponseType } from "../bindings/AutostartResponseType";
+import type { BurstProgressType } from "../bindings/BurstProgressType";
 import type { CatalogRefreshResponseType } from "../bindings/CatalogRefreshResponseType";
 import type { ChannelResponseType } from "../bindings/ChannelResponseType";
 import type { ChannelsLookupResponseType } from "../bindings/ChannelsLookupResponseType";
@@ -24,10 +25,14 @@ import type { LogsResponseType } from "../bindings/LogsResponseType";
 import type { MinerEventType } from "../bindings/MinerEventType";
 import type { NotificationTestResponseType } from "../bindings/NotificationTestResponseType";
 import type { ProxyTestResponseType } from "../bindings/ProxyTestResponseType";
+import type { RedeemRequestType } from "../bindings/RedeemRequestType";
+import type { RedeemResponseType } from "../bindings/RedeemResponseType";
 import type { RequestsQueryType } from "../bindings/RequestsQueryType";
 import type { RequestsResponseType } from "../bindings/RequestsResponseType";
 import type { SnapshotResponseType } from "../bindings/SnapshotResponseType";
 import type { SnapshotType } from "../bindings/SnapshotType";
+import type { SpamBalanceResponseType } from "../bindings/SpamBalanceResponseType";
+import type { SpamChannelResponseType } from "../bindings/SpamChannelResponseType";
 import type { StartupProblemResponseType } from "../bindings/StartupProblemResponseType";
 import { toApiError } from "../errors/errors.utils";
 import type { TauriCommand, UpdateEvent } from "./api.constants";
@@ -66,6 +71,15 @@ type TauriCommandsType = {
     result: ChannelBannersResponseType;
   };
   [TauriCommand.FOLLOWS]: { args: { accountId: string }; result: FollowsResponseType };
+  [TauriCommand.SPAM_CHANNEL]: {
+    args: { accountId: string; login: string };
+    result: SpamChannelResponseType;
+  };
+  [TauriCommand.SPAM_BALANCE]: {
+    args: { accountId: string; login: string };
+    result: SpamBalanceResponseType;
+  };
+  [TauriCommand.REDEEM]: { args: { request: RedeemRequestType }; result: RedeemResponseType };
   [TauriCommand.TEST_NOTIFICATIONS]: { args: undefined; result: NotificationTestResponseType };
   [TauriCommand.TEST_PROXY]: { args: { url: string }; result: ProxyTestResponseType };
   [TauriCommand.HISTORY]: { args: { query: HistoryQueryType }; result: HistoryResponseType };
@@ -99,6 +113,7 @@ type DesktopEventsType = {
   [DesktopEvent.SNAPSHOT]: SnapshotType;
   [DesktopEvent.MINER_EVENT]: MinerEventType;
   [DesktopEvent.CLOSE_REQUESTED]: null;
+  [DesktopEvent.BURST_PROGRESS]: BurstProgressType;
 };
 
 type UpdateEventsType = {

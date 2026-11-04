@@ -5,6 +5,7 @@ import type { CloseAction } from "./CloseAction";
 import type { DateFormat } from "./DateFormat";
 import type { HistoryRetention } from "./HistoryRetention";
 import type { NotificationSettingsType } from "./NotificationSettingsType";
+import type { SpamPointsSettingsType } from "./SpamPointsSettingsType";
 import type { Theme } from "./Theme";
 import type { UpdateInterval } from "./UpdateInterval";
 
@@ -21,4 +22,5 @@ export type GlobalSettingsType = {
   date_format: DateFormat;
   clock_format: ClockFormat;
   history_retention: HistoryRetention;
+  spam_points: SpamPointsSettingsType;
 };

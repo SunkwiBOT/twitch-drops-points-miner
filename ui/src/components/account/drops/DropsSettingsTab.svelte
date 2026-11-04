@@ -1,11 +1,11 @@
 <script lang="ts">
   import { untrack } from "svelte";
 
+  import { dropsScopeChoices } from "../../../lib/accounts/scope.utils";
   import { editsOf } from "../../../lib/state/edits.svelte";
   import { AccountField } from "../../../lib/state/state.constants";
   import type { AccountSnapshotType } from "../../../lib/bindings/AccountSnapshotType";
   import { DropsOrder } from "../../../lib/bindings/DropsOrder";
-  import { DropsScope } from "../../../lib/bindings/DropsScope";
   import { t } from "../../../lib/i18n/i18n.svelte";
   import ChoiceCards from "../../ui/ChoiceCards.svelte";
   import FormField from "../../ui/FormField.svelte";
@@ -76,23 +76,7 @@
       value={drops.scope}
       label={t.drops_scope()}
       onchange={(scope) => edits.set(AccountField.SCOPE, (s) => (s.drops.scope = scope))}
-      choices={[
-        {
-          value: DropsScope.ALL,
-          title: t.drops_scope_all(),
-          description: t.drops_scope_all_hint(),
-        },
-        {
-          value: DropsScope.LINKED_ONLY,
-          title: t.drops_scope_linked_only(),
-          description: t.drops_scope_linked_hint(),
-        },
-        {
-          value: DropsScope.PRIORITY_ONLY,
-          title: t.drops_scope_priority_only(),
-          description: t.drops_scope_priority_hint(),
-        },
-      ]}
+      choices={dropsScopeChoices(true)}
     />
     <Setting
       title={t.drops_linked_first()}

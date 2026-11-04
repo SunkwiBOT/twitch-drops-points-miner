@@ -31,10 +31,9 @@
     ButtonVariant,
     IconName,
   } from "../ui/ui.constants";
+  import { RECENT_MAX } from "./home.constants";
 
   type HomePropsType = { snapshot: SnapshotType };
-
-  const RECENT_MAX = 14;
 
   let { snapshot }: HomePropsType = $props();
 

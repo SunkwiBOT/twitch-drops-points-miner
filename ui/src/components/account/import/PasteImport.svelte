@@ -37,8 +37,6 @@
   type PasteImportPropsType = {
     open: boolean;
     existing: string[];
-    offered: ImportCandidateType[] | null;
-    check: ImportActionType | null;
   };
 
   type EntryType = {
@@ -48,12 +46,7 @@
     channel: ChannelType | null;
   };
 
-  let {
-    open,
-    existing,
-    offered = $bindable(),
-    check = $bindable(),
-  }: PasteImportPropsType = $props();
+  let { open, existing }: PasteImportPropsType = $props();
 
   const ENTRY_CLASSES: Record<ImportEntryStatus, string> = {
     [ImportEntryStatus.PENDING]: "border-dashed border-input text-muted-foreground",
@@ -184,23 +177,24 @@
     pasted = "";
   };
 
-  $effect(() => {
-    offered = entries.length > 0 && !checking ? fromChannels(found) : null;
-  });
+  const candidates = $derived(entries.length > 0 && !checking ? fromChannels(found) : null);
 
-  $effect(() => {
-    check =
-      checking || (entries.length === 0 && pasted.trim())
-        ? {
-            label: t.import_check(),
-            icon: IconName.SEARCH,
-            busy: checking,
-            busyLabel: t.points_checking(),
-            disabled: !pasted.trim(),
-            run: () => void run(),
-          }
-        : null;
-  });
+  const check = $derived(
+    checking || (entries.length === 0 && pasted.trim())
+      ? {
+          label: t.import_check(),
+          icon: IconName.SEARCH,
+          busy: checking,
+          busyLabel: t.points_checking(),
+          disabled: !pasted.trim(),
+          run: () => void run(),
+        }
+      : null,
+  );
+
+  export const offered = (): ImportCandidateType[] | null => candidates;
+
+  export const checkAction = (): ImportActionType | null => check;
 </script>
 
 {#if open}

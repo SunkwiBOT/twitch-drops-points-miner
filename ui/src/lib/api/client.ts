@@ -4,6 +4,7 @@ import { openUrl as tauriOpenUrl } from "@tauri-apps/plugin-opener";
 import type { AppInfoType } from "../bindings/AppInfoType";
 import type { AuthResponseType } from "../bindings/AuthResponseType";
 import type { AuthStatusType } from "../bindings/AuthStatusType";
+import type { BurstProgressType } from "../bindings/BurstProgressType";
 import type { CatalogRefreshResponseType } from "../bindings/CatalogRefreshResponseType";
 import type { CatalogRefreshType } from "../bindings/CatalogRefreshType";
 import type { ChannelQueryType } from "../bindings/ChannelQueryType";
@@ -29,6 +30,8 @@ import type { NotificationTestResponseType } from "../bindings/NotificationTestR
 import type { NotificationTestType } from "../bindings/NotificationTestType";
 import type { ProxyTestRequestType } from "../bindings/ProxyTestRequestType";
 import type { ProxyTestResponseType } from "../bindings/ProxyTestResponseType";
+import type { RedeemRequestType } from "../bindings/RedeemRequestType";
+import type { RedeemResponseType } from "../bindings/RedeemResponseType";
 import type { RequestsQueryType } from "../bindings/RequestsQueryType";
 import type { RequestsResponseType } from "../bindings/RequestsResponseType";
 import type { SearchQueryType } from "../bindings/SearchQueryType";
@@ -39,6 +42,11 @@ import { RoutesApi } from "../bindings/RoutesApi";
 import type { ServerMessageType } from "../bindings/ServerMessageType";
 import type { SnapshotResponseType } from "../bindings/SnapshotResponseType";
 import type { SnapshotType } from "../bindings/SnapshotType";
+import type { SpamBalanceResponseType } from "../bindings/SpamBalanceResponseType";
+import type { SpamBalanceType } from "../bindings/SpamBalanceType";
+import type { SpamChannelQueryType } from "../bindings/SpamChannelQueryType";
+import type { SpamChannelResponseType } from "../bindings/SpamChannelResponseType";
+import type { SpamChannelViewType } from "../bindings/SpamChannelViewType";
 import type { StartupProblemType } from "../bindings/StartupProblemType";
 import type { UpdateCheckResponseType } from "../bindings/UpdateCheckResponseType";
 import {
@@ -60,6 +68,7 @@ import type {
 type ListenersType = {
   onSnapshot: (snapshot: SnapshotType) => void;
   onEvent: (event: MinerEventType) => void;
+  onBurst: (progress: BurstProgressType) => void;
   onConnection: (connected: boolean) => void;
 };
 
@@ -174,6 +183,51 @@ export const fetchFollows = async (accountId: string): Promise<ChannelType[]> =>
   return response.data.channels;
 };
 
+export const fetchSpamChannel = async (
+  accountId: string,
+  login: string,
+): Promise<SpamChannelViewType> => {
+  if (isTauri()) {
+    return (await invoke(TauriCommand.SPAM_CHANNEL, { accountId, login })).channel;
+  }
+
+  const response = await http<SpamChannelResponseType>(RoutesApi.SPAM_CHANNEL, {
+    method: HttpMethod.GET,
+    params: { account_id: accountId, login } satisfies SpamChannelQueryType,
+  });
+
+  return response.data.channel;
+};
+
+export const fetchSpamBalance = async (
+  accountId: string,
+  login: string,
+): Promise<SpamBalanceType> => {
+  if (isTauri()) {
+    return (await invoke(TauriCommand.SPAM_BALANCE, { accountId, login })).balance;
+  }
+
+  const response = await http<SpamBalanceResponseType>(RoutesApi.SPAM_BALANCE, {
+    method: HttpMethod.GET,
+    params: { account_id: accountId, login } satisfies SpamChannelQueryType,
+  });
+
+  return response.data.balance;
+};
+
+export const redeemRewards = async (request: RedeemRequestType): Promise<string> => {
+  if (isTauri()) {
+    return (await invoke(TauriCommand.REDEEM, { request })).burst_id;
+  }
+
+  const response = await http<RedeemResponseType>(RoutesApi.SPAM_REDEEM, {
+    method: HttpMethod.POST,
+    data: request,
+  });
+
+  return response.data.burst_id;
+};
+
 export const testNotifications = async (): Promise<NotificationTestType[]> => {
   if (isTauri()) {
     return (await invoke(TauriCommand.TEST_NOTIFICATIONS)).targets;
@@ -269,7 +323,8 @@ const isServerMessage = (value: unknown): value is ServerMessageType =>
   value !== null &&
   "type" in value &&
   ((value.type === ServerMessageKind.SNAPSHOT && "snapshot" in value) ||
-    (value.type === ServerMessageKind.EVENT && "event" in value));
+    (value.type === ServerMessageKind.EVENT && "event" in value) ||
+    (value.type === ServerMessageKind.BURST && "progress" in value));
 
 const parseServerMessage = (raw: unknown): ServerMessageType | null => {
   try {
@@ -286,12 +341,14 @@ const parseServerMessage = (raw: unknown): ServerMessageType | null => {
 const subscribeDesktop = async (listeners: ListenersType): Promise<UnsubscribeType> => {
   const stopSnapshot = await listen(DesktopEvent.SNAPSHOT, listeners.onSnapshot);
   const stopEvent = await listen(DesktopEvent.MINER_EVENT, listeners.onEvent);
+  const stopBurst = await listen(DesktopEvent.BURST_PROGRESS, listeners.onBurst);
 
   listeners.onConnection(true);
 
   return () => {
     stopSnapshot();
     stopEvent();
+    stopBurst();
   };
 };
 
@@ -317,6 +374,8 @@ const subscribeDashboard = (listeners: ListenersType): UnsubscribeType => {
         listeners.onSnapshot(message.snapshot);
       } else if (message?.type === ServerMessageKind.EVENT) {
         listeners.onEvent(message.event);
+      } else if (message?.type === ServerMessageKind.BURST) {
+        listeners.onBurst(message.progress);
       }
     };
     current.onclose = () => {

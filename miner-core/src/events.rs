@@ -2,6 +2,7 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use ts_rs::TS;
 
+use crate::error::ErrorCode;
 use crate::scheduler::PointsReason;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default, Hash, TS)]
@@ -31,10 +32,11 @@ pub enum EventKind {
     SessionExpired,
     LoginCompleted,
     UpdateAvailable,
+    RewardRedeemed,
 }
 
 impl EventKind {
-    pub const ALL: [EventKind; 22] = [
+    pub const ALL: [EventKind; 23] = [
         Self::Info,
         Self::Error,
         Self::WatchStarted,
@@ -57,6 +59,7 @@ impl EventKind {
         Self::SessionExpired,
         Self::LoginCompleted,
         Self::UpdateAvailable,
+        Self::RewardRedeemed,
     ];
 
     pub fn miner(self) -> Option<MinerKind> {
@@ -82,7 +85,8 @@ impl EventKind {
             | Self::WatchStopped
             | Self::SessionExpired
             | Self::LoginCompleted
-            | Self::UpdateAvailable => None,
+            | Self::UpdateAvailable
+            | Self::RewardRedeemed => None,
         }
     }
 
@@ -90,7 +94,13 @@ impl EventKind {
         matches!(self, Self::WatchStarted | Self::WatchStopped)
     }
 
+    // ! A Spam Points burst is the user's own spend: no miner acts, but it is
+    // a channel points event.
     pub fn category(self, miner: Option<MinerKind>) -> EventCategory {
+        if self == Self::RewardRedeemed {
+            return EventCategory::Points;
+        }
+
         let miner = if self.follows_miner() {
             miner
         } else {
@@ -128,6 +138,7 @@ impl EventKind {
             Self::SessionExpired => "SESSION_EXPIRED",
             Self::LoginCompleted => "LOGIN_COMPLETED",
             Self::UpdateAvailable => "UPDATE_AVAILABLE",
+            Self::RewardRedeemed => "REWARD_REDEEMED",
         }
     }
 
@@ -244,6 +255,20 @@ pub struct EventContext {
     pub staked: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub version: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reward_title: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reward_color: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub count: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sent: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cancelled: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub refusals: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub failures: Option<Vec<ErrorCode>>,
 }
 
 impl EventContext {

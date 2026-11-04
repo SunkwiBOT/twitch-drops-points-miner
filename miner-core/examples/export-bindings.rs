@@ -6,8 +6,9 @@ use miner_core::api::{
     ChannelsLookupRequest, ChannelsLookupResponse, Command, CommandName, DashboardLoginRequest,
     DesktopEvent, FollowsQuery, FollowsResponse, HistoryQuery, HistoryResponse, LoginFlowResponse,
     LogsQuery, LogsReportResponse, LogsResponse, NotificationTestResponse, ProxyTestRequest,
-    ProxyTestResponse, RequestsQuery, RequestsResponse, SearchQuery, SearchResponse, ServerMessage,
-    ServerMessageKind, SnapshotResponse, StartupProblemResponse, UpdateCheckResponse,
+    ProxyTestResponse, RedeemRequest, RedeemResponse, RequestsQuery, RequestsResponse, SearchQuery,
+    SearchResponse, ServerMessage, ServerMessageKind, SnapshotResponse, SpamBalanceResponse,
+    SpamChannelQuery, SpamChannelResponse, StartupProblemResponse, UpdateCheckResponse,
 };
 use miner_core::error::{ApiError, ErrorCode};
 use miner_core::scheduler::SlotPurposeKind;
@@ -102,6 +103,11 @@ fn main() {
     export::<SearchResponse>(&cfg);
     export::<ProxyTestRequest>(&cfg);
     export::<DashboardLoginRequest>(&cfg);
+    export::<SpamChannelQuery>(&cfg);
+    export::<SpamChannelResponse>(&cfg);
+    export::<SpamBalanceResponse>(&cfg);
+    export::<RedeemRequest>(&cfg);
+    export::<RedeemResponse>(&cfg);
     export::<ServerMessage>(&cfg);
     export::<ServerMessageKind>(&cfg);
     export::<CommandName>(&cfg);

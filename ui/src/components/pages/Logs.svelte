@@ -8,7 +8,7 @@
   import Segmented from "../ui/Segmented.svelte";
   import { IconName } from "../ui/ui.constants";
   import { segmentId } from "../ui/ui.utils";
-  import { LOGS_PANEL_ID, LOGS_TAB_SLUGS, LogsTab } from "./pages.constants";
+  import { LOGS_PANEL_ID, LOGS_TAB_SLUGS, LogsTab } from "../logs/logs.constants";
 
   type LogsPropsType = { snapshot: SnapshotType };
 

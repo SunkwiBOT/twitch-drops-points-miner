@@ -9,6 +9,7 @@
   "theme_dark": "Σκούρο",
   "theme_light": "Φωτεινό",
   "language_auto": "Γλώσσα συστήματος",
+  "language_load_failed": "Δεν ήταν δυνατή η φόρτωση αυτής της γλώσσας.",
   "common_save": "Αποθήκευση",
   "common_cancel": "Ακύρωση",
   "common_close": "Κλείσιμο",
@@ -126,6 +127,7 @@
   "history_title": "Χρονικό",
   "history_filter_all": "Όλοι οι λογαριασμοί",
   "history_empty": "Τίποτα ακόμα.",
+  "history_load_failed": "Δεν ήταν δυνατή η ανάγνωση του Χρονικού.",
   "event_kind_info": "Πληροφορία",
   "event_kind_error": "Σφάλμα",
   "event_kind_watch_started": "Παρακολούθηση",
@@ -223,6 +225,7 @@
   "time_in_hours": "σε {count} ώ.",
   "time_in_days": "σε {count} ημ.",
   "nav_home": "Αρχική",
+  "nav_main": "Κύριο μενού",
   "nav_catalogue": "Κατάλογος",
   "nav_logs": "Αρχεία καταγραφής",
   "nav_account_overview": "Επισκόπηση",
@@ -294,7 +297,7 @@
   "campaign_ended": "Έληξε",
   "campaign_channels_any": "Οποιοδήποτε κανάλι μεταδίδει το παιχνίδι",
   "campaign_channels_some": "Επιτρεπόμενα κανάλια: {count}",
-  "campaign_account": "Λογαριασμός",
+  "common_account": "Λογαριασμός",
   "campaign_progress": "{current}/{required} λεπτά",
   "campaign_link_game": "Σύνδεση λογαριασμού παιχνιδιού",
   "campaign_open_twitch": "Άνοιγμα στο Twitch",
@@ -305,6 +308,7 @@
   "logs_copied": "Τα αρχεία καταγραφής αντιγράφηκαν",
   "logs_open_folder": "Άνοιγμα φακέλου καταγραφής",
   "logs_empty": "Δεν έχει καταγραφεί τίποτα ακόμα.",
+  "logs_load_failed": "Δεν ήταν δυνατή η ανάγνωση των καταγραφών.",
   "logs_load_more": "Φόρτωση παλαιότερων γραμμών",
   "logs_report": "Αναφορά σφάλματος",
   "logs_tab_lines": "Καταγραφές",
@@ -491,7 +495,7 @@
   "reward_watch_stream": "Παρακολούθηση του stream",
   "reward_subscribe": "Συνδρομή: δεν εξορύσσεται",
   "reward_kind_badge": "Σήμα",
-  "reward_kind_item": "Αντικείμενο παιχνιδιού",
+  "reward_kind_item": "Αντικείμενο",
   "reward_sub_only": "Sub",
   "reward_ignore": "Παράβλεψη αυτού του αντικειμένου",
   "reward_unignore": "Εξόρυξη αυτού του αντικειμένου ξανά",
@@ -736,7 +740,7 @@
   "inventory_paused": "Ο λογαριασμός είναι σε παύση: το απόθεμά του στο Twitch διαβάζεται όσο λειτουργεί.",
   "inventory_claimed_all": "Ανταμοιβές που παραλήφθηκαν: {count}",
   "reward_state_claimed": "Εξαργυρώθηκε",
-  "reward_state_ready": "Προς εξαργύρωση",
+  "reward_state_ready": "Για εξαργύρωση",
   "reward_claim": "Εξαργύρωση",
   "notify_test_title": "Δοκιμή: {text}",
   "notify_test_detail": "Το Twitch Drops & Points Miner φτάνει σε αυτόν τον προορισμό. Έτσι φαίνεται ένα εξαργυρωμένο drop. Όλα τα ονόματα και οι εικόνες αυτού του μηνύματος είναι δοκιμαστικά.",
@@ -995,5 +999,139 @@
   "common_select_all_count": "Επιλογή όλων ({count})",
   "common_select_none_count": "Αποεπιλογή όλων ({count})",
   "nav_support_project": "Στήριξη του έργου",
-  "nav_star_github": "Ένα ⭐ στο GitHub"
+  "nav_star_github": "Ένα ⭐ στο GitHub",
+  "nav_account_spam": "Spam Points",
+  "event_kind_reward_redeemed": "Spam Points",
+  "spam_channels": "Κανάλια",
+  "spam_search_placeholder": "Αναζήτηση καναλιού Twitch",
+  "spam_search_hint": "Αναζητήστε οποιοδήποτε κανάλι Twitch, ακόμη κι εκτός της λίστας Πόντων σας.",
+  "spam_last_used": "χρήση {time}",
+  "spam_never_used": "δεν χρησιμοποιήθηκε ποτέ",
+  "spam_in_points": "Στη λίστα Πόντων σας",
+  "spam_in_history": "Ήδη στο ιστορικό σας",
+  "spam_remove_history": "Αφαίρεση από το ιστορικό",
+  "spam_removed": "Το {channel} αφαιρέθηκε από το ιστορικό",
+  "spam_pick_title": "Επιλέξτε κανάλι",
+  "spam_pick_text": "Εδώ εμφανίζονται οι δικές του ανταμοιβές, με το υπόλοιπο αυτού του λογαριασμού στο κανάλι.",
+  "spam_balance": "Υπόλοιπο πόντων καναλιού: {points}",
+  "spam_balance_changed": "ενημέρωση {time}",
+  "spam_balance_live_hint": "Διαβάζεται ξανά κάθε 2 έως 3 δευτ. όσο η σελίδα είναι ανοιχτή. Η ώρα είναι της τελευταίας αλλαγής του υπολοίπου.",
+  "spam_balance_paused": "η παρακολούθηση σε παύση",
+  "spam_balance_paused_hint": "Το υπόλοιπο διαβάζεται ξανά μόλις το παράθυρο αποκτήσει εστίαση.",
+  "spam_balance_failing": "αποτυχία ανάγνωσης",
+  "spam_balance_failing_hint": "Οι τελευταίες αναγνώσεις του υπολοίπου απέτυχαν. Διαβάζεται ξανά κάθε 2 έως 3 δευτ.",
+  "spam_seconds_ago": "πριν από {count} δευτ.",
+  "spam_settings": "Ρυθμίσεις Spam Points",
+  "spam_show_disabled": "Εμφάνιση απενεργοποιημένων και σε παύση",
+  "spam_show_out_of_stock": "Εμφάνιση εξαντλημένων",
+  "spam_delay": "Παύση μεταξύ των αιτημάτων",
+  "spam_delay_hint": "Μεταξύ δύο εξαργυρώσεων της ίδιας σειράς, από 0 έως 5.000 ms.",
+  "spam_delay_unit": "ms",
+  "spam_refresh": "Ανανέωση των ανταμοιβών",
+  "spam_load_failed": "Δεν ήταν δυνατή η ανάγνωση των ανταμοιβών",
+  "spam_rewards": "Ανταμοιβές",
+  "spam_unavailable": "Μη διαθέσιμες",
+  "spam_reward_disabled": "Απενεργοποιημένη",
+  "spam_reward_paused": "Σε παύση",
+  "spam_reward_out_of_stock": "Εξαντλήθηκε",
+  "spam_reward_cooldown": "Διαθέσιμη σε {time}",
+  "spam_hint_disabled": "Απενεργοποιημένη από το κανάλι: δεν εμφανίζεται στο Twitch.",
+  "spam_hint_paused": "Σε παύση από το κανάλι σε αυτή τη μετάδοση.",
+  "spam_hint_out_of_stock": "Το όριο συμπληρώθηκε για αυτή τη μετάδοση ή για εσάς.",
+  "spam_message_placeholder": "Το μήνυμά σας…",
+  "spam_message_label": "Μήνυμα για {reward}",
+  "spam_message_needed": "Γράψτε πρώτα το μήνυμα",
+  "spam_quantity": "Ποσότητα",
+  "spam_decrease": "Μείωση",
+  "spam_increase": "Αύξηση",
+  "spam_max_balance": "Το υπόλοιπό σας δεν φτάνει για περισσότερες",
+  "spam_max_count": "Έως 25 ανά σειρά",
+  "spam_redeem": "Εξαργύρωση",
+  "spam_redeeming": "Αποστολή {done}/{total}…",
+  "spam_missing": "Λείπουν",
+  "spam_description": "Περιγραφή: {text}",
+  "spam_sent_all": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "Εξαργυρώθηκε!",
+        "countPlural=*": "Στάλθηκαν {shown}!"
+      }
+    }
+  ],
+  "spam_sent_partial": "Στάλθηκαν {sent}/{count} — {reason}",
+  "spam_sent_none": "Απέτυχε — {reason}",
+  "spam_toast": "{count} × {reward} στο {channel}: {result}",
+  "spam_cancelled": [
+    {
+      "declarations": [
+        "input count",
+        "input shown",
+        "local countPlural = count: plural"
+      ],
+      "selectors": [
+        "countPlural"
+      ],
+      "match": {
+        "countPlural=one": "{shown} ακυρώθηκε με την έξοδο από τη σελίδα",
+        "countPlural=*": "{shown} ακυρώθηκαν με την έξοδο από τη σελίδα"
+      }
+    }
+  ],
+  "spam_reason_not_enough_points": "ανεπαρκείς πόντοι",
+  "spam_reason_max_per_stream": "συμπληρώθηκε το όριο ανά μετάδοση",
+  "spam_reason_cooldown": "η ανταμοιβή επαναφορτίζεται",
+  "spam_reason_disabled": "η ανταμοιβή είναι απενεργοποιημένη",
+  "spam_reason_paused": "η ανταμοιβή είναι σε παύση",
+  "spam_reason_out_of_stock": "η ανταμοιβή εξαντλήθηκε",
+  "spam_reason_text_required": "λείπει το μήνυμα",
+  "spam_reason_unknown": "απορρίφθηκε από το Twitch ({code})",
+  "spam_no_rewards": "Καμία ανταμοιβή διαθέσιμη προς το παρόν.",
+  "error_unknown_reward": "Αυτή η ανταμοιβή δεν υπάρχει πια στο κανάλι.",
+  "error_reward_not_redeemable": "Δεν στάλθηκε τίποτα: η ανταμοιβή χρειάζεται μήνυμα, δεν είναι διαθέσιμη ή επαναφορτίζεται, ή οι πόντοι δεν φτάνουν.",
+  "ev_rewards_redeemed": [
+    {
+      "declarations": [
+        "input sent",
+        "input shown",
+        "input count",
+        "input reward",
+        "input channel",
+        "input points",
+        "local sentPlural = sent: plural"
+      ],
+      "selectors": [
+        "sentPlural"
+      ],
+      "match": {
+        "sentPlural=one": "{count} × {reward} στο {channel} — στάλθηκε {shown}, {points} πόντοι",
+        "sentPlural=*": "{count} × {reward} στο {channel} — στάλθηκαν {shown}, {points} πόντοι"
+      }
+    }
+  ],
+  "ev_rewards_redeemed_partial": "{count} × {reward} στο {channel} — στάλθηκαν {sent}/{total}, {points} πόντοι",
+  "ev_rewards_refused": [
+    {
+      "declarations": [
+        "input refused",
+        "input reason",
+        "local refusedPlural = refused: plural"
+      ],
+      "selectors": [
+        "refusedPlural"
+      ],
+      "match": {
+        "refusedPlural=one": "{refused} απορρίφθηκε: {reason}",
+        "refusedPlural=*": "{refused} απορρίφθηκαν: {reason}"
+      }
+    }
+  ],
+  "spam_result_lost": "Δεν ήρθε αποτέλεσμα για {reward}: το Χρονικό δείχνει τι στάλθηκε."
 }

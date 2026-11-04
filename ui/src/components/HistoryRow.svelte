@@ -1,6 +1,7 @@
 <script lang="ts">
   import { TableCell, TableRow } from "$lib/components/ui/table";
   import type { MinerEventType } from "../lib/bindings/MinerEventType";
+  import { eventDetail, redeemedReward } from "../lib/events/detail.utils";
   import {
     eventIcon,
     channelUrl,
@@ -20,6 +21,7 @@
   import Badge from "./ui/Badge.svelte";
   import ChannelAvatar from "./ui/ChannelAvatar.svelte";
   import ExternalLink from "./ui/ExternalLink.svelte";
+  import RewardImage from "./ui/RewardImage.svelte";
   import RichText from "./ui/RichText.svelte";
   import Thumb from "./ui/Thumb.svelte";
   import {
@@ -27,6 +29,7 @@
     LinkLook,
     LinkMark,
     LinkSize,
+    THUMB_PIXELS,
     ThumbShape,
     ThumbSize,
   } from "./ui/ui.constants";
@@ -40,8 +43,12 @@
 
   const owner = $derived(app.snapshot?.accounts.find((a) => a.id === event.account_id));
   const login = $derived(event.context.channel);
+  const accountName = $derived(owner?.display_name ?? event.account_login);
   const miner = $derived(event.context.miner);
   const sentence = $derived(eventText(event, true));
+
+  const reward = $derived(redeemedReward(event));
+  const detail = $derived(eventDetail(event));
 
   const picture = $derived(
     event.context.reward ?? boxArt(event.context.art, BoxArtSize.ACTIVITY) ?? undefined,
@@ -55,13 +62,12 @@
   {#if showAccount}
     <TableCell>
       {#if event.account_id}
-        <span class="inline-flex max-w-40 items-center gap-1.5">
-          <Avatar
-            url={owner?.avatar_url}
-            name={owner?.display_name ?? event.account_login}
-            size={AvatarSize.XS}
-          />
-          <span class="truncate font-semibold">{owner?.display_name ?? event.account_login}</span>
+        <span
+          class="inline-flex max-w-40 min-w-32 items-center gap-1.5 whitespace-nowrap"
+          title={accountName}
+        >
+          <Avatar url={owner?.avatar_url} name={accountName} size={AvatarSize.XS} />
+          <span class="truncate font-semibold">{accountName}</span>
         </span>
       {:else}
         <span class="text-muted-foreground">—</span>
@@ -70,29 +76,31 @@
   {/if}
   <TableCell class="max-w-0 min-w-72 whitespace-normal">
     <span class="flex items-center gap-2.5">
-      <Thumb
-        src={picture}
-        round={false}
-        contain={true}
-        size={ThumbSize.SM}
-        shape={ThumbShape.SQUARE}
-        fallback={eventIcon(event)}
-      />
+      {#if reward}
+        <RewardImage url={reward.url} color={reward.color} size={THUMB_PIXELS[ThumbSize.SM]} />
+      {:else}<Thumb
+          src={picture}
+          round={false}
+          contain={true}
+          size={ThumbSize.SM}
+          shape={ThumbShape.SQUARE}
+          fallback={eventIcon(event)}
+        />{/if}
       <span class="flex min-w-0 flex-col">
         <span class="leading-snug break-words"
           ><RichText text={sentence.text} links={sentence.links} /></span
         >
-        {#if event.detail}<span class="truncate text-xs text-muted-foreground">{event.detail}</span
-          >{/if}
+        {#if detail}<span class="truncate text-xs text-muted-foreground">{detail}</span>{/if}
       </span>
     </span>
   </TableCell>
   <TableCell>
     {#if login}
-      <span class="inline-flex max-w-44">
+      {@const channelName = event.context.channel_name ?? login}
+      <span class="inline-flex max-w-48 min-w-40 whitespace-nowrap" title={channelName}>
         <ExternalLink
           url={channelUrl(login)}
-          text={event.context.channel_name ?? login}
+          text={channelName}
           mark={LinkMark.END}
           look={LinkLook.HOVER}
           size={LinkSize.MD}
@@ -100,7 +108,7 @@
           {#snippet lead()}
             <ChannelAvatar
               url={event.context.avatar}
-              name={event.context.channel_name ?? login}
+              name={channelName}
               size={AvatarSize.MD}
               live={false}
             />

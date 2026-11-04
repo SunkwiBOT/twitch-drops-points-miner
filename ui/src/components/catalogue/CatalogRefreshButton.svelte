@@ -2,12 +2,11 @@
   import { mmss } from "../../lib/format.utils";
   import { t } from "../../lib/i18n/i18n.svelte";
   import { app, refreshCatalog } from "../../lib/state/state.svelte";
+  import { SECOND_MS } from "../../lib/time/time.constants";
   import ActionButton from "../ui/ActionButton.svelte";
   import { ButtonSize, ButtonType, ButtonVariant, IconName } from "../ui/ui.constants";
 
   type CatalogRefreshButtonPropsType = { label: string };
-
-  const COUNTDOWN_TICK_MS = 1_000;
 
   let { label }: CatalogRefreshButtonPropsType = $props();
 
@@ -18,11 +17,21 @@
   const wait = $derived(Math.max(0, next - now));
 
   $effect(() => {
-    if (next <= Date.now()) {
+    const until = next;
+
+    now = Date.now();
+
+    if (until <= now) {
       return;
     }
 
-    const timer = setInterval(() => (now = Date.now()), COUNTDOWN_TICK_MS);
+    const timer = setInterval(() => {
+      now = Date.now();
+
+      if (now >= until) {
+        clearInterval(timer);
+      }
+    }, SECOND_MS);
 
     return () => clearInterval(timer);
   });

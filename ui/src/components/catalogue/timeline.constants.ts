@@ -47,7 +47,7 @@ export const TIMELINE_PAGE_SIZE = 36;
 
 export const DEFAULT_LANE_WIDTH = 752;
 
-export const TIMELINE_URGENT_MS = 6 * HOUR_MS;
+export const TIMELINE_PILL_MS = 6 * HOUR_MS;
 
 export const PERCENT = 100;
 

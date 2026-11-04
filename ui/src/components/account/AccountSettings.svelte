@@ -3,6 +3,7 @@
   import { untrack } from "svelte";
 
   import { maskProxyCredentials } from "../../lib/accounts/accounts.utils";
+  import { SLOTS_MAX } from "../../lib/accounts/slots.constants";
   import {
     copyOptions,
     differingOptions,
@@ -13,13 +14,12 @@
   import type { AccountSnapshotType } from "../../lib/bindings/AccountSnapshotType";
   import { Mode } from "../../lib/bindings/Mode";
   import type { SnapshotType } from "../../lib/bindings/SnapshotType";
-  import { describeError } from "../../lib/errors/errors.utils";
   import { maskId } from "../../lib/format.utils";
   import { t } from "../../lib/i18n/i18n.svelte";
   import { personMarker, strong } from "../../lib/text.utils";
   import { AccountField, Page, ToastKind } from "../../lib/state/state.constants";
   import { editsOf } from "../../lib/state/edits.svelte";
-  import { app, navigate, run, toast } from "../../lib/state/state.svelte";
+  import { app, navigate, reportFailure, run, toast } from "../../lib/state/state.svelte";
   import TextButton from "../ui/TextButton.svelte";
   import ActionButton from "../ui/ActionButton.svelte";
   import CopyButton from "../ui/CopyButton.svelte";
@@ -46,7 +46,6 @@
 
   type AccountSettingsPropsType = { account: AccountSnapshotType; snapshot: SnapshotType };
 
-  const SLOTS_MAX = 2;
   const PROXY_EXAMPLE = "socks5://user:pass@host:1080";
 
   let { account, snapshot }: AccountSettingsPropsType = $props();
@@ -86,7 +85,7 @@
     try {
       toast(ToastKind.SUCCESS, t.settings_proxy_ok({ ms: strong(await testProxy(shown.proxy)) }));
     } catch (e: any) {
-      toast(ToastKind.ERROR, describeError(e));
+      reportFailure(e);
     } finally {
       testing = false;
     }

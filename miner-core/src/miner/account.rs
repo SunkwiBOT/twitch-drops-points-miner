@@ -9,6 +9,7 @@ use tokio::sync::{broadcast, mpsc, oneshot, watch, RwLock};
 use tokio_util::sync::CancellationToken;
 use url::Url;
 
+use super::record_event;
 use super::twitch_api::TwitchApi;
 use crate::api::{
     AccountSnapshot, AccountStats, AccountStatus, DropProgressView, SlotView, StreamerView,
@@ -20,7 +21,8 @@ use crate::domain::{Campaign, Channel, Game, PointsState, PredictionEvent};
 use crate::error::{Error, ErrorCode, NetworkErrorKind, Result};
 use crate::events::{BetResult, EventContext, EventKind, MinerEvent, MinerKind};
 use crate::predictions;
-use crate::scheduler::{self, QueueItem, SlotPurpose, StreakBonus, StreamerState};
+use crate::scheduler::{self, QueueItem, QueueReason, SlotPurpose, StreakBonus, StreamerState};
+use crate::spam::BurstSpends;
 use crate::store::vault::Vault;
 use crate::store::{AccountRecord, Credential, Store};
 use crate::twitch::chat::{self, Chat, ChatMention};
@@ -28,7 +30,9 @@ use crate::twitch::drops::ClaimOutcome;
 use crate::twitch::playback::{self, Playback};
 use crate::twitch::points::Goal;
 use crate::twitch::pubsub::{self, PubSub, PubSubEvent, RaidJoins};
-use crate::twitch::{TwitchClient, TwitchHttp};
+use crate::twitch::{
+    self, TwitchClient, TwitchHttp, DIRECTORY_READS_AT_ONCE, POINTS_READS_AT_ONCE,
+};
 
 const TICK: Duration = Duration::from_secs(20);
 const INVENTORY_INTERVAL: Duration = Duration::from_secs(5 * 60);
@@ -44,10 +48,6 @@ const LOOKUP_TOP: usize = 8;
 const LOOKUP_ROTATING: usize = 4;
 const DIRECTORIES_MAX: usize = 10;
 const ALLOWED_CHANNELS_MAX: usize = 60;
-// ! Below the HTTP semaphore, so the slots and claims still get a request in
-// while balances or directories are read.
-const POINTS_READS_AT_ONCE: usize = 4;
-const DIRECTORY_READS_AT_ONCE: usize = 4;
 const MENTION_COOLDOWN: Duration = Duration::from_secs(60);
 const OWN_SPEND_WAIT: Duration = Duration::from_secs(2 * 60);
 // ! Twitch's answer for a bonus chest another session took first, or that
@@ -69,6 +69,7 @@ pub enum AccountCommand {
     Settings(Box<AccountSettings>),
     Refresh,
     ClaimDrop(String, oneshot::Sender<Result<()>>),
+    Balance { login: String, balance: i64 },
 }
 
 enum Wake {
@@ -85,6 +86,7 @@ pub struct AccountHandle {
     pub snapshot: watch::Receiver<AccountSnapshot>,
     pub cancel: CancellationToken,
     pub task: tokio::task::JoinHandle<()>,
+    pub client: TwitchClient,
 }
 
 struct ActiveSlot {
@@ -178,6 +180,7 @@ pub struct AccountContext {
     pub catalog: Arc<RwLock<Catalog>>,
     pub events: broadcast::Sender<MinerEvent>,
     pub stats: AccountStats,
+    pub spends: BurstSpends,
 }
 
 struct AccountMiner<T> {
@@ -192,6 +195,8 @@ struct AccountMiner<T> {
     status: AccountStatus,
     problem: Option<ErrorCode>,
     reported: Option<ErrorCode>,
+    noticed: Option<(ErrorCode, u64)>,
+    passes: u64,
     stats: AccountStats,
     campaigns: HashMap<String, Campaign>,
     inventory_at: Option<tokio::time::Instant>,
@@ -245,7 +250,7 @@ pub fn spawn(
         credential.tokens.access_token.clone(),
     );
     let (mut miner, snapshot) =
-        AccountMiner::new(record, credential, context, client, cancel.clone());
+        AccountMiner::new(record, credential, context, client.clone(), cancel.clone());
     let id = miner.id.clone();
     let task = tokio::spawn(async move { miner.run(receiver).await });
 
@@ -255,6 +260,7 @@ pub fn spawn(
         snapshot,
         cancel,
         task,
+        client,
     }
 }
 
@@ -280,6 +286,7 @@ impl<T: TwitchApi> AccountMiner<T> {
             campaigns: vec![],
             stats: context.stats.clone(),
             updated_at: Utc::now(),
+            spam_channels: vec![],
         };
         let (snapshot, receiver) = watch::channel(initial);
         let (pubsub_sender, pubsub_events) = mpsc::channel(256);
@@ -296,6 +303,8 @@ impl<T: TwitchApi> AccountMiner<T> {
             status: AccountStatus::Starting,
             problem: None,
             reported: None,
+            noticed: None,
+            passes: 0,
             stats,
             campaigns: HashMap::new(),
             inventory_at: None,
@@ -425,18 +434,7 @@ impl<T: TwitchApi> AccountMiner<T> {
         }
 
         event.categorize();
-
-        match self.context.store.push_history(&event) {
-            Ok(id) => event.id = id,
-            Err(error) => tracing::warn!(%error, "history write failed"),
-        }
-
-        match event.kind {
-            EventKind::Error => tracing::warn!(account = %self.login, "{}", event.title),
-            _ => tracing::info!(account = %self.login, "{}", event.title),
-        }
-
-        let _ = self.context.events.send(event);
+        record_event(&self.context.store, &self.context.events, event);
     }
 
     fn on_mention(&mut self, mention: ChatMention) {
@@ -548,6 +546,9 @@ impl<T: TwitchApi> AccountMiner<T> {
             Wake::Command(AccountCommand::ClaimDrop(instance, reply)) => {
                 let _ = reply.send(self.claim_instance(&instance).await);
             }
+            Wake::Command(AccountCommand::Balance { login, balance }) => {
+                self.balance_read(&login, balance)
+            }
             Wake::PubSub(event) => {
                 let mut shown = shows(&event);
 
@@ -609,6 +610,8 @@ impl<T: TwitchApi> AccountMiner<T> {
     }
 
     async fn tick(&mut self) {
+        self.passes = self.passes.wrapping_add(1);
+
         if self.status != AccountStatus::LoginRequired {
             self.problem = None;
         }
@@ -697,6 +700,7 @@ impl<T: TwitchApi> AccountMiner<T> {
 
         if self.problem.is_none() {
             self.reported = None;
+            self.noticed = None;
         }
 
         self.set_status(status, self.problem);
@@ -710,14 +714,36 @@ impl<T: TwitchApi> AccountMiner<T> {
         }
     }
 
+    // ! As for PubSub and chat: a Twitch hiccup that the next poll clears is
+    // no news to the operator, only one that comes back is.
     fn report_problem(&mut self, error: Error) {
-        if self.reported == Some(error.code()) {
-            tracing::debug!(account = %self.login, "{error}");
-        } else {
-            tracing::warn!(account = %self.login, "{error}");
+        let transient = twitch::transient(&error);
+
+        self.report(error, transient);
+    }
+
+    fn report(&mut self, error: Error, transient: bool) {
+        let code = error.code();
+
+        match self.noticed.filter(|(noticed, _)| *noticed == code) {
+            Some((_, pass)) if transient && pass == self.passes => {
+                tracing::debug!(account = %self.login, "{error}");
+            }
+            Some(_) => {
+                self.noticed = None;
+                tracing::warn!(account = %self.login, "{error}");
+            }
+            None if self.reported == Some(code) => {
+                tracing::debug!(account = %self.login, "{error}")
+            }
+            None if transient => {
+                self.noticed = Some((code, self.passes));
+                tracing::info!(account = %self.login, "{error}");
+            }
+            None => tracing::warn!(account = %self.login, "{error}"),
         }
 
-        self.set_problem(error.code());
+        self.set_problem(code);
     }
 
     fn set_problem(&mut self, code: ErrorCode) {
@@ -1090,20 +1116,84 @@ impl<T: TwitchApi> AccountMiner<T> {
     }
 
     async fn refresh_drops_channels(&mut self) -> Result<()> {
-        let now = Utc::now();
         let campaigns: Vec<Campaign> = self.campaigns.values().cloned().collect();
-        let ranked = scheduler::rank_campaigns(&self.settings, &campaigns, now);
+        let ranked = scheduler::rank_campaigns(&self.settings, &campaigns, Utc::now());
         let watched = self.drops_watch();
+        let chosen = self.campaigns_to_look_up(&ranked, watched.as_ref());
+        let (games, allowed_logins) = lookup_targets(&chosen);
+        let directory = self.read_directories(games).await?;
+        let missing = self.unlisted_watch(watched.as_ref(), &chosen, &directory);
+        let mut logins = allowed_logins.clone();
 
+        if let Some((_, channel)) =
+            missing.filter(|(_, channel)| !self.streamer_channels.contains_key(&channel.login))
+        {
+            logins.push(channel.login.clone());
+        }
+
+        let read = self.read_channels(&logins).await?;
+        let missing_now: Option<(String, Option<Channel>)> =
+            missing.map(|(campaign_id, channel)| {
+                let now = self
+                    .streamer_channels
+                    .get(&channel.login)
+                    .cloned()
+                    .or_else(|| {
+                        read.as_ref()
+                            .and_then(|read| read.iter().find(|c| c.id == channel.id).cloned())
+                    });
+
+                (campaign_id.clone(), now)
+            });
+        let allowed: Option<Vec<Channel>> = read.map(|read| {
+            read.into_iter()
+                .filter(|channel| allowed_logins.contains(&channel.login))
+                .collect()
+        });
+        let recheck: Option<Channel> = missing_now.as_ref().and_then(|(campaign_id, now)| {
+            let campaign = self.campaigns.get(campaign_id)?;
+
+            now.clone()
+                .filter(|channel| channel.live && plays(channel, &campaign.game))
+        });
+
+        self.ask_offered_drops(&chosen, &directory, recheck.clone())
+            .await;
+
+        let kept = missing_now.as_ref().and_then(|(campaign_id, now)| {
+            let campaign = self.campaigns.get(campaign_id)?;
+            let kept = self.still_watched(campaign, watched.as_ref(), now.as_ref())?;
+
+            Some((campaign_id.clone(), kept))
+        });
+        let looked_up: HashSet<&str> = chosen.iter().map(|c| c.id.as_str()).collect();
+
+        self.live_by_campaign = self.live_channels(
+            &ranked,
+            &looked_up,
+            &directory,
+            allowed.as_deref(),
+            kept.as_ref(),
+        );
+        self.forget_stale_offers(&directory, recheck.as_ref());
+
+        Ok(())
+    }
+
+    fn campaigns_to_look_up<'a>(
+        &mut self,
+        ranked: &[(&'a Campaign, QueueReason)],
+        watched: Option<&(String, Channel)>,
+    ) -> Vec<&'a Campaign> {
         let mut chosen: Vec<&Campaign> = ranked
             .iter()
             .map(|(c, _)| *c)
-            .filter(|c| watched.as_ref().is_some_and(|(id, _)| *id == c.id))
+            .filter(|c| watched.is_some_and(|(id, _)| *id == c.id))
             .collect();
 
         for (campaign, _) in ranked.iter().take(LOOKUP_TOP) {
             if !chosen.iter().any(|c| c.id == campaign.id) {
-                chosen.push(campaign);
+                chosen.push(*campaign);
             }
         }
 
@@ -1122,26 +1212,10 @@ impl<T: TwitchApi> AccountMiner<T> {
             self.lookup_offset = (self.lookup_offset + LOOKUP_ROTATING) % rest.len();
         }
 
-        let mut games: Vec<Game> = Vec::new();
-        let mut allowed_logins: Vec<String> = Vec::new();
+        chosen
+    }
 
-        for campaign in &chosen {
-            if campaign.allowed_channels.is_empty() {
-                if !games.iter().any(|game| game.id == campaign.game.id) {
-                    games.push(campaign.game.clone());
-                }
-            } else {
-                for channel in &campaign.allowed_channels {
-                    if !channel.login.is_empty() && !allowed_logins.contains(&channel.login) {
-                        allowed_logins.push(channel.login.clone());
-                    }
-                }
-            }
-        }
-
-        games.truncate(DIRECTORIES_MAX);
-        allowed_logins.truncate(ALLOWED_CHANNELS_MAX);
-
+    async fn read_directories(&self, games: Vec<Game>) -> Result<HashMap<String, Vec<Channel>>> {
         let client = &self.client;
         let reads: Vec<(Game, Result<Vec<Channel>>)> = futures_util::stream::iter(games)
             .map(|game| async move {
@@ -1166,9 +1240,18 @@ impl<T: TwitchApi> AccountMiner<T> {
             }
         }
 
-        // ! A game's directory lists only 30 channels, by relevance: the channel the
-        // Drops slot watches can be missing from it.
-        let missing = watched.as_ref().filter(|(campaign_id, channel)| {
+        Ok(directory)
+    }
+
+    // ! A game's directory lists only 30 channels, by relevance: the channel the
+    // Drops slot watches can be missing from it.
+    fn unlisted_watch<'w>(
+        &self,
+        watched: Option<&'w (String, Channel)>,
+        chosen: &[&Campaign],
+        directory: &HashMap<String, Vec<Channel>>,
+    ) -> Option<&'w (String, Channel)> {
+        watched.filter(|(campaign_id, channel)| {
             chosen.iter().any(|campaign| campaign.id == *campaign_id)
                 && self.campaigns.get(campaign_id).is_some_and(|campaign| {
                     campaign.allowed_channels.is_empty()
@@ -1176,69 +1259,42 @@ impl<T: TwitchApi> AccountMiner<T> {
                             .get(&campaign.game.id)
                             .is_some_and(|listed| !listed.iter().any(|c| c.id == channel.id))
                 })
-        });
-        let unlisted = missing
-            .map(|(_, channel)| channel)
-            .filter(|channel| !self.streamer_channels.contains_key(&channel.login));
-        let mut logins = allowed_logins.clone();
+        })
+    }
 
-        if let Some(channel) = unlisted {
-            logins.push(channel.login.clone());
+    async fn read_channels(&self, logins: &[String]) -> Result<Option<Vec<Channel>>> {
+        if logins.is_empty() {
+            return Ok(Some(Vec::new()));
         }
 
-        let read: Option<Vec<Channel>> = if logins.is_empty() {
-            Some(Vec::new())
-        } else {
-            match self.client.channels(&logins).await {
-                Ok(channels) => Some(channels),
-                Err(Error::Unauthorized) => return Err(Error::Unauthorized),
-                Err(error) => {
-                    tracing::debug!(account = %self.login, %error, "channel lookup failed");
+        match self.client.channels(logins).await {
+            Ok(channels) => Ok(Some(channels)),
+            Err(Error::Unauthorized) => Err(Error::Unauthorized),
+            Err(error) => {
+                tracing::debug!(account = %self.login, %error, "channel lookup failed");
 
-                    None
-                }
+                Ok(None)
             }
-        };
+        }
+    }
 
-        let missing_now: Option<(String, Option<Channel>)> =
-            missing.map(|(campaign_id, channel)| {
-                let now = self
-                    .streamer_channels
-                    .get(&channel.login)
-                    .cloned()
-                    .or_else(|| {
-                        read.as_ref()
-                            .and_then(|read| read.iter().find(|c| c.id == channel.id).cloned())
-                    });
-
-                (campaign_id.clone(), now)
-            });
-        let allowed: Option<Vec<Channel>> = read.map(|read| {
-            read.into_iter()
-                .filter(|channel| allowed_logins.contains(&channel.login))
-                .collect()
-        });
-
-        let recheck = missing_now.as_ref().and_then(|(campaign_id, now)| {
-            let campaign = self.campaigns.get(campaign_id)?;
-
-            now.as_ref()
-                .filter(|channel| channel.live && plays(channel, &campaign.game))
-        });
-
-        self.ask_offered_drops(&chosen, &directory, recheck.cloned())
-            .await;
-
-        let looked_up: HashSet<&str> = chosen.iter().map(|c| c.id.as_str()).collect();
+    fn live_channels(
+        &self,
+        ranked: &[(&Campaign, QueueReason)],
+        looked_up: &HashSet<&str>,
+        directory: &HashMap<String, Vec<Channel>>,
+        allowed: Option<&[Channel]>,
+        kept: Option<&(String, Channel)>,
+    ) -> HashMap<String, Vec<Channel>> {
         let mut live_by_campaign: HashMap<String, Vec<Channel>> = HashMap::new();
 
-        for (campaign, _) in &ranked {
+        for (campaign, _) in ranked {
             let fresh = if !looked_up.contains(campaign.id.as_str()) {
                 None
             } else if campaign.allowed_channels.is_empty() {
                 directory.get(&campaign.game.id).cloned()
             } else {
-                allowed.as_ref().map(|allowed| {
+                allowed.map(|allowed| {
                     allowed
                         .iter()
                         .filter(|c| c.live && campaign.accepts_channel(&c.id))
@@ -1255,13 +1311,9 @@ impl<T: TwitchApi> AccountMiner<T> {
                 continue;
             };
 
-            if let Some((campaign_id, now)) = &missing_now {
-                if *campaign_id == campaign.id {
-                    if let Some(kept) = self.still_watched(campaign, watched.as_ref(), now.as_ref())
-                    {
-                        live.push(kept);
-                    }
-                }
+            if let Some((_, channel)) = kept.filter(|(campaign_id, _)| *campaign_id == campaign.id)
+            {
+                live.push(channel.clone());
             }
 
             for channel in self.streamer_channels.values() {
@@ -1286,17 +1338,22 @@ impl<T: TwitchApi> AccountMiner<T> {
             live_by_campaign.insert(campaign.id.clone(), live);
         }
 
-        self.live_by_campaign = live_by_campaign;
+        live_by_campaign
+    }
 
+    // ! A channel out of every list may come back on the same broadcast:
+    // its answer goes only once the channel is seen offline or on another.
+    fn forget_stale_offers(
+        &mut self,
+        directory: &HashMap<String, Vec<Channel>>,
+        rechecked: Option<&Channel>,
+    ) {
         let streamers = &self.streamer_channels;
-        let rechecked = recheck.cloned();
 
-        // ! A channel out of every list may come back on the same broadcast:
-        // its answer goes only once the channel is seen offline or on another.
         self.offered_drops.retain(|id, offered| {
             let seen = streamers
                 .values()
-                .chain(rechecked.as_ref())
+                .chain(rechecked)
                 .chain(directory.values().flatten())
                 .find(|channel| &channel.id == id);
 
@@ -1305,8 +1362,6 @@ impl<T: TwitchApi> AccountMiner<T> {
                     && channel.broadcast_id.as_deref() == Some(offered.broadcast_id.as_str())
             })
         });
-
-        Ok(())
     }
 
     fn still_watched(
@@ -1592,6 +1647,7 @@ impl<T: TwitchApi> AccountMiner<T> {
     async fn pump_slots(&mut self) {
         let now = tokio::time::Instant::now();
         let mut errors: Vec<Error> = Vec::new();
+        let mut timeouts: Vec<Error> = Vec::new();
         let mut minutes = 0u64;
 
         for index in 0..self.slots.len() {
@@ -1638,7 +1694,7 @@ impl<T: TwitchApi> AccountMiner<T> {
                             self.slots[index].beacon_failures += 1;
 
                             if self.slots[index].beacon_failures >= BEACON_UNREACHABLE_AFTER {
-                                errors.push(error);
+                                timeouts.push(error);
                             } else {
                                 tracing::debug!(account = %self.login, %error, "beacon timed out, retried next minute");
                             }
@@ -1680,6 +1736,10 @@ impl<T: TwitchApi> AccountMiner<T> {
 
         for error in errors {
             self.handle_error(error).await;
+        }
+
+        for error in timeouts {
+            self.report(error, false);
         }
 
         let mut index = 0;
@@ -2017,13 +2077,7 @@ impl<T: TwitchApi> AccountMiner<T> {
     }
 
     async fn claim_bonus(&mut self, channel_id: &str, claim_id: &str) {
-        let listed = self
-            .streamer_channels
-            .values()
-            .find(|c| c.id == channel_id)
-            .map(|c| c.login.clone());
-
-        let login = match listed {
+        let login = match self.streamer_login(channel_id) {
             Some(login) => {
                 let allowed = self
                     .settings
@@ -2091,36 +2145,19 @@ impl<T: TwitchApi> AccountMiner<T> {
         }
     }
 
+    fn streamer_login(&self, channel_id: &str) -> Option<String> {
+        self.streamer_channels
+            .values()
+            .find(|channel| channel.id == channel_id)
+            .map(|channel| channel.login.clone())
+    }
+
     async fn handle_pubsub(&mut self, event: PubSubEvent) {
         match event {
             PubSubEvent::Unauthorized => self.handle_error(Error::Unauthorized).await,
             PubSubEvent::Reconnected => {}
-            PubSubEvent::StreamUp { channel_id } => {
-                if let Some(channel) = self
-                    .streamer_channels
-                    .values_mut()
-                    .find(|c| c.id == channel_id)
-                {
-                    channel.live = true;
-                }
-
-                self.channels_at = None;
-            }
-            PubSubEvent::StreamDown { channel_id } => {
-                if let Some(slot) = self.slots.iter_mut().find(|s| s.channel.id == channel_id) {
-                    slot.channel.live = false;
-                }
-
-                if let Some(channel) = self
-                    .streamer_channels
-                    .values_mut()
-                    .find(|c| c.id == channel_id)
-                {
-                    channel.live = false;
-                }
-
-                self.channels_at = None;
-            }
+            PubSubEvent::StreamUp { channel_id } => self.stream_changed(&channel_id, true),
+            PubSubEvent::StreamDown { channel_id } => self.stream_changed(&channel_id, false),
             PubSubEvent::ViewCount {
                 channel_id,
                 viewers,
@@ -2138,99 +2175,11 @@ impl<T: TwitchApi> AccountMiner<T> {
                 earned,
                 balance,
                 reason,
-            } => {
-                let listed = self
-                    .streamer_channels
-                    .values()
-                    .find(|c| c.id == channel_id)
-                    .map(|c| c.login.clone());
-
-                if let Some(login) = &listed {
-                    let waiting = self.own_spends.pending(login);
-                    let points = self.streamer_points.entry(login.clone()).or_default();
-
-                    // ! Until Twitch's `points-spent` arrives, a balance it gives may or may not
-                    // count a spend of the miner's own: the earned points are added, and that
-                    // message settles the balance.
-                    match balance {
-                        Some(balance) if waiting == 0 => points.balance = balance,
-                        _ => points.balance += earned,
-                    }
-
-                    points.earned_session += earned;
-
-                    if reason == pubsub::WATCH_STREAK_REASON {
-                        self.streak_bonus_paid(login);
-                    }
-                }
-
-                let login = listed.or_else(|| {
-                    self.drops_points_channel(&channel_id)
-                        .map(|channel| channel.login.clone())
-                });
-
-                if let Some(login) = login {
-                    self.stats.points_earned += earned;
-
-                    let event = self
-                        .emit(
-                            EventKind::PointsEarned,
-                            format!("+{earned} points on {login} ({reason})"),
-                        )
-                        .context(EventContext {
-                            earned: Some(earned),
-                            balance,
-                            reason: Some(reason.to_string()),
-                            ..EventContext::channel(&login)
-                        });
-
-                    self.publish(event);
-                }
-            }
+            } => self.points_earned(&channel_id, earned, balance, reason),
             PubSubEvent::PointsSpent {
                 channel_id,
                 balance,
-            } => {
-                let listed = self
-                    .streamer_channels
-                    .values()
-                    .find(|c| c.id == channel_id)
-                    .map(|c| c.login.clone());
-                // ! Twitch sends only the new balance: the amount is what the balance it gave
-                // last lost. The miner's own spends are off the local balance already, so
-                // they are added back to find it.
-                let mut spent = None;
-
-                if let Some(login) = &listed {
-                    let points = self.streamer_points.entry(login.clone()).or_default();
-                    let before = points.balance + self.own_spends.pending(login);
-                    let amount = Some(before - balance).filter(|amount| *amount > 0);
-
-                    spent = self.own_spends.settle(login, amount);
-                    points.balance = balance - self.own_spends.pending(login);
-                }
-
-                let login = listed.or_else(|| {
-                    self.drops_points_channel(&channel_id)
-                        .map(|channel| channel.login.clone())
-                });
-
-                if let Some(login) = login.filter(|_| spent != Some(0)) {
-                    let title = match spent {
-                        Some(amount) => format!("-{amount} points on {login}"),
-                        None => format!("Points spent on {login} (balance {balance})"),
-                    };
-                    let event = self
-                        .emit(EventKind::PointsSpent, title)
-                        .context(EventContext {
-                            spent,
-                            balance: Some(balance),
-                            ..EventContext::channel(&login)
-                        });
-
-                    self.publish(event);
-                }
-            }
+            } => self.points_spent(&channel_id, balance),
             PubSubEvent::ClaimAvailable {
                 channel_id,
                 claim_id,
@@ -2239,91 +2188,11 @@ impl<T: TwitchApi> AccountMiner<T> {
                 channel_id,
                 raid_id,
                 target_login,
-            } => {
-                let login = self
-                    .streamer_channels
-                    .values()
-                    .find(|c| c.id == channel_id)
-                    .map(|c| c.login.clone());
-                let allowed = login.as_ref().is_some_and(|l| {
-                    self.settings
-                        .points
-                        .streamers
-                        .iter()
-                        .any(|s| &s.login == l && s.follow_raids)
-                });
-
-                if allowed
-                    && self
-                        .raid_joins
-                        .due(&channel_id, &raid_id, tokio::time::Instant::now())
-                {
-                    match self.client.join_raid(&raid_id).await {
-                        Ok(()) => {
-                            self.raid_joins.joined(&channel_id, &raid_id);
-
-                            let event = self
-                                .emit(
-                                    EventKind::RaidJoined,
-                                    format!(
-                                        "Joined the raid of {} to {target_login}",
-                                        login.clone().unwrap_or_default()
-                                    ),
-                                )
-                                .context(EventContext {
-                                    channel: login.clone(),
-                                    ..EventContext::default()
-                                });
-
-                            self.publish(event);
-                        }
-                        Err(error) => {
-                            tracing::debug!(account = %self.login, %error, "raid join failed")
-                        }
-                    }
-                }
-            }
+            } => self.join_raid(&channel_id, &raid_id, &target_login).await,
             PubSubEvent::Moment {
                 channel_id,
                 moment_id,
-            } => {
-                let login = self
-                    .streamer_channels
-                    .values()
-                    .find(|c| c.id == channel_id)
-                    .map(|c| c.login.clone());
-                let allowed = login.as_ref().is_some_and(|l| {
-                    self.settings
-                        .points
-                        .streamers
-                        .iter()
-                        .any(|s| &s.login == l && s.claim_moments)
-                });
-
-                if allowed {
-                    match self.client.claim_moment(&moment_id).await {
-                        Ok(()) => {
-                            let event = self
-                                .emit(
-                                    EventKind::MomentClaimed,
-                                    format!(
-                                        "Moment claimed on {}",
-                                        login.clone().unwrap_or_default()
-                                    ),
-                                )
-                                .context(EventContext {
-                                    channel: login.clone(),
-                                    ..EventContext::default()
-                                });
-
-                            self.publish(event);
-                        }
-                        Err(error) => {
-                            tracing::debug!(account = %self.login, %error, "moment claim failed")
-                        }
-                    }
-                }
-            }
+            } => self.claim_moment(&channel_id, &moment_id).await,
             PubSubEvent::PredictionCreated(event) | PubSubEvent::PredictionUpdated(event) => {
                 self.consider_prediction(event);
             }
@@ -2339,115 +2208,306 @@ impl<T: TwitchApi> AccountMiner<T> {
                 event_id,
                 result,
                 points_won,
-            } => {
-                let placed = self.predictions_placed.remove(&event_id);
-                let staked = placed.map(|(_, p)| p).unwrap_or(0);
-                let result = BetResult::from_twitch(&result);
-
-                let title = match result {
-                    BetResult::Win => {
-                        self.stats.predictions_won += 1;
-
-                        format!("Prediction won: +{points_won} points (staked {staked})")
-                    }
-                    BetResult::Lose => {
-                        self.stats.predictions_lost += 1;
-
-                        format!("Prediction lost: -{staked} points")
-                    }
-                    BetResult::Refund => format!("Prediction refunded: {staked} points returned"),
-                };
-
-                let event = self
-                    .emit(EventKind::PredictionResult, title)
-                    .context(EventContext {
-                        bet_result: Some(result),
-                        points_won: Some(points_won),
-                        staked: Some(staked),
-                        ..EventContext::default()
-                    });
-
-                self.publish(event);
-            }
+            } => self.prediction_result(&event_id, &result, points_won),
             PubSubEvent::DropProgress {
                 drop_id,
                 current_minutes,
                 required_minutes,
                 ..
-            } => {
-                let mut matched: Option<(String, String, String, u32)> = None;
-
-                for campaign in self.campaigns.values_mut() {
-                    if let Some(drop) = campaign.drops.iter_mut().find(|d| d.id == drop_id) {
-                        drop.current_minutes = drop.current_minutes.max(current_minutes);
-
-                        if required_minutes > 0 {
-                            drop.required_minutes = required_minutes;
-                        }
-
-                        matched = Some((
-                            campaign.id.clone(),
-                            campaign.name.clone(),
-                            drop.name.clone(),
-                            drop.required_minutes,
-                        ));
-                        break;
-                    }
-                }
-
-                if let Some((campaign_id, campaign_name, drop_name, required)) = matched {
-                    let event = self
-                        .emit(
-                            EventKind::DropProgress,
-                            format!(
-                                "{drop_name}: {current_minutes}/{required} min ({campaign_name})"
-                            ),
-                        )
-                        .context(EventContext {
-                            current: Some(current_minutes),
-                            required: Some(required),
-                            ..EventContext::drop(&campaign_id, &drop_id)
-                        });
-
-                    self.publish(event);
-
-                    if current_minutes >= required {
-                        self.inventory_at = None;
-                    }
-                }
-            }
+            } => self.drop_progress(&drop_id, current_minutes, required_minutes),
             PubSubEvent::DropClaim {
                 drop_id,
                 instance_id,
-            } => {
-                for campaign in self.campaigns.values_mut() {
-                    if let Some(drop) = campaign.drops.iter_mut().find(|d| d.id == drop_id) {
-                        drop.instance_id = Some(instance_id.clone());
-                        drop.current_minutes = drop.required_minutes;
-                    }
-                }
+            } => self.drop_claimable(&drop_id, &instance_id).await,
+            PubSubEvent::StreakRecovered { channel_id } => self.streak_recovered(&channel_id),
+        }
+    }
 
-                self.claim_available_drops().await;
+    fn stream_changed(&mut self, channel_id: &str, live: bool) {
+        if !live {
+            if let Some(slot) = self.slots.iter_mut().find(|s| s.channel.id == channel_id) {
+                slot.channel.live = false;
             }
-            PubSubEvent::StreakRecovered { channel_id } => {
-                let login = self
-                    .streamer_channels
-                    .values()
-                    .find(|c| c.id == channel_id)
-                    .map(|c| c.login.clone());
-                let name = login
-                    .as_deref()
-                    .map_or_else(|| channel_id.clone(), |l| self.channel_name(l));
+        }
+
+        if let Some(channel) = self
+            .streamer_channels
+            .values_mut()
+            .find(|c| c.id == channel_id)
+        {
+            channel.live = live;
+        }
+
+        self.channels_at = None;
+    }
+
+    fn points_earned(
+        &mut self,
+        channel_id: &str,
+        earned: i64,
+        balance: Option<i64>,
+        reason: String,
+    ) {
+        let listed = self.streamer_login(channel_id);
+
+        if let Some(login) = &listed {
+            let waiting = self.own_spends.pending(login);
+            let points = self.streamer_points.entry(login.clone()).or_default();
+
+            // ! Until Twitch's `points-spent` arrives, a balance it gives may or may not
+            // count a spend of the miner's own: the earned points are added, and that
+            // message settles the balance.
+            match balance {
+                Some(balance) if waiting == 0 => points.balance = balance,
+                _ => points.balance += earned,
+            }
+
+            points.earned_session += earned;
+
+            if reason == pubsub::WATCH_STREAK_REASON {
+                self.streak_bonus_paid(login);
+            }
+        }
+
+        let login = listed.or_else(|| {
+            self.drops_points_channel(channel_id)
+                .map(|channel| channel.login.clone())
+        });
+
+        if let Some(login) = login {
+            self.stats.points_earned += earned;
+
+            let event = self
+                .emit(
+                    EventKind::PointsEarned,
+                    format!("+{earned} points on {login} ({reason})"),
+                )
+                .context(EventContext {
+                    earned: Some(earned),
+                    balance,
+                    reason: Some(reason),
+                    ..EventContext::channel(&login)
+                });
+
+            self.publish(event);
+        }
+    }
+
+    fn points_spent(&mut self, channel_id: &str, balance: i64) {
+        let listed = self.streamer_login(channel_id);
+        // ! Twitch sends only the new balance: the amount is what the balance it gave
+        // last lost. The miner's own spends are off the local balance already, so
+        // they are added back to find it.
+        let mut spent = None;
+
+        if let Some(login) = &listed {
+            let points = self.streamer_points.entry(login.clone()).or_default();
+            let before = points.balance + self.own_spends.pending(login);
+            let amount = Some(before - balance).filter(|amount| *amount > 0);
+
+            spent = self.own_spends.settle(login, amount);
+            points.balance = balance - self.own_spends.pending(login);
+        }
+
+        let login = listed
+            .or_else(|| {
+                self.drops_points_channel(channel_id)
+                    .map(|channel| channel.login.clone())
+            })
+            .filter(|_| spent != Some(0))
+            .filter(|login| !self.context.spends.covers(login));
+
+        if let Some(login) = login {
+            let title = match spent {
+                Some(amount) => format!("-{amount} points on {login}"),
+                None => format!("Points spent on {login} (balance {balance})"),
+            };
+            let event = self
+                .emit(EventKind::PointsSpent, title)
+                .context(EventContext {
+                    spent,
+                    balance: Some(balance),
+                    ..EventContext::channel(&login)
+                });
+
+            self.publish(event);
+        }
+    }
+
+    async fn join_raid(&mut self, channel_id: &str, raid_id: &str, target_login: &str) {
+        let login = self.streamer_login(channel_id);
+        let allowed = login.as_ref().is_some_and(|l| {
+            self.settings
+                .points
+                .streamers
+                .iter()
+                .any(|s| &s.login == l && s.follow_raids)
+        });
+
+        if !allowed
+            || !self
+                .raid_joins
+                .due(channel_id, raid_id, tokio::time::Instant::now())
+        {
+            return;
+        }
+
+        match self.client.join_raid(raid_id).await {
+            Ok(()) => {
+                self.raid_joins.joined(channel_id, raid_id);
+
                 let event = self
                     .emit(
-                        EventKind::StreakRecovered,
-                        format!("Watch streak recovered on {name}"),
+                        EventKind::RaidJoined,
+                        format!(
+                            "Joined the raid of {} to {target_login}",
+                            login.clone().unwrap_or_default()
+                        ),
                     )
-                    .context(login.map(EventContext::channel).unwrap_or_default());
+                    .context(EventContext {
+                        channel: login,
+                        ..EventContext::default()
+                    });
 
                 self.publish(event);
             }
+            Err(error) => {
+                tracing::debug!(account = %self.login, %error, "raid join failed")
+            }
         }
+    }
+
+    async fn claim_moment(&mut self, channel_id: &str, moment_id: &str) {
+        let login = self.streamer_login(channel_id);
+        let allowed = login.as_ref().is_some_and(|l| {
+            self.settings
+                .points
+                .streamers
+                .iter()
+                .any(|s| &s.login == l && s.claim_moments)
+        });
+
+        if !allowed {
+            return;
+        }
+
+        match self.client.claim_moment(moment_id).await {
+            Ok(()) => {
+                let event = self
+                    .emit(
+                        EventKind::MomentClaimed,
+                        format!("Moment claimed on {}", login.clone().unwrap_or_default()),
+                    )
+                    .context(EventContext {
+                        channel: login,
+                        ..EventContext::default()
+                    });
+
+                self.publish(event);
+            }
+            Err(error) => {
+                tracing::debug!(account = %self.login, %error, "moment claim failed")
+            }
+        }
+    }
+
+    fn prediction_result(&mut self, event_id: &str, result: &str, points_won: i64) {
+        let placed = self.predictions_placed.remove(event_id);
+        let staked = placed.map(|(_, p)| p).unwrap_or(0);
+        let result = BetResult::from_twitch(result);
+
+        let title = match result {
+            BetResult::Win => {
+                self.stats.predictions_won += 1;
+
+                format!("Prediction won: +{points_won} points (staked {staked})")
+            }
+            BetResult::Lose => {
+                self.stats.predictions_lost += 1;
+
+                format!("Prediction lost: -{staked} points")
+            }
+            BetResult::Refund => format!("Prediction refunded: {staked} points returned"),
+        };
+
+        let event = self
+            .emit(EventKind::PredictionResult, title)
+            .context(EventContext {
+                bet_result: Some(result),
+                points_won: Some(points_won),
+                staked: Some(staked),
+                ..EventContext::default()
+            });
+
+        self.publish(event);
+    }
+
+    fn drop_progress(&mut self, drop_id: &str, current_minutes: u32, required_minutes: u32) {
+        let mut matched: Option<(String, String, String, u32)> = None;
+
+        for campaign in self.campaigns.values_mut() {
+            if let Some(drop) = campaign.drops.iter_mut().find(|d| d.id == drop_id) {
+                drop.current_minutes = drop.current_minutes.max(current_minutes);
+
+                if required_minutes > 0 {
+                    drop.required_minutes = required_minutes;
+                }
+
+                matched = Some((
+                    campaign.id.clone(),
+                    campaign.name.clone(),
+                    drop.name.clone(),
+                    drop.required_minutes,
+                ));
+                break;
+            }
+        }
+
+        let Some((campaign_id, campaign_name, drop_name, required)) = matched else {
+            return;
+        };
+        let event = self
+            .emit(
+                EventKind::DropProgress,
+                format!("{drop_name}: {current_minutes}/{required} min ({campaign_name})"),
+            )
+            .context(EventContext {
+                current: Some(current_minutes),
+                required: Some(required),
+                ..EventContext::drop(&campaign_id, drop_id)
+            });
+
+        self.publish(event);
+
+        if current_minutes >= required {
+            self.inventory_at = None;
+        }
+    }
+
+    async fn drop_claimable(&mut self, drop_id: &str, instance_id: &str) {
+        for campaign in self.campaigns.values_mut() {
+            if let Some(drop) = campaign.drops.iter_mut().find(|d| d.id == drop_id) {
+                drop.instance_id = Some(instance_id.to_owned());
+                drop.current_minutes = drop.required_minutes;
+            }
+        }
+
+        self.claim_available_drops().await;
+    }
+
+    fn streak_recovered(&mut self, channel_id: &str) {
+        let login = self.streamer_login(channel_id);
+        let name = login
+            .as_deref()
+            .map_or_else(|| channel_id.to_owned(), |l| self.channel_name(l));
+        let event = self
+            .emit(
+                EventKind::StreakRecovered,
+                format!("Watch streak recovered on {name}"),
+            )
+            .context(login.map(EventContext::channel).unwrap_or_default());
+
+        self.publish(event);
     }
 
     fn consider_prediction(&mut self, event: PredictionEvent) {
@@ -2457,12 +2517,9 @@ impl<T: TwitchApi> AccountMiner<T> {
             return;
         }
 
-        let login = self
-            .streamer_channels
-            .values()
-            .find(|c| c.id == event.channel_id)
-            .map(|c| c.login.clone());
-        let Some(login) = login else { return };
+        let Some(login) = self.streamer_login(&event.channel_id) else {
+            return;
+        };
         let Some(settings) = self
             .settings
             .points
@@ -2508,12 +2565,9 @@ impl<T: TwitchApi> AccountMiner<T> {
                 continue;
             }
 
-            let login = self
-                .streamer_channels
-                .values()
-                .find(|c| c.id == event.channel_id)
-                .map(|c| c.login.clone());
-            let Some(login) = login else { continue };
+            let Some(login) = self.streamer_login(&event.channel_id) else {
+                continue;
+            };
             let Some(settings) = self
                 .settings
                 .points
@@ -2731,6 +2785,27 @@ impl<T: TwitchApi> AccountMiner<T> {
             .filter(|channel| !drops.points_followed_only || self.followed.contains(&channel.login))
     }
 
+    fn balance_read(&mut self, login: &str, balance: i64) {
+        let listed = self
+            .settings
+            .points
+            .streamers
+            .iter()
+            .any(|s| s.login == login);
+
+        if !listed {
+            return;
+        }
+
+        let read = balance - self.own_spends.pending(login);
+        let points = self.streamer_points.entry(login.to_owned()).or_default();
+
+        if points.balance != read {
+            points.balance = read;
+            self.push_snapshot();
+        }
+    }
+
     fn spent_here(&mut self, login: &str, amount: i64) {
         if let Some(points) = self.streamer_points.get_mut(login) {
             points.balance -= amount;
@@ -2935,10 +3010,35 @@ impl<T: TwitchApi> AccountMiner<T> {
             campaigns,
             stats: self.stats.clone(),
             updated_at: now,
+            spam_channels: vec![],
         };
 
         let _ = self.snapshot.send(snapshot);
     }
+}
+
+fn lookup_targets(chosen: &[&Campaign]) -> (Vec<Game>, Vec<String>) {
+    let mut games: Vec<Game> = Vec::new();
+    let mut allowed_logins: Vec<String> = Vec::new();
+
+    for campaign in chosen {
+        if campaign.allowed_channels.is_empty() {
+            if !games.iter().any(|game| game.id == campaign.game.id) {
+                games.push(campaign.game.clone());
+            }
+        } else {
+            for channel in &campaign.allowed_channels {
+                if !channel.login.is_empty() && !allowed_logins.contains(&channel.login) {
+                    allowed_logins.push(channel.login.clone());
+                }
+            }
+        }
+    }
+
+    games.truncate(DIRECTORIES_MAX);
+    allowed_logins.truncate(ALLOWED_CHANNELS_MAX);
+
+    (games, allowed_logins)
 }
 
 fn watched_logins(settings: &AccountSettings) -> BTreeSet<&str> {
