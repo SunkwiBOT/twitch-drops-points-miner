@@ -2700,7 +2700,7 @@ dependencies = [
 
 [[package]]
 name = "miner-core"
-version = "0.1.0"
+version = "1.2.0"
 dependencies = [
  "aes-gcm",
  "anyhow",
@@ -2734,7 +2734,7 @@ dependencies = [
 
 [[package]]
 name = "miner-server"
-version = "0.1.0"
+version = "1.2.0"
 dependencies = [
  "anyhow",
  "axum",
@@ -5692,7 +5692,7 @@ dependencies = [
 
 [[package]]
 name = "twitch-drops-points-miner"
-version = "0.1.0"
+version = "1.2.0"
 dependencies = [
  "anyhow",
  "dirs 6.0.0",
