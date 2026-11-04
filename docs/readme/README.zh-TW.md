@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Twitch Drops &amp; Points Miner 影片介紹">
+  <img src="../media/zh-TW/presentation.avif" alt="Twitch Drops &amp; Points Miner 影片介紹">
 </p>
 
 ## <a name="features"></a>功能
@@ -74,78 +74,84 @@
 
 - **一個應用程式，多個帳號。** 每個帳號依照自己的模式各自挖取：**Drops 和點數**（一個頻道用於最佳活動，另一個用於你的實況主）、**僅 Drops** 或**僅點數**。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/accounts-mining.webp" alt="首頁上多個帳號同時挖取">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/accounts-mining.avif" alt="首頁上多個帳號同時挖取">
   </details>
 
 - **每個新帳號都有設定精靈。** 登入後，可以從預設設定開始，也可以沿用另一個帳號的設定。選好模式、活動和實況主，再按「開始挖取」或「儲存並稍後開始」。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/account-setup.webp" alt="新帳號的設定精靈，逐步示範">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/account-setup.avif" alt="新帳號的設定精靈，逐步示範">
   </details>
 
 - **一次變更，一鍵套用到其他帳號。** 在某個帳號上做了變更後，確認訊息會提供「套用到其他帳號」。這項變更會在你勾選的帳號上再做一次，這些帳號的其他設定則維持不變。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="透過「套用到其他帳號」把一項變更同步到其他帳號">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/apply-to-accounts.avif" alt="透過「套用到其他帳號」把一項變更同步到其他帳號">
   </details>
 
 - **新增實況主。** 實況主會立即以預設選項開始挖取：應用程式的預設選項，或你為這個帳號選定的選項。需要的話可以當場調整：獎勵寶箱、Raid、時刻、連續觀看紀錄、聊天室、預測。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/streamer-add.webp" alt="透過 Twitch 搜尋新增實況主，接著查看它的選項">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/streamer-add.avif" alt="透過 Twitch 搜尋新增實況主，接著查看它的選項">
   </details>
 
 - **編輯實況主。** 「編輯」會開啟它的選項：獎勵寶箱、Raid、時刻、連續觀看紀錄、聊天室、預測……用一個開關就能啟用或停用它，不必把它從清單中移除。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/streamer-edit.webp" alt="從實況主所在列開啟它的選項">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/streamer-edit.avif" alt="從實況主所在列開啟它的選項">
   </details>
 
 - **一次編輯多位實況主。** 勾選他們，再按「編輯所選的 N 位實況主」。只有你變更的選項才會套用。各實況主之間設定不同的選項會顯示為「混合」，它的開關會變成「是」和「否」兩個按鈕。接著，應用程式會詢問是否要把這些選項設為新實況主的預設選項。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="同時編輯多位實況主，其中有顯示為「混合」的選項">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/streamers-group-edit.avif" alt="同時編輯多位實況主，其中有顯示為「混合」的選項">
   </details>
 
 - **匯入實況主。** 貼上一份清單（最多 500 個名稱），或沿用另一個帳號的清單，或使用該帳號追隨的頻道。清單會先經過檢查，只加入確實存在的頻道。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/streamers-import.webp" alt="匯入實況主：貼上的清單、另一個帳號、追隨的頻道">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/streamers-import.avif" alt="匯入實況主：貼上的清單、另一個帳號、追隨的頻道">
+  </details>
+
+- **Spam Points。** 將某個頻道的自訂獎勵連續兌換多次。從你的點數清單中選擇頻道，或透過 Twitch 搜尋找到任何頻道：它的獎勵會和帳號的餘額一起顯示，餘額即時讀取。設定數量（最多 25 次，且不超過餘額），再按「兌換」。連發結束時會顯示結果，每次連發都會在「紀錄」中留下一筆。
+
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/spam-points.avif" alt="Spam Points：選擇一個頻道，將一項獎勵兌換 5 次，接著是紀錄中的那一筆">
   </details>
 
 ### Drops
 
 - **所有進行中的 Drops 活動。** 每個活動都有自己的詳細資料：獎勵、遊戲帳號連結、「優先挖取」。清單來自 [Twitch Drops API](https://drops.sunkwi.com) 專案，每 10 分鐘更新一次。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="以月曆呈現的目錄、搜尋和某個活動的詳細資料">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/drops-catalogue.avif" alt="以月曆呈現的目錄、搜尋和某個活動的詳細資料">
   </details>
 
 - **你的挖取順序。** 把活動拖曳成你想要的順序。新活動會自動排到合適的位置：先是你的優先遊戲，再來是最早結束或剩餘分鐘數最少的活動。可以排除遊戲、關鍵字、某個活動或單一獎勵，並略過來不及完成的活動。在活動的詳細資料中按「優先挖取」，就能把它排到最前面。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/drops-order.webp" alt="挖取順序、優先遊戲和排除項目">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/drops-order.avif" alt="挖取順序、優先遊戲和排除項目">
   </details>
 
 - **收藏庫與「全部領取」。** 「收藏庫」頁面把獎勵分成「待領取」「進行中」和「已領取」三類。可以逐一領取、一次全部領取，或開啟「自動領取掉寶」。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/drops-inventory.webp" alt="收藏庫和「全部領取」按鈕">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/drops-inventory.avif" alt="收藏庫和「全部領取」按鈕">
   </details>
 
 - **「Drops 優先我的實況主」。** 對於目前的活動，如果你清單上某位實況主的直播可計入該活動，就會比其他頻道優先觀看。同一個頻道既能推進掉寶進度，又能幫你賺取它的頻道點數。預設為開啟。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="清單上的一位實況主，同時為了 Drops 和它的點數而觀看">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/drops-streamers-first.avif" alt="清單上的一位實況主，同時為了 Drops 和它的點數而觀看">
   </details>
 
 ### 追蹤
 
 - **完整紀錄，連每個請求都看得到。** 「紀錄」頁面會保存每一個事件：掉寶、賺取和花費的點數、寶箱、下注、Raid、開台……可以依帳號、依分頁（Drops、點數、其他）和依類型篩選。**技術日誌 › 請求**會列出送往 Twitch 和其他服務的每個請求，以及結果和花費的時間。日誌和請求都不含任何權杖或密鑰：按「複製以回報錯誤」就能複製，直接貼到 [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) 或 [Discord](https://discord.gg/support-bots-891685895781113886) 上的錯誤回報中。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/journal-requests.webp" alt="篩選後的紀錄，接著是技術日誌 › 請求">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/journal-requests.avif" alt="篩選後的紀錄，接著是技術日誌 › 請求">
   </details>
 
 ### 桌面或伺服器
@@ -157,14 +163,14 @@
 
 - **工作階段受到保護。** 不需要 Twitch 密碼：你在自己的瀏覽器中透過 `twitch.tv/activate` 登入。工作階段會加密儲存在磁碟上，你可以在 [Twitch 設定](https://www.twitch.tv/settings/connections)中撤銷。在桌面版中，可選用的應用程式密碼會鎖定應用程式：輸入密碼之前什麼都不會挖取。在 Docker 版本中，儀表板有自己的密碼，閒置幾分鐘後會自動鎖定，並在代理伺服器後方透過 HTTPS 執行。連續輸錯 5 次密碼，該 IP 位址會被封鎖 30 秒。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/security-lock.webp" alt="鎖頭：應用程式已鎖定，再用它的密碼解鎖">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/security-lock.avif" alt="鎖頭：應用程式已鎖定，再用它的密碼解鎖">
   </details>
 
 - **簽章更新，絕不自動安裝。** 頂端列會出現附有版本號碼的「更新」徽章。按「安裝並重新啟動」會先請你確認，接著應用程式會安裝該版本並重新啟動。若設定了應用程式密碼，重新啟動後會處於鎖定狀態：再次輸入密碼即可繼續挖取。只有經過本專案簽章的版本才會安裝。Docker 版本同樣會通知你，並附上需要執行的指令。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/updates.webp" alt="「更新」徽章、確認，接著安裝">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/updates.avif" alt="「更新」徽章、確認，接著安裝">
   </details>
 
 ### 此外
@@ -172,8 +178,8 @@
 - 與其他挖掘器一樣：獎勵寶箱、Raid、時刻、社群目標、預測（策略、下注時機、條件）、連續觀看紀錄和已訂閱頻道優先、聊天室在線（可關閉）、新實況主的預設選項、附圖片的 Discord、Telegram 和 Webhook 通知、全域或個別帳號的代理伺服器。
 - 29 種語言、深色和淺色主題、桌面通知、系統匣圖示、隨系統啟動。
 
-  <details><summary>觀看示範</summary>
-  <img src="../media/en/basics.webp" alt="多種語言、淺色和深色主題、一則桌面通知和系統匣圖示">
+  <details open><summary>觀看示範</summary>
+  <img src="../media/zh-TW/basics.avif" alt="多種語言、淺色和深色主題、一則桌面通知和系統匣圖示">
   </details>
 
 > [!WARNING]

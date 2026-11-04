@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Videopresentation av Twitch Drops &amp; Points Miner">
+  <img src="../media/sv/presentation.avif" alt="Videopresentation av Twitch Drops &amp; Points Miner">
 </p>
 
 ## <a name="features"></a>Funktioner
@@ -77,40 +77,40 @@ arbete.
   **Drops och poäng** (en kanal för den bästa kampanjen, den andra för dina streamers),
   **Endast Drops** eller **Endast poäng**.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/accounts-mining.webp" alt="Flera konton som minar samtidigt, på sidan Hem">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/accounts-mining.avif" alt="Flera konton som minar samtidigt, på sidan Hem">
   </details>
 
 - **En guide för varje nytt konto.** Efter inloggningen utgår du från
   standardinställningarna eller från ett annat kontos. Välj läge, kampanjer och streamers,
   och sedan ”Börja mina” eller ”Spara och starta senare”.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/account-setup.webp" alt="Inställningsguiden för ett nytt konto, steg för steg">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/account-setup.avif" alt="Inställningsguiden för ett nytt konto, steg för steg">
   </details>
 
 - **En ändring tillämpad på andra konton med ett klick.** När du har ändrat något på ett
   konto erbjuder bekräftelsemeddelandet ”Tillämpa på andra konton”. Ändringen görs om på de
   konton du kryssar i, och de behåller resten av sina inställningar.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="En ändring som görs om på andra konton med ”Tillämpa på andra konton”">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/apply-to-accounts.avif" alt="En ändring som görs om på andra konton med ”Tillämpa på andra konton”">
   </details>
 
 - **Lägg till en streamer.** Den startar direkt med standardalternativen: appens, eller de
   som du har valt för det här kontot. Justera dem direkt vid behov: bonuskistor, raids,
   moments, tittarsvit, chatt, förutsägelser.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/streamer-add.webp" alt="En streamer läggs till via Twitch-sökningen, sedan dess alternativ">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/streamer-add.avif" alt="En streamer läggs till via Twitch-sökningen, sedan dess alternativ">
   </details>
 
 - **Redigera en streamer.** ”Redigera” öppnar dess alternativ: bonuskistor, raids,
   moments, tittarsvit, chatt, förutsägelser… Ett reglage slår på eller av den utan att ta
   bort den från listan.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/streamer-edit.webp" alt="En streamers alternativ, öppnade från dess rad">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/streamer-edit.avif" alt="En streamers alternativ, öppnade från dess rad">
   </details>
 
 - **Redigera flera streamers samtidigt.** Kryssa i dem och välj sedan ”Redigera N valda
@@ -118,16 +118,26 @@ arbete.
   dem visar ”Blandat”, och dess reglage blir två knappar, ”Ja” och ”Nej”. Appen erbjuder
   sedan att göra dem till standardalternativ för nya streamers.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="Redigering av flera streamers, med alternativ som visar ”Blandat”">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/streamers-group-edit.avif" alt="Redigering av flera streamers, med alternativ som visar ”Blandat”">
   </details>
 
 - **Importera streamers.** Klistra in en lista (upp till 500 namn), eller återanvänd ett
   annat kontos lista eller kanalerna som kontot följer. Listan kontrolleras så att bara
   kanaler som finns läggs till.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/streamers-import.webp" alt="Import av streamers: inklistrad lista, annat konto, följda kanaler">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/streamers-import.avif" alt="Import av streamers: inklistrad lista, annat konto, följda kanaler">
+  </details>
+
+- **Spam Points.** Lös in en kanals anpassade belöning flera gånger i rad. Välj en kanal
+  från din Poänglista, eller vilken kanal som helst som du hittar med Twitch-sökningen:
+  dess belöningar visas med kontots saldo, som läses om live. Ange antalet (upp till 25,
+  inom saldot) och sedan ”Lös in”. Resultatet visas när serien är klar, och varje serie
+  får en egen rad i Journalen.
+
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/spam-points.avif" alt="Spam Points: en kanal vald, 5 × en belöning inlöst, sedan raden i Journalen">
   </details>
 
 ### Drops
@@ -136,8 +146,8 @@ arbete.
   länkning av spelkontot, ”Mina först”. Listan kommer från projektet
   [Twitch Drops API](https://drops.sunkwi.com) och uppdateras var 10:e minut.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="Katalogen som kalender, sökningen och en kampanjs detaljer">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/drops-catalogue.avif" alt="Katalogen som kalender, sökningen och en kampanjs detaljer">
   </details>
 
 - **Din miningordning.** Dra kampanjerna i den ordning du vill. Nya hittar sin plats
@@ -146,24 +156,24 @@ arbete.
   kampanjer som inte hinner bli klara i tid. ”Mina först”, i en kampanjs detaljer, sätter
   den överst.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/drops-order.webp" alt="Miningordningen, de prioriterade spelen och undantagen">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/drops-order.avif" alt="Miningordningen, de prioriterade spelen och undantagen">
   </details>
 
 - **Inventarie och ”Hämta alla”.** Sidan Inventarie sorterar belöningarna i ”Att hämta”,
   ”Pågår” och ”Hämtade”. Hämta dem en i taget eller alla på en gång, eller slå på
   ”Hämta drops automatiskt”.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/drops-inventory.webp" alt="Inventariet och knappen ”Hämta alla”">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/drops-inventory.avif" alt="Inventariet och knappen ”Hämta alla”">
   </details>
 
 - **”Mina streamers först för Drops”.** För den aktuella kampanjen går en streamer från
   din lista, vars sändning räknas för kampanjen, före andra kanaler. Samma kanal ger
   framsteg på din drop och ger dig sina kanalpoäng. På som standard.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="En streamer från listan som tittas på för Drops och för sina poäng">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/drops-streamers-first.avif" alt="En streamer från listan som tittas på för Drops och för sina poäng">
   </details>
 
 ### Uppföljning
@@ -178,8 +188,8 @@ arbete.
   [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) eller
   [Discord](https://discord.gg/support-bots-891685895781113886).
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/journal-requests.webp" alt="Den filtrerade journalen, sedan Tekniska loggar › Förfrågningar">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/journal-requests.avif" alt="Den filtrerade journalen, sedan Tekniska loggar › Förfrågningar">
   </details>
 
 ### På skrivbordet eller på en server
@@ -200,8 +210,8 @@ arbete.
   minuter utan aktivitet och körs över HTTPS bakom en proxy. Fem felaktiga lösenord i rad
   spärrar IP-adressen i 30 sekunder.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/security-lock.webp" alt="Hänglåset: appen låst och sedan upplåst med sitt lösenord">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/security-lock.avif" alt="Hänglåset: appen låst och sedan upplåst med sitt lösenord">
   </details>
 
 - **Signerade uppdateringar, aldrig automatiska.** Märket ”Uppdatering” visas med
@@ -210,8 +220,8 @@ arbete.
   låst: skriv in det igen för att fortsätta mina. Bara en version som signerats av
   projektet installeras. Docker-versionen säger också till, med kommandona som ska köras.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/updates.webp" alt="Märket ”Uppdatering”, bekräftelsen och sedan installationen">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/updates.avif" alt="Märket ”Uppdatering”, bekräftelsen och sedan installationen">
   </details>
 
 ### Och dessutom
@@ -223,8 +233,8 @@ arbete.
 - 29 språk, mörkt och ljust tema, skrivbordsaviseringar, en ikon i systemfältet, start med
   systemet.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/basics.webp" alt="Språk, ljust och mörkt tema, en skrivbordsavisering och ikonen i systemfältet">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/sv/basics.avif" alt="Språk, ljust och mörkt tema, en skrivbordsavisering och ikonen i systemfältet">
   </details>
 
 > [!WARNING]

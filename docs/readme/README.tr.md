@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Twitch Drops &amp; Points Miner'ın video tanıtımı">
+  <img src="../media/tr/presentation.avif" alt="Twitch Drops &amp; Points Miner'ın video tanıtımı">
 </p>
 
 ## <a name="features"></a>Özellikler
@@ -74,78 +74,84 @@ Onu diğer madencilerden ayıran şeyler. Bir maddenin altındaki “Çalışır
 
 - **Tek uygulamada birden fazla hesap.** Her hesap kendi başına, kendi modunda kazar: **Drops ve puan** (bir kanal en iyi kampanya için, diğeri yayıncılarınız için), **Yalnızca Drops** veya **Yalnızca puan**.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/accounts-mining.webp" alt="Ana sayfada aynı anda madencilik yapan birkaç hesap">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/accounts-mining.avif" alt="Ana sayfada aynı anda madencilik yapan birkaç hesap">
   </details>
 
 - **Her yeni hesap için bir sihirbaz.** Giriş yaptıktan sonra varsayılan ayarlardan ya da başka bir hesabın ayarlarından başlayın. Modu, kampanyaları ve yayıncıları seçin, ardından “Kazmaya başla” veya “Kaydet ve sonra başlat” düğmesine basın.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/account-setup.webp" alt="Yeni bir hesabın kurulum sihirbazı, adım adım">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/account-setup.avif" alt="Yeni bir hesabın kurulum sihirbazı, adım adım">
   </details>
 
 - **Tek tıkla başka hesaplara da uygulanan bir değişiklik.** Bir hesapta bir şeyi değiştirdiğinizde onay mesajı “Diğer hesaplara uygula” seçeneğini sunar. Değişiklik, işaretlediğiniz hesaplarda da yapılır; bu hesapların diğer ayarları olduğu gibi kalır.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="“Diğer hesaplara uygula” ile başka hesaplarda da yapılan bir değişiklik">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/apply-to-accounts.avif" alt="“Diğer hesaplara uygula” ile başka hesaplarda da yapılan bir değişiklik">
   </details>
 
 - **Yayıncı ekleme.** Yayıncı varsayılan seçeneklerle hemen başlar: uygulamanın seçenekleriyle ya da bu hesap için seçtiklerinizle. Gerekirse onları hemen orada ayarlayın: bonus sandıkları, baskınlar, anlar, izleme serisi, sohbet, tahminler.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/streamer-add.webp" alt="Twitch aramasıyla bir yayıncı ekleme, ardından seçenekleri">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/streamer-add.avif" alt="Twitch aramasıyla bir yayıncı ekleme, ardından seçenekleri">
   </details>
 
 - **Yayıncı düzenleme.** “Düzenle” yayıncının seçeneklerini açar: bonus sandıkları, baskınlar, anlar, izleme serisi, sohbet, tahminler… Bir anahtar, yayıncıyı listeden çıkarmadan açar veya kapatır.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/streamer-edit.webp" alt="Bir yayıncının kendi satırından açılan seçenekleri">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/streamer-edit.avif" alt="Bir yayıncının kendi satırından açılan seçenekleri">
   </details>
 
 - **Birkaç yayıncıyı aynı anda düzenleme.** Yayıncıları işaretleyin, ardından “Seçili N yayıncıyı düzenle” düğmesine basın. Yalnızca değiştirdiğiniz seçenekler uygulanır. Aralarında farklı olan bir seçenek “Karışık” olarak görünür ve anahtarı “Evet” ve “Hayır” adlı iki düğmeye dönüşür. Uygulama ardından bunları yeni yayıncılar için varsayılan seçenekler yapmayı önerir.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="“Karışık” seçeneklerle birkaç yayıncıyı düzenleme">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/streamers-group-edit.avif" alt="“Karışık” seçeneklerle birkaç yayıncıyı düzenleme">
   </details>
 
 - **Yayıncıları içe aktarma.** Bir liste yapıştırın (en fazla 500 ad) ya da başka bir hesabın listesini veya hesabın takip ettiği kanalları kullanın. Liste denetlenir, böylece yalnızca gerçekten var olan kanallar eklenir.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/streamers-import.webp" alt="Yayıncıları içe aktarma: yapıştırılan liste, başka bir hesap, takip edilen kanallar">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/streamers-import.avif" alt="Yayıncıları içe aktarma: yapıştırılan liste, başka bir hesap, takip edilen kanallar">
+  </details>
+
+- **Spam Points.** Bir kanalın özel ödülünü art arda birkaç kez kullanın. Puan listenizden bir kanal ya da Twitch aramasıyla bulunan herhangi bir kanal seçin: ödülleri, canlı olarak yeniden okunan hesap bakiyesiyle birlikte görünür. Adedi ayarlayın (bakiyenin yettiği kadar, en fazla 25), ardından “Kullan”. Sonuç seri bittiğinde görünür ve her serinin Günlük'te kendi satırı olur.
+
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/spam-points.avif" alt="Spam Points: seçilen bir kanal, 5 × kullanılan bir ödül, ardından Günlük satırı">
   </details>
 
 ### Drops
 
 - **Süren tüm Drops kampanyaları.** Her kampanyanın kendi ayrıntıları vardır: ödüller, oyun hesabı bağlama, “Önce kaz”. Liste [Twitch Drops API](https://drops.sunkwi.com) projesinden gelir ve 10 dakikada bir yenilenir.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="Takvim görünümündeki Katalog, arama ve bir kampanyanın ayrıntıları">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/drops-catalogue.avif" alt="Takvim görünümündeki Katalog, arama ve bir kampanyanın ayrıntıları">
   </details>
 
 - **Kendi kazma sıranız.** Kampanyaları istediğiniz sıraya sürükleyin. Yeni kampanyalar yerlerini kendileri bulur: önce öncelikli oyunlarınız, ardından en erken bitenler ya da en az dakikası kalanlar. Oyunları, kelimeleri, bir kampanyayı veya tek bir ödülü hariç tutun ve zamanında bitemeyecek kampanyaları atlayın. Bir kampanyanın ayrıntılarındaki “Önce kaz”, onu en başa taşır.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/drops-order.webp" alt="Kazma sırası, öncelikli oyunlar ve hariç tutmalar">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/drops-order.avif" alt="Kazma sırası, öncelikli oyunlar ve hariç tutmalar">
   </details>
 
 - **Envanter ve “Tümünü al”.** Envanter sayfası ödülleri “Alınacaklar”, “Devam edenler” ve “Alınanlar” olarak ayırır. Ödülleri tek tek ya da hepsini birden alın veya “Drops'u otomatik al” seçeneğini açın.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/drops-inventory.webp" alt="Envanter ve “Tümünü al” düğmesi">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/drops-inventory.avif" alt="Envanter ve “Tümünü al” düğmesi">
   </details>
 
 - **“Drops için önce benim yayıncılarım”.** Geçerli kampanyada, listenizdeki yayıncılardan yayını o kampanyaya sayılan biri diğer kanallardan önce gelir. Aynı kanal hem drop'u ilerletir hem de size kanal puanlarını kazandırır. Varsayılan olarak açıktır.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="Listeden bir yayıncı, hem Drops hem de puanları için izleniyor">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/drops-streamers-first.avif" alt="Listeden bir yayıncı, hem Drops hem de puanları için izleniyor">
   </details>
 
 ### Takip
 
 - **Her şeyin günlüğü ve her istek.** Günlük her olayı tutar: drop'lar, kazanılan ve harcanan puanlar, sandıklar, bahisler, baskınlar, başlayan yayınlar… Onu hesaba, sekmeye (Drops, Puan, Diğer) ve türe göre filtreleyin. **Teknik kayıtlar › İstekler**, Twitch'e ve diğer hizmetlere gönderilen her isteği sonucu ve süresiyle birlikte listeler. Kayıtlar ve istekler hiçbir token veya gizli bilgi içermez: “Hata raporu için kopyala” onları kopyalar; [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) veya [Discord](https://discord.gg/support-bots-891685895781113886) üzerinde bir hata raporuna yapıştırmaya hazırdır.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/journal-requests.webp" alt="Filtrelenmiş Günlük, ardından Teknik kayıtlar › İstekler">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/journal-requests.avif" alt="Filtrelenmiş Günlük, ardından Teknik kayıtlar › İstekler">
   </details>
 
 ### Masaüstünde veya bir sunucuda
@@ -157,14 +163,14 @@ Onu diğer madencilerden ayıran şeyler. Bir maddenin altındaki “Çalışır
 
 - **Oturumlarınız korunur.** Twitch şifresi yok: tarayıcınızdan `twitch.tv/activate` adresinde giriş yaparsınız. Oturumlar diskte şifrelenir ve onları [Twitch ayarlarınızdan](https://www.twitch.tv/settings/connections) iptal edebilirsiniz. Masaüstünde isteğe bağlı bir uygulama şifresi uygulamayı kilitler: şifre yazılana kadar hiçbir şey kazılmaz. Docker'da panelin kendi şifresi vardır; panel birkaç dakika işlem yapılmayınca kendini kilitler ve bir proxy arkasında HTTPS üzerinden çalışır. Art arda beş yanlış şifre, IP adresini 30 saniyeliğine engeller.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/security-lock.webp" alt="Asma kilit: kilitli uygulama, ardından şifresiyle açılması">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/security-lock.avif" alt="Asma kilit: kilitli uygulama, ardından şifresiyle açılması">
   </details>
 
 - **İmzalı güncellemeler, asla otomatik değil.** Üst çubukta sürüm numarasıyla birlikte bir “Güncelleme” rozeti belirir. “Yükle ve yeniden başlat” önce onay ister, ardından uygulama sürümü yükler ve yeniden başlar. Uygulama şifresi varsa uygulama kilitli olarak yeniden başlar: kazmaya devam etmek için şifreyi yeniden yazın. Yalnızca proje tarafından imzalanmış bir sürüm yüklenir. Docker sürümü de çalıştırılacak komutlarla birlikte haber verir.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/updates.webp" alt="“Güncelleme” rozeti, onay, ardından yükleme">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/updates.avif" alt="“Güncelleme” rozeti, onay, ardından yükleme">
   </details>
 
 ### Ve ayrıca
@@ -172,8 +178,8 @@ Onu diğer madencilerden ayıran şeyler. Bir maddenin altındaki “Çalışır
 - Diğer madencilerde olduğu gibi: bonus sandıkları, baskınlar, anlar, topluluk hedefleri, tahminler (stratejiler, bahis zamanı, koşullar), önce izleme serileri ve abone olunan kanallar, sohbette bulunma (kapatılabilir), yeni yayıncılar için varsayılan seçenekler, resimli Discord, Telegram ve webhook bildirimleri, genel veya hesap başına proxy.
 - 29 dil, koyu ve açık tema, masaüstü bildirimleri, sistem tepsisi simgesi, sistemle birlikte başlatma.
 
-  <details><summary>Çalışırken görün</summary>
-  <img src="../media/en/basics.webp" alt="Diller, açık ve koyu tema, bir masaüstü bildirimi ve sistem tepsisi simgesi">
+  <details open><summary>Çalışırken görün</summary>
+  <img src="../media/tr/basics.avif" alt="Diller, açık ve koyu tema, bir masaüstü bildirimi ve sistem tepsisi simgesi">
   </details>
 
 > [!WARNING]

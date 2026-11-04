@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Twitch Drops &amp; Points Miner 소개 영상">
+  <img src="../media/ko/presentation.avif" alt="Twitch Drops &amp; Points Miner 소개 영상">
 </p>
 
 ## <a name="features"></a>기능
@@ -74,78 +74,84 @@
 
 - **앱 하나에 여러 계정.** 계정마다 각자의 모드로 따로 마이닝해요. **Drops와 포인트**(한 채널은 가장 좋은 캠페인, 다른 채널은 내 스트리머), **Drops만**, **포인트만** 중에서 고를 수 있어요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/accounts-mining.webp" alt="홈에서 여러 계정이 동시에 마이닝하는 모습">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/accounts-mining.avif" alt="홈에서 여러 계정이 동시에 마이닝하는 모습">
   </details>
 
 - **새 계정마다 설정 마법사.** 로그인한 뒤 기본 설정에서 시작하거나 다른 계정의 설정을 가져와요. 모드, 캠페인, 스트리머를 고른 다음 ‘마이닝 시작’이나 ‘저장하고 나중에 시작’을 누르세요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/account-setup.webp" alt="새 계정의 설정 마법사를 단계별로 진행하는 모습">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/account-setup.avif" alt="새 계정의 설정 마법사를 단계별로 진행하는 모습">
   </details>
 
 - **변경 하나를 클릭 한 번으로 다른 계정에도.** 한 계정에서 무언가를 바꾸면 확인 메시지에 ‘다른 계정에 적용’이 나타나요. 체크한 계정에도 같은 변경이 그대로 적용되고, 나머지 설정은 그대로 유지돼요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="‘다른 계정에 적용’으로 같은 변경을 다른 계정에도 적용하는 모습">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/apply-to-accounts.avif" alt="‘다른 계정에 적용’으로 같은 변경을 다른 계정에도 적용하는 모습">
   </details>
 
 - **스트리머 추가.** 추가한 스트리머는 기본 옵션으로 바로 마이닝을 시작해요. 기본 옵션은 앱의 기본값이거나, 이 계정에 맞게 골라 둔 옵션이에요. 필요하면 그 자리에서 조정할 수 있어요: 보너스 상자, 레이드, 모먼트, 시청 스트릭, 채팅, 예측.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/streamer-add.webp" alt="Twitch 검색으로 스트리머를 추가하고 옵션을 여는 모습">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/streamer-add.avif" alt="Twitch 검색으로 스트리머를 추가하고 옵션을 여는 모습">
   </details>
 
 - **스트리머 편집.** ‘편집’을 누르면 그 스트리머의 옵션이 열려요: 보너스 상자, 레이드, 모먼트, 시청 스트릭, 채팅, 예측… 스위치 하나로 목록에서 빼지 않고도 켜고 끌 수 있어요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/streamer-edit.webp" alt="스트리머 행에서 연 옵션">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/streamer-edit.avif" alt="스트리머 행에서 연 옵션">
   </details>
 
 - **여러 스트리머를 한 번에 편집.** 체크한 다음 ‘선택한 스트리머 N명 편집’을 누르세요. 바꾼 옵션만 적용돼요. 스트리머마다 값이 다른 옵션은 ‘혼합’으로 표시되고, 스위치가 ‘예’와 ‘아니요’ 두 버튼으로 바뀌어요. 그다음 앱이 이 값을 새 스트리머의 기본 옵션으로 삼을지 물어봐요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="‘혼합’ 옵션이 있는 여러 스트리머 편집">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/streamers-group-edit.avif" alt="‘혼합’ 옵션이 있는 여러 스트리머 편집">
   </details>
 
 - **스트리머 가져오기.** 목록을 붙여 넣거나(최대 500명), 다른 계정의 목록이나 이 계정이 팔로우하는 채널을 그대로 가져와요. 목록을 확인해서 실제로 있는 채널만 추가해요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/streamers-import.webp" alt="스트리머 가져오기: 붙여 넣은 목록, 다른 계정, 팔로우한 채널">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/streamers-import.avif" alt="스트리머 가져오기: 붙여 넣은 목록, 다른 계정, 팔로우한 채널">
+  </details>
+
+- **Spam Points.** 채널의 사용자 지정 보상을 여러 번 연속으로 교환해요. 포인트 목록에서 채널을 고르거나 Twitch 검색으로 찾은 아무 채널이나 고르면, 그 채널의 보상이 계정 잔액과 함께 표시돼요. 잔액은 실시간으로 다시 읽어요. 수량을 정하고(최대 25개, 잔액 범위 안에서) ‘교환’을 누르세요. 연속 교환이 끝나면 결과가 표시되고, 연속 교환마다 ‘일지’에 한 줄씩 남아요.
+
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/spam-points.avif" alt="Spam Points: 채널을 고르고 보상 하나를 5번 교환한 뒤 일지에 남은 줄을 보는 모습">
   </details>
 
 ### Drops
 
 - **진행 중인 모든 Drops 캠페인.** 캠페인마다 상세 정보가 있어요: 보상, 게임 계정 연동, ‘먼저 마이닝’. 목록은 [Twitch Drops API](https://drops.sunkwi.com) 프로젝트에서 가져오고, 10분마다 새로 고쳐져요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="달력 형태의 카탈로그, 검색, 캠페인 상세 정보">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/drops-catalogue.avif" alt="달력 형태의 카탈로그, 검색, 캠페인 상세 정보">
   </details>
 
 - **내가 정하는 마이닝 순서.** 캠페인을 원하는 순서로 끌어다 놓으세요. 새 캠페인은 알아서 자리를 잡아요. 우선 게임이 먼저, 그다음은 가장 빨리 끝나거나 남은 시간(분)이 가장 적은 캠페인 순이에요. 게임, 단어, 캠페인, 개별 보상을 제외할 수 있고, 기한 안에 끝낼 수 없는 캠페인은 건너뛸 수 있어요. 캠페인 상세 정보에서 ‘먼저 마이닝’을 누르면 맨 위로 올라가요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/drops-order.webp" alt="마이닝 순서, 우선 게임, 제외 항목">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/drops-order.avif" alt="마이닝 순서, 우선 게임, 제외 항목">
   </details>
 
 - **인벤토리와 ‘모두 받기’.** ‘인벤토리’ 페이지는 보상을 ‘받을 수 있음’, ‘진행 중’, ‘수령함’으로 나눠 보여 줘요. 하나씩 받거나, 한 번에 모두 받거나, ‘드롭 자동 수령’을 켤 수 있어요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/drops-inventory.webp" alt="인벤토리와 ‘모두 받기’ 버튼">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/drops-inventory.avif" alt="인벤토리와 ‘모두 받기’ 버튼">
   </details>
 
 - **‘Drops에서 내 스트리머 우선’.** 현재 캠페인에서, 내 목록에 있는 스트리머의 방송이 그 캠페인에 포함되면 다른 채널보다 먼저 시청해요. 같은 채널에서 드롭도 진행되고 그 채널의 채널 포인트도 쌓여요. 기본으로 켜져 있어요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="목록의 스트리머를 Drops와 그 채널의 포인트를 위해 시청하는 모습">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/drops-streamers-first.avif" alt="목록의 스트리머를 Drops와 그 채널의 포인트를 위해 시청하는 모습">
   </details>
 
 ### 기록
 
 - **모든 일과 모든 요청을 기록.** ‘일지’에는 모든 이벤트가 남아요: 드롭, 얻고 쓴 포인트, 상자, 베팅, 레이드, 방송 시작… 계정, 탭(Drops, 포인트, 기타), 유형별로 필터링할 수 있어요. **기술 로그 › 요청**에는 Twitch와 다른 서비스로 보낸 모든 요청이 결과와 걸린 시간과 함께 표시돼요. 로그와 요청에는 토큰이나 비밀 정보가 전혀 없어요. ‘버그 리포트용으로 복사’로 복사해서 [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues)나 [Discord](https://discord.gg/support-bots-891685895781113886)의 버그 리포트에 바로 붙여 넣으면 돼요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/journal-requests.webp" alt="필터링한 일지와 기술 로그 › 요청">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/journal-requests.avif" alt="필터링한 일지와 기술 로그 › 요청">
   </details>
 
 ### 데스크톱이든 서버든
@@ -157,14 +163,14 @@
 
 - **세션을 안전하게.** Twitch 비밀번호는 필요 없어요. 내 브라우저에서 `twitch.tv/activate`로 로그인해요. 세션은 디스크에 암호화되어 저장되고, [Twitch 설정](https://www.twitch.tv/settings/connections)에서 해지할 수 있어요. 데스크톱에서는 선택 사항인 앱 비밀번호로 앱을 잠글 수 있고, 비밀번호를 입력하기 전에는 아무것도 마이닝하지 않아요. Docker에서는 대시보드에 별도의 비밀번호가 있고, 몇 분 동안 활동이 없으면 스스로 잠기며, 프록시 뒤에서 HTTPS로 동작해요. 비밀번호를 연속 5번 틀리면 그 IP 주소는 30초 동안 차단돼요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/security-lock.webp" alt="자물쇠: 잠긴 앱을 비밀번호로 잠금 해제하는 모습">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/security-lock.avif" alt="자물쇠: 잠긴 앱을 비밀번호로 잠금 해제하는 모습">
   </details>
 
 - **서명된 업데이트, 자동 설치는 없어요.** 상단 바에 버전 번호가 붙은 ‘업데이트’ 배지가 나타나요. ‘설치 후 다시 시작’을 누르면 먼저 확인을 요청하고, 그다음 앱이 그 버전을 설치하고 다시 시작해요. 앱 비밀번호를 설정했다면 잠긴 상태로 다시 시작하니, 비밀번호를 다시 입력하면 마이닝이 이어져요. 프로젝트가 서명한 버전만 설치돼요. Docker 버전도 실행할 명령어와 함께 알려 줘요.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/updates.webp" alt="‘업데이트’ 배지, 확인, 그리고 설치">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/updates.avif" alt="‘업데이트’ 배지, 확인, 그리고 설치">
   </details>
 
 ### 그 밖에
@@ -172,8 +178,8 @@
 - 다른 마이닝 도구처럼 지원하는 기능: 보너스 상자, 레이드, 모먼트, 커뮤니티 목표, 예측(전략, 베팅 시점, 조건), 시청 스트릭과 구독 채널 우선, 채팅 접속(끌 수 있음), 새 스트리머의 기본 옵션, 이미지가 포함된 Discord, Telegram, 웹훅 알림, 전체 또는 계정별 프록시.
 - 29개 언어, 다크·라이트 테마, 데스크톱 알림, 트레이 아이콘, 시스템 시작 시 실행.
 
-  <details><summary>작동 모습 보기</summary>
-  <img src="../media/en/basics.webp" alt="언어, 라이트·다크 테마, 데스크톱 알림, 트레이 아이콘">
+  <details open><summary>작동 모습 보기</summary>
+  <img src="../media/ko/basics.avif" alt="언어, 라이트·다크 테마, 데스크톱 알림, 트레이 아이콘">
   </details>
 
 > [!WARNING]

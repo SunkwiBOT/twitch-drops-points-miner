@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Videoukázka aplikace Twitch Drops &amp; Points Miner">
+  <img src="../media/cs/presentation.avif" alt="Videoukázka aplikace Twitch Drops &amp; Points Miner">
 </p>
 
 ## <a name="features"></a>Funkce
@@ -76,40 +76,40 @@
   **Drops a body** (jeden kanál pro nejlepší kampaň, druhý pro vaše streamery),
   **Jen Drops** nebo **Jen body**.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/accounts-mining.webp" alt="Několik účtů těží současně, na stránce Domů">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/accounts-mining.avif" alt="Několik účtů těží současně, na stránce Domů">
   </details>
 
 - **Průvodce pro každý nový účet.** Po přihlášení začněte z výchozího nastavení, nebo
   z nastavení jiného účtu. Zvolte režim, kampaně a streamery a pak „Začít těžit“ nebo
   „Uložit a spustit později“.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/account-setup.webp" alt="Průvodce nastavením nového účtu, krok za krokem">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/account-setup.avif" alt="Průvodce nastavením nového účtu, krok za krokem">
   </details>
 
 - **Jedna změna přenesená na další účty jedním kliknutím.** Když na účtu něco změníte,
   potvrzovací zpráva nabídne „Použít na další účty“. Stejná změna se provede na zaškrtnutých
   účtech a zbytek jejich nastavení zůstane beze změny.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="Změna zopakovaná na dalších účtech přes „Použít na další účty“">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/apply-to-accounts.avif" alt="Změna zopakovaná na dalších účtech přes „Použít na další účty“">
   </details>
 
 - **Přidání streamera.** Hned se rozběhne s výchozími možnostmi: s těmi z aplikace, nebo
   s těmi, které jste zvolili pro tento účet. V případě potřeby je rovnou upravte: bonusové
   truhly, raidy, momenty, série sledování, chat, předpovědi.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/streamer-add.webp" alt="Přidání streamera přes vyhledávání na Twitchi a pak jeho možnosti">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/streamer-add.avif" alt="Přidání streamera přes vyhledávání na Twitchi a pak jeho možnosti">
   </details>
 
 - **Úprava streamera.** „Upravit“ otevře jeho možnosti: bonusové truhly, raidy, momenty,
   série sledování, chat, předpovědi… Přepínač ho zapne nebo vypne, aniž by ho odebral ze
   seznamu.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/streamer-edit.webp" alt="Možnosti streamera otevřené z jeho řádku">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/streamer-edit.avif" alt="Možnosti streamera otevřené z jeho řádku">
   </details>
 
 - **Úprava více streamerů najednou.** Zaškrtněte je a pak „Upravit N vybraných streamerů“.
@@ -117,15 +117,25 @@
   „Smíšené“ a její přepínač se změní na dvě tlačítka, „Ano“ a „Ne“. Aplikace pak nabídne,
   že z nich udělá výchozí možnosti pro nové streamery.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="Úprava několika streamerů s možnostmi „Smíšené“">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/streamers-group-edit.avif" alt="Úprava několika streamerů s možnostmi „Smíšené“">
   </details>
 
 - **Import streamerů.** Vložte seznam (až 500 jmen), nebo převezměte seznam jiného účtu či
   kanály, které účet sleduje. Seznam se zkontroluje, takže se přidají jen existující kanály.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/streamers-import.webp" alt="Import streamerů: vložený seznam, jiný účet, sledované kanály">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/streamers-import.avif" alt="Import streamerů: vložený seznam, jiný účet, sledované kanály">
+  </details>
+
+- **Spam Points.** Uplatněte vlastní odměnu kanálu několikrát za sebou. Vyberte kanál ze
+  svého seznamu Bodů, nebo jakýkoli kanál nalezený vyhledáváním na Twitchi: jeho odměny se
+  zobrazí spolu se zůstatkem účtu, který se průběžně načítá. Nastavte počet (až 25, v rámci
+  zůstatku) a pak „Uplatnit“. Výsledek se zobrazí na konci série a každá série má v Deníku
+  svůj řádek.
+
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/spam-points.avif" alt="Spam Points: vybraný kanál, 5 × uplatněná odměna, pak řádek v Deníku">
   </details>
 
 ### Drops
@@ -134,8 +144,8 @@
   odměny, propojení herního účtu, „Těžit přednostně“. Seznam pochází z projektu
   [Twitch Drops API](https://drops.sunkwi.com) a obnovuje se každých 10 minut.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="Katalog jako kalendář, vyhledávání a podrobnosti kampaně">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/drops-catalogue.avif" alt="Katalog jako kalendář, vyhledávání a podrobnosti kampaně">
   </details>
 
 - **Vaše pořadí těžby.** Přetáhněte kampaně v požadovaném pořadí. Nové si své místo najdou
@@ -143,24 +153,24 @@
   Vylučte hry, slova, kampaň nebo jedinou odměnu a přeskakujte kampaně, které nejde
   dokončit včas. „Těžit přednostně“ v podrobnostech kampaně ji přesune na začátek.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/drops-order.webp" alt="Pořadí těžby, prioritní hry a vyloučení">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/drops-order.avif" alt="Pořadí těžby, prioritní hry a vyloučení">
   </details>
 
 - **Inventář a „Vyzvednout vše“.** Stránka Inventář řadí odměny do skupin „K vyzvednutí“,
   „Probíhá“ a „Vyzvednuto“. Vyzvedávejte je jednu po druhé, všechny najednou, nebo zapněte
   „Vyzvedávat drops automaticky“.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/drops-inventory.webp" alt="Inventář a tlačítko „Vyzvednout vše“">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/drops-inventory.avif" alt="Inventář a tlačítko „Vyzvednout vše“">
   </details>
 
 - **„Moji streameři první pro Drops“.** Pro aktuální kampaň má streamer z vašeho seznamu,
   jehož vysílání se do této kampaně počítá, přednost před ostatními kanály. Tentýž kanál
   posouvá drop dopředu a přináší vám své body kanálu. Ve výchozím stavu zapnuto.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="Streamer ze seznamu sledovaný kvůli Drops i kvůli svým bodům">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/drops-streamers-first.avif" alt="Streamer ze seznamu sledovaný kvůli Drops i kvůli svým bodům">
   </details>
 
 ### Záznamy
@@ -174,8 +184,8 @@
   [GitHubu](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) nebo
   [Discordu](https://discord.gg/support-bots-891685895781113886).
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/journal-requests.webp" alt="Filtrovaný Deník, pak Technické protokoly › Požadavky">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/journal-requests.avif" alt="Filtrovaný Deník, pak Technické protokoly › Požadavky">
   </details>
 
 ### Na počítači nebo na serveru
@@ -195,8 +205,8 @@
   vlastní heslo, po několika minutách nečinnosti se sám zamkne a za proxy běží přes HTTPS.
   Pět špatných hesel po sobě zablokuje IP adresu na 30 sekund.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/security-lock.webp" alt="Zámek: aplikace zamčená a pak odemčená heslem">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/security-lock.avif" alt="Zámek: aplikace zamčená a pak odemčená heslem">
   </details>
 
 - **Podepsané aktualizace, nikdy automatické.** V horní liště se objeví odznak
@@ -205,8 +215,8 @@
   zadejte ho znovu a těžba bude pokračovat. Nainstaluje se jen verze podepsaná projektem.
   Verze pro Docker vám to také oznámí, i s příkazy, které je třeba spustit.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/updates.webp" alt="Odznak „Aktualizace“, potvrzení a pak instalace">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/updates.avif" alt="Odznak „Aktualizace“, potvrzení a pak instalace">
   </details>
 
 ### A také
@@ -217,8 +227,8 @@
   Discord, Telegram a webhook s obrázky, globální proxy nebo proxy pro každý účet.
 - 29 jazyků, tmavý a světlý motiv, oznámení na ploše, ikona v liště, spouštění se systémem.
 
-  <details><summary>Ukázka v akci</summary>
-  <img src="../media/en/basics.webp" alt="Jazyky, světlý a tmavý motiv, oznámení na ploše a ikona v liště">
+  <details open><summary>Ukázka v akci</summary>
+  <img src="../media/cs/basics.avif" alt="Jazyky, světlý a tmavý motiv, oznámení na ploše a ikona v liště">
   </details>
 
 > [!WARNING]

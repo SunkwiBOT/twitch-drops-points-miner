@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Prezentacja wideo Twitch Drops &amp; Points Miner">
+  <img src="../media/pl/presentation.avif" alt="Prezentacja wideo Twitch Drops &amp; Points Miner">
 </p>
 
 ## <a name="features"></a>Funkcje
@@ -77,39 +77,39 @@ działa.
   **Drops i punkty** (jeden kanał dla najlepszej kampanii, drugi dla Twoich streamerów),
   **Tylko Drops** lub **Tylko punkty**.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/accounts-mining.webp" alt="Kilka kont kopiących jednocześnie na stronie Start">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/accounts-mining.avif" alt="Kilka kont kopiących jednocześnie na stronie Start">
   </details>
 
 - **Kreator dla każdego nowego konta.** Po zalogowaniu zacznij od ustawień domyślnych albo
   od ustawień innego konta. Wybierz tryb, kampanie i streamerów, a potem „Zacznij kopać”
   lub „Zapisz i uruchom później”.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/account-setup.webp" alt="Kreator konfiguracji nowego konta, krok po kroku">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/account-setup.avif" alt="Kreator konfiguracji nowego konta, krok po kroku">
   </details>
 
 - **Jedna zmiana przeniesiona na inne konta jednym kliknięciem.** Gdy zmienisz coś na
   koncie, komunikat potwierdzenia proponuje „Zastosuj do innych kont”. Ta sama zmiana trafia
   na zaznaczone konta, a reszta ich ustawień pozostaje bez zmian.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="Zmiana powtórzona na innych kontach przez „Zastosuj do innych kont”">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/apply-to-accounts.avif" alt="Zmiana powtórzona na innych kontach przez „Zastosuj do innych kont”">
   </details>
 
 - **Dodawanie streamera.** Od razu rusza z opcjami domyślnymi: aplikacji albo tymi
   wybranymi przez Ciebie dla tego konta. W razie potrzeby zmień je na miejscu: skrzynki
   bonusowe, rajdy, momenty, seria oglądania, czat, prognozy.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/streamer-add.webp" alt="Dodawanie streamera przez wyszukiwarkę Twitcha, a potem jego opcje">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/streamer-add.avif" alt="Dodawanie streamera przez wyszukiwarkę Twitcha, a potem jego opcje">
   </details>
 
 - **Edycja streamera.** „Edytuj” otwiera jego opcje: skrzynki bonusowe, rajdy, momenty,
   seria oglądania, czat, prognozy… Przełącznik włącza go lub wyłącza bez usuwania z listy.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/streamer-edit.webp" alt="Opcje streamera otwarte z jego wiersza">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/streamer-edit.avif" alt="Opcje streamera otwarte z jego wiersza">
   </details>
 
 - **Edycja wielu streamerów naraz.** Zaznacz ich, a potem
@@ -118,15 +118,25 @@ działa.
   przyciski: „Tak” i „Nie”. Potem aplikacja proponuje, by uczynić je opcjami domyślnymi
   dla nowych streamerów.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="Edycja kilku streamerów z opcjami „Mieszane”">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/streamers-group-edit.avif" alt="Edycja kilku streamerów z opcjami „Mieszane”">
   </details>
 
 - **Import streamerów.** Wklej listę (do 500 nazw) albo weź listę innego konta lub kanały,
   które obserwuje konto. Lista jest sprawdzana, więc dodawane są tylko istniejące kanały.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/streamers-import.webp" alt="Import streamerów: wklejona lista, inne konto, obserwowane kanały">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/streamers-import.avif" alt="Import streamerów: wklejona lista, inne konto, obserwowane kanały">
+  </details>
+
+- **Spam Points.** Odbierz niestandardową nagrodę kanału kilka razy z rzędu. Wybierz kanał
+  ze swojej listy Punktów albo dowolny kanał znaleziony wyszukiwarką Twitcha: jego nagrody
+  pojawiają się razem z saldem konta, odczytywanym na bieżąco. Ustaw liczbę (do 25,
+  w granicach salda), a potem „Odbierz”. Wynik pojawia się po zakończeniu serii, a każda
+  seria ma swój wiersz w Dzienniku.
+
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/spam-points.avif" alt="Spam Points: wybrany kanał, 5 × odebrana nagroda, a potem wiersz w Dzienniku">
   </details>
 
 ### Drops
@@ -135,8 +145,8 @@ działa.
   połączenie konta gry, „Kop najpierw”. Lista pochodzi z projektu
   [Twitch Drops API](https://drops.sunkwi.com) i odświeża się co 10 minut.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="Katalog w widoku kalendarza, wyszukiwarka i szczegóły kampanii">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/drops-catalogue.avif" alt="Katalog w widoku kalendarza, wyszukiwarka i szczegóły kampanii">
   </details>
 
 - **Twoja kolejność kopania.** Przeciągnij kampanie w wybranej kolejności. Nowe same
@@ -145,16 +155,16 @@ działa.
   i pomijaj kampanie, których nie da się ukończyć na czas. „Kop najpierw” w szczegółach
   kampanii przenosi ją na samą górę.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/drops-order.webp" alt="Kolejność kopania, gry priorytetowe i wykluczenia">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/drops-order.avif" alt="Kolejność kopania, gry priorytetowe i wykluczenia">
   </details>
 
 - **Ekwipunek i „Odbierz wszystkie”.** Strona Ekwipunek dzieli nagrody na „Do odebrania”,
   „W toku” i „Odebrane”. Odbieraj je pojedynczo, wszystkie naraz albo włącz
   „Odbieraj dropy automatycznie”.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/drops-inventory.webp" alt="Ekwipunek i przycisk „Odbierz wszystkie”">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/drops-inventory.avif" alt="Ekwipunek i przycisk „Odbierz wszystkie”">
   </details>
 
 - **„Najpierw moi streamerzy dla Drops”.** W bieżącej kampanii streamer z Twojej listy,
@@ -162,8 +172,8 @@ działa.
   Jeden i ten sam kanał posuwa drop naprzód i przynosi Ci swoje punkty kanału. Domyślnie
   włączone.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="Streamer z listy oglądany dla Drops i dla swoich punktów">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/drops-streamers-first.avif" alt="Streamer z listy oglądany dla Drops i dla swoich punktów">
   </details>
 
 ### Monitorowanie
@@ -177,8 +187,8 @@ działa.
   [GitHubie](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) lub
   [Discordzie](https://discord.gg/support-bots-891685895781113886).
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/journal-requests.webp" alt="Przefiltrowany Dziennik, a potem Logi techniczne › Żądania">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/journal-requests.avif" alt="Przefiltrowany Dziennik, a potem Logi techniczne › Żądania">
   </details>
 
 ### Na komputerze lub na serwerze
@@ -198,8 +208,8 @@ działa.
   W Dockerze panel ma własne hasło, sam się blokuje po kilku minutach bezczynności i działa
   przez HTTPS za proxy. Pięć błędnych haseł z rzędu blokuje adres IP na 30 sekund.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/security-lock.webp" alt="Kłódka: aplikacja zablokowana, a potem odblokowana hasłem">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/security-lock.avif" alt="Kłódka: aplikacja zablokowana, a potem odblokowana hasłem">
   </details>
 
 - **Podpisane aktualizacje, nigdy automatyczne.** Na górnym pasku pojawia się plakietka
@@ -209,8 +219,8 @@ działa.
   jest tylko wersja podpisana przez projekt. Wersja Docker też o tym informuje i podaje
   polecenia do uruchomienia.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/updates.webp" alt="Plakietka „Aktualizacja”, potwierdzenie, a potem instalacja">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/updates.avif" alt="Plakietka „Aktualizacja”, potwierdzenie, a potem instalacja">
   </details>
 
 ### A także
@@ -223,8 +233,8 @@ działa.
 - 29 języków, ciemny i jasny motyw, powiadomienia na pulpicie, ikona w zasobniku,
   uruchamianie razem z systemem.
 
-  <details><summary>Zobacz w akcji</summary>
-  <img src="../media/en/basics.webp" alt="Języki, jasny i ciemny motyw, powiadomienie na pulpicie i ikona w zasobniku">
+  <details open><summary>Zobacz w akcji</summary>
+  <img src="../media/pl/basics.avif" alt="Języki, jasny i ciemny motyw, powiadomienie na pulpicie i ikona w zasobniku">
   </details>
 
 > [!WARNING]

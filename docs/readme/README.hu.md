@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="A Twitch Drops &amp; Points Miner videós bemutatója">
+  <img src="../media/hu/presentation.avif" alt="A Twitch Drops &amp; Points Miner videós bemutatója">
 </p>
 
 ## <a name="features"></a>Funkciók
@@ -77,16 +77,16 @@ láthatod, hogyan működnek.
   **Drops és pontok** (egy csatorna a legjobb kampányért, a másik a streamereidért),
   **Csak Drops** vagy **Csak pontok**.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/accounts-mining.webp" alt="Több fiók bányászik egyszerre a Kezdőlapon">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/accounts-mining.avif" alt="Több fiók bányászik egyszerre a Kezdőlapon">
   </details>
 
 - **Varázsló minden új fiókhoz.** Bejelentkezés után indulj ki az alapértelmezett
   beállításokból vagy egy másik fiók beállításaiból. Válaszd ki a módot, a kampányokat és
   a streamereket, majd „Bányászás indítása” vagy „Mentés és indítás később”.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/account-setup.webp" alt="Egy új fiók beállítási varázslója, lépésről lépésre">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/account-setup.avif" alt="Egy új fiók beállítási varázslója, lépésről lépésre">
   </details>
 
 - **Egy módosítás más fiókokra is, egyetlen kattintással.** Ha egy fiókon módosítasz
@@ -94,24 +94,24 @@ láthatod, hogyan működnek.
   A módosítás a bejelölt fiókokon is megtörténik, a többi beállításuk pedig változatlan
   marad.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="Más fiókokon is elvégzett módosítás az „Alkalmazás más fiókokra” gombbal">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/apply-to-accounts.avif" alt="Más fiókokon is elvégzett módosítás az „Alkalmazás más fiókokra” gombbal">
   </details>
 
 - **Streamer hozzáadása.** Azonnal elindul az alapértelmezett beállításokkal: az
   alkalmazáséval, vagy azokkal, amelyeket ehhez a fiókhoz választottál. Ha kell, rögtön
   módosíthatod őket: bónuszládák, raidek, pillanatok, nézési sorozat, chat, előrejelzések.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/streamer-add.webp" alt="Streamer hozzáadása a Twitch-keresővel, majd a beállításai">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/streamer-add.avif" alt="Streamer hozzáadása a Twitch-keresővel, majd a beállításai">
   </details>
 
 - **Streamer szerkesztése.** A „Szerkesztés” megnyitja a beállításait: bónuszládák, raidek,
   pillanatok, nézési sorozat, chat, előrejelzések… Egy kapcsolóval be- vagy kikapcsolhatod
   anélkül, hogy eltávolítanád a listáról.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/streamer-edit.webp" alt="Egy streamer beállításai, a sorából megnyitva">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/streamer-edit.avif" alt="Egy streamer beállításai, a sorából megnyitva">
   </details>
 
 - **Több streamer szerkesztése egyszerre.** Jelöld be őket, majd
@@ -120,16 +120,26 @@ láthatod, hogyan működnek.
   válik: „Igen” és „Nem”. Ezután az alkalmazás felajánlja, hogy ezek legyenek az új
   streamerek alapértelmezett beállításai.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="Több streamer szerkesztése „Vegyes” beállításokkal">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/streamers-group-edit.avif" alt="Több streamer szerkesztése „Vegyes” beállításokkal">
   </details>
 
 - **Streamerek importálása.** Illessz be egy listát (legfeljebb 500 névvel), vagy vedd át
   egy másik fiók listáját, illetve a fiók által követett csatornákat. A listát ellenőrzi,
   így csak létező csatornák kerülnek fel.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/streamers-import.webp" alt="Streamerek importálása: beillesztett lista, másik fiók, követett csatornák">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/streamers-import.avif" alt="Streamerek importálása: beillesztett lista, másik fiók, követett csatornák">
+  </details>
+
+- **Spam Points.** Válts be egy csatorna egyedi jutalmát többször egymás után. Válassz
+  egy csatornát a Pontok listádról, vagy bármelyik csatornát, amelyet a Twitch-keresővel
+  találsz: a jutalmai a fiók élőben frissülő egyenlegével együtt jelennek meg. Állítsd be
+  a mennyiséget (legfeljebb 25-öt, az egyenleg erejéig), majd „Beváltás”. Az eredmény
+  a sorozat végén jelenik meg, és minden sorozatnak saját sora van a Naplóban.
+
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/spam-points.avif" alt="Spam Points: egy kiválasztott csatorna, 5 × beváltott jutalom, majd a Napló sora">
   </details>
 
 ### Drops
@@ -139,8 +149,8 @@ láthatod, hogyan működnek.
   [Twitch Drops API](https://drops.sunkwi.com) projektből származik, és 10 percenként
   frissül.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="A Katalógus naptárnézetben, a keresés és egy kampány adatlapja">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/drops-catalogue.avif" alt="A Katalógus naptárnézetben, a keresés és egy kampány adatlapja">
   </details>
 
 - **A saját bányászási sorrended.** Húzd a kampányokat a kívánt sorrendbe. Az újak maguktól
@@ -149,16 +159,16 @@ láthatod, hogyan működnek.
   vagy egyetlen jutalmat, és hagyd ki azokat a kampányokat, amelyek nem fejezhetők be
   időben. A kampány adatlapján a „Bányászás elsőként” a lista élére teszi.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/drops-order.webp" alt="A bányászási sorrend, a prioritás játékok és a kizárások">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/drops-order.avif" alt="A bányászási sorrend, a prioritás játékok és a kizárások">
   </details>
 
 - **Leltár és „Összes begyűjtése”.** A Leltár oldal a jutalmakat a „Begyűjthető”,
   a „Folyamatban” és a „Begyűjtve” csoportba sorolja. Gyűjtsd be őket egyenként, egyszerre
   mindet, vagy kapcsold be a „Drops automatikus begyűjtése” beállítást.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/drops-inventory.webp" alt="A leltár és az „Összes begyűjtése” gomb">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/drops-inventory.avif" alt="A leltár és az „Összes begyűjtése” gomb">
   </details>
 
 - **„Saját streamereim előre a Dropsnál”.** Az aktuális kampánynál a listádon szereplő
@@ -166,8 +176,8 @@ láthatod, hogyan működnek.
   Ugyanaz a csatorna viszi előre a dropot, és hozza neked a csatornapontjait. Alapértelmezés
   szerint be van kapcsolva.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="A listán szereplő streamer, akit a Dropsért és a pontjaiért is néz">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/drops-streamers-first.avif" alt="A listán szereplő streamer, akit a Dropsért és a pontjaiért is néz">
   </details>
 
 ### Nyomon követés
@@ -181,8 +191,8 @@ láthatod, hogyan működnek.
   a [GitHubon](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) vagy
   a [Discordon](https://discord.gg/support-bots-891685895781113886).
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/journal-requests.webp" alt="A szűrt Napló, majd a Technikai logok › Kérések">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/journal-requests.avif" alt="A szűrt Napló, majd a Technikai logok › Kérések">
   </details>
 
 ### Asztalon vagy szerveren
@@ -204,8 +214,8 @@ láthatod, hogyan működnek.
   tétlenség után magától zárolódik, és proxy mögött HTTPS-en fut. Öt egymást követő hibás
   jelszó 30 másodpercre letiltja az IP-címet.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/security-lock.webp" alt="A lakat: a zárolt alkalmazás, majd feloldása a jelszavával">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/security-lock.avif" alt="A lakat: a zárolt alkalmazás, majd feloldása a jelszavával">
   </details>
 
 - **Aláírt frissítések, sosem automatikusan.** A felső sávban megjelenik egy „Frissítés”
@@ -214,8 +224,8 @@ láthatod, hogyan működnek.
   be újra, hogy folytatódjon a bányászat. Csak a projekt által aláírt verzió települ.
   A Docker-verzió is szól, a futtatandó parancsokkal együtt.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/updates.webp" alt="A „Frissítés” jelvény, a megerősítés, majd a telepítés">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/updates.avif" alt="A „Frissítés” jelvény, a megerősítés, majd a telepítés">
   </details>
 
 ### És még
@@ -227,8 +237,8 @@ láthatod, hogyan működnek.
   globális vagy fiókonkénti proxy.
 - 29 nyelv, sötét és világos téma, asztali értesítések, tálcaikon, indítás a rendszerrel.
 
-  <details><summary>Működés közben</summary>
-  <img src="../media/en/basics.webp" alt="Nyelvek, világos és sötét téma, egy asztali értesítés és a tálcaikon">
+  <details open><summary>Működés közben</summary>
+  <img src="../media/hu/basics.avif" alt="Nyelvek, világos és sötét téma, egy asztali értesítés és a tálcaikon">
   </details>
 
 > [!WARNING]

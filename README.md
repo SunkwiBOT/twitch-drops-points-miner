@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/media/en/presentation.webp" alt="Video overview of Twitch Drops &amp; Points Miner">
+  <img src="docs/media/en/presentation.avif" alt="Video overview of Twitch Drops &amp; Points Miner">
 </p>
 
 ## <a name="features"></a>Features
@@ -76,40 +76,40 @@ What sets it apart from other miners. “See it in action” under a point shows
   **Drops and points** (one channel for the best campaign, the other for your streamers),
   **Drops only** or **Points only**.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/accounts-mining.webp" alt="Several accounts mining at the same time, on the Home page">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/accounts-mining.avif" alt="Several accounts mining at the same time, on the Home page">
   </details>
 
 - **A wizard for each new account.** After signing in, start from the default settings or
   from another account's. Choose the mode, the campaigns and the streamers, then
   “Start mining” or “Save and start later”.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/account-setup.webp" alt="The setup wizard of a new account, step by step">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/account-setup.avif" alt="The setup wizard of a new account, step by step">
   </details>
 
 - **One change applied to other accounts in one click.** After you change something on an
   account, the confirmation message offers “Apply to other accounts”. The change is made
   again on the accounts you tick, and they keep the rest of their settings.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/apply-to-accounts.webp" alt="A change made again on other accounts with “Apply to other accounts”">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/apply-to-accounts.avif" alt="A change made again on other accounts with “Apply to other accounts”">
   </details>
 
 - **Add a streamer.** It starts right away with the default options: the app's, or the
   ones you chose for this account. Adjust them on the spot if needed: bonus chests, raids,
   moments, watch streak, chat, predictions.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/streamer-add.webp" alt="Adding a streamer through the Twitch search, then its options">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/streamer-add.avif" alt="Adding a streamer through the Twitch search, then its options">
   </details>
 
 - **Edit a streamer.** “Edit” opens its options: bonus chests, raids, moments, watch
   streak, chat, predictions… A switch turns it on or off without removing it from the
   list.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/streamer-edit.webp" alt="A streamer's options, opened from its row">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/streamer-edit.avif" alt="A streamer's options, opened from its row">
   </details>
 
 - **Edit several streamers at once.** Tick them, then “Edit the N selected streamers”.
@@ -117,16 +117,26 @@ What sets it apart from other miners. “See it in action” under a point shows
   “Mixed”, and its switch becomes two buttons, “Yes” and “No”. The app then offers to make
   them the default options for new streamers.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/streamers-group-edit.webp" alt="Editing several streamers, with “Mixed” options">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/streamers-group-edit.avif" alt="Editing several streamers, with “Mixed” options">
   </details>
 
 - **Import streamers.** Paste a list (up to 500 names), or reuse another account's list or
   the channels the account follows. The list is checked so that only channels that exist
   are added.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/streamers-import.webp" alt="Importing streamers: a pasted list, another account, followed channels">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/streamers-import.avif" alt="Importing streamers: a pasted list, another account, followed channels">
+  </details>
+
+- **Spam Points.** Redeem a channel's custom reward several times in a row. Pick a channel
+  from your Points list, or any channel found with the Twitch search: its rewards show
+  with the account's balance, read live. Set the quantity (up to 25, within the balance),
+  then “Redeem”. The result shows when the burst ends, and each burst has its line in the
+  Journal.
+
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/spam-points.avif" alt="Spam Points: a channel picked, 5 × a reward redeemed, then the Journal line">
   </details>
 
 ### Drops
@@ -135,8 +145,8 @@ What sets it apart from other miners. “See it in action” under a point shows
   account linking, “Mine first”. The list comes from the
   [Twitch Drops API](https://drops.sunkwi.com) project and refreshes every 10 minutes.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/drops-catalogue.webp" alt="The Catalogue as a calendar, the search and a campaign's details">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/drops-catalogue.avif" alt="The Catalogue as a calendar, the search and a campaign's details">
   </details>
 
 - **Your mining order.** Drag the campaigns into the order you want. New ones find their
@@ -144,24 +154,24 @@ What sets it apart from other miners. “See it in action” under a point shows
   Exclude games, words, a campaign or a single reward, and skip the campaigns that cannot
   finish in time. “Mine first”, in a campaign's details, puts it at the top.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/drops-order.webp" alt="The mining order, the priority games and the exclusions">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/drops-order.avif" alt="The mining order, the priority games and the exclusions">
   </details>
 
 - **Inventory and “Claim all”.** The Inventory page sorts rewards into “To claim”,
   “In progress” and “Claimed”. Claim them one by one, all at once, or turn on
   “Claim drops automatically”.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/drops-inventory.webp" alt="The inventory and the “Claim all” button">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/drops-inventory.avif" alt="The inventory and the “Claim all” button">
   </details>
 
 - **“My streamers first for Drops”.** For the current campaign, a streamer from your list
   whose stream counts for that campaign comes before other channels. The same channel
   moves the drop forward and earns you its channel points. On by default.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/drops-streamers-first.webp" alt="A streamer from the list, watched for the Drops and for its points">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/drops-streamers-first.avif" alt="A streamer from the list, watched for the Drops and for its points">
   </details>
 
 ### Tracking
@@ -175,8 +185,8 @@ What sets it apart from other miners. “See it in action” under a point shows
   [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) or
   [Discord](https://discord.gg/support-bots-891685895781113886).
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/journal-requests.webp" alt="The filtered Journal, then Technical logs › Requests">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/journal-requests.avif" alt="The filtered Journal, then Technical logs › Requests">
   </details>
 
 ### On the desktop or on a server
@@ -197,8 +207,8 @@ What sets it apart from other miners. “See it in action” under a point shows
   and runs over HTTPS behind a proxy. Five wrong passwords in a row block the IP address
   for 30 seconds.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/security-lock.webp" alt="The padlock: the app locked, then unlocked with its password">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/security-lock.avif" alt="The padlock: the app locked, then unlocked with its password">
   </details>
 
 - **Signed updates, never automatic.** An “Update” badge with the version number appears
@@ -207,8 +217,8 @@ What sets it apart from other miners. “See it in action” under a point shows
   resume mining. Only a version signed by the project is installed. The Docker version
   tells you too, with the commands to run.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/updates.webp" alt="The “Update” badge, the confirmation, then the install">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/updates.avif" alt="The “Update” badge, the confirmation, then the install">
   </details>
 
 ### And also
@@ -220,8 +230,8 @@ What sets it apart from other miners. “See it in action” under a point shows
 - 29 languages, dark and light themes, desktop notifications, a tray icon, start with the
   system.
 
-  <details><summary>See it in action</summary>
-  <img src="docs/media/en/basics.webp" alt="Languages, light and dark themes, a desktop notification and the tray icon">
+  <details open><summary>See it in action</summary>
+  <img src="docs/media/en/basics.avif" alt="Languages, light and dark themes, a desktop notification and the tray icon">
   </details>
 
 > [!WARNING]

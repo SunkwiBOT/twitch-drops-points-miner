@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Videopræsentation af Twitch Drops &amp; Points Miner">
+  <img src="../media/da/presentation.avif" alt="Videopræsentation af Twitch Drops &amp; Points Miner">
 </p>
 
 ## <a name="features"></a>Funktioner
@@ -77,40 +77,40 @@ brug.
   **Drops og point** (én kanal til den bedste kampagne, den anden til dine streamere),
   **Kun Drops** eller **Kun point**.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/accounts-mining.webp" alt="Flere konti, der miner samtidig, på siden Hjem">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/accounts-mining.avif" alt="Flere konti, der miner samtidig, på siden Hjem">
   </details>
 
 - **En guide til hver ny konto.** Efter login tager du udgangspunkt i
   standardindstillingerne eller i en anden kontos. Vælg tilstand, kampagner og streamere,
   og derefter »Start mining« eller »Gem og start senere«.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/account-setup.webp" alt="Opsætningsguiden for en ny konto, trin for trin">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/account-setup.avif" alt="Opsætningsguiden for en ny konto, trin for trin">
   </details>
 
 - **Én ændring anvendt på andre konti med ét klik.** Når du har ændret noget på en konto,
   tilbyder bekræftelsesbeskeden »Anvend på andre konti«. Ændringen foretages igen på de
   konti, du sætter flueben ved, og de beholder resten af deres indstillinger.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="En ændring, der foretages igen på andre konti med »Anvend på andre konti«">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/apply-to-accounts.avif" alt="En ændring, der foretages igen på andre konti med »Anvend på andre konti«">
   </details>
 
 - **Tilføj en streamer.** Den starter med det samme med standardindstillingerne: appens
   eller dem, du har valgt til denne konto. Justér dem med det samme efter behov:
   bonuskister, raids, moments, seerstime, chat, forudsigelser.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/streamer-add.webp" alt="En streamer tilføjes via Twitch-søgningen, derefter dens indstillinger">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/streamer-add.avif" alt="En streamer tilføjes via Twitch-søgningen, derefter dens indstillinger">
   </details>
 
 - **Redigér en streamer.** »Redigér« åbner dens indstillinger: bonuskister, raids, moments,
   seerstime, chat, forudsigelser … En kontakt slår den til eller fra uden at fjerne den fra
   listen.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/streamer-edit.webp" alt="En streamers indstillinger, åbnet fra dens række">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/streamer-edit.avif" alt="En streamers indstillinger, åbnet fra dens række">
   </details>
 
 - **Redigér flere streamere på én gang.** Sæt flueben ved dem, og vælg derefter
@@ -119,16 +119,26 @@ brug.
   knapper, »Ja« og »Nej«. Appen tilbyder derefter at gøre dem til standardindstillinger for
   nye streamere.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="Redigering af flere streamere med indstillinger, der viser »Blandet«">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/streamers-group-edit.avif" alt="Redigering af flere streamere med indstillinger, der viser »Blandet«">
   </details>
 
 - **Importér streamere.** Indsæt en liste (op til 500 navne), eller genbrug en anden kontos
   liste eller de kanaler, kontoen følger. Listen kontrolleres, så kun kanaler, der findes,
   bliver tilføjet.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/streamers-import.webp" alt="Import af streamere: indsat liste, anden konto, fulgte kanaler">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/streamers-import.avif" alt="Import af streamere: indsat liste, anden konto, fulgte kanaler">
+  </details>
+
+- **Spam Points.** Indløs en kanals tilpassede belønning flere gange i træk. Vælg en kanal
+  fra din Point-liste, eller en hvilken som helst kanal, du finder med Twitch-søgningen:
+  dens belønninger vises med kontoens saldo, der læses igen live. Angiv antallet (op til
+  25, inden for saldoen), og derefter »Indløs«. Resultatet vises, når serien er slut, og
+  hver serie får sin egen linje i Journalen.
+
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/spam-points.avif" alt="Spam Points: en kanal valgt, 5 × en belønning indløst, derefter linjen i Journalen">
   </details>
 
 ### Drops
@@ -137,8 +147,8 @@ brug.
   belønninger, tilknytning af spilkontoen, »Sæt først i mining-rækkefølgen«. Listen kommer
   fra projektet [Twitch Drops API](https://drops.sunkwi.com) og opdateres hvert 10. minut.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="Kataloget som kalender, søgningen og en kampagnes detaljer">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/drops-catalogue.avif" alt="Kataloget som kalender, søgningen og en kampagnes detaljer">
   </details>
 
 - **Din mining-rækkefølge.** Træk kampagnerne i den rækkefølge, du vil have. Nye finder
@@ -147,24 +157,24 @@ brug.
   spring de kampagner over, der ikke kan nå at blive færdige. »Sæt først i
   mining-rækkefølgen« i en kampagnes detaljer sætter den øverst.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/drops-order.webp" alt="Mining-rækkefølgen, de prioriterede spil og udelukkelserne">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/drops-order.avif" alt="Mining-rækkefølgen, de prioriterede spil og udelukkelserne">
   </details>
 
 - **Inventar og »Hent alle«.** Siden Inventar sorterer belønningerne i
   »Klar til hentning«, »I gang« og »Hentet«. Hent dem én ad gangen eller alle på én gang,
   eller slå »Hent drops automatisk« til.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/drops-inventory.webp" alt="Inventaret og knappen »Hent alle«">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/drops-inventory.avif" alt="Inventaret og knappen »Hent alle«">
   </details>
 
 - **»Mine streamere først til Drops«.** For den aktuelle kampagne går en streamer fra din
   liste, hvis stream tæller for kampagnen, forud for andre kanaler. Den samme kanal bringer
   dit drop videre og giver dig sine kanalpoint. Slået til som standard.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="En streamer fra listen, der ses for Drops og for sine point">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/drops-streamers-first.avif" alt="En streamer fra listen, der ses for Drops og for sine point">
   </details>
 
 ### Overblik
@@ -179,8 +189,8 @@ brug.
   [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) eller
   [Discord](https://discord.gg/support-bots-891685895781113886).
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/journal-requests.webp" alt="Den filtrerede journal, derefter Tekniske logfiler › Forespørgsler">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/journal-requests.avif" alt="Den filtrerede journal, derefter Tekniske logfiler › Forespørgsler">
   </details>
 
 ### På skrivebordet eller på en server
@@ -202,8 +212,8 @@ brug.
   og kører over HTTPS bag en proxy. Fem forkerte adgangskoder i træk spærrer IP-adressen i
   30 sekunder.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/security-lock.webp" alt="Hængelåsen: appen låst og derefter låst op med sin adgangskode">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/security-lock.avif" alt="Hængelåsen: appen låst og derefter låst op med sin adgangskode">
   </details>
 
 - **Signerede opdateringer, aldrig automatiske.** Mærket »Opdatering« vises med
@@ -213,8 +223,8 @@ brug.
   projektet, bliver installeret. Docker-versionen giver også besked, med de kommandoer, der
   skal køres.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/updates.webp" alt="Mærket »Opdatering«, bekræftelsen og derefter installationen">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/updates.avif" alt="Mærket »Opdatering«, bekræftelsen og derefter installationen">
   </details>
 
 ### Og desuden
@@ -227,8 +237,8 @@ brug.
 - 29 sprog, mørkt og lyst tema, skrivebordsnotifikationer, et ikon i proceslinjen, start
   sammen med systemet.
 
-  <details><summary>Se det i aktion</summary>
-  <img src="../media/en/basics.webp" alt="Sprog, lyst og mørkt tema, en skrivebordsnotifikation og ikonet i proceslinjen">
+  <details open><summary>Se det i aktion</summary>
+  <img src="../media/da/basics.avif" alt="Sprog, lyst og mørkt tema, en skrivebordsnotifikation og ikonet i proceslinjen">
   </details>
 
 > [!WARNING]

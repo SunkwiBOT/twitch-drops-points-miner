@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Videoesittely Twitch Drops &amp; Points Minerista">
+  <img src="../media/fi/presentation.avif" alt="Videoesittely Twitch Drops &amp; Points Minerista">
 </p>
 
 ## <a name="features"></a>Ominaisuudet
@@ -77,40 +77,40 @@ ominaisuuden käytössä.
   louhintatilassaan: **Drops ja pisteet** (yksi kanava parhaalle kampanjalle, toinen
   streamaajillesi), **Vain Drops** tai **Vain pisteet**.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/accounts-mining.webp" alt="Useita tilejä louhimassa samaan aikaan Etusivulla">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/accounts-mining.avif" alt="Useita tilejä louhimassa samaan aikaan Etusivulla">
   </details>
 
 - **Ohjattu käyttöönotto jokaiselle uudelle tilille.** Kirjautumisen jälkeen voit aloittaa
   oletusasetuksista tai toisen tilin asetuksista. Valitse louhintatila, kampanjat ja
   streamaajat, ja sitten ”Aloita louhinta” tai ”Tallenna ja aloita myöhemmin”.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/account-setup.webp" alt="Uuden tilin ohjattu käyttöönotto vaihe vaiheelta">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/account-setup.avif" alt="Uuden tilin ohjattu käyttöönotto vaihe vaiheelta">
   </details>
 
 - **Muutos muihin tileihin yhdellä napsautuksella.** Kun olet muuttanut jotain tilillä,
   vahvistusviesti tarjoaa vaihtoehdon ”Käytä muihin tileihin”. Muutos tehdään uudelleen
   valitsemillesi tileille, ja niiden muut asetukset säilyvät ennallaan.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="Muutos tehdään uudelleen muille tileille toiminnolla ”Käytä muihin tileihin”">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/apply-to-accounts.avif" alt="Muutos tehdään uudelleen muille tileille toiminnolla ”Käytä muihin tileihin”">
   </details>
 
 - **Lisää streamaaja.** Se aloittaa heti oletusvalinnoilla: sovelluksen omilla tai niillä,
   jotka olet valinnut tälle tilille. Säädä niitä tarvittaessa saman tien: bonusarkut,
   raidit, hetket, katseluputki, chat, ennustukset.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/streamer-add.webp" alt="Streamaajan lisääminen Twitch-haulla ja sen jälkeen sen valinnat">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/streamer-add.avif" alt="Streamaajan lisääminen Twitch-haulla ja sen jälkeen sen valinnat">
   </details>
 
 - **Muokkaa streamaajaa.** ”Muokkaa” avaa sen valinnat: bonusarkut, raidit, hetket,
   katseluputki, chat, ennustukset… Kytkin ottaa sen käyttöön tai poistaa sen käytöstä
   poistamatta sitä listalta.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/streamer-edit.webp" alt="Streamaajan valinnat avattuna sen riviltä">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/streamer-edit.avif" alt="Streamaajan valinnat avattuna sen riviltä">
   </details>
 
 - **Muokkaa useita streamaajia kerralla.** Valitse ne ja sitten ”Muokkaa N valittua
@@ -119,16 +119,26 @@ ominaisuuden käytössä.
   ”Kyllä” ja ”Ei”. Sovellus tarjoutuu sen jälkeen tallentamaan ne uusien streamaajien
   oletusvalinnoiksi.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="Useiden streamaajien muokkaus, valintoina ”Vaihtelee”">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/streamers-group-edit.avif" alt="Useiden streamaajien muokkaus, valintoina ”Vaihtelee”">
   </details>
 
 - **Tuo streamaajia.** Liitä lista (enintään 500 nimeä) tai käytä toisen tilin listaa tai
   tilin seuraamia kanavia. Lista tarkistetaan, jotta vain olemassa olevat kanavat
   lisätään.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/streamers-import.webp" alt="Streamaajien tuonti: liitetty lista, toinen tili, seuratut kanavat">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/streamers-import.avif" alt="Streamaajien tuonti: liitetty lista, toinen tili, seuratut kanavat">
+  </details>
+
+- **Spam Points.** Lunasta kanavan oma palkinto useita kertoja peräkkäin. Valitse kanava
+  Pisteet-listastasi tai mikä tahansa Twitch-haulla löytyvä kanava: sen palkinnot näkyvät
+  tilin saldon kanssa, jota seurataan reaaliajassa. Aseta määrä (enintään 25, saldon
+  rajoissa) ja valitse sitten ”Lunasta”. Tulos näkyy sarjan päätyttyä, ja jokaisesta
+  sarjasta jää oma rivinsä Päiväkirjaan.
+
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/spam-points.avif" alt="Spam Points: valittu kanava, 5 × lunastettu palkinto ja sitten rivi Päiväkirjassa">
   </details>
 
 ### Drops
@@ -138,8 +148,8 @@ ominaisuuden käytössä.
   [Twitch Drops API](https://drops.sunkwi.com) -projektista ja päivittyy 10 minuutin
   välein.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="Luettelo kalenterina, haku ja kampanjan tiedot">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/drops-catalogue.avif" alt="Luettelo kalenterina, haku ja kampanjan tiedot">
   </details>
 
 - **Oma louhintajärjestyksesi.** Vedä kampanjat haluamaasi järjestykseen. Uudet löytävät
@@ -148,24 +158,24 @@ ominaisuuden käytössä.
   palkinto, ja ohita kampanjat, jotka eivät ehdi valmistua ajoissa. ”Louhi ensin”
   kampanjan tiedoissa nostaa sen kärkeen.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/drops-order.webp" alt="Louhintajärjestys, prioriteettipelit ja ohitukset">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/drops-order.avif" alt="Louhintajärjestys, prioriteettipelit ja ohitukset">
   </details>
 
 - **Varasto ja ”Lunasta kaikki”.** Varasto-sivu jakaa palkinnot ryhmiin
   ”Lunastettavissa”, ”Kesken” ja ”Lunastetut”. Lunasta ne yksi kerrallaan tai kaikki
   kerralla, tai ota käyttöön ”Lunasta dropsit automaattisesti”.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/drops-inventory.webp" alt="Varasto ja ”Lunasta kaikki” -painike">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/drops-inventory.avif" alt="Varasto ja ”Lunasta kaikki” -painike">
   </details>
 
 - **”Omat streamaajat ensin Dropseissa”.** Nykyisessä kampanjassa listasi streamaaja,
   jonka lähetys lasketaan kampanjaan, menee muiden kanavien edelle. Sama kanava edistää
   dropia ja kerryttää sinulle kanavansa pisteitä. Oletuksena käytössä.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="Listan streamaaja, jota katsotaan sekä Dropsien että pisteiden vuoksi">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/drops-streamers-first.avif" alt="Listan streamaaja, jota katsotaan sekä Dropsien että pisteiden vuoksi">
   </details>
 
 ### Seuranta
@@ -180,8 +190,8 @@ ominaisuuden käytössä.
   [GitHubissa](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) tai
   [Discordissa](https://discord.gg/support-bots-891685895781113886).
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/journal-requests.webp" alt="Suodatettu Päiväkirja ja sitten Tekniset lokit › Pyynnöt">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/journal-requests.avif" alt="Suodatettu Päiväkirja ja sitten Tekniset lokit › Pyynnöt">
   </details>
 
 ### Työpöydällä tai palvelimella
@@ -203,8 +213,8 @@ ominaisuuden käytössä.
   lukittuu muutaman minuutin käyttämättömyyden jälkeen ja toimii HTTPS:n yli proxyn
   takana. Viisi väärää salasanaa peräkkäin estää IP-osoitteen 30 sekunniksi.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/security-lock.webp" alt="Riippulukko: sovellus lukittuna ja sitten avattuna salasanallaan">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/security-lock.avif" alt="Riippulukko: sovellus lukittuna ja sitten avattuna salasanallaan">
   </details>
 
 - **Allekirjoitetut päivitykset, ei koskaan automaattisesti.** Yläpalkkiin ilmestyy
@@ -214,8 +224,8 @@ ominaisuuden käytössä.
   jatkaaksesi louhintaa. Vain projektin allekirjoittama versio asennetaan. Docker-versio
   ilmoittaa myös ja kertoo suoritettavat komennot.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/updates.webp" alt="”Päivitys”-merkki, vahvistus ja sitten asennus">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/updates.avif" alt="”Päivitys”-merkki, vahvistus ja sitten asennus">
   </details>
 
 ### Lisäksi
@@ -227,8 +237,8 @@ ominaisuuden käytössä.
 - 29 kieltä, tumma ja vaalea teema, työpöytäilmoitukset, ilmoitusalueen kuvake,
   käynnistys järjestelmän mukana.
 
-  <details><summary>Katso toiminnassa</summary>
-  <img src="../media/en/basics.webp" alt="Kielet, vaalea ja tumma teema, työpöytäilmoitus ja ilmoitusalueen kuvake">
+  <details open><summary>Katso toiminnassa</summary>
+  <img src="../media/fi/basics.avif" alt="Kielet, vaalea ja tumma teema, työpöytäilmoitus ja ilmoitusalueen kuvake">
   </details>
 
 > [!WARNING]

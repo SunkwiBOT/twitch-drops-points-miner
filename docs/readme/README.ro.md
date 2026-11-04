@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Prezentare video a Twitch Drops &amp; Points Miner">
+  <img src="../media/ro/presentation.avif" alt="Prezentare video a Twitch Drops &amp; Points Miner">
 </p>
 
 ## <a name="features"></a>Funcționalități
@@ -77,40 +77,40 @@ la lucru.
   propriul mod: **Drops și puncte** (un canal pentru cea mai bună campanie, celălalt pentru
   streamerii tăi), **Doar Drops** sau **Doar puncte**.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/accounts-mining.webp" alt="Mai multe conturi care minează în același timp, pe pagina Acasă">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/accounts-mining.avif" alt="Mai multe conturi care minează în același timp, pe pagina Acasă">
   </details>
 
 - **Un asistent pentru fiecare cont nou.** După autentificare, pornește de la setările
   implicite sau de la cele ale altui cont. Alege modul, campaniile și streamerii, apoi
   „Începe minarea” sau „Salvează și pornește mai târziu”.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/account-setup.webp" alt="Asistentul de configurare al unui cont nou, pas cu pas">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/account-setup.avif" alt="Asistentul de configurare al unui cont nou, pas cu pas">
   </details>
 
 - **O modificare aplicată altor conturi dintr-un clic.** După ce schimbi ceva la un cont,
   mesajul de confirmare îți oferă „Aplică la alte conturi”. Modificarea se repetă pe
   conturile bifate, care își păstrează restul setărilor.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="O modificare repetată pe alte conturi cu „Aplică la alte conturi”">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/apply-to-accounts.avif" alt="O modificare repetată pe alte conturi cu „Aplică la alte conturi”">
   </details>
 
 - **Adaugă un streamer.** Pornește imediat cu opțiunile implicite: cele ale aplicației sau
   cele alese de tine pentru acest cont. Ajustează-le pe loc, dacă e nevoie: cufere bonus,
   raiduri, momente, serie de vizionare, chat, predicții.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/streamer-add.webp" alt="Un streamer adăugat prin căutarea Twitch, apoi opțiunile lui">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/streamer-add.avif" alt="Un streamer adăugat prin căutarea Twitch, apoi opțiunile lui">
   </details>
 
 - **Editează un streamer.** „Editează” îi deschide opțiunile: cufere bonus, raiduri,
   momente, serie de vizionare, chat, predicții… Un comutator îl activează sau îl
   dezactivează fără să-l scoată din listă.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/streamer-edit.webp" alt="Opțiunile unui streamer, deschise din rândul lui">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/streamer-edit.avif" alt="Opțiunile unui streamer, deschise din rândul lui">
   </details>
 
 - **Editează mai mulți streameri deodată.** Bifează-i, apoi „Editează cei N streameri
@@ -118,16 +118,26 @@ la lucru.
   apare ca „Mixt”, iar comutatorul ei devine două butoane, „Da” și „Nu”. Apoi aplicația îți
   propune să le faci opțiunile implicite pentru streamerii noi.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="Editarea mai multor streameri, cu opțiuni „Mixt”">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/streamers-group-edit.avif" alt="Editarea mai multor streameri, cu opțiuni „Mixt”">
   </details>
 
 - **Importă streameri.** Lipește o listă (până la 500 de nume) sau refolosește lista altui
   cont ori canalele pe care le urmărește contul. Lista este verificată, ca să fie adăugate
   doar canale care există.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/streamers-import.webp" alt="Importul de streameri: o listă lipită, alt cont, canalele urmărite">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/streamers-import.avif" alt="Importul de streameri: o listă lipită, alt cont, canalele urmărite">
+  </details>
+
+- **Spam Points.** Revendică o recompensă personalizată a unui canal de mai multe ori la
+  rând. Alege un canal din lista ta de Puncte sau orice canal găsit prin căutarea Twitch:
+  recompensele lui apar împreună cu soldul contului, citit în timp real. Setează cantitatea
+  (până la 25, în limita soldului), apoi „Revendică”. Rezultatul apare la sfârșitul seriei,
+  iar fiecare serie are rândul ei în Jurnal.
+
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/spam-points.avif" alt="Spam Points: un canal ales, 5 × o recompensă revendicată, apoi rândul din Jurnal">
   </details>
 
 ### Drops
@@ -136,8 +146,8 @@ la lucru.
   conectarea contului de joc, „Minează cu prioritate”. Lista vine de la proiectul
   [Twitch Drops API](https://drops.sunkwi.com) și se reîmprospătează la fiecare 10 minute.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="Catalogul sub formă de calendar, căutarea și fișa unei campanii">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/drops-catalogue.avif" alt="Catalogul sub formă de calendar, căutarea și fișa unei campanii">
   </details>
 
 - **Ordinea ta de minare.** Trage campaniile în ordinea dorită. Cele noi își găsesc singure
@@ -146,24 +156,24 @@ la lucru.
   recompensă și sari peste campaniile care nu se pot termina la timp. „Minează cu
   prioritate”, în fișa unei campanii, o pune pe primul loc.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/drops-order.webp" alt="Ordinea de minare, jocurile prioritare și excluderile">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/drops-order.avif" alt="Ordinea de minare, jocurile prioritare și excluderile">
   </details>
 
 - **Inventar și „Revendică tot”.** Pagina Inventar împarte recompensele în „De revendicat”,
   „În desfășurare” și „Revendicate”. Revendică-le pe rând, pe toate odată sau activează
   „Revendică drops automat”.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/drops-inventory.webp" alt="Inventarul și butonul „Revendică tot”">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/drops-inventory.avif" alt="Inventarul și butonul „Revendică tot”">
   </details>
 
 - **„Streamerii mei mai întâi pentru Drops”.** Pentru campania curentă, un streamer din
   lista ta al cărui live contează pentru acea campanie trece înaintea celorlalte canale.
   Același canal avansează drop-ul și îți aduce punctele lui de canal. Activat implicit.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="Un streamer din listă, urmărit pentru Drops și pentru punctele lui">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/drops-streamers-first.avif" alt="Un streamer din listă, urmărit pentru Drops și pentru punctele lui">
   </details>
 
 ### Monitorizare
@@ -177,8 +187,8 @@ la lucru.
   eroare pe [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) sau
   [Discord](https://discord.gg/support-bots-891685895781113886).
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/journal-requests.webp" alt="Jurnalul filtrat, apoi Loguri tehnice › Cereri">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/journal-requests.avif" alt="Jurnalul filtrat, apoi Loguri tehnice › Cereri">
   </details>
 
 ### Pe desktop sau pe un server
@@ -199,8 +209,8 @@ la lucru.
   și funcționează prin HTTPS în spatele unui proxy. Cinci parole greșite la rând blochează
   adresa IP timp de 30 de secunde.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/security-lock.webp" alt="Lacătul: aplicația blocată, apoi deblocată cu parola ei">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/security-lock.avif" alt="Lacătul: aplicația blocată, apoi deblocată cu parola ei">
   </details>
 
 - **Actualizări semnate, niciodată automate.** În bara de sus apare o insignă
@@ -209,8 +219,8 @@ la lucru.
   repornește blocată: introdu-o din nou ca să reiei minarea. Se instalează doar o versiune
   semnată de proiect. Și versiunea Docker te anunță, cu comenzile de rulat.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/updates.webp" alt="Insigna „Actualizare”, confirmarea, apoi instalarea">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/updates.avif" alt="Insigna „Actualizare”, confirmarea, apoi instalarea">
   </details>
 
 ### Și în plus
@@ -223,8 +233,8 @@ la lucru.
 - 29 de limbi, teme întunecată și luminoasă, notificări desktop, pictogramă în bara de
   sistem, pornire odată cu sistemul.
 
-  <details><summary>Vezi în acțiune</summary>
-  <img src="../media/en/basics.webp" alt="Limbi, temele luminoasă și întunecată, o notificare desktop și pictograma din bara de sistem">
+  <details open><summary>Vezi în acțiune</summary>
+  <img src="../media/ro/basics.avif" alt="Limbi, temele luminoasă și întunecată, o notificare desktop și pictograma din bara de sistem">
   </details>
 
 > [!WARNING]

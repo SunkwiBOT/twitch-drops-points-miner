@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Video-Überblick über Twitch Drops &amp; Points Miner">
+  <img src="../media/de/presentation.avif" alt="Video-Überblick über Twitch Drops &amp; Points Miner">
 </p>
 
 ## <a name="features"></a>Funktionen
@@ -77,16 +77,16 @@ im Einsatz.
   **Drops und Punkte** (ein Kanal für die beste Kampagne, der andere für Ihre Streamer),
   **Nur Drops** oder **Nur Punkte**.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/accounts-mining.webp" alt="Mehrere Konten, die gleichzeitig minen, auf der Startseite">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/accounts-mining.avif" alt="Mehrere Konten, die gleichzeitig minen, auf der Startseite">
   </details>
 
 - **Ein Assistent für jedes neue Konto.** Starten Sie nach der Anmeldung mit den
   Standardeinstellungen oder mit denen eines anderen Kontos. Wählen Sie den Modus, die
   Kampagnen und die Streamer, dann „Mining starten“ oder „Speichern und später starten“.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/account-setup.webp" alt="Der Einrichtungsassistent eines neuen Kontos, Schritt für Schritt">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/account-setup.avif" alt="Der Einrichtungsassistent eines neuen Kontos, Schritt für Schritt">
   </details>
 
 - **Eine Änderung mit einem Klick auf andere Konten übertragen.** Nachdem Sie etwas an
@@ -94,24 +94,24 @@ im Einsatz.
   an. Die Änderung wird auf den angehakten Konten wiederholt, die ihre übrigen
   Einstellungen behalten.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="Eine Änderung, mit „Auf andere Konten anwenden“ auf weiteren Konten wiederholt">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/apply-to-accounts.avif" alt="Eine Änderung, mit „Auf andere Konten anwenden“ auf weiteren Konten wiederholt">
   </details>
 
 - **Einen Streamer hinzufügen.** Er startet sofort mit den Standardoptionen: denen der App
   oder denen, die Sie für dieses Konto gewählt haben. Passen Sie sie bei Bedarf gleich an:
   Bonus-Truhen, Raids, Momente, Zuschauerserie, Chat, Vorhersagen.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/streamer-add.webp" alt="Ein Streamer wird über die Twitch-Suche hinzugefügt, dann seine Optionen">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/streamer-add.avif" alt="Ein Streamer wird über die Twitch-Suche hinzugefügt, dann seine Optionen">
   </details>
 
 - **Einen Streamer bearbeiten.** „Bearbeiten“ öffnet seine Optionen: Bonus-Truhen, Raids,
   Momente, Zuschauerserie, Chat, Vorhersagen … Ein Schalter aktiviert oder deaktiviert ihn,
   ohne ihn aus der Liste zu entfernen.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/streamer-edit.webp" alt="Die Optionen eines Streamers, geöffnet über seine Zeile">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/streamer-edit.avif" alt="Die Optionen eines Streamers, geöffnet über seine Zeile">
   </details>
 
 - **Mehrere Streamer auf einmal bearbeiten.** Haken Sie sie an, dann „N ausgewählte
@@ -120,16 +120,27 @@ im Einsatz.
   Schaltflächen, „Ja“ und „Nein“. Danach bietet die App an, daraus die Standardoptionen für
   neue Streamer zu machen.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="Mehrere Streamer werden bearbeitet, mit Optionen auf „Gemischt“">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/streamers-group-edit.avif" alt="Mehrere Streamer werden bearbeitet, mit Optionen auf „Gemischt“">
   </details>
 
 - **Streamer importieren.** Fügen Sie eine Liste ein (bis zu 500 Namen) oder übernehmen Sie
   die Liste eines anderen Kontos oder die Kanäle, denen das Konto folgt. Die Liste wird
   geprüft, damit nur Kanäle hinzukommen, die es wirklich gibt.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/streamers-import.webp" alt="Streamer importieren: eingefügte Liste, anderes Konto, gefolgte Kanäle">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/streamers-import.avif" alt="Streamer importieren: eingefügte Liste, anderes Konto, gefolgte Kanäle">
+  </details>
+
+- **Spam Points.** Lösen Sie eine benutzerdefinierte Belohnung eines Kanals mehrmals
+  hintereinander ein. Wählen Sie einen Kanal aus Ihrer Punkte-Liste oder einen beliebigen
+  Kanal, den Sie über die Twitch-Suche finden: Seine Belohnungen erscheinen mit dem
+  Guthaben des Kontos, live neu gelesen. Legen Sie die Anzahl fest (bis zu 25, im Rahmen
+  des Guthabens), dann „Einlösen“. Das Ergebnis erscheint am Ende der Serie, und jede
+  Serie hat ihre eigene Zeile im Journal.
+
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/spam-points.avif" alt="Spam Points: ein Kanal gewählt, 5 × eine Belohnung eingelöst, dann die Zeile im Journal">
   </details>
 
 ### Drops
@@ -138,8 +149,8 @@ im Einsatz.
   Verknüpfung des Spielkontos, „Vorrangig minen“. Die Liste stammt aus dem Projekt
   [Twitch Drops API](https://drops.sunkwi.com) und wird alle 10 Minuten aktualisiert.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="Der Katalog als Kalender, die Suche und die Details einer Kampagne">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/drops-catalogue.avif" alt="Der Katalog als Kalender, die Suche und die Details einer Kampagne">
   </details>
 
 - **Ihre Mining-Reihenfolge.** Ziehen Sie die Kampagnen in die gewünschte Reihenfolge. Neue
@@ -148,24 +159,24 @@ im Einsatz.
   eine einzelne Belohnung aus, und überspringen Sie Kampagnen, die nicht rechtzeitig fertig
   werden können. „Vorrangig minen“ in den Details einer Kampagne setzt sie an die Spitze.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/drops-order.webp" alt="Die Mining-Reihenfolge, die Prioritätsspiele und die Ausschlüsse">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/drops-order.avif" alt="Die Mining-Reihenfolge, die Prioritätsspiele und die Ausschlüsse">
   </details>
 
 - **Inventar und „Alle abholen“.** Die Seite Inventar sortiert die Belohnungen in
   „Abzuholen“, „Laufend“ und „Abgeholt“. Holen Sie sie einzeln oder alle auf einmal ab,
   oder aktivieren Sie „Drops automatisch abholen“.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/drops-inventory.webp" alt="Das Inventar und die Schaltfläche „Alle abholen“">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/drops-inventory.avif" alt="Das Inventar und die Schaltfläche „Alle abholen“">
   </details>
 
 - **„Meine Streamer zuerst für Drops“.** Für die aktuelle Kampagne hat ein Streamer aus
   Ihrer Liste, dessen Stream für diese Kampagne zählt, Vorrang vor anderen Kanälen. Derselbe
   Kanal bringt den Drop voran und bringt Ihnen seine Kanalpunkte ein. Standardmäßig aktiv.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="Ein Streamer aus der Liste, geschaut für die Drops und für seine Punkte">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/drops-streamers-first.avif" alt="Ein Streamer aus der Liste, geschaut für die Drops und für seine Punkte">
   </details>
 
 ### Nachverfolgung
@@ -180,8 +191,8 @@ im Einsatz.
   [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) oder
   [Discord](https://discord.gg/support-bots-891685895781113886).
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/journal-requests.webp" alt="Das gefilterte Journal, dann Technische Protokolle › Anfragen">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/journal-requests.avif" alt="Das gefilterte Journal, dann Technische Protokolle › Anfragen">
   </details>
 
 ### Auf dem Desktop oder auf einem Server
@@ -204,8 +215,8 @@ im Einsatz.
   ohne Aktivität und läuft hinter einem Proxy über HTTPS. Fünf falsche Passwörter in Folge
   sperren die IP-Adresse für 30 Sekunden.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/security-lock.webp" alt="Das Schloss: die App gesperrt, dann mit ihrem Passwort entsperrt">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/security-lock.avif" alt="Das Schloss: die App gesperrt, dann mit ihrem Passwort entsperrt">
   </details>
 
 - **Signierte Updates, nie automatisch.** In der oberen Leiste erscheint ein Badge
@@ -215,8 +226,8 @@ im Einsatz.
   wird nur eine vom Projekt signierte Version. Die Docker-Version meldet sich ebenfalls, mit
   den passenden Befehlen.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/updates.webp" alt="Das Badge „Update“, die Bestätigung, dann die Installation">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/updates.avif" alt="Das Badge „Update“, die Bestätigung, dann die Installation">
   </details>
 
 ### Außerdem
@@ -228,8 +239,8 @@ im Einsatz.
 - 29 Sprachen, dunkles und helles Design, Desktop-Benachrichtigungen, Symbol im
   Infobereich, Start mit dem System.
 
-  <details><summary>In Aktion ansehen</summary>
-  <img src="../media/en/basics.webp" alt="Sprachen, helles und dunkles Design, eine Desktop-Benachrichtigung und das Symbol im Infobereich">
+  <details open><summary>In Aktion ansehen</summary>
+  <img src="../media/de/basics.avif" alt="Sprachen, helles und dunkles Design, eine Desktop-Benachrichtigung und das Symbol im Infobereich">
   </details>
 
 > [!WARNING]

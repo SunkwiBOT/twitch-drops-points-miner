@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Presentazione video di Twitch Drops &amp; Points Miner">
+  <img src="../media/it/presentation.avif" alt="Presentazione video di Twitch Drops &amp; Points Miner">
 </p>
 
 ## <a name="features"></a>Funzionalità
@@ -77,40 +77,40 @@ all'opera.
   **Drops e punti** (un canale per la campagna migliore, l'altro per i tuoi streamer),
   **Solo Drops** o **Solo punti**.
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/accounts-mining.webp" alt="Più account che minano contemporaneamente, nella pagina Home">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/accounts-mining.avif" alt="Più account che minano contemporaneamente, nella pagina Home">
   </details>
 
 - **Una procedura guidata per ogni nuovo account.** Dopo l'accesso, parti dalle
   impostazioni predefinite o da quelle di un altro account. Scegli la modalità, le
   campagne e gli streamer, poi «Inizia il mining» o «Salva e avvia più tardi».
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/account-setup.webp" alt="La procedura guidata di configurazione di un nuovo account, passo dopo passo">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/account-setup.avif" alt="La procedura guidata di configurazione di un nuovo account, passo dopo passo">
   </details>
 
 - **Una modifica applicata ad altri account con un clic.** Dopo aver cambiato qualcosa su
   un account, il messaggio di conferma propone «Applica ad altri account». La modifica
   viene ripetuta sugli account che spunti, che mantengono il resto delle loro impostazioni.
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="Una modifica ripetuta su altri account con «Applica ad altri account»">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/apply-to-accounts.avif" alt="Una modifica ripetuta su altri account con «Applica ad altri account»">
   </details>
 
 - **Aggiungere uno streamer.** Parte subito con le opzioni predefinite: quelle dell'app o
   quelle che hai scelto per questo account. Regolale al momento, se serve: forzieri bonus,
   raid, momenti, serie di visione, chat, previsioni.
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/streamer-add.webp" alt="Uno streamer aggiunto con la ricerca di Twitch, poi le sue opzioni">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/streamer-add.avif" alt="Uno streamer aggiunto con la ricerca di Twitch, poi le sue opzioni">
   </details>
 
 - **Modificare uno streamer.** «Modifica» apre le sue opzioni: forzieri bonus, raid,
   momenti, serie di visione, chat, previsioni… Un interruttore lo attiva o lo disattiva
   senza toglierlo dalla lista.
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/streamer-edit.webp" alt="Le opzioni di uno streamer, aperte dalla sua riga">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/streamer-edit.avif" alt="Le opzioni di uno streamer, aperte dalla sua riga">
   </details>
 
 - **Modificare più streamer insieme.** Spuntali, poi «Modifica i N streamer selezionati».
@@ -118,16 +118,26 @@ all'opera.
   «Misto», e il suo interruttore diventa due pulsanti, «Sì» e «No». L'app propone poi di
   farne le opzioni predefinite per i nuovi streamer.
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="Modifica di più streamer, con opzioni «Misto»">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/streamers-group-edit.avif" alt="Modifica di più streamer, con opzioni «Misto»">
   </details>
 
 - **Importare streamer.** Incolla una lista (fino a 500 nomi), oppure riprendi quella di un
   altro account o i canali che l'account segue. La lista viene verificata per aggiungere
   solo canali che esistono.
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/streamers-import.webp" alt="Importazione di streamer: una lista incollata, un altro account, i canali seguiti">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/streamers-import.avif" alt="Importazione di streamer: una lista incollata, un altro account, i canali seguiti">
+  </details>
+
+- **Spam Points.** Riscatta più volte di fila un premio personalizzato di un canale.
+  Scegli un canale dalla tua lista Punti, o qualsiasi canale trovato con la ricerca di
+  Twitch: i suoi premi compaiono con il saldo dell'account, letto in tempo reale. Imposta
+  la quantità (fino a 25, nei limiti del saldo), poi «Riscatta». Il risultato compare alla
+  fine della raffica, e ogni raffica ha la sua riga nel Registro.
+
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/spam-points.avif" alt="Spam Points: un canale scelto, 5 × un premio riscattato, poi la riga del Registro">
   </details>
 
 ### Drops
@@ -136,8 +146,8 @@ all'opera.
   collegamento dell'account di gioco, «Mina per prima». L'elenco arriva dal progetto
   [Twitch Drops API](https://drops.sunkwi.com) e si aggiorna ogni 10 minuti.
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="Il Catalogo in vista calendario, la ricerca e i dettagli di una campagna">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/drops-catalogue.avif" alt="Il Catalogo in vista calendario, la ricerca e i dettagli di una campagna">
   </details>
 
 - **Il tuo ordine di mining.** Trascina le campagne nell'ordine che preferisci. Le nuove
@@ -146,16 +156,16 @@ all'opera.
   ricompensa, e salta le campagne che non possono finire in tempo. «Mina per prima», nei
   dettagli di una campagna, la porta in cima.
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/drops-order.webp" alt="L'ordine di mining, i giochi prioritari e le esclusioni">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/drops-order.avif" alt="L'ordine di mining, i giochi prioritari e le esclusioni">
   </details>
 
 - **Inventario e «Riscatta tutto».** La pagina Inventario divide le ricompense in
   «Da riscattare», «In corso» e «Riscattate». Riscattale una alla volta, tutte insieme,
   oppure attiva «Riscatta i drop automaticamente».
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/drops-inventory.webp" alt="L'inventario e il pulsante «Riscatta tutto»">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/drops-inventory.avif" alt="L'inventario e il pulsante «Riscatta tutto»">
   </details>
 
 - **«Prima i miei streamer per i Drops».** Per la campagna in corso, uno streamer della
@@ -163,8 +173,8 @@ all'opera.
   stesso canale fa avanzare il drop e ti fa guadagnare i suoi punti canale. Attivo per
   impostazione predefinita.
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="Uno streamer della lista, guardato per i Drops e per i suoi punti">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/drops-streamers-first.avif" alt="Uno streamer della lista, guardato per i Drops e per i suoi punti">
   </details>
 
 ### Monitoraggio
@@ -178,8 +188,8 @@ all'opera.
   [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) o
   [Discord](https://discord.gg/support-bots-891685895781113886).
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/journal-requests.webp" alt="Il Registro filtrato, poi Log tecnici › Richieste">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/journal-requests.avif" alt="Il Registro filtrato, poi Log tecnici › Richieste">
   </details>
 
 ### Sul desktop o su un server
@@ -200,8 +210,8 @@ all'opera.
   qualche minuto di inattività e passa in HTTPS dietro un proxy. Cinque password errate di
   fila bloccano l'indirizzo IP per 30 secondi.
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/security-lock.webp" alt="Il lucchetto: l'app bloccata, poi sbloccata con la sua password">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/security-lock.avif" alt="Il lucchetto: l'app bloccata, poi sbloccata con la sua password">
   </details>
 
 - **Aggiornamenti firmati, mai automatici.** Nella barra in alto compare un badge
@@ -211,8 +221,8 @@ all'opera.
   versione firmata dal progetto. Anche la versione Docker avvisa, con i comandi da
   eseguire.
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/updates.webp" alt="Il badge «Aggiornamento», la conferma, poi l'installazione">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/updates.avif" alt="Il badge «Aggiornamento», la conferma, poi l'installazione">
   </details>
 
 ### E inoltre
@@ -225,8 +235,8 @@ all'opera.
 - 29 lingue, temi scuro e chiaro, notifiche desktop, icona nell'area di notifica, avvio con
   il sistema.
 
-  <details><summary>Vedilo in azione</summary>
-  <img src="../media/en/basics.webp" alt="Lingue, tema chiaro e scuro, una notifica desktop e l'icona nell'area di notifica">
+  <details open><summary>Vedilo in azione</summary>
+  <img src="../media/it/basics.avif" alt="Lingue, tema chiaro e scuro, una notifica desktop e l'icona nell'area di notifica">
   </details>
 
 > [!WARNING]

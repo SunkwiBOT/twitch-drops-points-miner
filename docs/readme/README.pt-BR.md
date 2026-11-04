@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Apresentação em vídeo do Twitch Drops &amp; Points Miner">
+  <img src="../media/pt-BR/presentation.avif" alt="Apresentação em vídeo do Twitch Drops &amp; Points Miner">
 </p>
 
 ## <a name="features"></a>Recursos
@@ -77,39 +77,39 @@ recurso funcionando.
   modo: **Drops e pontos** (um canal para a melhor campanha, o outro para os seus
   streamers), **Só Drops** ou **Só pontos**.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/accounts-mining.webp" alt="Várias contas minerando ao mesmo tempo, na página Início">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/accounts-mining.avif" alt="Várias contas minerando ao mesmo tempo, na página Início">
   </details>
 
 - **Um assistente para cada conta nova.** Depois do login, comece pelas configurações
   padrão ou pelas de outra conta. Escolha o modo, as campanhas e os streamers e, no fim,
   “Começar a minerar” ou “Salvar e começar depois”.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/account-setup.webp" alt="O assistente de configuração de uma conta nova, passo a passo">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/account-setup.avif" alt="O assistente de configuração de uma conta nova, passo a passo">
   </details>
 
 - **Uma alteração aplicada a outras contas com um clique.** Depois de mudar algo em uma
   conta, a mensagem de confirmação oferece “Aplicar a outras contas”. A alteração é
   repetida nas contas que você marcar, e elas mantêm o resto das suas configurações.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="Uma alteração repetida em outras contas com “Aplicar a outras contas”">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/apply-to-accounts.avif" alt="Uma alteração repetida em outras contas com “Aplicar a outras contas”">
   </details>
 
 - **Adicionar um streamer.** Ele começa na hora com as opções padrão: as do app ou as que
   você escolheu para esta conta. Ajuste-as na hora, se precisar: baús de bônus, raids,
   momentos, sequência, chat, previsões.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/streamer-add.webp" alt="Um streamer adicionado pela busca da Twitch e, depois, as opções dele">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/streamer-add.avif" alt="Um streamer adicionado pela busca da Twitch e, depois, as opções dele">
   </details>
 
 - **Editar um streamer.** “Editar” abre as opções dele: baús de bônus, raids, momentos,
   sequência, chat, previsões… Um interruptor o ativa ou desativa sem tirá-lo da lista.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/streamer-edit.webp" alt="As opções de um streamer, abertas a partir da linha dele">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/streamer-edit.avif" alt="As opções de um streamer, abertas a partir da linha dele">
   </details>
 
 - **Editar vários streamers de uma vez.** Marque-os e clique em “Editar os N streamers
@@ -117,16 +117,26 @@ recurso funcionando.
   entre eles aparece como “Misto”, e o interruptor dela vira dois botões, “Sim” e “Não”.
   Depois, o app oferece transformá-las nas opções padrão para novos streamers.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="Edição de vários streamers, com opções “Misto”">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/streamers-group-edit.avif" alt="Edição de vários streamers, com opções “Misto”">
   </details>
 
 - **Importar streamers.** Cole uma lista (até 500 nomes), ou reaproveite a de outra conta
   ou os canais que a conta segue. A lista é verificada para adicionar só canais que
   existem.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/streamers-import.webp" alt="Importação de streamers: uma lista colada, outra conta, os canais seguidos">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/streamers-import.avif" alt="Importação de streamers: uma lista colada, outra conta, os canais seguidos">
+  </details>
+
+- **Spam Points.** Resgate uma recompensa personalizada de um canal várias vezes seguidas.
+  Escolha um canal da sua lista de Pontos, ou qualquer canal encontrado pela busca da
+  Twitch: as recompensas dele aparecem com o saldo da conta, lido em tempo real. Defina a
+  quantidade (até 25, dentro do saldo) e clique em “Resgatar”. O resultado aparece no fim
+  da rajada, e cada rajada ganha a sua linha no Diário.
+
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/spam-points.avif" alt="Spam Points: um canal escolhido, 5 × uma recompensa resgatada e, depois, a linha do Diário">
   </details>
 
 ### Drops
@@ -135,8 +145,8 @@ recurso funcionando.
   vinculação da conta do jogo, “Minerar primeiro”. A lista vem do projeto
   [Twitch Drops API](https://drops.sunkwi.com) e é atualizada a cada 10 minutos.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="O Catálogo em formato de calendário, a busca e a ficha de uma campanha">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/drops-catalogue.avif" alt="O Catálogo em formato de calendário, a busca e a ficha de uma campanha">
   </details>
 
 - **A sua ordem de mineração.** Arraste as campanhas na ordem que quiser. As novas
@@ -145,24 +155,24 @@ recurso funcionando.
   única recompensa, e pule as campanhas que não dá tempo de concluir. “Minerar primeiro”,
   na ficha de uma campanha, coloca-a no topo.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/drops-order.webp" alt="A ordem de mineração, os jogos prioritários e as exclusões">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/drops-order.avif" alt="A ordem de mineração, os jogos prioritários e as exclusões">
   </details>
 
 - **Inventário e “Resgatar tudo”.** A página Inventário separa as recompensas em
   “Para resgatar”, “Em andamento” e “Resgatadas”. Resgate uma por uma, todas de uma vez,
   ou ative “Resgatar drops automaticamente”.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/drops-inventory.webp" alt="O inventário e o botão “Resgatar tudo”">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/drops-inventory.avif" alt="O inventário e o botão “Resgatar tudo”">
   </details>
 
 - **“Meus streamers primeiro para os Drops”.** Para a campanha atual, um streamer da sua
   lista cuja live conta para essa campanha passa na frente dos outros canais. O mesmo
   canal faz o drop avançar e rende os pontos do canal dele. Ativado por padrão.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="Um streamer da lista, assistido para os Drops e pelos pontos dele">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/drops-streamers-first.avif" alt="Um streamer da lista, assistido para os Drops e pelos pontos dele">
   </details>
 
 ### Acompanhamento
@@ -176,8 +186,8 @@ recurso funcionando.
   [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) ou no
   [Discord](https://discord.gg/support-bots-891685895781113886).
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/journal-requests.webp" alt="O Diário filtrado e, depois, Registros técnicos › Requisições">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/journal-requests.avif" alt="O Diário filtrado e, depois, Registros técnicos › Requisições">
   </details>
 
 ### No desktop ou em um servidor
@@ -199,8 +209,8 @@ recurso funcionando.
   e roda em HTTPS atrás de um proxy. Cinco senhas erradas seguidas bloqueiam o endereço IP
   por 30 segundos.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/security-lock.webp" alt="O cadeado: o app bloqueado e, depois, desbloqueado com a senha dele">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/security-lock.avif" alt="O cadeado: o app bloqueado e, depois, desbloqueado com a senha dele">
   </details>
 
 - **Atualizações assinadas, nunca automáticas.** Um selo “Atualização” com o número da
@@ -209,8 +219,8 @@ recurso funcionando.
   bloqueado: digite a senha de novo para retomar a mineração. Só uma versão assinada pelo
   projeto é instalada. A versão Docker também avisa, com os comandos a rodar.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/updates.webp" alt="O selo “Atualização”, a confirmação e, depois, a instalação">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/updates.avif" alt="O selo “Atualização”, a confirmação e, depois, a instalação">
   </details>
 
 ### E também
@@ -222,8 +232,8 @@ recurso funcionando.
 - 29 idiomas, temas escuro e claro, notificações da área de trabalho, ícone na bandeja,
   inicialização com o sistema.
 
-  <details><summary>Ver em ação</summary>
-  <img src="../media/en/basics.webp" alt="Idiomas, temas claro e escuro, uma notificação da área de trabalho e o ícone na bandeja">
+  <details open><summary>Ver em ação</summary>
+  <img src="../media/pt-BR/basics.avif" alt="Idiomas, temas claro e escuro, uma notificação da área de trabalho e o ícone na bandeja">
   </details>
 
 > [!WARNING]

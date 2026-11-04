@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/fr/presentation.webp" alt="Présentation en vidéo de Twitch Drops &amp; Points Miner">
+  <img src="../media/fr/presentation.avif" alt="Présentation en vidéo de Twitch Drops &amp; Points Miner">
 </p>
 
 ## <a name="features"></a>Fonctionnalités
@@ -76,40 +76,40 @@ Ce qui le distingue des autres mineurs. « Voir en image » montre chaque poin
   son mode : **Drops et points** (une chaîne pour la meilleure campagne, l'autre pour vos
   streamers), **Drops uniquement** ou **Points uniquement**.
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/accounts-mining.webp" alt="Plusieurs comptes qui minent en même temps, sur l'accueil">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/accounts-mining.avif" alt="Plusieurs comptes qui minent en même temps, sur l'accueil">
   </details>
 
 - **Un assistant pour chaque nouveau compte.** Après la connexion, partez des réglages par
   défaut ou de ceux d'un autre compte. Choisissez le mode, les campagnes et les streamers,
   puis « Commencer le minage » ou « Enregistrer et démarrer plus tard ».
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/account-setup.webp" alt="L'assistant de configuration d'un nouveau compte, étape par étape">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/account-setup.avif" alt="L'assistant de configuration d'un nouveau compte, étape par étape">
   </details>
 
 - **Une modification appliquée à d'autres comptes en un clic.** Après un changement sur un
   compte, le message de confirmation propose « Appliquer à d'autres comptes ». Le
   changement est refait sur les comptes cochés, qui gardent le reste de leurs réglages.
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/apply-to-accounts.webp" alt="Un changement refait sur d'autres comptes avec « Appliquer à d'autres comptes »">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/apply-to-accounts.avif" alt="Un changement refait sur d'autres comptes avec « Appliquer à d'autres comptes »">
   </details>
 
 - **Ajouter un streamer.** Il démarre automatiquement avec les options par défaut : celles
   de l'application, ou celles que vous avez choisies pour ce compte. Ajustez-les tout de
   suite si besoin : coffres bonus, raids, moments, série de visionnage, chat, prédictions.
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/streamer-add.webp" alt="Ajout d'un streamer par la recherche Twitch, puis ses options">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/streamer-add.avif" alt="Ajout d'un streamer par la recherche Twitch, puis ses options">
   </details>
 
 - **Modifier un streamer.** « Modifier » ouvre ses options : coffres bonus, raids, moments,
   série de visionnage, chat, prédictions… Un interrupteur l'active ou le désactive sans le
   retirer de la liste.
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/streamer-edit.webp" alt="Les options d'un streamer, ouvertes depuis sa ligne">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/streamer-edit.avif" alt="Les options d'un streamer, ouvertes depuis sa ligne">
   </details>
 
 - **Modifier plusieurs streamers d'un coup.** Cochez-les, puis « Modifier les N streamers
@@ -118,16 +118,27 @@ Ce qui le distingue des autres mineurs. « Voir en image » montre chaque poin
   « Non ». L'application propose ensuite d'en faire les options par défaut des nouveaux
   streamers.
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/streamers-group-edit.webp" alt="Modification de plusieurs streamers, avec des options « Mixte »">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/streamers-group-edit.avif" alt="Modification de plusieurs streamers, avec des options « Mixte »">
   </details>
 
 - **Importer des streamers.** Collez une liste (jusqu'à 500 noms), reprenez celle d'un autre
   compte ou les chaînes suivies par le compte. La liste est vérifiée pour n'ajouter que des
   chaînes qui existent.
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/streamers-import.webp" alt="Import de streamers : liste collée, autre compte, chaînes suivies">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/streamers-import.avif" alt="Import de streamers : liste collée, autre compte, chaînes suivies">
+  </details>
+
+- **Spam Points.** Échangez une récompense personnalisée d'une chaîne plusieurs fois
+  d'affilée. Choisissez une chaîne de votre liste Points, ou n'importe quelle chaîne
+  trouvée par la recherche Twitch : ses récompenses s'affichent avec le solde du compte,
+  relu en direct. Réglez la quantité (jusqu'à 25, dans la limite du solde), puis
+  « Échanger ». Le résultat s'affiche à la fin de la rafale, et chaque rafale a sa
+  ligne dans le Journal.
+
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/spam-points.avif" alt="Spam Points : une chaîne choisie, 5 × une récompense échangée, puis la ligne du Journal">
   </details>
 
 ### Drops
@@ -136,8 +147,8 @@ Ce qui le distingue des autres mineurs. « Voir en image » montre chaque poin
   liaison du compte de jeu, « Miner en priorité ». La liste vient du projet
   [Twitch Drops API](https://drops.sunkwi.com) et se rafraîchit toutes les 10 minutes.
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/drops-catalogue.webp" alt="Le Catalogue en calendrier, la recherche et la fiche d'une campagne">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/drops-catalogue.avif" alt="Le Catalogue en calendrier, la recherche et la fiche d'une campagne">
   </details>
 
 - **Votre ordre de minage.** Glissez les campagnes dans l'ordre voulu. Les nouvelles se
@@ -146,16 +157,16 @@ Ce qui le distingue des autres mineurs. « Voir en image » montre chaque poin
   passez les campagnes qui ne peuvent pas finir à temps. « Miner en priorité », dans la
   fiche d'une campagne, la met en tête.
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/drops-order.webp" alt="L'ordre de minage, les jeux prioritaires et les exclusions">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/drops-order.avif" alt="L'ordre de minage, les jeux prioritaires et les exclusions">
   </details>
 
 - **Inventaire et « Tout réclamer ».** La page Inventaire range les récompenses en
   « À réclamer », « En cours » et « Réclamés ». Réclamez-les une par une, toutes d'un coup,
   ou activez « Réclamer les drops automatiquement ».
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/drops-inventory.webp" alt="L'inventaire et le bouton « Tout réclamer »">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/drops-inventory.avif" alt="L'inventaire et le bouton « Tout réclamer »">
   </details>
 
 - **« Mes streamers d'abord pour les Drops ».** Pour la campagne en cours, un streamer de
@@ -163,8 +174,8 @@ Ce qui le distingue des autres mineurs. « Voir en image » montre chaque poin
   même chaîne fait progresser le drop et vous rapporte ses points de chaîne. Activé par
   défaut.
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/drops-streamers-first.webp" alt="Un streamer de la liste regardé pour les Drops et pour ses points">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/drops-streamers-first.avif" alt="Un streamer de la liste regardé pour les Drops et pour ses points">
   </details>
 
 ### Suivi
@@ -178,8 +189,8 @@ Ce qui le distingue des autres mineurs. « Voir en image » montre chaque poin
   [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) ou
   [Discord](https://discord.gg/support-bots-891685895781113886).
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/journal-requests.webp" alt="Le Journal filtré, puis Logs techniques › Requêtes">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/journal-requests.avif" alt="Le Journal filtré, puis Logs techniques › Requêtes">
   </details>
 
 ### Sur le bureau ou sur un serveur
@@ -201,8 +212,8 @@ Ce qui le distingue des autres mineurs. « Voir en image » montre chaque poin
   après quelques minutes sans activité et passe en HTTPS derrière un proxy. Cinq mauvais
   mots de passe de suite bloquent l'adresse IP pendant 30 secondes.
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/security-lock.webp" alt="Le cadenas : l'application verrouillée, puis déverrouillée avec son mot de passe">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/security-lock.avif" alt="Le cadenas : l'application verrouillée, puis déverrouillée avec son mot de passe">
   </details>
 
 - **Des mises à jour signées, jamais automatiques.** Un badge « Mise à jour » et son numéro
@@ -212,8 +223,8 @@ Ce qui le distingue des autres mineurs. « Voir en image » montre chaque poin
   minage. Seule une version signée par le projet est installée. La version Docker prévient
   aussi, avec les commandes à lancer.
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/updates.webp" alt="Le badge « Mise à jour », la confirmation, puis l'installation">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/updates.avif" alt="Le badge « Mise à jour », la confirmation, puis l'installation">
   </details>
 
 ### Et aussi
@@ -226,8 +237,8 @@ Ce qui le distingue des autres mineurs. « Voir en image » montre chaque poin
 - 29 langues, thèmes sombre et clair, notifications de bureau, icône dans la zone de
   notification, lancement au démarrage du système.
 
-  <details><summary>Voir en image</summary>
-  <img src="../media/fr/basics.webp" alt="Langues, thème clair et sombre, notification de bureau et icône de la zone de notification">
+  <details open><summary>Voir en image</summary>
+  <img src="../media/fr/basics.avif" alt="Langues, thème clair et sombre, notification de bureau et icône de la zone de notification">
   </details>
 
 > [!WARNING]

@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Twitch Drops &amp; Points Miner の紹介動画">
+  <img src="../media/ja/presentation.avif" alt="Twitch Drops &amp; Points Miner の紹介動画">
 </p>
 
 ## <a name="features"></a>機能
@@ -74,78 +74,84 @@
 
 - **1 つのアプリで複数のアカウント。** 各アカウントが、それぞれのモードで個別にマイニングします。**Drops とポイント**（1 チャンネルで最適なキャンペーン、もう 1 チャンネルで自分の配信者）、**Drops のみ**、**ポイントのみ**から選べます。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/accounts-mining.webp" alt="ホームで複数のアカウントが同時にマイニングしている様子">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/accounts-mining.avif" alt="ホームで複数のアカウントが同時にマイニングしている様子">
   </details>
 
 - **新しいアカウントごとにセットアップウィザード。** ログインしたら、既定の設定から始めるか、別のアカウントの設定を引き継ぎます。モード、キャンペーン、配信者を選び、「マイニングを開始」または「保存してあとで開始」を押します。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/account-setup.webp" alt="新しいアカウントのセットアップウィザードを順に進める様子">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/account-setup.avif" alt="新しいアカウントのセットアップウィザードを順に進める様子">
   </details>
 
 - **1 つの変更をワンクリックでほかのアカウントにも。** あるアカウントで設定を変えると、確認メッセージに「ほかのアカウントに適用」が表示されます。チェックしたアカウントにも同じ変更が適用され、それ以外の設定はそのまま残ります。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="「ほかのアカウントに適用」で同じ変更をほかのアカウントにも反映する様子">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/apply-to-accounts.avif" alt="「ほかのアカウントに適用」で同じ変更をほかのアカウントにも反映する様子">
   </details>
 
 - **配信者を追加。** 追加した配信者は、既定のオプションですぐにマイニングを始めます。既定のオプションとは、アプリの既定値か、このアカウント用に選んだものです。必要ならその場で調整できます：ボーナスチェスト、レイド、モーメント、視聴ストリーク、チャット、予想。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/streamer-add.webp" alt="Twitch の検索で配信者を追加し、そのオプションを開く様子">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/streamer-add.avif" alt="Twitch の検索で配信者を追加し、そのオプションを開く様子">
   </details>
 
 - **配信者を編集。** 「編集」でその配信者のオプションが開きます：ボーナスチェスト、レイド、モーメント、視聴ストリーク、チャット、予想など。スイッチ 1 つで、リストから外さずにオン・オフを切り替えられます。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/streamer-edit.webp" alt="配信者の行から開いたオプション">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/streamer-edit.avif" alt="配信者の行から開いたオプション">
   </details>
 
 - **複数の配信者をまとめて編集。** チェックを入れてから「選択した N 人の配信者を編集」を押します。適用されるのは変更したオプションだけです。配信者によって値が異なるオプションは「混在」と表示され、スイッチが「はい」と「いいえ」の 2 つのボタンに変わります。そのあと、アプリがこれを新しい配信者の既定オプションにするかどうかを尋ねます。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="「混在」のオプションを含む、複数の配信者の一括編集">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/streamers-group-edit.avif" alt="「混在」のオプションを含む、複数の配信者の一括編集">
   </details>
 
 - **配信者をインポート。** リストを貼り付ける（最大 500 件）か、別のアカウントのリストやそのアカウントがフォローしているチャンネルを使います。リストは確認され、実在するチャンネルだけが追加されます。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/streamers-import.webp" alt="配信者のインポート：貼り付けたリスト、別のアカウント、フォロー中のチャンネル">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/streamers-import.avif" alt="配信者のインポート：貼り付けたリスト、別のアカウント、フォロー中のチャンネル">
+  </details>
+
+- **Spam Points。** チャンネルのカスタム報酬を続けて何度も交換します。ポイントリストのチャンネルか、Twitch の検索で見つけた任意のチャンネルを選ぶと、その報酬がアカウントの残高とともに表示されます。残高はリアルタイムで読み直されます。数量を設定し（最大 25 件、残高の範囲内）、「交換」を押します。結果は連続交換の終わりに表示され、連続交換ごとに「履歴」に 1 行が記録されます。
+
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/spam-points.avif" alt="Spam Points：チャンネルを選んで報酬を 5 回交換し、履歴に記録された行を確認する様子">
   </details>
 
 ### Drops
 
 - **開催中のすべての Drops キャンペーン。** キャンペーンごとに詳細があります：報酬、ゲームアカウントの連携、「優先してマイニング」。一覧は [Twitch Drops API](https://drops.sunkwi.com) プロジェクトから取得し、10 分ごとに更新されます。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="カレンダー表示のカタログ、検索、キャンペーンの詳細">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/drops-catalogue.avif" alt="カレンダー表示のカタログ、検索、キャンペーンの詳細">
   </details>
 
 - **自分で決めるマイニング順。** キャンペーンをドラッグして好きな順番に並べます。新しいキャンペーンは自動で適切な位置に入ります。まず優先ゲーム、次に終了が近いものや残り時間（分）が少ないものの順です。ゲーム、語句、キャンペーン、個別の報酬を除外でき、期限内に終わらないキャンペーンはスキップできます。キャンペーンの詳細で「優先してマイニング」を押すと、先頭に移動します。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/drops-order.webp" alt="マイニング順、優先ゲーム、除外設定">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/drops-order.avif" alt="マイニング順、優先ゲーム、除外設定">
   </details>
 
 - **インベントリと「すべて受け取る」。** 「インベントリ」ページでは、報酬が「受け取り可能」「進行中」「受け取り済み」に分かれています。1 つずつ受け取ることも、まとめて受け取ることも、「ドロップを自動で受け取る」をオンにすることもできます。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/drops-inventory.webp" alt="インベントリと「すべて受け取る」ボタン">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/drops-inventory.avif" alt="インベントリと「すべて受け取る」ボタン">
   </details>
 
 - **「Drops で自分の配信者を優先」。** 現在のキャンペーンについて、リストにいる配信者の配信がそのキャンペーンの対象なら、ほかのチャンネルより先に視聴します。同じチャンネルでドロップが進み、そのチャンネルのチャンネルポイントも貯まります。既定でオンです。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="リストの配信者を、Drops とそのチャンネルのポイントのために視聴している様子">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/drops-streamers-first.avif" alt="リストの配信者を、Drops とそのチャンネルのポイントのために視聴している様子">
   </details>
 
 ### 記録
 
 - **すべてを記録し、リクエストも 1 件残らず表示。** 「履歴」には、ドロップ、獲得・使用したポイント、チェスト、ベット、レイド、配信開始など、すべてのイベントが残ります。アカウント、タブ（Drops、ポイント、その他）、種類で絞り込めます。**技術ログ › リクエスト**には、Twitch やほかのサービスに送ったすべてのリクエストが、結果と所要時間つきで一覧表示されます。ログにもリクエストにもトークンや秘密情報は含まれません。「バグ報告用にコピー」でコピーすれば、そのまま [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) や [Discord](https://discord.gg/support-bots-891685895781113886) のバグ報告に貼り付けられます。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/journal-requests.webp" alt="絞り込んだ履歴と、技術ログ › リクエスト">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/journal-requests.avif" alt="絞り込んだ履歴と、技術ログ › リクエスト">
   </details>
 
 ### デスクトップでもサーバーでも
@@ -157,14 +163,14 @@
 
 - **セッションを守る仕組み。** Twitch のパスワードは不要です。ログインは自分のブラウザで `twitch.tv/activate` から行います。セッションはディスク上で暗号化され、[Twitch の設定](https://www.twitch.tv/settings/connections)から取り消せます。デスクトップでは、任意のアプリのパスワードでアプリをロックでき、入力するまで何もマイニングしません。Docker では、ダッシュボードに専用のパスワードがあり、操作のないまま数分たつと自動でロックされ、プロキシの背後で HTTPS で動作します。パスワードを 5 回続けて間違えると、その IP アドレスは 30 秒間ブロックされます。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/security-lock.webp" alt="南京錠：ロックされたアプリを、パスワードで解除する様子">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/security-lock.avif" alt="南京錠：ロックされたアプリを、パスワードで解除する様子">
   </details>
 
 - **署名付きのアップデート、自動では入りません。** 上部のバーに、バージョン番号つきの「アップデート」バッジが表示されます。「インストールして再起動」を押すとまず確認を求められ、そのあとアプリがそのバージョンをインストールして再起動します。アプリのパスワードを設定している場合は、ロックされた状態で再起動するので、もう一度入力するとマイニングが再開します。インストールされるのは、プロジェクトが署名したバージョンだけです。Docker 版も、実行するコマンドとあわせて知らせてくれます。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/updates.webp" alt="「アップデート」バッジ、確認、そしてインストール">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/updates.avif" alt="「アップデート」バッジ、確認、そしてインストール">
   </details>
 
 ### そのほか
@@ -172,8 +178,8 @@
 - ほかのマイナーと同じく対応しているもの：ボーナスチェスト、レイド、モーメント、コミュニティゴール、予想（戦略、賭けるタイミング、条件）、視聴ストリークとサブスク中のチャンネルの優先、チャット参加（オフにできます）、新しい配信者の既定オプション、画像付きの Discord・Telegram・Webhook 通知、全体またはアカウントごとのプロキシ。
 - 29 言語、ダークとライトのテーマ、デスクトップ通知、トレイアイコン、システム起動時の開始。
 
-  <details><summary>実際の動作を見る</summary>
-  <img src="../media/en/basics.webp" alt="言語、ライトとダークのテーマ、デスクトップ通知、トレイアイコン">
+  <details open><summary>実際の動作を見る</summary>
+  <img src="../media/ja/basics.avif" alt="言語、ライトとダークのテーマ、デスクトップ通知、トレイアイコン">
   </details>
 
 > [!WARNING]

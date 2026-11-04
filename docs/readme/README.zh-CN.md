@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/en/presentation.webp" alt="Twitch Drops &amp; Points Miner 视频介绍">
+  <img src="../media/zh-CN/presentation.avif" alt="Twitch Drops &amp; Points Miner 视频介绍">
 </p>
 
 ## <a name="features"></a>功能
@@ -74,78 +74,84 @@
 
 - **一个应用，多个账号。** 每个账号按自己的模式各自挖取：**Drops 和点数**（一个频道用于最佳活动，另一个用于你的主播）、**仅 Drops** 或**仅点数**。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/accounts-mining.webp" alt="首页上多个账号同时挖取">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/accounts-mining.avif" alt="首页上多个账号同时挖取">
   </details>
 
 - **每个新账号都有设置向导。** 登录后，可以从默认设置开始，也可以沿用另一个账号的设置。选择模式、活动和主播，然后点击“开始挖取”或“保存并稍后开始”。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/account-setup.webp" alt="新账号的设置向导，一步一步演示">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/account-setup.avif" alt="新账号的设置向导，一步一步演示">
   </details>
 
 - **一处修改，一键同步到其他账号。** 在某个账号上做出修改后，确认消息会提供“应用到其他账号”。这项修改会在你勾选的账号上再执行一次，这些账号的其他设置保持不变。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/apply-to-accounts.webp" alt="通过“应用到其他账号”把一项修改同步到其他账号">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/apply-to-accounts.avif" alt="通过“应用到其他账号”把一项修改同步到其他账号">
   </details>
 
 - **添加主播。** 主播会立即以默认选项开始挖取：应用的默认选项，或你为这个账号选定的选项。需要的话可以当场调整：奖励宝箱、突袭、时刻、观看连胜、聊天室、预测。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/streamer-add.webp" alt="通过 Twitch 搜索添加主播，然后查看它的选项">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/streamer-add.avif" alt="通过 Twitch 搜索添加主播，然后查看它的选项">
   </details>
 
 - **编辑主播。** “编辑”会打开它的选项：奖励宝箱、突袭、时刻、观看连胜、聊天室、预测……用一个开关就能启用或停用它，而不必把它从列表中移除。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/streamer-edit.webp" alt="从主播所在行打开它的选项">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/streamer-edit.avif" alt="从主播所在行打开它的选项">
   </details>
 
 - **一次编辑多个主播。** 勾选它们，然后点击“编辑所选的 N 位主播”。只有你更改的选项才会生效。各主播之间取值不同的选项会显示为“混合”，它的开关会变成“是”和“否”两个按钮。随后，应用会询问是否将这些选项设为新主播的默认选项。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/streamers-group-edit.webp" alt="同时编辑多个主播，其中有显示为“混合”的选项">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/streamers-group-edit.avif" alt="同时编辑多个主播，其中有显示为“混合”的选项">
   </details>
 
 - **导入主播。** 粘贴一个列表（最多 500 个名称），或者沿用另一个账号的列表，或者使用该账号关注的频道。列表会先经过检查，只添加真实存在的频道。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/streamers-import.webp" alt="导入主播：粘贴的列表、另一个账号、关注的频道">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/streamers-import.avif" alt="导入主播：粘贴的列表、另一个账号、关注的频道">
+  </details>
+
+- **Spam Points。** 将某个频道的自定义奖励连续兑换多次。从你的点数列表中选择频道，或通过 Twitch 搜索找到任意频道：它的奖励会与账号的余额一起显示，余额实时读取。设置数量（最多 25 次，且不超过余额），然后点击“兑换”。连发结束时会显示结果，每次连发都会在“记录”中留下一条。
+
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/spam-points.avif" alt="Spam Points：选择一个频道，将一项奖励兑换 5 次，然后是记录中的那一条">
   </details>
 
 ### Drops
 
 - **所有进行中的 Drops 活动。** 每个活动都有自己的详情：奖励、游戏账号关联、“优先挖取”。列表来自 [Twitch Drops API](https://drops.sunkwi.com) 项目，每 10 分钟刷新一次。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/drops-catalogue.webp" alt="日历视图的目录、搜索和某个活动的详情">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/drops-catalogue.avif" alt="日历视图的目录、搜索和某个活动的详情">
   </details>
 
 - **你的挖取顺序。** 把活动拖成你想要的顺序。新活动会自动排到合适的位置：先是你的优先游戏，然后是最早结束或剩余分钟数最少的活动。可以排除游戏、关键词、某个活动或单个奖励，并跳过来不及完成的活动。在活动详情中点击“优先挖取”，即可把它排到最前面。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/drops-order.webp" alt="挖取顺序、优先游戏和排除项">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/drops-order.avif" alt="挖取顺序、优先游戏和排除项">
   </details>
 
 - **库存与“全部领取”。** “库存”页面把奖励分为“待领取”“进行中”和“已领取”三类。可以逐个领取、一次全部领取，或者开启“自动领取掉落”。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/drops-inventory.webp" alt="库存和“全部领取”按钮">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/drops-inventory.avif" alt="库存和“全部领取”按钮">
   </details>
 
 - **“Drops 优先我的主播”。** 对于当前活动，如果你列表中某位主播的直播计入该活动，就会优先于其他频道观看它。同一个频道既能推进掉落进度，又能为你赚取它的频道点数。默认开启。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/drops-streamers-first.webp" alt="列表中的一位主播，同时为 Drops 和它的点数而观看">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/drops-streamers-first.avif" alt="列表中的一位主播，同时为 Drops 和它的点数而观看">
   </details>
 
 ### 跟踪
 
 - **记录一切，包括每个请求。** “记录”页面保存每一个事件：掉落、获得和花费的点数、宝箱、下注、突袭、开播……可以按账号、按标签页（Drops、点数、其他）和按类型筛选。**技术日志 › 请求**列出发往 Twitch 和其他服务的每个请求，以及它的结果和耗时。日志和请求都不含任何令牌或密钥：点击“复制用于错误报告”即可复制，直接粘贴到 [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) 或 [Discord](https://discord.gg/support-bots-891685895781113886) 上的错误报告中。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/journal-requests.webp" alt="筛选后的记录，然后是技术日志 › 请求">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/journal-requests.avif" alt="筛选后的记录，然后是技术日志 › 请求">
   </details>
 
 ### 桌面或服务器
@@ -157,14 +163,14 @@
 
 - **会话受到保护。** 不需要 Twitch 密码：你在自己的浏览器中通过 `twitch.tv/activate` 登录。会话在磁盘上加密保存，你可以在 [Twitch 设置](https://www.twitch.tv/settings/connections)中撤销。在桌面版中，可选的应用密码会锁定应用：输入密码之前不会挖取任何内容。在 Docker 版本中，仪表盘有自己的密码，闲置几分钟后会自动锁定，并在代理之后通过 HTTPS 运行。连续输错 5 次密码，该 IP 地址会被封锁 30 秒。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/security-lock.webp" alt="锁：应用被锁定，然后用它的密码解锁">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/security-lock.avif" alt="锁：应用被锁定，然后用它的密码解锁">
   </details>
 
 - **签名更新，从不自动安装。** 顶部栏会出现带版本号的“更新”徽章。“安装并重启”会先请你确认，然后应用会安装该版本并重启。设置了应用密码时，应用重启后处于锁定状态：重新输入密码即可继续挖取。只有经过项目签名的版本才会被安装。Docker 版本同样会提示你，并给出需要运行的命令。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/updates.webp" alt="“更新”徽章、确认，然后安装">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/updates.avif" alt="“更新”徽章、确认，然后安装">
   </details>
 
 ### 此外
@@ -172,8 +178,8 @@
 - 与其他挖掘器一样：奖励宝箱、突袭、时刻、社区目标、预测（策略、下注时机、条件）、观看连胜和已订阅频道优先、聊天室在线（可关闭）、新主播的默认选项、带图片的 Discord、Telegram 和 Webhook 通知、全局或按账号设置的代理。
 - 29 种语言、深色和浅色主题、桌面通知、托盘图标、随系统启动。
 
-  <details><summary>查看演示</summary>
-  <img src="../media/en/basics.webp" alt="多种语言、浅色和深色主题、一条桌面通知和托盘图标">
+  <details open><summary>查看演示</summary>
+  <img src="../media/zh-CN/basics.avif" alt="多种语言、浅色和深色主题、一条桌面通知和托盘图标">
   </details>
 
 > [!WARNING]
