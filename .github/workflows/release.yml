@@ -107,7 +107,7 @@ jobs:
         run: npm ci
 
       - name: Build, sign and publish
-        uses: tauri-apps/tauri-action@v0
+        uses: tauri-apps/tauri-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NO_STRIP: "true"
@@ -119,11 +119,13 @@ jobs:
           releaseBody: "Download the installer for your system, or run the Docker image ${{ needs.version.outputs.image }}:${{ needs.version.outputs.version }} (also tagged latest) on a home server. macOS builds are not notarized: right-click the app and choose Open the first time."
           releaseDraft: true
           prerelease: false
-          includeUpdaterJson: true
+          uploadUpdaterJson: true
+          # ! latest.json already carries every signature: the .sig files are not published.
+          uploadUpdaterSignatures: false
           # ! A fixed file name without the product name's "&": GitHub drops it from
           # asset names but tauri-action does not, so it would not find the signatures
           # and would skip latest.json.
-          assetNamePattern: "twitch-drops-points-miner_[version]_[platform]_[arch][setup][ext]"
+          releaseAssetNamePattern: "twitch-drops-points-miner_[version]_[platform]_[arch][setup][ext]"
           args: ${{ matrix.args }}
 
       - name: Attach the portable Windows executable
