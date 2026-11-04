@@ -943,6 +943,10 @@ impl<T: TwitchApi> AccountMiner<T> {
 
         for (id, previous) in &self.campaigns {
             if let Some(next) = merged.get_mut(id) {
+                // ! An answer without the link state keeps the last one known: it
+                // decides whether a claim is worth sending.
+                next.linked = next.linked.or(previous.linked);
+
                 for drop in &mut next.drops {
                     if let Some(old) = previous.drops.iter().find(|d| d.id == drop.id) {
                         drop.current_minutes = drop.current_minutes.max(old.current_minutes);
