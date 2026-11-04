@@ -196,6 +196,7 @@
             reward={item.reward}
             status={item.status}
             balance={balance.current?.balance ?? 0}
+            free={channel.login === account.login}
             {now}
             onredeem={(count, text) => redeem(item.reward, count, text)}
           />

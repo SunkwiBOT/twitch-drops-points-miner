@@ -198,11 +198,13 @@ impl Answer {
     }
 }
 
+// ! `balance` is `None` on the account's own channel: Twitch takes no points
+// from the broadcaster there.
 pub fn check_redeemable(
     reward: &SpamReward,
     count: u32,
     has_text: bool,
-    balance: i64,
+    balance: Option<i64>,
     now: DateTime<Utc>,
 ) -> Result<()> {
     let refusal = if reward.is_user_input_required && !has_text {
@@ -215,7 +217,8 @@ pub fn check_redeemable(
         Some("out of stock")
     } else if reward.cooldown_expires_at.is_some_and(|at| at > now) {
         Some("on cooldown")
-    } else if i64::from(count).saturating_mul(reward.cost) > balance {
+    } else if balance.is_some_and(|balance| i64::from(count).saturating_mul(reward.cost) > balance)
+    {
         Some("not enough points")
     } else {
         None

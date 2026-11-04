@@ -5,7 +5,7 @@
   import type { SpamRewardType } from "../../../lib/bindings/SpamRewardType";
   import { number } from "../../../lib/format.utils";
   import { t } from "../../../lib/i18n/i18n.svelte";
-  import { RewardStatus, SPAM_MESSAGE_MAX } from "../../../lib/spam/spam.constants";
+  import { RewardStatus, SPAM_MAX_COUNT, SPAM_MESSAGE_MAX } from "../../../lib/spam/spam.constants";
   import { burstKey, burstProgress, runningBursts } from "../../../lib/spam/spam.svelte";
   import { countdown, maxCount, UNAVAILABLE_BADGES } from "../../../lib/spam/spam.utils";
   import Badge from "../../ui/Badge.svelte";
@@ -21,11 +21,12 @@
     reward: SpamRewardType;
     status: RewardStatus;
     balance: number;
+    free: boolean;
     now: number;
     onredeem: (count: number, text: string) => Promise<number>;
   };
 
-  let { accountId, login, reward, status, balance, now, onredeem }: SpamRewardCardPropsType =
+  let { accountId, login, reward, status, balance, free, now, onredeem }: SpamRewardCardPropsType =
     $props();
 
   const uid = $props.id();
@@ -39,7 +40,8 @@
   );
 
   const badge = $derived(UNAVAILABLE_BADGES[status]);
-  const max = $derived(maxCount(reward.cost, balance));
+  // ! On the account's own channel Twitch takes no points: only the 25 cap holds.
+  const max = $derived(free ? SPAM_MAX_COUNT : maxCount(reward.cost, balance));
   const quantity = $derived(Math.min(count, Math.max(1, max)));
   const cooling = $derived(status === RewardStatus.COOLDOWN);
   const missing = $derived(max === 0 && !sending ? reward.cost - balance : 0);

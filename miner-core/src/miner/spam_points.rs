@@ -334,7 +334,9 @@ impl SpamPoints {
                 .find(|reward| reward.id == reward_id)
                 .ok_or_else(|| Error::UnknownReward(reward_id.clone()))?;
 
-            spam::check_redeemable(&reward, count, text.is_some(), read.balance, Utc::now())?;
+            let balance = (login != record.login).then_some(read.balance);
+
+            spam::check_redeemable(&reward, count, text.is_some(), balance, Utc::now())?;
 
             Ok::<_, Error>((access.client, read.channel_id, reward))
         }
@@ -543,7 +545,11 @@ pub(super) fn burst_event(
             count: Some(count),
             sent: Some(result.sent),
             cancelled: Some(result.cancelled).filter(|cancelled| *cancelled > 0),
-            spent: Some(i64::from(result.sent) * reward.cost),
+            spent: Some(if login == record.login {
+                0
+            } else {
+                i64::from(result.sent) * reward.cost
+            }),
             refusals: Some(result.refusals.clone()).filter(|codes| !codes.is_empty()),
             failures: Some(result.failures.clone()).filter(|codes| !codes.is_empty()),
             ..EventContext::channel(login)
