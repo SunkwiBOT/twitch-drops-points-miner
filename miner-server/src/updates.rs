@@ -47,11 +47,7 @@ impl Releases {
 
     pub(crate) fn with_url(url: &str) -> anyhow::Result<Self> {
         let client = reqwest::Client::builder()
-            .user_agent(format!(
-                "TwitchMiner/{} (+{})",
-                miner_core::VERSION,
-                miner_core::REPOSITORY_URL
-            ))
+            .user_agent(miner_core::user_agent(miner_core::api::Shell::Server))
             .timeout(TIMEOUT)
             .redirect(Policy::custom(|attempt| {
                 if attempt.previous().len() >= MAX_REDIRECTS {

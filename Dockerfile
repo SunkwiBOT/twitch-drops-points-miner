@@ -72,7 +72,8 @@ COPY --from=build --chown=65532:65532 /build/miner-server/empty /data
 
 ENV HOST=0.0.0.0 \
     PORT=8080 \
-    DATA_DIR=/data
+    DATA_DIR=/data \
+    MINER_CONTAINER=docker
 
 USER 65532:65532
 

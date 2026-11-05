@@ -172,8 +172,15 @@ impl Notifier {
         settings: NotificationSettings,
         language: &str,
         requests: RequestLog,
+        shell: crate::api::Shell,
     ) -> Result<Self> {
-        Self::with_endpoints(settings, language, requests, &OFFICIAL)
+        Self::with_endpoints(
+            settings,
+            language,
+            requests,
+            &OFFICIAL,
+            &crate::user_agent(shell),
+        )
     }
 
     pub(crate) fn with_endpoints(
@@ -181,10 +188,11 @@ impl Notifier {
         language: &str,
         requests: RequestLog,
         endpoints: &'static Endpoints,
+        agent: &str,
     ) -> Result<Self> {
         let client = reqwest::Client::builder()
             .timeout(TIMEOUT)
-            .user_agent(format!("twitch-miner/{}", crate::VERSION))
+            .user_agent(agent)
             .build()
             .map_err(|e| Error::Network(e.to_string()))?;
 

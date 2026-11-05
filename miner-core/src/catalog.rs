@@ -9,6 +9,7 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
+use crate::api::Shell;
 use crate::domain::Campaign;
 use crate::error::{Error, ErrorCode, Result};
 use crate::requests::{address_target, RequestKind, RequestLog};
@@ -51,17 +52,13 @@ pub struct Fetch {
 }
 
 impl CatalogClient {
-    pub fn new(requests: RequestLog) -> Result<Self> {
-        Self::with_url(CATALOG_URL, requests)
+    pub fn new(requests: RequestLog, shell: Shell) -> Result<Self> {
+        Self::with_url(CATALOG_URL, requests, &crate::user_agent(shell))
     }
 
-    pub(crate) fn with_url(url: &str, requests: RequestLog) -> Result<Self> {
+    pub(crate) fn with_url(url: &str, requests: RequestLog, agent: &str) -> Result<Self> {
         let client = reqwest::Client::builder()
-            .user_agent(format!(
-                "TwitchMiner/{} (+{})",
-                crate::VERSION,
-                crate::REPOSITORY_URL
-            ))
+            .user_agent(agent)
             .timeout(Duration::from_secs(30))
             .gzip(true)
             .build()
