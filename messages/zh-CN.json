@@ -661,7 +661,7 @@
   "reward_state_ready": "可领取",
   "reward_claim": "领取",
   "notify_test_title": "测试：{text}",
-  "notify_test_detail": "Twitch Drops & Points Miner 可以连接到此目标。已领取的掉宝会显示成这样。此消息中的所有名称和图片均为测试内容。",
+  "notify_test_detail": "Twitch Miner 可以连接到此目标。已领取的掉宝会显示成这样。此消息中的所有名称和图片均为测试内容。",
   "notify_streamer": "主播",
   "notify_streamer_line": "主播：{channel}",
   "dashboard_ended_ago": "{time}结束",

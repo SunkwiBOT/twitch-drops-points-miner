@@ -753,7 +753,7 @@
   "reward_state_ready": "De revendicat",
   "reward_claim": "Revendică",
   "notify_test_title": "Test: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner poate ajunge la această destinație. Așa arată un drop revendicat. Toate numele și imaginile din acest mesaj sunt de test.",
+  "notify_test_detail": "Twitch Miner poate ajunge la această destinație. Așa arată un drop revendicat. Toate numele și imaginile din acest mesaj sunt de test.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Încheiată {time}",

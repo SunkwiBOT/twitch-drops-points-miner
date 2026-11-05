@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Twitch Drops &amp; Points Miner logosu">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Twitch Miner logosu">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>Birden fazla hesapta, tarayıcı ve açık bir Twitch sekmesi olmadan Twitch Drops ve kanal puanları kazar.</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="Son sürüm"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="İndirmeler"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="Son sürüm"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="İndirmeler"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="Platformlar: Linux, Windows, macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="amd64 ve arm64 için Docker imajı"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="amd64 ve arm64 için Docker imajı"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="MIT lisansı"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="Görüntülenme">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">Hata bildir</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">Hata bildir</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/tr/presentation.avif" alt="Twitch Drops &amp; Points Miner'ın video tanıtımı">
+  <img src="../media/tr/presentation.avif" alt="Twitch Miner'ın video tanıtımı">
 </p>
 
 ## <a name="features"></a>Özellikler
@@ -148,7 +148,7 @@ Onu diğer madencilerden ayıran şeyler. Bir maddenin altındaki “Çalışır
 
 ### Takip
 
-- **Her şeyin günlüğü ve her istek.** Günlük her olayı tutar: drop'lar, kazanılan ve harcanan puanlar, sandıklar, bahisler, baskınlar, başlayan yayınlar… Onu hesaba, sekmeye (Drops, Puan, Diğer) ve türe göre filtreleyin. **Teknik kayıtlar › İstekler**, Twitch'e ve diğer hizmetlere gönderilen her isteği sonucu ve süresiyle birlikte listeler. Kayıtlar ve istekler hiçbir token veya gizli bilgi içermez: “Hata raporu için kopyala” onları kopyalar; [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) veya [Discord](https://discord.gg/support-bots-891685895781113886) üzerinde bir hata raporuna yapıştırmaya hazırdır.
+- **Her şeyin günlüğü ve her istek.** Günlük her olayı tutar: drop'lar, kazanılan ve harcanan puanlar, sandıklar, bahisler, baskınlar, başlayan yayınlar… Onu hesaba, sekmeye (Drops, Puan, Diğer) ve türe göre filtreleyin. **Teknik kayıtlar › İstekler**, Twitch'e ve diğer hizmetlere gönderilen her isteği sonucu ve süresiyle birlikte listeler. Kayıtlar ve istekler hiçbir token veya gizli bilgi içermez: “Hata raporu için kopyala” onları kopyalar; [GitHub](https://github.com/SunkwiBOT/twitch-miner/issues) veya [Discord](https://discord.gg/support-bots-891685895781113886) üzerinde bir hata raporuna yapıştırmaya hazırdır.
 
   <details open><summary>Çalışırken görün</summary>
   <img src="../media/tr/journal-requests.avif" alt="Filtrelenmiş Günlük, ardından Teknik kayıtlar › İstekler">
@@ -199,7 +199,7 @@ Onu diğer madencilerden ayıran şeyler. Bir maddenin altındaki “Çalışır
 
 ## <a name="comparison"></a>Karşılaştırma
 
-[Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner) ile [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2) (kanal puanları) ve [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops) arasındaki karşılaştırma. Kasım 2026'da bu projelerin kodu ve README dosyaları üzerinden doğrulandı.
+[Twitch Miner](https://github.com/SunkwiBOT/twitch-miner) ile [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2) (kanal puanları) ve [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops) arasındaki karşılaştırma. Kasım 2026'da bu projelerin kodu ve README dosyaları üzerinden doğrulandı.
 
 | | Bu proje | Channel Points Miner v2 | TwitchDropsMiner |
 |---|:---:|:---:|:---:|
@@ -238,11 +238,11 @@ Onu diğer madencilerden ayıran şeyler. Bir maddenin altındaki “Çalışır
 
 ## <a name="download"></a>İndirme
 
-Sisteminize uygun dosyayı [son sürümden](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest) indirin.
+Sisteminize uygun dosyayı [son sürümden](https://github.com/SunkwiBOT/twitch-miner/releases/latest) indirin.
 
 | Sistem | Paket |
 |---|---|
-| **Windows** · x64 | Yükleyici (`setup.exe`) veya [taşınabilir çalıştırılabilir dosya](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | Yükleyici (`setup.exe`) veya [taşınabilir çalıştırılabilir dosya](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 veya üstü · Intel ve Apple Silicon | Disk görüntüsü (`.dmg`) |
 | **Linux** · x86-64 | `.AppImage`, `.deb` (Debian, Ubuntu) veya `.rpm` (Fedora, openSUSE) |
 
@@ -252,18 +252,18 @@ Güncellemeler imzalıdır. Uygulama açılırken, ardından saatte bir yeni bir
 
 Veriler kullanıcı veri klasöründe bulunur:
 
-- Linux: `~/.local/share/twitch-drops-points-miner`
-- Windows: `%APPDATA%\twitch-drops-points-miner`
-- macOS: `~/Library/Application Support/twitch-drops-points-miner`
+- Linux: `~/.local/share/twitch-miner`
+- Windows: `%APPDATA%\twitch-miner`
+- macOS: `~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
-Sunucu aynı paneli bir tarayıcıda gösterir. İmajın adı `ghcr.io/sunkwibot/twitch-drops-points-miner`; `amd64` ve `arm64` için sunulur. Yeni bir sürüm çıktığında panel bunu söyler: `docker compose pull`, ardından `docker compose up -d`.
+Sunucu aynı paneli bir tarayıcıda gösterir. İmajın adı `ghcr.io/sunkwibot/twitch-miner`; `amd64` ve `arm64` için sunulur. Yeni bir sürüm çıktığında panel bunu söyler: `docker compose pull`, ardından `docker compose up -d`.
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # her başlangıçta en yeni imajı çeker
     restart: unless-stopped
     ports: ["8080:8080"]   # HTTPS ters proxy arkasında: kaldırın ya da "127.0.0.1:8080:8080" yapın
@@ -336,7 +336,7 @@ Hesabın **Drops** sayfasını açın. “Kazma sırası” bölümünde bekleye
 Masaüstü uygulaması bilgisayarınız açıkken kazar; sistem tepsisi simgesi, isteğe bağlı şifresi ve tek tıkla güncellemeleri vardır. Docker, sürekli açık duran bir makinede (VPS, NAS, Raspberry Pi) gece gündüz kazar; onu bir tarayıcıda, `MINER_PASSWORD` ile korunarak açarsınız. Arayüz aynıdır.
 
 **Verilerim nerede?**\
-Veri klasöründe: Linux'ta `~/.local/share/twitch-drops-points-miner`, Windows'ta `%APPDATA%\twitch-drops-points-miner`, macOS'ta `~/Library/Application Support/twitch-drops-points-miner`, Docker'da ise `/data` birimi. Masaüstünde **Ayarlar › Masaüstü** onu tek tıkla açar. İçinde `miner.db` (hesaplar, ayarlar, günlük), `master.key` (uygulama şifresi ayarlanmamışsa oturum anahtarı) ve kayıtlar bulunur.
+Veri klasöründe: Linux'ta `~/.local/share/twitch-miner`, Windows'ta `%APPDATA%\twitch-miner`, macOS'ta `~/Library/Application Support/twitch-miner`, Docker'da ise `/data` birimi. Masaüstünde **Ayarlar › Masaüstü** onu tek tıkla açar. İçinde `miner.db` (hesaplar, ayarlar, günlük), `master.key` (uygulama şifresi ayarlanmamışsa oturum anahtarı) ve kayıtlar bulunur.
 
 **Nasıl güncellerim?**\
 Masaüstü uygulaması açılışta, ardından saatte bir yeni sürüm olup olmadığını denetler (bunu **Ayarlar › Hakkında** bölümünden değiştirebilirsiniz). “Güncelleme” rozetine, ardından “Yükle ve yeniden başlat” düğmesine tıklayın. Docker'da panel size haber verir: `docker compose pull`, ardından `docker compose up -d` komutunu çalıştırın.

@@ -18,7 +18,7 @@ WORKSPACE_CARGO = APP_DIR / "Cargo.toml"
 CARGO_LOCK = APP_DIR / "Cargo.lock"
 PACKAGE_JSON = APP_DIR / "package.json"
 PACKAGE_LOCK = APP_DIR / "package-lock.json"
-PACKAGES = ("twitch-drops-points-miner", "miner-core", "miner-server")
+PACKAGES = ("twitch-miner", "miner-core", "miner-server")
 
 
 def current_version() -> str:

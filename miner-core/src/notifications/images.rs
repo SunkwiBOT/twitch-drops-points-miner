@@ -54,7 +54,7 @@ impl ImageCache {
         let client = reqwest::Client::builder()
             .timeout(TIMEOUT)
             .redirect(redirects)
-            .user_agent(format!("twitch-drops-points-miner/{}", crate::VERSION))
+            .user_agent(format!("twitch-miner/{}", crate::VERSION))
             .build()
             .map_err(network)?;
         let cache = Self {

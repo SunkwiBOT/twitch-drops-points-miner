@@ -747,7 +747,7 @@
   "reward_state_ready": "Lunastettavissa",
   "reward_claim": "Lunasta",
   "notify_test_title": "Testi: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner tavoittaa tämän kohteen. Lunastettu drop näyttää tältä. Kaikki tämän viestin nimet ja kuvat ovat testiä.",
+  "notify_test_detail": "Twitch Miner tavoittaa tämän kohteen. Lunastettu drop näyttää tältä. Kaikki tämän viestin nimet ja kuvat ovat testiä.",
   "notify_streamer": "Striimaaja",
   "notify_streamer_line": "Striimaaja: {channel}",
   "dashboard_ended_ago": "Päättyi {time}",

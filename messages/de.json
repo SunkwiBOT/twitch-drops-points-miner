@@ -747,7 +747,7 @@
   "reward_state_ready": "Einlösbar",
   "reward_claim": "Einlösen",
   "notify_test_title": "Test: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner erreicht dieses Ziel. So sieht ein eingelöster Drop aus. Alle Namen und Bilder dieser Nachricht sind Testdaten.",
+  "notify_test_detail": "Twitch Miner erreicht dieses Ziel. So sieht ein eingelöster Drop aus. Alle Namen und Bilder dieser Nachricht sind Testdaten.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Beendet {time}",

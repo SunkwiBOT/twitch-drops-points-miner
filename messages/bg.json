@@ -747,7 +747,7 @@
   "reward_state_ready": "За получаване",
   "reward_claim": "Получи",
   "notify_test_title": "Тест: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner може да достигне тази цел. Така изглежда получен drop. Всички имена и снимки в това съобщение са тестови.",
+  "notify_test_detail": "Twitch Miner може да достигне тази цел. Така изглежда получен drop. Всички имена и снимки в това съобщение са тестови.",
   "notify_streamer": "Стриймър",
   "notify_streamer_line": "Стриймър: {channel}",
   "dashboard_ended_ago": "Приключила {time}",

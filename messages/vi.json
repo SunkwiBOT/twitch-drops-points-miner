@@ -661,7 +661,7 @@
   "reward_state_ready": "Có thể nhận",
   "reward_claim": "Nhận",
   "notify_test_title": "Thử: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner kết nối được với đích này. Một drop đã nhận trông như thế này. Mọi tên và hình ảnh trong tin nhắn này đều là dữ liệu thử.",
+  "notify_test_detail": "Twitch Miner kết nối được với đích này. Một drop đã nhận trông như thế này. Mọi tên và hình ảnh trong tin nhắn này đều là dữ liệu thử.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Đã kết thúc {time}",

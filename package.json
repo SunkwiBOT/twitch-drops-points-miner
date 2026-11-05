@@ -1,12 +1,12 @@
 {
-  "name": "twitch-drops-points-miner",
+  "name": "twitch-miner",
   "private": true,
   "version": "0.1.0",
   "description": "Mines Twitch Drops and channel points on several accounts, with no browser and no Twitch tab open.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SunkwiBOT/twitch-drops-points-miner"
+    "url": "https://github.com/SunkwiBOT/twitch-miner"
   },
   "type": "module",
   "scripts": {

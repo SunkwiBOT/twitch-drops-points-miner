@@ -747,7 +747,7 @@
   "reward_state_ready": "Para resgatar",
   "reward_claim": "Resgatar",
   "notify_test_title": "Teste: {text}",
-  "notify_test_detail": "O Twitch Drops & Points Miner consegue alcançar este destino. Um drop resgatado fica assim. Todos os nomes e imagens desta mensagem são de teste.",
+  "notify_test_detail": "O Twitch Miner consegue alcançar este destino. Um drop resgatado fica assim. Todos os nomes e imagens desta mensagem são de teste.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Terminou {time}",

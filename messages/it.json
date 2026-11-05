@@ -747,7 +747,7 @@
   "reward_state_ready": "Da riscattare",
   "reward_claim": "Riscatta",
   "notify_test_title": "Test: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner raggiunge questa destinazione. Ecco come appare un drop riscattato. Tutti i nomi e le immagini di questo messaggio sono di prova.",
+  "notify_test_detail": "Twitch Miner raggiunge questa destinazione. Ecco come appare un drop riscattato. Tutti i nomi e le immagini di questo messaggio sono di prova.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Terminata {time}",

@@ -58,7 +58,7 @@ impl CatalogClient {
     pub(crate) fn with_url(url: &str, requests: RequestLog) -> Result<Self> {
         let client = reqwest::Client::builder()
             .user_agent(format!(
-                "TwitchDropsPointsMiner/{} (+{})",
+                "TwitchMiner/{} (+{})",
                 crate::VERSION,
                 crate::REPOSITORY_URL
             ))

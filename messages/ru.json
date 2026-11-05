@@ -753,7 +753,7 @@
   "reward_state_ready": "Можно получить",
   "reward_claim": "Получить",
   "notify_test_title": "Тест: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner может связаться с этой целью. Так выглядит полученный дроп. Все имена и картинки в этом сообщении тестовые.",
+  "notify_test_detail": "Twitch Miner может связаться с этой целью. Так выглядит полученный дроп. Все имена и картинки в этом сообщении тестовые.",
   "notify_streamer": "Стример",
   "notify_streamer_line": "Стример: {channel}",
   "dashboard_ended_ago": "Завершена {time}",

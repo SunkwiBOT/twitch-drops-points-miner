@@ -661,7 +661,7 @@
   "reward_state_ready": "受け取り可能",
   "reward_claim": "受け取る",
   "notify_test_title": "テスト：{text}",
-  "notify_test_detail": "Twitch Drops & Points Miner はこの送信先に届きます。受け取ったドロップはこのように表示されます。このメッセージの名前と画像はすべてテスト用です。",
+  "notify_test_detail": "Twitch Miner はこの送信先に届きます。受け取ったドロップはこのように表示されます。このメッセージの名前と画像はすべてテスト用です。",
   "notify_streamer": "配信者",
   "notify_streamer_line": "配信者：{channel}",
   "dashboard_ended_ago": "{time}に終了",

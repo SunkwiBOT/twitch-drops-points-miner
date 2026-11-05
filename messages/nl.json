@@ -747,7 +747,7 @@
   "reward_state_ready": "Te claimen",
   "reward_claim": "Claimen",
   "notify_test_title": "Test: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner kan dit doel bereiken. Zo ziet een geclaimde drop eruit. Alle namen en afbeeldingen in dit bericht zijn testgegevens.",
+  "notify_test_detail": "Twitch Miner kan dit doel bereiken. Zo ziet een geclaimde drop eruit. Alle namen en afbeeldingen in dit bericht zijn testgegevens.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Afgelopen {time}",

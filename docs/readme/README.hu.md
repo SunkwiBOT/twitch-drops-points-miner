@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="A Twitch Drops &amp; Points Miner logója">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="A Twitch Miner logója">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>Twitch Drops-ot és csatornapontokat bányászik több fiókon, böngésző és nyitott Twitch-lap nélkül.</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="Legújabb kiadás"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="Letöltések"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="Legújabb kiadás"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="Letöltések"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="Platformok: Linux, Windows, macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Docker-image amd64 és arm64 architektúrára"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Docker-image amd64 és arm64 architektúrára"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="MIT licenc"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="Megtekintések">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">Hiba bejelentése</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">Hiba bejelentése</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/hu/presentation.avif" alt="A Twitch Drops &amp; Points Miner videós bemutatója">
+  <img src="../media/hu/presentation.avif" alt="A Twitch Miner videós bemutatója">
 </p>
 
 ## <a name="features"></a>Funkciók
@@ -188,7 +188,7 @@ láthatod, hogyan működnek.
   amelyet az alkalmazás a Twitchnek és más szolgáltatásoknak küldött, az eredményével és
   az időtartamával. A logok és a kérések nem tartalmaznak tokent vagy titkot: a
   „Másolás hibajelentéshez” kimásolja őket, készen arra, hogy beilleszd egy hibajelentésbe
-  a [GitHubon](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) vagy
+  a [GitHubon](https://github.com/SunkwiBOT/twitch-miner/issues) vagy
   a [Discordon](https://discord.gg/support-bots-891685895781113886).
 
   <details open><summary>Működés közben</summary>
@@ -259,7 +259,7 @@ láthatod, hogyan működnek.
 
 ## <a name="comparison"></a>Összehasonlítás
 
-Hogyan áll a [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner)
+Hogyan áll a [Twitch Miner](https://github.com/SunkwiBOT/twitch-miner)
 a [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2)
 (csatornapontok) és a [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops)
 mellett. A kódjuk és a README-jük alapján ellenőrizve, 2026 novemberében.
@@ -307,11 +307,11 @@ adásában van Drops (a `DROPS` prioritása), de más csatornát soha.\
 ## <a name="download"></a>Letöltés
 
 Töltsd le a rendszerednek megfelelő fájlt a
-[legújabb kiadásból](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest).
+[legújabb kiadásból](https://github.com/SunkwiBOT/twitch-miner/releases/latest).
 
 | Rendszer | Csomag |
 |---|---|
-| **Windows** · x64 | Telepítő (`setup.exe`) vagy [hordozható futtatható fájl](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | Telepítő (`setup.exe`) vagy [hordozható futtatható fájl](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 vagy újabb · Intel és Apple Silicon | Lemezkép (`.dmg`) |
 | **Linux** · x86-64 | `.AppImage`, `.deb` (Debian, Ubuntu) vagy `.rpm` (Fedora, openSUSE) |
 
@@ -325,20 +325,20 @@ helyen.
 
 Az adatok a felhasználói adatmappában vannak:
 
-- Linux: `~/.local/share/twitch-drops-points-miner`
-- Windows: `%APPDATA%\twitch-drops-points-miner`
-- macOS: `~/Library/Application Support/twitch-drops-points-miner`
+- Linux: `~/.local/share/twitch-miner`
+- Windows: `%APPDATA%\twitch-miner`
+- macOS: `~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
 A szerver ugyanazt az irányítópultot mutatja böngészőben. Az image
-a `ghcr.io/sunkwibot/twitch-drops-points-miner`, `amd64` és `arm64` architektúrára. Ha új
+a `ghcr.io/sunkwibot/twitch-miner`, `amd64` és `arm64` architektúrára. Ha új
 verzió jelenik meg, az irányítópult jelzi: `docker compose pull`, majd `docker compose up -d`.
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # minden indításkor a legújabb image letöltése
     restart: unless-stopped
     ports: ["8080:8080"]   # HTTPS fordított proxy mögött: töröld, vagy "127.0.0.1:8080:8080"
@@ -442,9 +442,9 @@ mindig bekapcsolt gépen (VPS, NAS, Raspberry Pi); böngészőben nyitod meg, a 
 védelmével. A felület ugyanaz.
 
 **Hol vannak az adataim?**\
-Az adatmappában: Linuxon `~/.local/share/twitch-drops-points-miner`, Windowson
-`%APPDATA%\twitch-drops-points-miner`, macOS-en
-`~/Library/Application Support/twitch-drops-points-miner`, Dockerrel pedig a `/data` kötet.
+Az adatmappában: Linuxon `~/.local/share/twitch-miner`, Windowson
+`%APPDATA%\twitch-miner`, macOS-en
+`~/Library/Application Support/twitch-miner`, Dockerrel pedig a `/data` kötet.
 Asztali gépen a **Beállítások › Asztal** egy kattintással megnyitja. Ebben van a `miner.db`
 (fiókok, beállítások, napló), a `master.key` (a munkamenetek kulcsa, ha nincs
 alkalmazásjelszó beállítva) és a logok.

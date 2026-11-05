@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="โลโก้ Twitch Drops &amp; Points Miner">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="โลโก้ Twitch Miner">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>ขุด Twitch Drops และพอยต์ช่องบนหลายบัญชี โดยไม่ต้องใช้เบราว์เซอร์และไม่ต้องเปิดแท็บ Twitch</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="รุ่นล่าสุด"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="ยอดดาวน์โหลด"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="รุ่นล่าสุด"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="ยอดดาวน์โหลด"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="แพลตฟอร์ม: Linux, Windows, macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="อิมเมจ Docker สำหรับ amd64 และ arm64"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="อิมเมจ Docker สำหรับ amd64 และ arm64"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="สัญญาอนุญาต MIT"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="ยอดเข้าชม">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">รายงานบั๊ก</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">รายงานบั๊ก</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/th/presentation.avif" alt="วิดีโอแนะนำ Twitch Drops &amp; Points Miner">
+  <img src="../media/th/presentation.avif" alt="วิดีโอแนะนำ Twitch Miner">
 </p>
 
 ## <a name="features"></a>ฟีเจอร์
@@ -148,7 +148,7 @@
 
 ### บันทึกและตรวจสอบ
 
-- **บันทึกทุกอย่าง และทุกคำขอ** บันทึกกิจกรรมเก็บทุกเหตุการณ์: ดรอป พอยต์ที่ได้และที่ใช้ไป หีบ การเดิมพัน เรด สตรีมที่เริ่มไลฟ์… กรองได้ตามบัญชี ตามแท็บ (Drops, พอยต์, อื่น ๆ) และตามประเภท **ล็อกทางเทคนิค › คำขอ** แสดงทุกคำขอที่ส่งไปยัง Twitch และบริการอื่น พร้อมผลลัพธ์และเวลาที่ใช้ ล็อกและคำขอไม่มีโทเค็นหรือข้อมูลลับใด ๆ: “คัดลอกสำหรับรายงานบั๊ก” จะคัดลอกไว้ให้ พร้อมวางในรายงานบั๊กบน [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) หรือ [Discord](https://discord.gg/support-bots-891685895781113886)
+- **บันทึกทุกอย่าง และทุกคำขอ** บันทึกกิจกรรมเก็บทุกเหตุการณ์: ดรอป พอยต์ที่ได้และที่ใช้ไป หีบ การเดิมพัน เรด สตรีมที่เริ่มไลฟ์… กรองได้ตามบัญชี ตามแท็บ (Drops, พอยต์, อื่น ๆ) และตามประเภท **ล็อกทางเทคนิค › คำขอ** แสดงทุกคำขอที่ส่งไปยัง Twitch และบริการอื่น พร้อมผลลัพธ์และเวลาที่ใช้ ล็อกและคำขอไม่มีโทเค็นหรือข้อมูลลับใด ๆ: “คัดลอกสำหรับรายงานบั๊ก” จะคัดลอกไว้ให้ พร้อมวางในรายงานบั๊กบน [GitHub](https://github.com/SunkwiBOT/twitch-miner/issues) หรือ [Discord](https://discord.gg/support-bots-891685895781113886)
 
   <details open><summary>ดูการทำงานจริง</summary>
   <img src="../media/th/journal-requests.avif" alt="บันทึกกิจกรรมที่กรองแล้ว ตามด้วยล็อกทางเทคนิค › คำขอ">
@@ -199,7 +199,7 @@
 
 ## <a name="comparison"></a>การเปรียบเทียบ
 
-[Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner) เมื่อเทียบกับ [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2) (พอยต์ช่อง) และ [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops) ตรวจสอบจากโค้ดและ README ของทั้งสองโปรเจกต์เมื่อเดือนพฤศจิกายน 2026
+[Twitch Miner](https://github.com/SunkwiBOT/twitch-miner) เมื่อเทียบกับ [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2) (พอยต์ช่อง) และ [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops) ตรวจสอบจากโค้ดและ README ของทั้งสองโปรเจกต์เมื่อเดือนพฤศจิกายน 2026
 
 | | โปรเจกต์นี้ | Channel Points Miner v2 | TwitchDropsMiner |
 |---|:---:|:---:|:---:|
@@ -238,11 +238,11 @@
 
 ## <a name="download"></a>ดาวน์โหลด
 
-ดาวน์โหลดไฟล์สำหรับระบบของคุณจาก[รุ่นล่าสุด](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest)
+ดาวน์โหลดไฟล์สำหรับระบบของคุณจาก[รุ่นล่าสุด](https://github.com/SunkwiBOT/twitch-miner/releases/latest)
 
 | ระบบ | แพ็กเกจ |
 |---|---|
-| **Windows** · x64 | ตัวติดตั้ง (`setup.exe`) หรือ[ไฟล์ปฏิบัติการแบบพกพา](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | ตัวติดตั้ง (`setup.exe`) หรือ[ไฟล์ปฏิบัติการแบบพกพา](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 ขึ้นไป · Intel และ Apple Silicon | ดิสก์อิมเมจ (`.dmg`) |
 | **Linux** · x86-64 | `.AppImage`, `.deb` (Debian, Ubuntu) หรือ `.rpm` (Fedora, openSUSE) |
 
@@ -252,18 +252,18 @@
 
 ข้อมูลอยู่ในโฟลเดอร์ข้อมูลผู้ใช้:
 
-- Linux: `~/.local/share/twitch-drops-points-miner`
-- Windows: `%APPDATA%\twitch-drops-points-miner`
-- macOS: `~/Library/Application Support/twitch-drops-points-miner`
+- Linux: `~/.local/share/twitch-miner`
+- Windows: `%APPDATA%\twitch-miner`
+- macOS: `~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
-เซิร์ฟเวอร์แสดงแดชบอร์ดเดียวกันในเบราว์เซอร์ อิมเมจคือ `ghcr.io/sunkwibot/twitch-drops-points-miner` สำหรับ `amd64` และ `arm64` เมื่อมีเวอร์ชันใหม่ แดชบอร์ดจะแจ้งให้ทราบ: `docker compose pull` แล้วตามด้วย `docker compose up -d`
+เซิร์ฟเวอร์แสดงแดชบอร์ดเดียวกันในเบราว์เซอร์ อิมเมจคือ `ghcr.io/sunkwibot/twitch-miner` สำหรับ `amd64` และ `arm64` เมื่อมีเวอร์ชันใหม่ แดชบอร์ดจะแจ้งให้ทราบ: `docker compose pull` แล้วตามด้วย `docker compose up -d`
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # ดึงอิมเมจล่าสุดทุกครั้งที่เริ่ม
     restart: unless-stopped
     ports: ["8080:8080"]   # เมื่ออยู่หลัง HTTPS reverse proxy: ลบบรรทัดนี้ หรือใช้ "127.0.0.1:8080:8080"
@@ -336,7 +336,7 @@ Twitch นับ **แคมเปญ Drops หนึ่งแคมเปญ** 
 แอปเดสก์ท็อปขุดขณะที่ PC ของคุณเปิดอยู่ มีไอคอนในถาดระบบ รหัสผ่านแบบไม่บังคับ และอัปเดตได้ในคลิกเดียว Docker ขุดได้ทั้งวันทั้งคืนบนเครื่องที่เปิดอยู่ตลอด (VPS, NAS, Raspberry Pi) คุณเปิดผ่านเบราว์เซอร์ โดยมี `MINER_PASSWORD` ปกป้อง อินเทอร์เฟซเหมือนกัน
 
 **ข้อมูลของฉันอยู่ที่ไหน?**\
-อยู่ในโฟลเดอร์ข้อมูล: `~/.local/share/twitch-drops-points-miner` บน Linux, `%APPDATA%\twitch-drops-points-miner` บน Windows, `~/Library/Application Support/twitch-drops-points-miner` บน macOS และวอลุ่ม `/data` เมื่อใช้ Docker บนเดสก์ท็อป **การตั้งค่า › เดสก์ท็อป** เปิดโฟลเดอร์นี้ได้ในคลิกเดียว ภายในมี `miner.db` (บัญชี การตั้งค่า บันทึกกิจกรรม) `master.key` (คีย์ของเซสชัน เมื่อไม่ได้ตั้งรหัสผ่านแอป) และล็อก
+อยู่ในโฟลเดอร์ข้อมูล: `~/.local/share/twitch-miner` บน Linux, `%APPDATA%\twitch-miner` บน Windows, `~/Library/Application Support/twitch-miner` บน macOS และวอลุ่ม `/data` เมื่อใช้ Docker บนเดสก์ท็อป **การตั้งค่า › เดสก์ท็อป** เปิดโฟลเดอร์นี้ได้ในคลิกเดียว ภายในมี `miner.db` (บัญชี การตั้งค่า บันทึกกิจกรรม) `master.key` (คีย์ของเซสชัน เมื่อไม่ได้ตั้งรหัสผ่านแอป) และล็อก
 
 **อัปเดตอย่างไร?**\
 แอปเดสก์ท็อปตรวจหาเวอร์ชันใหม่เมื่อเริ่มทำงาน จากนั้นทุกชั่วโมง (เปลี่ยนได้ใน **การตั้งค่า › เกี่ยวกับ**) คลิกป้าย “อัปเดต” แล้วกด “ติดตั้งและรีสตาร์ต” เมื่อใช้ Docker แดชบอร์ดจะแจ้งให้ทราบ: รัน `docker compose pull` แล้วตามด้วย `docker compose up -d`

@@ -60,9 +60,9 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry \
 
 FROM scratch AS runner
 
-LABEL org.opencontainers.image.source="https://github.com/SunkwiBOT/twitch-drops-points-miner" \
+LABEL org.opencontainers.image.source="https://github.com/SunkwiBOT/twitch-miner" \
       org.opencontainers.image.licenses="MIT" \
-      org.opencontainers.image.title="Twitch Drops & Points Miner"
+      org.opencontainers.image.title="Twitch Miner"
 
 COPY --from=build /twitch-miner /twitch-miner
 

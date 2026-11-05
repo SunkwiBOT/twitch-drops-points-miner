@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Twitch Drops &amp; Points Miner 标志">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Twitch Miner 标志">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>在多个账号上挖取 Twitch Drops 和频道点数，无需浏览器，也无需打开 Twitch 标签页。</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="最新版本"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="下载量"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="最新版本"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="下载量"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="平台：Linux、Windows、macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="适用于 amd64 和 arm64 的 Docker 镜像"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="适用于 amd64 和 arm64 的 Docker 镜像"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="MIT 许可证"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="浏览量">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">报告错误</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">报告错误</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/zh-CN/presentation.avif" alt="Twitch Drops &amp; Points Miner 视频介绍">
+  <img src="../media/zh-CN/presentation.avif" alt="Twitch Miner 视频介绍">
 </p>
 
 ## <a name="features"></a>功能
@@ -148,7 +148,7 @@
 
 ### 跟踪
 
-- **记录一切，包括每个请求。** “记录”页面保存每一个事件：掉落、获得和花费的点数、宝箱、下注、突袭、开播……可以按账号、按标签页（Drops、点数、其他）和按类型筛选。**技术日志 › 请求**列出发往 Twitch 和其他服务的每个请求，以及它的结果和耗时。日志和请求都不含任何令牌或密钥：点击“复制用于错误报告”即可复制，直接粘贴到 [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) 或 [Discord](https://discord.gg/support-bots-891685895781113886) 上的错误报告中。
+- **记录一切，包括每个请求。** “记录”页面保存每一个事件：掉落、获得和花费的点数、宝箱、下注、突袭、开播……可以按账号、按标签页（Drops、点数、其他）和按类型筛选。**技术日志 › 请求**列出发往 Twitch 和其他服务的每个请求，以及它的结果和耗时。日志和请求都不含任何令牌或密钥：点击“复制用于错误报告”即可复制，直接粘贴到 [GitHub](https://github.com/SunkwiBOT/twitch-miner/issues) 或 [Discord](https://discord.gg/support-bots-891685895781113886) 上的错误报告中。
 
   <details open><summary>查看演示</summary>
   <img src="../media/zh-CN/journal-requests.avif" alt="筛选后的记录，然后是技术日志 › 请求">
@@ -199,7 +199,7 @@
 
 ## <a name="comparison"></a>对比
 
-[Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner) 与 [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2)（频道点数）和 [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner)（Drops）的对比如下。已于 2026 年 11 月对照它们的代码和 README 核实。
+[Twitch Miner](https://github.com/SunkwiBOT/twitch-miner) 与 [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2)（频道点数）和 [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner)（Drops）的对比如下。已于 2026 年 11 月对照它们的代码和 README 核实。
 
 | | 本项目 | Channel Points Miner v2 | TwitchDropsMiner |
 |---|:---:|:---:|:---:|
@@ -238,11 +238,11 @@
 
 ## <a name="download"></a>下载
 
-从[最新版本](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest)下载适合你系统的文件。
+从[最新版本](https://github.com/SunkwiBOT/twitch-miner/releases/latest)下载适合你系统的文件。
 
 | 系统 | 安装包 |
 |---|---|
-| **Windows** · x64 | 安装程序（`setup.exe`）或[便携版可执行文件](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | 安装程序（`setup.exe`）或[便携版可执行文件](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 或更高版本 · Intel 和 Apple Silicon | 磁盘映像（`.dmg`） |
 | **Linux** · x86-64 | `.AppImage`、`.deb`（Debian、Ubuntu）或 `.rpm`（Fedora、openSUSE） |
 
@@ -252,18 +252,18 @@ macOS 版本未经公证。首次运行时，请右键点击应用并选择**打
 
 数据保存在用户数据文件夹中：
 
-- Linux：`~/.local/share/twitch-drops-points-miner`
-- Windows：`%APPDATA%\twitch-drops-points-miner`
-- macOS：`~/Library/Application Support/twitch-drops-points-miner`
+- Linux：`~/.local/share/twitch-miner`
+- Windows：`%APPDATA%\twitch-miner`
+- macOS：`~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
-服务器在浏览器中提供同一个仪表盘。镜像为 `ghcr.io/sunkwibot/twitch-drops-points-miner`，支持 `amd64` 和 `arm64`。有新版本发布时，仪表盘会提示你：先运行 `docker compose pull`，再运行 `docker compose up -d`。
+服务器在浏览器中提供同一个仪表盘。镜像为 `ghcr.io/sunkwibot/twitch-miner`，支持 `amd64` 和 `arm64`。有新版本发布时，仪表盘会提示你：先运行 `docker compose pull`，再运行 `docker compose up -d`。
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # 每次启动时拉取最新镜像
     restart: unless-stopped
     ports: ["8080:8080"]   # 位于 HTTPS 反向代理之后时：删除此行，或改为 "127.0.0.1:8080:8080"
@@ -336,7 +336,7 @@ Twitch 对每个账号同时只计入**一个 Drops 活动**和**两个频道的
 桌面应用在你的 PC 开机期间挖取，提供托盘图标、可选密码和一键更新。Docker 在一台始终开机的机器（VPS、NAS、Raspberry Pi）上日夜挖取；你在浏览器中打开它，由 `MINER_PASSWORD` 保护。两者的界面相同。
 
 **我的数据在哪里？**\
-在数据文件夹中：Linux 上是 `~/.local/share/twitch-drops-points-miner`，Windows 上是 `%APPDATA%\twitch-drops-points-miner`，macOS 上是 `~/Library/Application Support/twitch-drops-points-miner`，Docker 中则是 `/data` 卷。在桌面版中，**设置 › 桌面**可以一键打开它。其中包含 `miner.db`（账号、设置、记录）、`master.key`（未设置应用密码时的会话密钥）和日志。
+在数据文件夹中：Linux 上是 `~/.local/share/twitch-miner`，Windows 上是 `%APPDATA%\twitch-miner`，macOS 上是 `~/Library/Application Support/twitch-miner`，Docker 中则是 `/data` 卷。在桌面版中，**设置 › 桌面**可以一键打开它。其中包含 `miner.db`（账号、设置、记录）、`master.key`（未设置应用密码时的会话密钥）和日志。
 
 **如何更新？**\
 桌面应用启动时会检查新版本，之后每小时检查一次（可在**设置 › 关于**中更改）。点击“更新”徽章，然后点击“安装并重启”。使用 Docker 时，仪表盘会提示你：运行 `docker compose pull`，然后运行 `docker compose up -d`。

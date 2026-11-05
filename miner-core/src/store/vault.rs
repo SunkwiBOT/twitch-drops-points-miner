@@ -17,6 +17,8 @@ const KDF_MEMORY_KIB: u32 = 64 * 1024;
 const KDF_ITERATIONS: u32 = 3;
 const KDF_PARALLELISM: u32 = 1;
 pub const KEY_FILE: &str = "master.key";
+// ! Sealed into every vault: changing it, even for the app's new name, locks
+// every existing vault.
 const CHECK_PLAINTEXT: &[u8] = b"twitch-drops-points-miner vault check";
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, TS)]

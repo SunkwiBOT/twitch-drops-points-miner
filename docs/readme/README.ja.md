@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Twitch Drops &amp; Points Miner のロゴ">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Twitch Miner のロゴ">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>ブラウザも Twitch のタブも開かずに、複数のアカウントで Twitch Drops とチャンネルポイントをマイニングします。</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="最新リリース"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="ダウンロード数"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="最新リリース"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="ダウンロード数"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="対応プラットフォーム：Linux、Windows、macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="amd64 と arm64 向けの Docker イメージ"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="amd64 と arm64 向けの Docker イメージ"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="MIT ライセンス"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="閲覧数">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">バグを報告</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">バグを報告</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/ja/presentation.avif" alt="Twitch Drops &amp; Points Miner の紹介動画">
+  <img src="../media/ja/presentation.avif" alt="Twitch Miner の紹介動画">
 </p>
 
 ## <a name="features"></a>機能
@@ -148,7 +148,7 @@
 
 ### 記録
 
-- **すべてを記録し、リクエストも 1 件残らず表示。** 「履歴」には、ドロップ、獲得・使用したポイント、チェスト、ベット、レイド、配信開始など、すべてのイベントが残ります。アカウント、タブ（Drops、ポイント、その他）、種類で絞り込めます。**技術ログ › リクエスト**には、Twitch やほかのサービスに送ったすべてのリクエストが、結果と所要時間つきで一覧表示されます。ログにもリクエストにもトークンや秘密情報は含まれません。「バグ報告用にコピー」でコピーすれば、そのまま [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) や [Discord](https://discord.gg/support-bots-891685895781113886) のバグ報告に貼り付けられます。
+- **すべてを記録し、リクエストも 1 件残らず表示。** 「履歴」には、ドロップ、獲得・使用したポイント、チェスト、ベット、レイド、配信開始など、すべてのイベントが残ります。アカウント、タブ（Drops、ポイント、その他）、種類で絞り込めます。**技術ログ › リクエスト**には、Twitch やほかのサービスに送ったすべてのリクエストが、結果と所要時間つきで一覧表示されます。ログにもリクエストにもトークンや秘密情報は含まれません。「バグ報告用にコピー」でコピーすれば、そのまま [GitHub](https://github.com/SunkwiBOT/twitch-miner/issues) や [Discord](https://discord.gg/support-bots-891685895781113886) のバグ報告に貼り付けられます。
 
   <details open><summary>実際の動作を見る</summary>
   <img src="../media/ja/journal-requests.avif" alt="絞り込んだ履歴と、技術ログ › リクエスト">
@@ -199,7 +199,7 @@
 
 ## <a name="comparison"></a>比較
 
-[Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner) と、[Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2)（チャンネルポイント）および [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner)（Drops）との比較です。2026 年 11 月に、それぞれのコードと README で確認しました。
+[Twitch Miner](https://github.com/SunkwiBOT/twitch-miner) と、[Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2)（チャンネルポイント）および [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner)（Drops）との比較です。2026 年 11 月に、それぞれのコードと README で確認しました。
 
 | | このプロジェクト | Channel Points Miner v2 | TwitchDropsMiner |
 |---|:---:|:---:|:---:|
@@ -238,11 +238,11 @@
 
 ## <a name="download"></a>ダウンロード
 
-[最新リリース](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest)から、お使いのシステム用のファイルをダウンロードしてください。
+[最新リリース](https://github.com/SunkwiBOT/twitch-miner/releases/latest)から、お使いのシステム用のファイルをダウンロードしてください。
 
 | システム | パッケージ |
 |---|---|
-| **Windows** · x64 | インストーラー（`setup.exe`）または[ポータブル版の実行ファイル](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | インストーラー（`setup.exe`）または[ポータブル版の実行ファイル](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 以降 · Intel と Apple Silicon | ディスクイメージ（`.dmg`） |
 | **Linux** · x86-64 | `.AppImage`、`.deb`（Debian、Ubuntu）、`.rpm`（Fedora、openSUSE） |
 
@@ -252,18 +252,18 @@ macOS 版は公証を受けていません。初回は、アプリを右クリ�
 
 データはユーザーデータフォルダに保存されます：
 
-- Linux：`~/.local/share/twitch-drops-points-miner`
-- Windows：`%APPDATA%\twitch-drops-points-miner`
-- macOS：`~/Library/Application Support/twitch-drops-points-miner`
+- Linux：`~/.local/share/twitch-miner`
+- Windows：`%APPDATA%\twitch-miner`
+- macOS：`~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
-サーバーは同じダッシュボードをブラウザに表示します。イメージは `ghcr.io/sunkwibot/twitch-drops-points-miner` で、`amd64` と `arm64` に対応しています。新しいバージョンが出るとダッシュボードに表示されるので、`docker compose pull` を実行してから `docker compose up -d` を実行します。
+サーバーは同じダッシュボードをブラウザに表示します。イメージは `ghcr.io/sunkwibot/twitch-miner` で、`amd64` と `arm64` に対応しています。新しいバージョンが出るとダッシュボードに表示されるので、`docker compose pull` を実行してから `docker compose up -d` を実行します。
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # 起動のたびに最新のイメージを取得する
     restart: unless-stopped
     ports: ["8080:8080"]   # HTTPS リバースプロキシの背後に置く場合：この行を削除するか "127.0.0.1:8080:8080" にする
@@ -336,7 +336,7 @@ Twitch の上限だからです。Twitch がカウントするのは、1 アカ�
 デスクトップアプリは PC が起動している間マイニングし、トレイアイコン、任意のパスワード、ワンクリックのアップデートを備えています。Docker は常時稼働のマシン（VPS、NAS、Raspberry Pi）で昼夜を問わずマイニングし、ブラウザで開いて `MINER_PASSWORD` で保護します。インターフェースは同じです。
 
 **データはどこにありますか？**\
-データフォルダにあります。Linux では `~/.local/share/twitch-drops-points-miner`、Windows では `%APPDATA%\twitch-drops-points-miner`、macOS では `~/Library/Application Support/twitch-drops-points-miner`、Docker では `/data` ボリュームです。デスクトップでは、**設定 › デスクトップ**からワンクリックで開けます。中には `miner.db`（アカウント、設定、履歴）、`master.key`（アプリのパスワードを設定していない場合のセッション鍵）、ログがあります。
+データフォルダにあります。Linux では `~/.local/share/twitch-miner`、Windows では `%APPDATA%\twitch-miner`、macOS では `~/Library/Application Support/twitch-miner`、Docker では `/data` ボリュームです。デスクトップでは、**設定 › デスクトップ**からワンクリックで開けます。中には `miner.db`（アカウント、設定、履歴）、`master.key`（アプリのパスワードを設定していない場合のセッション鍵）、ログがあります。
 
 **アップデートの方法は？**\
 デスクトップアプリは起動時に新しいバージョンを確認し、その後は 1 時間ごとに確認します（**設定 › 情報**で変更できます）。「アップデート」バッジを押し、次に「インストールして再起動」を押します。Docker では、ダッシュボードが知らせてくれるので、`docker compose pull` を実行してから `docker compose up -d` を実行します。

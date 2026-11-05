@@ -184,7 +184,7 @@ impl Notifier {
     ) -> Result<Self> {
         let client = reqwest::Client::builder()
             .timeout(TIMEOUT)
-            .user_agent(format!("twitch-drops-points-miner/{}", crate::VERSION))
+            .user_agent(format!("twitch-miner/{}", crate::VERSION))
             .build()
             .map_err(|e| Error::Network(e.to_string()))?;
 

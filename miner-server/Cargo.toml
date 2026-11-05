@@ -1,6 +1,6 @@
 [package]
 name = "miner-server"
-description = "Twitch Drops & Points Miner: headless server with the web dashboard, for Docker and home servers."
+description = "Twitch Miner: headless server with the web dashboard, for Docker and home servers."
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true

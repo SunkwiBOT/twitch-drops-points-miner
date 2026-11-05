@@ -61,7 +61,7 @@ jobs:
             git commit -m "chore(release): $version"
           fi
 
-          git tag -a "$version" -m "$version - Twitch Drops & Points Miner"
+          git tag -a "$version" -m "$version - Twitch Miner"
           # ! Only the tag is pushed: the release commit stays off `main` on purpose.
           git push origin "refs/tags/$version"
           echo "tagged=true" >> "$GITHUB_OUTPUT"
@@ -119,7 +119,7 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
           tagName: v${{ needs.version.outputs.version }}
-          releaseName: "v${{ needs.version.outputs.version }} - Twitch Drops & Points Miner"
+          releaseName: "v${{ needs.version.outputs.version }} - Twitch Miner"
           releaseBody: "Download the installer for your system, or run the Docker image ${{ needs.version.outputs.image }}:${{ needs.version.outputs.version }} (also tagged latest) on a home server. macOS builds are not notarized: right-click the app and choose Open the first time."
           releaseDraft: true
           prerelease: false
@@ -129,7 +129,7 @@ jobs:
           # ! A fixed file name without the product name's "&": GitHub drops it from
           # asset names but tauri-action does not, so it would not find the signatures
           # and would skip latest.json.
-          releaseAssetNamePattern: "twitch-drops-points-miner_[version]_[platform]_[arch][setup][ext]"
+          releaseAssetNamePattern: "twitch-miner_[version]_[platform]_[arch][setup][ext]"
           args: ${{ matrix.args }}
 
       - name: Attach the portable Windows executable
@@ -138,8 +138,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cp target/release/twitchminer.exe TwitchDropsPointsMiner-portable.exe
-          gh release upload "v${{ needs.version.outputs.version }}" TwitchDropsPointsMiner-portable.exe --clobber
+          cp target/release/twitchminer.exe TwitchMiner-portable.exe
+          gh release upload "v${{ needs.version.outputs.version }}" TwitchMiner-portable.exe --clobber
 
   # ! Only the versioned image here: `latest` moves in `finalize`, once the
   # release is out, so a withdrawn run never moves it.

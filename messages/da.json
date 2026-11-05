@@ -747,7 +747,7 @@
   "reward_state_ready": "Klar til indløsning",
   "reward_claim": "Indløs",
   "notify_test_title": "Test: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner kan nå dette mål. Sådan ser et indløst drop ud. Alle navne og billeder i denne besked er testdata.",
+  "notify_test_detail": "Twitch Miner kan nå dette mål. Sådan ser et indløst drop ud. Alle navne og billeder i denne besked er testdata.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Sluttede {time}",

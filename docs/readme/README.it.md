@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Logo di Twitch Drops &amp; Points Miner">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Logo di Twitch Miner">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>Mina i Drops di Twitch e i punti canale su più account, senza browser e senza schede di Twitch aperte.</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="Ultima versione"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="Download"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="Ultima versione"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="Download"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="Piattaforme: Linux, Windows, macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Immagine Docker per amd64 e arm64"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Immagine Docker per amd64 e arm64"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="Licenza MIT"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="Visualizzazioni">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">Segnala un bug</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">Segnala un bug</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/it/presentation.avif" alt="Presentazione video di Twitch Drops &amp; Points Miner">
+  <img src="../media/it/presentation.avif" alt="Presentazione video di Twitch Miner">
 </p>
 
 ## <a name="features"></a>Funzionalità
@@ -185,7 +185,7 @@ all'opera.
   richiesta inviata a Twitch e ad altri servizi, con il suo esito e la sua durata. Log e
   richieste non contengono alcun token né segreto: «Copia per una segnalazione di bug» li
   copia, pronti da incollare in una segnalazione di bug su
-  [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) o
+  [GitHub](https://github.com/SunkwiBOT/twitch-miner/issues) o
   [Discord](https://discord.gg/support-bots-891685895781113886).
 
   <details open><summary>Vedilo in azione</summary>
@@ -257,7 +257,7 @@ all'opera.
 
 ## <a name="comparison"></a>Confronto
 
-Come si posiziona [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner)
+Come si posiziona [Twitch Miner](https://github.com/SunkwiBOT/twitch-miner)
 rispetto a [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2)
 (punti canale) e [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops).
 Verificato sul loro codice e sui loro README a novembre 2026.
@@ -305,11 +305,11 @@ i Drops (la sua priorità `DROPS`), ma mai un altro canale.\
 ## <a name="download"></a>Download
 
 Scarica il file per il tuo sistema
-dall'[ultima versione](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest).
+dall'[ultima versione](https://github.com/SunkwiBOT/twitch-miner/releases/latest).
 
 | Sistema | Pacchetto |
 |---|---|
-| **Windows** · x64 | Programma di installazione (`setup.exe`) o [eseguibile portatile](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | Programma di installazione (`setup.exe`) o [eseguibile portatile](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 o successivo · Intel e Apple Silicon | Immagine disco (`.dmg`) |
 | **Linux** · x86-64 | `.AppImage`, `.deb` (Debian, Ubuntu) o `.rpm` (Fedora, openSUSE) |
 
@@ -323,21 +323,21 @@ mai una da sola: la installi tu con un clic, dal messaggio che compare o da
 
 I dati si trovano nella cartella dei dati dell'utente:
 
-- Linux: `~/.local/share/twitch-drops-points-miner`
-- Windows: `%APPDATA%\twitch-drops-points-miner`
-- macOS: `~/Library/Application Support/twitch-drops-points-miner`
+- Linux: `~/.local/share/twitch-miner`
+- Windows: `%APPDATA%\twitch-miner`
+- macOS: `~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
 Il server mostra la stessa dashboard in un browser. L'immagine è
-`ghcr.io/sunkwibot/twitch-drops-points-miner`, per `amd64` e `arm64`. Quando esce una
+`ghcr.io/sunkwibot/twitch-miner`, per `amd64` e `arm64`. Quando esce una
 nuova versione, la dashboard lo segnala: `docker compose pull`, poi
 `docker compose up -d`.
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # scarica l'immagine più recente a ogni avvio
     restart: unless-stopped
     ports: ["8080:8080"]   # dietro un reverse proxy HTTPS: da togliere, o "127.0.0.1:8080:8080"
@@ -442,9 +442,9 @@ macchina sempre accesa (VPS, NAS, Raspberry Pi); la apri in un browser, protetta
 `MINER_PASSWORD`. L'interfaccia è la stessa.
 
 **Dove sono i miei dati?**\
-Nella cartella dei dati: `~/.local/share/twitch-drops-points-miner` su Linux,
-`%APPDATA%\twitch-drops-points-miner` su Windows,
-`~/Library/Application Support/twitch-drops-points-miner` su macOS, e il volume `/data`
+Nella cartella dei dati: `~/.local/share/twitch-miner` su Linux,
+`%APPDATA%\twitch-miner` su Windows,
+`~/Library/Application Support/twitch-miner` su macOS, e il volume `/data`
 con Docker. Sul desktop, **Impostazioni › Desktop** la apre con un clic. Contiene
 `miner.db` (account, impostazioni, registro), `master.key` (la chiave delle sessioni,
 quando non è impostata alcuna password dell'app) e i log.

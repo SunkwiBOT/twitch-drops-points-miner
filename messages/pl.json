@@ -753,7 +753,7 @@
   "reward_state_ready": "Do odebrania",
   "reward_claim": "Odbierz",
   "notify_test_title": "Test: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner może dotrzeć do tego celu. Tak wygląda odebrany drop. Wszystkie nazwy i obrazy w tej wiadomości są testowe.",
+  "notify_test_detail": "Twitch Miner może dotrzeć do tego celu. Tak wygląda odebrany drop. Wszystkie nazwy i obrazy w tej wiadomości są testowe.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Zakończona {time}",

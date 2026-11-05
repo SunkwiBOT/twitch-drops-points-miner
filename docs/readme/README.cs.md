@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Logo Twitch Drops &amp; Points Miner">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Logo Twitch Miner">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>Těží Twitch Drops a body kanálu na více účtech, bez prohlížeče a bez otevřené karty Twitche.</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="Nejnovější vydání"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="Stažení"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="Nejnovější vydání"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="Stažení"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="Platformy: Linux, Windows, macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Obraz pro Docker pro amd64 a arm64"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Obraz pro Docker pro amd64 a arm64"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="Licence MIT"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="Zobrazení">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">Nahlásit chybu</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">Nahlásit chybu</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/cs/presentation.avif" alt="Videoukázka aplikace Twitch Drops &amp; Points Miner">
+  <img src="../media/cs/presentation.avif" alt="Videoukázka aplikace Twitch Miner">
 </p>
 
 ## <a name="features"></a>Funkce
@@ -181,7 +181,7 @@
   odeslaný na Twitch a další služby, s jeho výsledkem a dobou trvání. Protokoly ani
   požadavky neobsahují žádný token ani tajný údaj: „Kopírovat pro hlášení chyby“ je
   zkopíruje, připravené k vložení do hlášení chyby na
-  [GitHubu](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) nebo
+  [GitHubu](https://github.com/SunkwiBOT/twitch-miner/issues) nebo
   [Discordu](https://discord.gg/support-bots-891685895781113886).
 
   <details open><summary>Ukázka v akci</summary>
@@ -249,7 +249,7 @@
 
 ## <a name="comparison"></a>Srovnání
 
-Jak si [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner)
+Jak si [Twitch Miner](https://github.com/SunkwiBOT/twitch-miner)
 stojí vedle [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2)
 (body kanálu) a [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops).
 Ověřeno v jejich kódu a souborech README v listopadu 2026.
@@ -297,11 +297,11 @@ s protokolem.\
 ## <a name="download"></a>Stažení
 
 Stáhněte si soubor pro svůj systém z
-[nejnovějšího vydání](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest).
+[nejnovějšího vydání](https://github.com/SunkwiBOT/twitch-miner/releases/latest).
 
 | Systém | Balíček |
 |---|---|
-| **Windows** · x64 | Instalátor (`setup.exe`) nebo [přenosná verze](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | Instalátor (`setup.exe`) nebo [přenosná verze](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 nebo novější · Intel a Apple Silicon | Obraz disku (`.dmg`) |
 | **Linux** · x86-64 | `.AppImage`, `.deb` (Debian, Ubuntu) nebo `.rpm` (Fedora, openSUSE) |
 
@@ -314,20 +314,20 @@ nainstalujete ji jedním kliknutím, ze zobrazené zprávy nebo z **Nastavení �
 
 Data jsou uložena ve složce s uživatelskými daty:
 
-- Linux: `~/.local/share/twitch-drops-points-miner`
-- Windows: `%APPDATA%\twitch-drops-points-miner`
-- macOS: `~/Library/Application Support/twitch-drops-points-miner`
+- Linux: `~/.local/share/twitch-miner`
+- Windows: `%APPDATA%\twitch-miner`
+- macOS: `~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
 Server zobrazuje stejný panel v prohlížeči. Obraz je
-`ghcr.io/sunkwibot/twitch-drops-points-miner`, pro `amd64` a `arm64`. Když vyjde nová
+`ghcr.io/sunkwibot/twitch-miner`, pro `amd64` a `arm64`. Když vyjde nová
 verze, panel to oznámí: `docker compose pull`, pak `docker compose up -d`.
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # při každém startu stáhnout nejnovější obraz
     restart: unless-stopped
     ports: ["8080:8080"]   # za reverzní proxy HTTPS: odstraňte, nebo "127.0.0.1:8080:8080"
@@ -426,9 +426,9 @@ stále zapnutý (VPS, NAS, Raspberry Pi); otevíráte ho v prohlížeči a chrá
 `MINER_PASSWORD`. Rozhraní je stejné.
 
 **Kde jsou moje data?**\
-Ve složce s daty: `~/.local/share/twitch-drops-points-miner` na Linuxu,
-`%APPDATA%\twitch-drops-points-miner` ve Windows,
-`~/Library/Application Support/twitch-drops-points-miner` na macOS a svazek `/data`
+Ve složce s daty: `~/.local/share/twitch-miner` na Linuxu,
+`%APPDATA%\twitch-miner` ve Windows,
+`~/Library/Application Support/twitch-miner` na macOS a svazek `/data`
 v Dockeru. Na počítači ji jedním kliknutím otevře **Nastavení › Plocha**. Obsahuje
 `miner.db` (účty, nastavení, deník), `master.key` (klíč k relacím, pokud není nastavené
 heslo aplikace) a protokoly.

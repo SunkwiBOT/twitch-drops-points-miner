@@ -661,7 +661,7 @@
   "reward_state_ready": "Siap diklaim",
   "reward_claim": "Klaim",
   "notify_test_title": "Tes: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner dapat menjangkau tujuan ini. Beginilah tampilan drop yang diklaim. Semua nama dan gambar dalam pesan ini hanyalah uji.",
+  "notify_test_detail": "Twitch Miner dapat menjangkau tujuan ini. Beginilah tampilan drop yang diklaim. Semua nama dan gambar dalam pesan ini hanyalah uji.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Berakhir {time}",

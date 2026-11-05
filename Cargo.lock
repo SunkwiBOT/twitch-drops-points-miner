@@ -5692,10 +5692,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "twitch-drops-points-miner"
+name = "twitch-miner"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "auto-launch",
  "dirs 6.0.0",
  "glib",
  "gtk",

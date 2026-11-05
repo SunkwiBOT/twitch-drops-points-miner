@@ -6,5 +6,5 @@ Exec={{exec}}{{#if exec_arg}} {{exec_arg}}{{/if}}
 Icon={{icon}}
 Terminal=false
 Categories={{categories}}
-StartupWMClass=Twitch Drops & Points Miner
+StartupWMClass=Twitch Miner
 StartupNotify=true

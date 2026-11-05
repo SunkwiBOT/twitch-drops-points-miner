@@ -747,7 +747,7 @@
   "reward_state_ready": "Για εξαργύρωση",
   "reward_claim": "Εξαργύρωση",
   "notify_test_title": "Δοκιμή: {text}",
-  "notify_test_detail": "Το Twitch Drops & Points Miner φτάνει σε αυτόν τον προορισμό. Έτσι φαίνεται ένα εξαργυρωμένο drop. Όλα τα ονόματα και οι εικόνες αυτού του μηνύματος είναι δοκιμαστικά.",
+  "notify_test_detail": "Το Twitch Miner φτάνει σε αυτόν τον προορισμό. Έτσι φαίνεται ένα εξαργυρωμένο drop. Όλα τα ονόματα και οι εικόνες αυτού του μηνύματος είναι δοκιμαστικά.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Έληξε {time}",

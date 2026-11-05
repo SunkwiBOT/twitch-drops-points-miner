@@ -3,7 +3,7 @@ use tauri::menu::{Menu, MenuBuilder, MenuItem};
 use tauri::tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent};
 use tauri::{AppHandle, Wry};
 
-pub const TRAY_ID: &str = "twitch-drops-points-miner-tray";
+pub const TRAY_ID: &str = "twitch-miner-tray";
 
 const MENU_OPEN: &str = "open";
 const MENU_QUIT: &str = "quit";

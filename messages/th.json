@@ -661,7 +661,7 @@
   "reward_state_ready": "รอรับ",
   "reward_claim": "รับ",
   "notify_test_title": "ทดสอบ: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner ส่งถึงปลายทางนี้ได้ Drop ที่รับแล้วจะแสดงแบบนี้ ชื่อและรูปภาพทั้งหมดในข้อความนี้เป็นข้อมูลทดสอบ",
+  "notify_test_detail": "Twitch Miner ส่งถึงปลายทางนี้ได้ Drop ที่รับแล้วจะแสดงแบบนี้ ชื่อและรูปภาพทั้งหมดในข้อความนี้เป็นข้อมูลทดสอบ",
   "notify_streamer": "สตรีมเมอร์",
   "notify_streamer_line": "สตรีมเมอร์: {channel}",
   "dashboard_ended_ago": "สิ้นสุดแล้ว {time}",

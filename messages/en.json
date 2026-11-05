@@ -747,7 +747,7 @@
   "reward_state_ready": "To claim",
   "reward_claim": "Claim",
   "notify_test_title": "Test: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner can reach this target. A claimed drop looks like this. Every name and picture in this message is a test.",
+  "notify_test_detail": "Twitch Miner can reach this target. A claimed drop looks like this. Every name and picture in this message is a test.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Ended {time}",

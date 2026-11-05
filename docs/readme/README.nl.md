@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Logo van Twitch Drops &amp; Points Miner">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Logo van Twitch Miner">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>Mint Twitch Drops en kanaalpunten op meerdere accounts, zonder browser en zonder open Twitch-tabblad.</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="Nieuwste release"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="Downloads"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="Nieuwste release"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="Downloads"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="Platforms: Linux, Windows, macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Docker-image voor amd64 en arm64"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Docker-image voor amd64 en arm64"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="MIT-licentie"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="Weergaven">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">Bug melden</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">Bug melden</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/nl/presentation.avif" alt="Video-overzicht van Twitch Drops &amp; Points Miner">
+  <img src="../media/nl/presentation.avif" alt="Video-overzicht van Twitch Miner">
 </p>
 
 ## <a name="features"></a>Functies
@@ -188,7 +188,7 @@ het werkt.
   met het resultaat en hoe lang het duurde. Logboek en verzoeken bevatten geen tokens of
   geheimen: “Kopiëren voor een bugrapport” kopieert ze, klaar om te plakken in een
   bugrapport op
-  [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) of
+  [GitHub](https://github.com/SunkwiBOT/twitch-miner/issues) of
   [Discord](https://discord.gg/support-bots-891685895781113886).
 
   <details open><summary>Bekijk het in actie</summary>
@@ -260,7 +260,7 @@ het werkt.
 
 ## <a name="comparison"></a>Vergelijking
 
-Hoe [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner)
+Hoe [Twitch Miner](https://github.com/SunkwiBOT/twitch-miner)
 zich verhoudt tot [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2)
 (kanaalpunten) en [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops).
 Gecontroleerd aan de hand van hun code en README's in november 2026.
@@ -308,11 +308,11 @@ prioriteit `DROPS`), maar nooit naar een ander kanaal.\
 ## <a name="download"></a>Downloaden
 
 Download het bestand voor je systeem uit de
-[nieuwste release](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest).
+[nieuwste release](https://github.com/SunkwiBOT/twitch-miner/releases/latest).
 
 | Systeem | Pakket |
 |---|---|
-| **Windows** · x64 | Installatieprogramma (`setup.exe`) of [portable versie](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | Installatieprogramma (`setup.exe`) of [portable versie](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 of nieuwer · Intel en Apple Silicon | Schijfkopie (`.dmg`) |
 | **Linux** · x86-64 | `.AppImage`, `.deb` (Debian, Ubuntu) of `.rpm` (Fedora, openSUSE) |
 
@@ -326,20 +326,20 @@ een: je installeert die met één klik, via de melding die verschijnt of via
 
 De gegevens staan in de map met gebruikersgegevens:
 
-- Linux: `~/.local/share/twitch-drops-points-miner`
-- Windows: `%APPDATA%\twitch-drops-points-miner`
-- macOS: `~/Library/Application Support/twitch-drops-points-miner`
+- Linux: `~/.local/share/twitch-miner`
+- Windows: `%APPDATA%\twitch-miner`
+- macOS: `~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
 De server toont hetzelfde dashboard in een browser. De image is
-`ghcr.io/sunkwibot/twitch-drops-points-miner`, voor `amd64` en `arm64`. Is er een nieuwe
+`ghcr.io/sunkwibot/twitch-miner`, voor `amd64` en `arm64`. Is er een nieuwe
 versie, dan meldt het dashboard dat: `docker compose pull`, daarna `docker compose up -d`.
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # bij elke start de nieuwste image ophalen
     restart: unless-stopped
     ports: ["8080:8080"]   # achter een HTTPS-reverse-proxy: weghalen, of "127.0.0.1:8080:8080"
@@ -442,9 +442,9 @@ altijd aanstaat (VPS, NAS, Raspberry Pi); je opent het in een browser, beveiligd
 `MINER_PASSWORD`. De interface is dezelfde.
 
 **Waar staan mijn gegevens?**\
-In de gegevensmap: `~/.local/share/twitch-drops-points-miner` op Linux,
-`%APPDATA%\twitch-drops-points-miner` op Windows,
-`~/Library/Application Support/twitch-drops-points-miner` op macOS, en het volume `/data`
+In de gegevensmap: `~/.local/share/twitch-miner` op Linux,
+`%APPDATA%\twitch-miner` op Windows,
+`~/Library/Application Support/twitch-miner` op macOS, en het volume `/data`
 bij Docker. Op de desktop opent **Instellingen › Bureaublad** die map met één klik. Er
 staan `miner.db` (accounts, instellingen, journaal), `master.key` (de sessiesleutel, als
 er geen app-wachtwoord is ingesteld) en het logboek in.

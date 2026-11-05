@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Logo Twitch Drops &amp; Points Miner">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Logo Twitch Miner">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>Đào Twitch Drops và điểm kênh trên nhiều tài khoản, không cần trình duyệt và không cần mở tab Twitch nào.</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="Bản phát hành mới nhất"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="Lượt tải"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="Bản phát hành mới nhất"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="Lượt tải"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="Nền tảng: Linux, Windows, macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Image Docker cho amd64 và arm64"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Image Docker cho amd64 và arm64"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="Giấy phép MIT"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="Lượt xem">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">Báo lỗi</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">Báo lỗi</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/vi/presentation.avif" alt="Video giới thiệu Twitch Drops &amp; Points Miner">
+  <img src="../media/vi/presentation.avif" alt="Video giới thiệu Twitch Miner">
 </p>
 
 ## <a name="features"></a>Tính năng
@@ -148,7 +148,7 @@ Những gì làm nên khác biệt so với các trình đào khác. “Xem minh
 
 ### Giám sát
 
-- **Nhật ký của mọi thứ, và mọi yêu cầu.** Nhật ký lưu mọi sự kiện: drop, điểm nhận được và đã tiêu, rương, cược, raid, kênh bắt đầu phát… Lọc theo tài khoản, theo tab (Drops, Điểm, Khác) và theo loại. **Log kỹ thuật › Yêu cầu** liệt kê mọi yêu cầu gửi tới Twitch và các dịch vụ khác, kèm kết quả và thời gian xử lý. Log và yêu cầu không chứa token hay thông tin bí mật nào: “Sao chép để báo lỗi” sao chép chúng, sẵn sàng để dán vào báo cáo lỗi trên [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) hoặc [Discord](https://discord.gg/support-bots-891685895781113886).
+- **Nhật ký của mọi thứ, và mọi yêu cầu.** Nhật ký lưu mọi sự kiện: drop, điểm nhận được và đã tiêu, rương, cược, raid, kênh bắt đầu phát… Lọc theo tài khoản, theo tab (Drops, Điểm, Khác) và theo loại. **Log kỹ thuật › Yêu cầu** liệt kê mọi yêu cầu gửi tới Twitch và các dịch vụ khác, kèm kết quả và thời gian xử lý. Log và yêu cầu không chứa token hay thông tin bí mật nào: “Sao chép để báo lỗi” sao chép chúng, sẵn sàng để dán vào báo cáo lỗi trên [GitHub](https://github.com/SunkwiBOT/twitch-miner/issues) hoặc [Discord](https://discord.gg/support-bots-891685895781113886).
 
   <details open><summary>Xem minh họa</summary>
   <img src="../media/vi/journal-requests.avif" alt="Nhật ký đã lọc, rồi Log kỹ thuật › Yêu cầu">
@@ -199,7 +199,7 @@ Những gì làm nên khác biệt so với các trình đào khác. “Xem minh
 
 ## <a name="comparison"></a>So sánh
 
-So sánh [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner) với [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2) (điểm kênh) và [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops). Đã đối chiếu với mã nguồn và README của chúng vào tháng 11 năm 2026.
+So sánh [Twitch Miner](https://github.com/SunkwiBOT/twitch-miner) với [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2) (điểm kênh) và [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops). Đã đối chiếu với mã nguồn và README của chúng vào tháng 11 năm 2026.
 
 | | Dự án này | Channel Points Miner v2 | TwitchDropsMiner |
 |---|:---:|:---:|:---:|
@@ -238,11 +238,11 @@ So sánh [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops
 
 ## <a name="download"></a>Tải xuống
 
-Tải tệp cho hệ thống của bạn từ [bản phát hành mới nhất](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest).
+Tải tệp cho hệ thống của bạn từ [bản phát hành mới nhất](https://github.com/SunkwiBOT/twitch-miner/releases/latest).
 
 | Hệ thống | Gói |
 |---|---|
-| **Windows** · x64 | Trình cài đặt (`setup.exe`) hoặc [tệp thực thi portable](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | Trình cài đặt (`setup.exe`) hoặc [tệp thực thi portable](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 trở lên · Intel và Apple Silicon | Ảnh đĩa (`.dmg`) |
 | **Linux** · x86-64 | `.AppImage`, `.deb` (Debian, Ubuntu) hoặc `.rpm` (Fedora, openSUSE) |
 
@@ -252,18 +252,18 @@ Các bản cập nhật đều có chữ ký. Ứng dụng kiểm tra phiên b�
 
 Dữ liệu nằm trong thư mục dữ liệu người dùng:
 
-- Linux: `~/.local/share/twitch-drops-points-miner`
-- Windows: `%APPDATA%\twitch-drops-points-miner`
-- macOS: `~/Library/Application Support/twitch-drops-points-miner`
+- Linux: `~/.local/share/twitch-miner`
+- Windows: `%APPDATA%\twitch-miner`
+- macOS: `~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
-Máy chủ hiển thị cùng bảng điều khiển đó trong trình duyệt. Image là `ghcr.io/sunkwibot/twitch-drops-points-miner`, dành cho `amd64` và `arm64`. Khi có phiên bản mới, bảng điều khiển sẽ báo cho bạn: `docker compose pull`, rồi `docker compose up -d`.
+Máy chủ hiển thị cùng bảng điều khiển đó trong trình duyệt. Image là `ghcr.io/sunkwibot/twitch-miner`, dành cho `amd64` và `arm64`. Khi có phiên bản mới, bảng điều khiển sẽ báo cho bạn: `docker compose pull`, rồi `docker compose up -d`.
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # lấy image mới nhất mỗi lần khởi động
     restart: unless-stopped
     ports: ["8080:8080"]   # sau reverse proxy HTTPS: xóa dòng này, hoặc dùng "127.0.0.1:8080:8080"
@@ -336,7 +336,7 @@ Mở trang **Drops** của tài khoản. Trong “Thứ tự đào”, mỗi chi
 Ứng dụng máy tính đào khi PC của bạn đang bật, có biểu tượng trong khay hệ thống, mật khẩu tùy chọn và cập nhật chỉ với một cú nhấp. Docker đào cả ngày lẫn đêm trên một máy luôn bật (VPS, NAS, Raspberry Pi); bạn mở nó trong trình duyệt, được bảo vệ bằng `MINER_PASSWORD`. Giao diện thì như nhau.
 
 **Dữ liệu của tôi ở đâu?**\
-Trong thư mục dữ liệu: `~/.local/share/twitch-drops-points-miner` trên Linux, `%APPDATA%\twitch-drops-points-miner` trên Windows, `~/Library/Application Support/twitch-drops-points-miner` trên macOS, và volume `/data` với Docker. Trên máy tính, **Cài đặt › Máy tính** mở thư mục này chỉ với một cú nhấp. Thư mục chứa `miner.db` (tài khoản, cài đặt, nhật ký), `master.key` (khóa của các phiên, khi không đặt mật khẩu ứng dụng) và log.
+Trong thư mục dữ liệu: `~/.local/share/twitch-miner` trên Linux, `%APPDATA%\twitch-miner` trên Windows, `~/Library/Application Support/twitch-miner` trên macOS, và volume `/data` với Docker. Trên máy tính, **Cài đặt › Máy tính** mở thư mục này chỉ với một cú nhấp. Thư mục chứa `miner.db` (tài khoản, cài đặt, nhật ký), `master.key` (khóa của các phiên, khi không đặt mật khẩu ứng dụng) và log.
 
 **Làm sao để cập nhật?**\
 Ứng dụng máy tính kiểm tra phiên bản mới khi khởi động, rồi mỗi giờ một lần (bạn có thể đổi trong **Cài đặt › Giới thiệu**). Nhấp vào huy hiệu “Cập nhật”, rồi “Cài đặt và khởi động lại”. Với Docker, bảng điều khiển sẽ báo cho bạn: chạy `docker compose pull`, rồi `docker compose up -d`.

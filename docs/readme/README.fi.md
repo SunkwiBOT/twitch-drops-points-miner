@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Twitch Drops &amp; Points Minerin logo">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Twitch Minerin logo">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>Louhii Twitch Drops -palkintoja ja kanavapisteitä usealla tilillä ilman selainta ja ilman avointa Twitch-välilehteä.</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="Uusin julkaisu"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="Lataukset"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="Uusin julkaisu"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="Lataukset"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="Alustat: Linux, Windows, macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Docker-image alustoille amd64 ja arm64"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Docker-image alustoille amd64 ja arm64"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="MIT-lisenssi"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="Katselukerrat">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">Ilmoita bugista</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">Ilmoita bugista</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/fi/presentation.avif" alt="Videoesittely Twitch Drops &amp; Points Minerista">
+  <img src="../media/fi/presentation.avif" alt="Videoesittely Twitch Minerista">
 </p>
 
 ## <a name="features"></a>Ominaisuudet
@@ -187,7 +187,7 @@ ominaisuuden käytössä.
   pyynnön tuloksineen ja kestoineen. Lokit ja pyynnöt eivät sisällä tokeneita tai
   salaisuuksia: ”Kopioi bugiraporttia varten” kopioi ne valmiiksi liitettäviksi
   bugiraporttiin
-  [GitHubissa](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) tai
+  [GitHubissa](https://github.com/SunkwiBOT/twitch-miner/issues) tai
   [Discordissa](https://discord.gg/support-bots-891685895781113886).
 
   <details open><summary>Katso toiminnassa</summary>
@@ -260,7 +260,7 @@ ominaisuuden käytössä.
 ## <a name="comparison"></a>Vertailu
 
 Näin
-[Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner)
+[Twitch Miner](https://github.com/SunkwiBOT/twitch-miner)
 vertautuu
 [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2)
 -ohjelmaan (kanavapisteet) ja
@@ -311,11 +311,11 @@ projektissa ei ole.\
 ## <a name="download"></a>Lataus
 
 Lataa järjestelmällesi sopiva tiedosto
-[uusimmasta julkaisusta](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest).
+[uusimmasta julkaisusta](https://github.com/SunkwiBOT/twitch-miner/releases/latest).
 
 | Järjestelmä | Paketti |
 |---|---|
-| **Windows** · x64 | Asennusohjelma (`setup.exe`) tai [siirrettävä suoritettava tiedosto](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | Asennusohjelma (`setup.exe`) tai [siirrettävä suoritettava tiedosto](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 tai uudempi · Intel ja Apple Silicon | Levykuva (`.dmg`) |
 | **Linux** · x86-64 | `.AppImage`, `.deb` (Debian, Ubuntu) tai `.rpm` (Fedora, openSUSE) |
 
@@ -329,21 +329,21 @@ ilmoituksesta tai kohdasta **Asetukset › Tietoja**.
 
 Tiedot sijaitsevat käyttäjän datakansiossa:
 
-- Linux: `~/.local/share/twitch-drops-points-miner`
-- Windows: `%APPDATA%\twitch-drops-points-miner`
-- macOS: `~/Library/Application Support/twitch-drops-points-miner`
+- Linux: `~/.local/share/twitch-miner`
+- Windows: `%APPDATA%\twitch-miner`
+- macOS: `~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
 Palvelin näyttää saman hallintapaneelin selaimessa. Image on
-`ghcr.io/sunkwibot/twitch-drops-points-miner` alustoille `amd64` ja `arm64`. Kun uusi
+`ghcr.io/sunkwibot/twitch-miner` alustoille `amd64` ja `arm64`. Kun uusi
 versio julkaistaan, hallintapaneeli kertoo sen: `docker compose pull` ja sitten
 `docker compose up -d`.
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # hakee uusimman imagen joka käynnistyksessä
     restart: unless-stopped
     ports: ["8080:8080"]   # HTTPS-käänteisproxyn takana: poista, tai "127.0.0.1:8080:8080"
@@ -445,9 +445,9 @@ koneella, joka on aina päällä (VPS, NAS, Raspberry Pi); avaat hallintapaneeli
 selaimessa, ja sitä suojaa `MINER_PASSWORD`. Käyttöliittymä on sama.
 
 **Missä tietoni ovat?**\
-Datakansiossa: Linuxilla `~/.local/share/twitch-drops-points-miner`, Windowsilla
-`%APPDATA%\twitch-drops-points-miner`, macOS:llä
-`~/Library/Application Support/twitch-drops-points-miner` ja Dockerilla `/data`-taltiossa.
+Datakansiossa: Linuxilla `~/.local/share/twitch-miner`, Windowsilla
+`%APPDATA%\twitch-miner`, macOS:llä
+`~/Library/Application Support/twitch-miner` ja Dockerilla `/data`-taltiossa.
 Työpöydällä **Asetukset › Työpöytä** avaa sen yhdellä napsautuksella. Siellä ovat
 `miner.db` (tilit, asetukset, päiväkirja), `master.key` (istuntoavain, kun sovelluksen
 salasanaa ei ole asetettu) ja lokit.

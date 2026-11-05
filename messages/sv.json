@@ -747,7 +747,7 @@
   "reward_state_ready": "Att hämta",
   "reward_claim": "Hämta",
   "notify_test_title": "Test: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner når det här målet. Så här ser en hämtad drop ut. Alla namn och bilder i det här meddelandet är testdata.",
+  "notify_test_detail": "Twitch Miner når det här målet. Så här ser en hämtad drop ut. Alla namn och bilder i det här meddelandet är testdata.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Slutade {time}",

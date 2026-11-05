@@ -48,7 +48,7 @@ impl Releases {
     pub(crate) fn with_url(url: &str) -> anyhow::Result<Self> {
         let client = reqwest::Client::builder()
             .user_agent(format!(
-                "TwitchDropsPointsMiner/{} (+{})",
+                "TwitchMiner/{} (+{})",
                 miner_core::VERSION,
                 miner_core::REPOSITORY_URL
             ))

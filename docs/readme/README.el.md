@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Λογότυπο του Twitch Drops &amp; Points Miner">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Λογότυπο του Twitch Miner">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>Εξορύσσει Twitch Drops και πόντους καναλιού σε πολλούς λογαριασμούς, χωρίς browser και χωρίς ανοιχτή καρτέλα του Twitch.</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="Τελευταία έκδοση"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="Λήψεις"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="Τελευταία έκδοση"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="Λήψεις"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="Πλατφόρμες: Linux, Windows, macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Εικόνα Docker για amd64 και arm64"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Εικόνα Docker για amd64 και arm64"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="Άδεια MIT"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="Προβολές">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">Αναφορά σφάλματος</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">Αναφορά σφάλματος</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/el/presentation.avif" alt="Παρουσίαση του Twitch Drops &amp; Points Miner σε βίντεο">
+  <img src="../media/el/presentation.avif" alt="Παρουσίαση του Twitch Miner σε βίντεο">
 </p>
 
 ## <a name="features"></a>Λειτουργίες
@@ -148,7 +148,7 @@
 
 ### Παρακολούθηση δραστηριότητας
 
-- **Χρονικό για όλα και κάθε αίτημα.** Το Χρονικό κρατά κάθε συμβάν: drops, πόντους που κερδήθηκαν και ξοδεύτηκαν, σεντούκια, στοιχήματα, raids, streams που ξεκινούν… Φιλτράρετέ το ανά λογαριασμό, ανά καρτέλα (Drops, Πόντοι, Άλλα) και ανά τύπο. Τα **Αρχεία καταγραφής › Αιτήματα** δείχνουν κάθε αίτημα που στάλθηκε στο Twitch και σε άλλες υπηρεσίες, με το αποτέλεσμά του και τη διάρκειά του. Τα αρχεία καταγραφής και τα αιτήματα δεν περιέχουν κανένα token ή μυστικό: η «Αντιγραφή για αναφορά σφάλματος» τα αντιγράφει, έτοιμα για επικόλληση σε μια αναφορά σφάλματος στο [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) ή στο [Discord](https://discord.gg/support-bots-891685895781113886).
+- **Χρονικό για όλα και κάθε αίτημα.** Το Χρονικό κρατά κάθε συμβάν: drops, πόντους που κερδήθηκαν και ξοδεύτηκαν, σεντούκια, στοιχήματα, raids, streams που ξεκινούν… Φιλτράρετέ το ανά λογαριασμό, ανά καρτέλα (Drops, Πόντοι, Άλλα) και ανά τύπο. Τα **Αρχεία καταγραφής › Αιτήματα** δείχνουν κάθε αίτημα που στάλθηκε στο Twitch και σε άλλες υπηρεσίες, με το αποτέλεσμά του και τη διάρκειά του. Τα αρχεία καταγραφής και τα αιτήματα δεν περιέχουν κανένα token ή μυστικό: η «Αντιγραφή για αναφορά σφάλματος» τα αντιγράφει, έτοιμα για επικόλληση σε μια αναφορά σφάλματος στο [GitHub](https://github.com/SunkwiBOT/twitch-miner/issues) ή στο [Discord](https://discord.gg/support-bots-891685895781113886).
 
   <details open><summary>Δείτε το στην πράξη</summary>
   <img src="../media/el/journal-requests.avif" alt="Το φιλτραρισμένο Χρονικό και μετά τα Αρχεία καταγραφής › Αιτήματα">
@@ -199,7 +199,7 @@
 
 ## <a name="comparison"></a>Σύγκριση
 
-Πώς στέκεται το [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner) δίπλα στο [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2) (πόντοι καναλιού) και στο [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops). Ελέγχθηκε με βάση τον κώδικα και τα README τους τον Νοέμβριο του 2026.
+Πώς στέκεται το [Twitch Miner](https://github.com/SunkwiBOT/twitch-miner) δίπλα στο [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2) (πόντοι καναλιού) και στο [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops). Ελέγχθηκε με βάση τον κώδικα και τα README τους τον Νοέμβριο του 2026.
 
 | | Αυτό το έργο | Channel Points Miner v2 | TwitchDropsMiner |
 |---|:---:|:---:|:---:|
@@ -238,11 +238,11 @@
 
 ## <a name="download"></a>Λήψη
 
-Κατεβάστε το αρχείο για το σύστημά σας από την [τελευταία έκδοση](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest).
+Κατεβάστε το αρχείο για το σύστημά σας από την [τελευταία έκδοση](https://github.com/SunkwiBOT/twitch-miner/releases/latest).
 
 | Σύστημα | Πακέτο |
 |---|---|
-| **Windows** · x64 | Πρόγραμμα εγκατάστασης (`setup.exe`) ή [φορητό εκτελέσιμο](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | Πρόγραμμα εγκατάστασης (`setup.exe`) ή [φορητό εκτελέσιμο](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 ή νεότερο · Intel και Apple Silicon | Εικόνα δίσκου (`.dmg`) |
 | **Linux** · x86-64 | `.AppImage`, `.deb` (Debian, Ubuntu) ή `.rpm` (Fedora, openSUSE) |
 
@@ -252,18 +252,18 @@
 
 Τα δεδομένα βρίσκονται στον φάκελο δεδομένων του χρήστη:
 
-- Linux: `~/.local/share/twitch-drops-points-miner`
-- Windows: `%APPDATA%\twitch-drops-points-miner`
-- macOS: `~/Library/Application Support/twitch-drops-points-miner`
+- Linux: `~/.local/share/twitch-miner`
+- Windows: `%APPDATA%\twitch-miner`
+- macOS: `~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
-Ο server εμφανίζει τον ίδιο πίνακα ελέγχου σε browser. Η εικόνα είναι η `ghcr.io/sunkwibot/twitch-drops-points-miner`, για `amd64` και `arm64`. Όταν βγαίνει νέα έκδοση, ο πίνακας ελέγχου σάς το λέει: `docker compose pull` και μετά `docker compose up -d`.
+Ο server εμφανίζει τον ίδιο πίνακα ελέγχου σε browser. Η εικόνα είναι η `ghcr.io/sunkwibot/twitch-miner`, για `amd64` και `arm64`. Όταν βγαίνει νέα έκδοση, ο πίνακας ελέγχου σάς το λέει: `docker compose pull` και μετά `docker compose up -d`.
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # παίρνει την πιο πρόσφατη εικόνα σε κάθε εκκίνηση
     restart: unless-stopped
     ports: ["8080:8080"]   # πίσω από HTTPS reverse proxy: αφαιρέστε το ή βάλτε "127.0.0.1:8080:8080"
@@ -336,7 +336,7 @@ docker compose up -d
 Η εφαρμογή επιφάνειας εργασίας εξορύσσει όσο ο υπολογιστής σας είναι ανοιχτός, με το εικονίδιό της στη γραμμή συστήματος, προαιρετικό κωδικό και ενημερώσεις με ένα κλικ. Το Docker εξορύσσει μέρα νύχτα σε ένα μηχάνημα που μένει πάντα ανοιχτό (VPS, NAS, Raspberry Pi)· το ανοίγετε σε browser, προστατευμένο με το `MINER_PASSWORD`. Το περιβάλλον είναι το ίδιο.
 
 **Πού βρίσκονται τα δεδομένα μου;**\
-Στον φάκελο δεδομένων: `~/.local/share/twitch-drops-points-miner` σε Linux, `%APPDATA%\twitch-drops-points-miner` σε Windows, `~/Library/Application Support/twitch-drops-points-miner` σε macOS και ο τόμος `/data` με το Docker. Στην επιφάνεια εργασίας, οι **Ρυθμίσεις › Επιφάνεια εργασίας** τον ανοίγουν με ένα κλικ. Περιέχει το `miner.db` (λογαριασμοί, ρυθμίσεις, χρονικό), το `master.key` (το κλειδί των συνεδριών, όταν δεν έχει οριστεί κωδικός εφαρμογής) και τα αρχεία καταγραφής.
+Στον φάκελο δεδομένων: `~/.local/share/twitch-miner` σε Linux, `%APPDATA%\twitch-miner` σε Windows, `~/Library/Application Support/twitch-miner` σε macOS και ο τόμος `/data` με το Docker. Στην επιφάνεια εργασίας, οι **Ρυθμίσεις › Επιφάνεια εργασίας** τον ανοίγουν με ένα κλικ. Περιέχει το `miner.db` (λογαριασμοί, ρυθμίσεις, χρονικό), το `master.key` (το κλειδί των συνεδριών, όταν δεν έχει οριστεί κωδικός εφαρμογής) και τα αρχεία καταγραφής.
 
 **Πώς κάνω ενημέρωση;**\
 Η εφαρμογή επιφάνειας εργασίας ελέγχει για νέα έκδοση κατά την εκκίνηση και μετά κάθε ώρα (μπορείτε να το αλλάξετε από τις **Ρυθμίσεις › Σχετικά**). Πατήστε το σήμα «Ενημέρωση» και μετά «Εγκατάσταση και επανεκκίνηση». Με το Docker, ο πίνακας ελέγχου σάς ειδοποιεί: εκτελέστε `docker compose pull` και μετά `docker compose up -d`.

@@ -689,7 +689,7 @@
   "reward_state_ready": "Alınabilir",
   "reward_claim": "Al",
   "notify_test_title": "Test: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner bu hedefe ulaşabiliyor. Alınan bir drop böyle görünür. Bu mesajdaki tüm adlar ve görseller testtir.",
+  "notify_test_detail": "Twitch Miner bu hedefe ulaşabiliyor. Alınan bir drop böyle görünür. Bu mesajdaki tüm adlar ve görseller testtir.",
   "notify_streamer": "Yayıncı",
   "notify_streamer_line": "Yayıncı: {channel}",
   "dashboard_ended_ago": "Bitti {time}",

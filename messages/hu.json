@@ -689,7 +689,7 @@
   "reward_state_ready": "Beváltható",
   "reward_claim": "Beváltás",
   "notify_test_title": "Teszt: {text}",
-  "notify_test_detail": "A Twitch Drops & Points Miner eléri ezt a célt. Így néz ki egy beváltott drop. Az üzenet minden neve és képe teszt.",
+  "notify_test_detail": "A Twitch Miner eléri ezt a célt. Így néz ki egy beváltott drop. Az üzenet minden neve és képe teszt.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Véget ért {time}",

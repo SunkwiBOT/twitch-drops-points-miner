@@ -661,7 +661,7 @@
   "reward_state_ready": "可領取",
   "reward_claim": "領取",
   "notify_test_title": "測試：{text}",
-  "notify_test_detail": "Twitch Drops & Points Miner 可以連到此目標。已領取的掉寶會顯示成這樣。此訊息中的所有名稱和圖片皆為測試內容。",
+  "notify_test_detail": "Twitch Miner 可以連到此目標。已領取的掉寶會顯示成這樣。此訊息中的所有名稱和圖片皆為測試內容。",
   "notify_streamer": "實況主",
   "notify_streamer_line": "實況主：{channel}",
   "dashboard_ended_ago": "{time}結束",

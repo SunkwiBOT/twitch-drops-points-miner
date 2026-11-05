@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Logo Twitch Drops &amp; Points Miner">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Logo Twitch Miner">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>Menambang Twitch Drops dan poin channel di beberapa akun, tanpa browser dan tanpa tab Twitch yang terbuka.</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="Rilis terbaru"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="Unduhan"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="Rilis terbaru"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="Unduhan"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="Platform: Linux, Windows, macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Image Docker untuk amd64 dan arm64"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Image Docker untuk amd64 dan arm64"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="Lisensi MIT"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="Tayangan">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">Laporkan bug</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">Laporkan bug</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/id/presentation.avif" alt="Video pengenalan Twitch Drops &amp; Points Miner">
+  <img src="../media/id/presentation.avif" alt="Video pengenalan Twitch Miner">
 </p>
 
 ## <a name="features"></a>Fitur
@@ -148,7 +148,7 @@ Hal-hal yang membedakannya dari penambang lain. “Lihat langsung” di bawah se
 
 ### Pemantauan
 
-- **Jurnal untuk semuanya, dan setiap permintaan.** Jurnal menyimpan setiap peristiwa: drop, poin yang didapat dan dibelanjakan, peti, taruhan, raid, stream yang mulai live… Saring berdasarkan akun, tab (Drops, Poin, Lainnya), dan jenis. **Log teknis › Permintaan** mencantumkan setiap permintaan yang dikirim ke Twitch dan ke layanan lain, beserta hasil dan durasinya. Log dan permintaan tidak memuat token atau rahasia apa pun: “Salin untuk laporan bug” menyalinnya, siap ditempel ke laporan bug di [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) atau [Discord](https://discord.gg/support-bots-891685895781113886).
+- **Jurnal untuk semuanya, dan setiap permintaan.** Jurnal menyimpan setiap peristiwa: drop, poin yang didapat dan dibelanjakan, peti, taruhan, raid, stream yang mulai live… Saring berdasarkan akun, tab (Drops, Poin, Lainnya), dan jenis. **Log teknis › Permintaan** mencantumkan setiap permintaan yang dikirim ke Twitch dan ke layanan lain, beserta hasil dan durasinya. Log dan permintaan tidak memuat token atau rahasia apa pun: “Salin untuk laporan bug” menyalinnya, siap ditempel ke laporan bug di [GitHub](https://github.com/SunkwiBOT/twitch-miner/issues) atau [Discord](https://discord.gg/support-bots-891685895781113886).
 
   <details open><summary>Lihat langsung</summary>
   <img src="../media/id/journal-requests.avif" alt="Jurnal yang disaring, lalu Log teknis › Permintaan">
@@ -199,7 +199,7 @@ Hal-hal yang membedakannya dari penambang lain. “Lihat langsung” di bawah se
 
 ## <a name="comparison"></a>Perbandingan
 
-Posisi [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner) dibandingkan dengan [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2) (poin channel) dan [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops). Dicek berdasarkan kode dan README mereka pada November 2026.
+Posisi [Twitch Miner](https://github.com/SunkwiBOT/twitch-miner) dibandingkan dengan [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2) (poin channel) dan [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops). Dicek berdasarkan kode dan README mereka pada November 2026.
 
 | | Proyek ini | Channel Points Miner v2 | TwitchDropsMiner |
 |---|:---:|:---:|:---:|
@@ -238,11 +238,11 @@ Posisi [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-p
 
 ## <a name="download"></a>Unduh
 
-Unduh file untuk sistem Anda dari [rilis terbaru](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest).
+Unduh file untuk sistem Anda dari [rilis terbaru](https://github.com/SunkwiBOT/twitch-miner/releases/latest).
 
 | Sistem | Paket |
 |---|---|
-| **Windows** · x64 | Penginstal (`setup.exe`) atau [executable portabel](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | Penginstal (`setup.exe`) atau [executable portabel](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 atau lebih baru · Intel dan Apple Silicon | Image disk (`.dmg`) |
 | **Linux** · x86-64 | `.AppImage`, `.deb` (Debian, Ubuntu), atau `.rpm` (Fedora, openSUSE) |
 
@@ -252,18 +252,18 @@ Pembaruan ditandatangani. Aplikasi memeriksa versi baru saat dimulai, lalu setia
 
 Data disimpan di folder data pengguna:
 
-- Linux: `~/.local/share/twitch-drops-points-miner`
-- Windows: `%APPDATA%\twitch-drops-points-miner`
-- macOS: `~/Library/Application Support/twitch-drops-points-miner`
+- Linux: `~/.local/share/twitch-miner`
+- Windows: `%APPDATA%\twitch-miner`
+- macOS: `~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
-Server menampilkan dasbor yang sama di browser. Image-nya adalah `ghcr.io/sunkwibot/twitch-drops-points-miner`, untuk `amd64` dan `arm64`. Saat versi baru keluar, dasbor memberitahukannya: `docker compose pull`, lalu `docker compose up -d`.
+Server menampilkan dasbor yang sama di browser. Image-nya adalah `ghcr.io/sunkwibot/twitch-miner`, untuk `amd64` dan `arm64`. Saat versi baru keluar, dasbor memberitahukannya: `docker compose pull`, lalu `docker compose up -d`.
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # ambil image terbaru setiap kali mulai
     restart: unless-stopped
     ports: ["8080:8080"]   # di belakang reverse proxy HTTPS: hapus, atau "127.0.0.1:8080:8080"
@@ -336,7 +336,7 @@ Untuk mengklaim, ya: sejak Oktober 2026, Twitch hanya mengizinkan klaim drop jik
 Aplikasi desktop menambang selama PC Anda menyala, dengan ikon tray, kata sandi opsional, dan pembaruan sekali klik. Docker menambang siang dan malam di mesin yang selalu menyala (VPS, NAS, Raspberry Pi); Anda membukanya di browser, dilindungi oleh `MINER_PASSWORD`. Antarmukanya sama.
 
 **Di mana data saya?**\
-Di folder data: `~/.local/share/twitch-drops-points-miner` di Linux, `%APPDATA%\twitch-drops-points-miner` di Windows, `~/Library/Application Support/twitch-drops-points-miner` di macOS, dan volume `/data` dengan Docker. Di desktop, **Pengaturan › Desktop** membukanya dengan sekali klik. Isinya `miner.db` (akun, pengaturan, jurnal), `master.key` (kunci sesi, jika kata sandi aplikasi tidak diatur), dan log.
+Di folder data: `~/.local/share/twitch-miner` di Linux, `%APPDATA%\twitch-miner` di Windows, `~/Library/Application Support/twitch-miner` di macOS, dan volume `/data` dengan Docker. Di desktop, **Pengaturan › Desktop** membukanya dengan sekali klik. Isinya `miner.db` (akun, pengaturan, jurnal), `master.key` (kunci sesi, jika kata sandi aplikasi tidak diatur), dan log.
 
 **Bagaimana cara memperbarui?**\
 Aplikasi desktop memeriksa versi baru saat dimulai, lalu setiap jam (Anda bisa mengubahnya di **Pengaturan › Tentang**). Klik lencana “Pembaruan”, lalu “Pasang dan mulai ulang”. Dengan Docker, dasbor memberi tahu Anda: jalankan `docker compose pull`, lalu `docker compose up -d`.

@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Twitch Drops & Points Miner",
+  "productName": "Twitch Miner",
   "version": "0.1.0",
   "identifier": "io.github.sunkwibot.twitchminer",
   "mainBinaryName": "twitchminer",
@@ -14,7 +14,7 @@
     "updater": {
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDFEOTQ4RDc3MEJCQUJCODcKUldTSHU3b0xkNDJVSFRNT1ZROFBUTUs2YkJGVHJjWHNqeGZBaEtnSlNUM3ZRRmtwV2lMaUFvV1AK",
       "endpoints": [
-        "https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/latest.json"
+        "https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/latest.json"
       ]
     }
   },
@@ -23,7 +23,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "Twitch Drops & Points Miner",
+        "title": "Twitch Miner",
         "width": 1180,
         "height": 760,
         "minWidth": 900,
@@ -59,12 +59,23 @@
     "longDescription": "Watches Twitch streams without video for you: mines timed Drops and channel points on several accounts, with priorities per game and per streamer, auto-claim, predictions, Discord and Telegram notifications. No browser needed: sign in with a code on twitch.tv/activate.",
     "linux": {
       "appimage": { "bundleMediaFramework": false },
-      "deb": { "desktopTemplate": "../packaging/twitch-drops-points-miner.desktop" },
-      "rpm": { "epoch": 0, "release": "1", "desktopTemplate": "../packaging/twitch-drops-points-miner.desktop" }
+      "deb": {
+        "desktopTemplate": "../packaging/twitch-miner.desktop",
+        "conflicts": ["twitch-drops-points-miner"],
+        "replaces": ["twitch-drops-points-miner"]
+      },
+      "rpm": {
+        "epoch": 0,
+        "release": "1",
+        "desktopTemplate": "../packaging/twitch-miner.desktop",
+        "conflicts": ["twitch-drops-points-miner"],
+        "obsoletes": ["twitch-drops-points-miner"]
+      }
     },
     "windows": {
       "nsis": {
         "installMode": "currentUser",
+        "installerHooks": "./windows/hooks.nsh",
         "languages": ["English", "French", "German", "Spanish", "SpanishInternational", "Portuguese", "PortugueseBR", "Italian", "Dutch", "Polish", "Russian", "Ukrainian", "Czech", "Hungarian", "Romanian", "Bulgarian", "Greek", "Turkish", "Swedish", "Danish", "Norwegian", "Finnish", "SimpChinese", "TradChinese", "Japanese", "Korean", "Thai", "Vietnamese", "Indonesian"],
         "displayLanguageSelector": false
       }

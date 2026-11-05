@@ -747,7 +747,7 @@
   "reward_state_ready": "Por reclamar",
   "reward_claim": "Reclamar",
   "notify_test_title": "Prueba: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner puede llegar a este destino. Así se ve un drop reclamado. Todos los nombres e imágenes de este mensaje son de prueba.",
+  "notify_test_detail": "Twitch Miner puede llegar a este destino. Así se ve un drop reclamado. Todos los nombres e imágenes de este mensaje son de prueba.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Terminó {time}",

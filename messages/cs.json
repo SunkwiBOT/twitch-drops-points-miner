@@ -753,7 +753,7 @@
   "reward_state_ready": "K vyzvednutí",
   "reward_claim": "Vyzvednout",
   "notify_test_title": "Test: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner dosáhne na tento cíl. Takto vypadá vyzvednutý drop. Všechna jména a obrázky v této zprávě jsou testovací.",
+  "notify_test_detail": "Twitch Miner dosáhne na tento cíl. Takto vypadá vyzvednutý drop. Všechna jména a obrázky v této zprávě jsou testovací.",
   "notify_streamer": "Streamer",
   "notify_streamer_line": "Streamer: {channel}",
   "dashboard_ended_ago": "Skončila {time}",

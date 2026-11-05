@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Logoul Twitch Drops &amp; Points Miner">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Logoul Twitch Miner">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>Minează Twitch Drops și puncte de canal pe mai multe conturi, fără browser și fără vreo filă Twitch deschisă.</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="Cea mai recentă versiune"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="Descărcări"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="Cea mai recentă versiune"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="Descărcări"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="Platforme: Linux, Windows, macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Imagine Docker pentru amd64 și arm64"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Imagine Docker pentru amd64 și arm64"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="Licență MIT"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="Vizualizări">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">Raportează o eroare</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">Raportează o eroare</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/ro/presentation.avif" alt="Prezentare video a Twitch Drops &amp; Points Miner">
+  <img src="../media/ro/presentation.avif" alt="Prezentare video a Twitch Miner">
 </p>
 
 ## <a name="features"></a>Funcționalități
@@ -184,7 +184,7 @@ la lucru.
   **Loguri tehnice › Cereri** listează fiecare cerere trimisă către Twitch și către alte
   servicii, cu rezultatul și durata ei. Logurile și cererile nu conțin niciun token sau
   secret: „Copiază pentru un raport de eroare” le copiază, gata de lipit într-un raport de
-  eroare pe [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) sau
+  eroare pe [GitHub](https://github.com/SunkwiBOT/twitch-miner/issues) sau
   [Discord](https://discord.gg/support-bots-891685895781113886).
 
   <details open><summary>Vezi în acțiune</summary>
@@ -255,7 +255,7 @@ la lucru.
 
 ## <a name="comparison"></a>Comparație
 
-Cum se situează [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner)
+Cum se situează [Twitch Miner](https://github.com/SunkwiBOT/twitch-miner)
 față de [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2)
 (puncte de canal) și [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops).
 Verificat în codul și în README-urile lor în noiembrie 2026.
@@ -304,11 +304,11 @@ are.\
 ## <a name="download"></a>Descărcare
 
 Descarcă fișierul pentru sistemul tău din
-[cea mai recentă versiune](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest).
+[cea mai recentă versiune](https://github.com/SunkwiBOT/twitch-miner/releases/latest).
 
 | Sistem | Pachet |
 |---|---|
-| **Windows** · x64 | Program de instalare (`setup.exe`) sau [executabil portabil](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | Program de instalare (`setup.exe`) sau [executabil portabil](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 sau mai nou · Intel și Apple Silicon | Imagine de disc (`.dmg`) |
 | **Linux** · x86-64 | `.AppImage`, `.deb` (Debian, Ubuntu) sau `.rpm` (Fedora, openSUSE) |
 
@@ -322,20 +322,20 @@ singură o versiune: o instalezi tu cu un singur clic, din mesajul care apare sa
 
 Datele se află în dosarul de date al utilizatorului:
 
-- Linux: `~/.local/share/twitch-drops-points-miner`
-- Windows: `%APPDATA%\twitch-drops-points-miner`
-- macOS: `~/Library/Application Support/twitch-drops-points-miner`
+- Linux: `~/.local/share/twitch-miner`
+- Windows: `%APPDATA%\twitch-miner`
+- macOS: `~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
 Serverul afișează același panou într-un browser. Imaginea este
-`ghcr.io/sunkwibot/twitch-drops-points-miner`, pentru `amd64` și `arm64`. Când apare o
+`ghcr.io/sunkwibot/twitch-miner`, pentru `amd64` și `arm64`. Când apare o
 versiune nouă, panoul te anunță: `docker compose pull`, apoi `docker compose up -d`.
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # descarcă cea mai nouă imagine la fiecare pornire
     restart: unless-stopped
     ports: ["8080:8080"]   # în spatele unui reverse proxy HTTPS: de eliminat, sau "127.0.0.1:8080:8080"
@@ -435,9 +435,9 @@ mereu pornită (VPS, NAS, Raspberry Pi); îl deschizi într-un browser, protejat
 `MINER_PASSWORD`. Interfața este aceeași.
 
 **Unde sunt datele mele?**\
-În dosarul de date: `~/.local/share/twitch-drops-points-miner` pe Linux,
-`%APPDATA%\twitch-drops-points-miner` pe Windows,
-`~/Library/Application Support/twitch-drops-points-miner` pe macOS și volumul `/data` cu
+În dosarul de date: `~/.local/share/twitch-miner` pe Linux,
+`%APPDATA%\twitch-miner` pe Windows,
+`~/Library/Application Support/twitch-miner` pe macOS și volumul `/data` cu
 Docker. Pe desktop, **Setări › Desktop** îl deschide dintr-un clic. Conține `miner.db`
 (conturi, setări, jurnal), `master.key` (cheia sesiunilor, când nu e setată nicio parolă a
 aplicației) și logurile.

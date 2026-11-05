@@ -1,6 +1,6 @@
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     container_name: twitch-miner
     pull_policy: always
     restart: unless-stopped

@@ -1,6 +1,6 @@
 [package]
-name = "twitch-drops-points-miner"
-description = "Twitch Drops & Points Miner desktop application."
+name = "twitch-miner"
+description = "Twitch Miner desktop application."
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -18,6 +18,7 @@ miner-core = { workspace = true, features = ["notify-rust", "zbus"] }
 tauri = { version = "2", features = ["tray-icon", "image-png"] }
 tauri-plugin-single-instance = "2"
 tauri-plugin-autostart = "2"
+auto-launch = "0.6"
 tauri-plugin-updater = "2"
 tauri-plugin-opener = "2"
 tauri-plugin-notification = "2"

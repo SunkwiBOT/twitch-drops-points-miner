@@ -747,7 +747,7 @@
   "reward_state_ready": "Klar til henting",
   "reward_claim": "Hent",
   "notify_test_title": "Test: {text}",
-  "notify_test_detail": "Twitch Drops & Points Miner når dette målet. Slik ser en hentet drop ut. Alle navn og bilder i denne meldingen er testdata.",
+  "notify_test_detail": "Twitch Miner når dette målet. Slik ser en hentet drop ut. Alle navn og bilder i denne meldingen er testdata.",
   "notify_streamer": "Strømmer",
   "notify_streamer_line": "Strømmer: {channel}",
   "dashboard_ended_ago": "Sluttet {time}",

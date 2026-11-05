@@ -1,6 +1,6 @@
 [package]
 name = "miner-core"
-description = "Twitch Drops & Points Miner core: Twitch client, catalogue, scheduler, store, notifications."
+description = "Twitch Miner core: Twitch client, catalogue, scheduler, store, notifications."
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true

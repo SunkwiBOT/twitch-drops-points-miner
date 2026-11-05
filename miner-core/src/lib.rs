@@ -20,6 +20,6 @@ pub mod util;
 pub use error::{Error, Result};
 pub use miner::manager::Manager;
 
-pub const APP_NAME: &str = "Twitch Drops & Points Miner";
+pub const APP_NAME: &str = "Twitch Miner";
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 pub const REPOSITORY_URL: &str = env!("CARGO_PKG_REPOSITORY");

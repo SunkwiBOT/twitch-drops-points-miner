@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Логотип Twitch Drops &amp; Points Miner">
+  <img src="../../ui/public/app-icon.svg" width="112" height="112" alt="Логотип Twitch Miner">
 </p>
 
-<h1 align="center">Twitch Drops &amp; Points Miner</h1>
+<h1 align="center">Twitch Miner</h1>
 
 <p align="center">
   <strong>Майнит Twitch Drops и баллы канала на нескольких аккаунтах — без браузера и без открытой вкладки Twitch.</strong>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-drops-points-miner?label=release&color=9146FF" alt="Последний релиз"></a>
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-drops-points-miner/total?label=downloads&color=9146FF" alt="Загрузки"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases/latest"><img src="https://img.shields.io/github/v/release/SunkwiBOT/twitch-miner?label=release&color=9146FF" alt="Последний релиз"></a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/releases"><img src="https://img.shields.io/github/downloads/SunkwiBOT/twitch-miner/total?label=downloads&color=9146FF" alt="Загрузки"></a>
   <a href="#download"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-9146FF" alt="Платформы: Linux, Windows, macOS"></a>
-  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-drops-points-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Образ Docker для amd64 и arm64"></a>
+  <a href="https://github.com/users/SunkwiBOT/packages/container/package/twitch-miner"><img src="https://img.shields.io/badge/docker-amd64%20%7C%20arm64-9146FF?logo=docker&logoColor=white" alt="Образ Docker для amd64 и arm64"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-9146FF" alt="Лицензия MIT"></a>
   <img src="https://komarev.com/ghpvc/?username=SunkwiBOT-twitch-drops-points-miner&label=views&color=9146FF&style=flat" alt="Просмотры">
 </p>
@@ -27,7 +27,7 @@
   <a href="https://drops.sunkwi.com">Twitch Drops API</a> •
   <a href="https://twitch.sunkwi.com">Twitch Alerts 🔔</a> •
   <a href="https://kick.sunkwi.com">Kick Alerts 🔔</a> •
-  <a href="https://github.com/SunkwiBOT/twitch-drops-points-miner/issues/new/choose">Сообщить об ошибке</a>
+  <a href="https://github.com/SunkwiBOT/twitch-miner/issues/new/choose">Сообщить об ошибке</a>
 </p>
 
 <p align="center">
@@ -63,7 +63,7 @@
 </p>
 
 <p align="center">
-  <img src="../media/ru/presentation.avif" alt="Видеообзор Twitch Drops &amp; Points Miner">
+  <img src="../media/ru/presentation.avif" alt="Видеообзор Twitch Miner">
 </p>
 
 ## <a name="features"></a>Возможности
@@ -185,7 +185,7 @@
   запрос к Twitch и другим сервисам, с его результатом и длительностью. В логах и запросах
   нет ни токенов, ни секретов: «Скопировать для баг-репорта» копирует их в готовом для
   вставки виде, для баг-репорта на
-  [GitHub](https://github.com/SunkwiBOT/twitch-drops-points-miner/issues) или в
+  [GitHub](https://github.com/SunkwiBOT/twitch-miner/issues) или в
   [Discord](https://discord.gg/support-bots-891685895781113886).
 
   <details open><summary>Посмотреть в действии</summary>
@@ -257,7 +257,7 @@
 
 ## <a name="comparison"></a>Сравнение
 
-Как [Twitch Drops & Points Miner](https://github.com/SunkwiBOT/twitch-drops-points-miner)
+Как [Twitch Miner](https://github.com/SunkwiBOT/twitch-miner)
 выглядит рядом с [Twitch Channel Points Miner v2](https://github.com/rdavydov/Twitch-Channel-Points-Miner-v2)
 (баллы канала) и [TwitchDropsMiner](https://github.com/DevilXD/TwitchDropsMiner) (Drops).
 Проверено по их коду и README в ноябре 2026 года.
@@ -305,11 +305,11 @@
 ## <a name="download"></a>Скачать
 
 Скачайте файл для своей системы из
-[последнего релиза](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest).
+[последнего релиза](https://github.com/SunkwiBOT/twitch-miner/releases/latest).
 
 | Система | Пакет |
 |---|---|
-| **Windows** · x64 | Установщик (`setup.exe`) или [портативная версия](https://github.com/SunkwiBOT/twitch-drops-points-miner/releases/latest/download/TwitchDropsPointsMiner-portable.exe) |
+| **Windows** · x64 | Установщик (`setup.exe`) или [портативная версия](https://github.com/SunkwiBOT/twitch-miner/releases/latest/download/TwitchMiner-portable.exe) |
 | **macOS** 10.15 или новее · Intel и Apple Silicon | Образ диска (`.dmg`) |
 | **Linux** · x86-64 | `.AppImage`, `.deb` (Debian, Ubuntu) или `.rpm` (Fedora, openSUSE) |
 
@@ -323,20 +323,20 @@
 
 Данные хранятся в папке данных пользователя:
 
-- Linux: `~/.local/share/twitch-drops-points-miner`
-- Windows: `%APPDATA%\twitch-drops-points-miner`
-- macOS: `~/Library/Application Support/twitch-drops-points-miner`
+- Linux: `~/.local/share/twitch-miner`
+- Windows: `%APPDATA%\twitch-miner`
+- macOS: `~/Library/Application Support/twitch-miner`
 
 ## <a name="docker"></a>Docker
 
 Сервер показывает ту же панель в браузере. Образ —
-`ghcr.io/sunkwibot/twitch-drops-points-miner`, для `amd64` и `arm64`. Когда выходит
+`ghcr.io/sunkwibot/twitch-miner`, для `amd64` и `arm64`. Когда выходит
 новая версия, панель сообщает об этом: `docker compose pull`, затем `docker compose up -d`.
 
 ```yaml
 services:
   miner:
-    image: ghcr.io/sunkwibot/twitch-drops-points-miner:latest
+    image: ghcr.io/sunkwibot/twitch-miner:latest
     pull_policy: always   # при каждом запуске брать самый новый образ
     restart: unless-stopped
     ports: ["8080:8080"]   # за обратным HTTPS-прокси: удалите или замените на "127.0.0.1:8080:8080"
@@ -437,9 +437,9 @@ Twitch засчитывает на аккаунт одновременно **о�
 `MINER_PASSWORD`. Интерфейс тот же.
 
 **Где мои данные?**\
-В папке данных: `~/.local/share/twitch-drops-points-miner` в Linux,
-`%APPDATA%\twitch-drops-points-miner` в Windows,
-`~/Library/Application Support/twitch-drops-points-miner` в macOS и том `/data` в Docker.
+В папке данных: `~/.local/share/twitch-miner` в Linux,
+`%APPDATA%\twitch-miner` в Windows,
+`~/Library/Application Support/twitch-miner` в macOS и том `/data` в Docker.
 На компьютере **Настройки › Рабочий стол** открывает её в один клик. В ней лежат
 `miner.db` (аккаунты, настройки, журнал), `master.key` (ключ сессий, если пароль
 приложения не задан) и логи.

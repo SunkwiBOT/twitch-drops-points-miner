@@ -367,6 +367,40 @@ fn open_data_directory(app: AppHandle, folder: tauri::State<'_, DataFolder>) -> 
     open_directory(&app, &folder.path)
 }
 
+// ! The versions named "Twitch Drops & Points Miner" registered the start with
+// the system under that name: a start asked for there moves to the new name once.
+fn move_old_autostart(app: &AppHandle) {
+    use tauri_plugin_autostart::ManagerExt;
+
+    let Ok(exe) = std::env::current_exe() else {
+        return;
+    };
+    let mut builder = auto_launch::AutoLaunchBuilder::new();
+
+    builder
+        .set_app_name("Twitch Drops & Points Miner")
+        .set_app_path(&exe.display().to_string());
+
+    #[cfg(target_os = "macos")]
+    builder.set_macos_launch_mode(auto_launch::MacOSLaunchMode::LaunchAgent);
+
+    let Ok(old) = builder.build() else {
+        return;
+    };
+
+    if !old.is_enabled().unwrap_or(false) {
+        return;
+    }
+
+    if let Err(error) = old.disable() {
+        tracing::warn!("old start with the system not removed: {error}");
+    }
+
+    if let Err(error) = app.autolaunch().enable() {
+        tracing::warn!("start with the system not moved to the new name: {error}");
+    }
+}
+
 #[tauri::command]
 fn autostart_status(app: AppHandle) -> AutostartResponse {
     use tauri_plugin_autostart::ManagerExt;
@@ -454,8 +488,8 @@ fn configure_window(window: &tauri::WebviewWindow) {
 fn prepare_linux_display() {
     // ! The GTK program name becomes the Wayland app id; KWin looks up
     // "<app id>.desktop" for the icon, so it must match the product name.
-    glib::set_prgname(Some("Twitch Drops & Points Miner"));
-    glib::set_application_name("Twitch Drops & Points Miner");
+    glib::set_prgname(Some("Twitch Miner"));
+    glib::set_application_name("Twitch Miner");
 
     if std::env::var_os("WEBKIT_DISABLE_DMABUF_RENDERER").is_none() {
         // ! Avoids blank windows on NVIDIA drivers.
@@ -531,6 +565,8 @@ fn main() {
             updates::apply_update
         ])
         .setup(move |app| {
+            move_old_autostart(app.handle());
+
             let opened = Manager::open(&dir, log_buffer.clone(), Shell::Desktop);
 
             app.manage(DataFolder {

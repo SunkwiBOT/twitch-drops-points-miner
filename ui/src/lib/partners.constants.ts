@@ -25,7 +25,7 @@ export const PARTNERS: readonly PartnerType[] = [
 
 export const ROTATION_MS = 30_000;
 export const ROTATION_FADE_MS = 350;
-export const REPO_URL = "https://github.com/SunkwiBOT/twitch-drops-points-miner";
+export const REPO_URL = "https://github.com/SunkwiBOT/twitch-miner";
 export const ISSUES_URL = `${REPO_URL}/issues/new/choose`;
 export const DISCORD_URL = "https://discord.gg/support-bots-891685895781113886";
 export const DISCORD_NAME = "Discord";
