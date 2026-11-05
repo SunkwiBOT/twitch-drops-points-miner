@@ -2,6 +2,7 @@
 // come from this public catalogue.
 
 use std::collections::HashSet;
+use std::sync::Mutex;
 use std::time::Duration;
 
 use chrono::{DateTime, Utc};
@@ -13,8 +14,9 @@ use crate::error::{Error, ErrorCode, Result};
 use crate::requests::{address_target, RequestKind, RequestLog};
 use crate::twitch::drops::parse_campaign;
 use crate::twitch::note_left_out;
+use crate::util::locked;
 
-const CATALOG_URL: &str = "https://twitch-drops-api.sunkwi.com/v2/drops";
+const CATALOG_URL: &str = "https://drops.sunkwi.com/api/twitch/drops";
 
 // ! The public catalogue allows one anonymous request every 5 minutes.
 pub const REFRESH_INTERVAL: Duration = Duration::from_secs(600);
@@ -38,6 +40,9 @@ pub struct CatalogClient {
     client: reqwest::Client,
     url: String,
     requests: RequestLog,
+    // ! An answer "not modified" (304) costs no request of the quota: the last
+    // catalogue read is kept with the tag that names it.
+    last: Mutex<Option<(String, Catalog)>>,
 }
 
 pub struct Fetch {
@@ -66,6 +71,7 @@ impl CatalogClient {
             client,
             url: url.to_owned(),
             requests,
+            last: Mutex::new(None),
         })
     }
 
@@ -76,14 +82,20 @@ impl CatalogClient {
     pub async fn fetch(&self) -> Fetch {
         let mut retry_after = Duration::ZERO;
         let result = async {
+            let tag = locked(&self.last).as_ref().map(|(tag, _)| tag.clone());
+            let mut request = self
+                .client
+                .get(&self.url)
+                .header("Accept", "application/json");
+
+            if let Some(tag) = &tag {
+                request = request.header("If-None-Match", tag);
+            }
+
             let response = self
                 .requests
                 .start(RequestKind::Catalog, address_target(&self.url))
-                .send(
-                    self.client
-                        .get(&self.url)
-                        .header("Accept", "application/json"),
-                )
+                .send(request)
                 .await?;
 
             for name in ["ratelimit-reset", "retry-after"] {
@@ -99,6 +111,15 @@ impl CatalogClient {
 
             let status = response.status();
 
+            if status == reqwest::StatusCode::NOT_MODIFIED {
+                if let Some((_, catalog)) = locked(&self.last).as_ref() {
+                    return Ok(Catalog {
+                        fetched_at: Some(Utc::now()),
+                        ..catalog.clone()
+                    });
+                }
+            }
+
             if status == reqwest::StatusCode::TOO_MANY_REQUESTS {
                 return Err(Error::CatalogRateLimited);
             }
@@ -107,10 +128,18 @@ impl CatalogClient {
                 return Err(Error::Status(status));
             }
 
+            let tag = response
+                .headers()
+                .get(reqwest::header::ETAG)
+                .and_then(|v| v.to_str().ok())
+                .map(str::to_owned);
             let body = read_bounded(response).await?;
             let payload: Value = serde_json::from_slice(&body)?;
+            let catalog = parse_catalog(&payload)?;
 
-            parse_catalog(&payload)
+            *locked(&self.last) = tag.map(|tag| (tag, catalog.clone()));
+
+            Ok(catalog)
         }
         .await;
 
@@ -149,10 +178,9 @@ fn too_large() -> Error {
 }
 
 pub fn parse_catalog(payload: &Value) -> Result<Catalog> {
-    let records = payload["data"]
+    let records = payload["games"]
         .as_array()
-        .or_else(|| payload.as_array())
-        .ok_or_else(|| Error::InvalidResponse("catalogue data must be an array".into()))?;
+        .ok_or_else(|| Error::InvalidResponse("catalogue games must be a list".into()))?;
 
     if records.len() > MAX_CAMPAIGNS {
         return Err(too_large());
@@ -193,7 +221,7 @@ pub fn parse_catalog(payload: &Value) -> Result<Catalog> {
 
     Ok(Catalog {
         campaigns,
-        updated_at: payload["lastUpdatedAt"]
+        updated_at: payload["refreshedAt"]
             .as_str()
             .and_then(|v| v.parse::<DateTime<Utc>>().ok()),
         fetched_at: Some(Utc::now()),
