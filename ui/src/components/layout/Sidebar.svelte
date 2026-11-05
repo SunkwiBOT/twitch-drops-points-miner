@@ -24,7 +24,7 @@
     IconName,
     KeyboardKey,
   } from "../ui/ui.constants";
-  import { REORDER_HINT_ID } from "./layout.constants";
+  import { APP_TITLE, REORDER_HINT_ID } from "./layout.constants";
   import PoweredBy from "./PoweredBy.svelte";
 
   type NavItemType = { page: Page; icon: IconName; label: string; count?: number };
@@ -94,7 +94,7 @@
       onclick={(event) => followLink(event, REPO_URL)}
     >
       <img class="size-8 shrink-0 [image-rendering:pixelated]" src="/app-icon.svg" alt="" />
-      <span>Twitch Drops<br />& Points Miner</span>
+      <span>{APP_TITLE}</span>
     </a>
     {#each main as item (item.page)}
       <button
