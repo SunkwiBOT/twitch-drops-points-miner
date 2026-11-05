@@ -235,6 +235,7 @@ láthatod, hogyan működnek.
   csatornák előnyben részesítése, jelenlét a chatben (kikapcsolható), alapértelmezett
   beállítások az új streamerekhez, Discord-, Telegram- és webhook-értesítések képekkel,
   globális vagy fiókonkénti proxy.
+- **Hamarosan: jelvénybányászat.** A nézéssel szerezhető Twitch-jelvények bányászata, a Dropsokhoz hasonlóan.
 - 29 nyelv, sötét és világos téma, asztali értesítések, tálcaikon, indítás a rendszerrel.
 
   <details open><summary>Működés közben</summary>

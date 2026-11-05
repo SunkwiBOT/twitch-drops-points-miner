@@ -230,6 +230,7 @@ arbete.
   (strategier, när det ska satsas, villkor), tittarsviter och prenumererade kanaler först,
   närvaro i chatten (kan stängas av), standardalternativ för nya streamers, aviseringar via
   Discord, Telegram och webhook med bilder, en global proxy eller en per konto.
+- **Kommer snart: mining av märken.** Twitch-märkena man får genom att titta, minade som Drops.
 - 29 språk, mörkt och ljust tema, skrivbordsaviseringar, en ikon i systemfältet, start med
   systemet.
 

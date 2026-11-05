@@ -225,6 +225,7 @@
   (strategie, kdy vsadit, podmínky), přednost sériím sledování a předplaceným kanálům,
   přítomnost v chatu (lze vypnout), výchozí možnosti pro nové streamery, oznámení přes
   Discord, Telegram a webhook s obrázky, globální proxy nebo proxy pro každý účet.
+- **Brzy: těžba odznaků.** Odznaky na Twitchi získané sledováním, těžené stejně jako Drops.
 - 29 jazyků, tmavý a světlý motiv, oznámení na ploše, ikona v liště, spouštění se systémem.
 
   <details open><summary>Ukázka v akci</summary>

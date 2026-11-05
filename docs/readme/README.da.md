@@ -234,6 +234,7 @@ brug.
   tilstedeværelse i chatten (kan slås fra), standardindstillinger for nye streamere,
   notifikationer via Discord, Telegram og webhook med billeder, en global proxy eller én pr.
   konto.
+- **Kommer snart: mining af badges.** De Twitch-badges, man optjener ved at se med, mines ligesom Drops.
 - 29 sprog, mørkt og lyst tema, skrivebordsnotifikationer, et ikon i proceslinjen, start
   sammen med systemet.
 

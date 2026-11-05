@@ -231,6 +231,7 @@ funcionar.
   subscritos primeiro, presença no chat (pode ser desativada), opções predefinidas para
   novos streamers, notificações por Discord, Telegram e webhook com imagens, proxy global
   ou por conta.
+- **Em breve: mineração de emblemas.** Os emblemas da Twitch obtidos ao ver, minerados como os Drops.
 - 29 idiomas, temas escuro e claro, notificações do ambiente de trabalho, ícone na área de
   notificação, arranque com o sistema.
 

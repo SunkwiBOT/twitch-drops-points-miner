@@ -176,6 +176,7 @@ Những gì làm nên khác biệt so với các trình đào khác. “Xem minh
 ### Và còn nữa
 
 - Như các trình đào khác: rương thưởng, raid, khoảnh khắc, mục tiêu cộng đồng, dự đoán (chiến lược, thời điểm cược, điều kiện), ưu tiên chuỗi xem và kênh đã đăng ký, hiện diện trong chat (có thể tắt), tùy chọn mặc định cho streamer mới, thông báo Discord, Telegram và webhook kèm hình ảnh, proxy chung hoặc theo từng tài khoản.
+- **Sắp có: đào huy hiệu.** Các huy hiệu Twitch nhận được khi xem, được đào giống như Drops.
 - 29 ngôn ngữ, giao diện tối và sáng, thông báo trên máy tính, biểu tượng trong khay hệ thống, khởi động cùng hệ thống.
 
   <details open><summary>Xem minh họa</summary>

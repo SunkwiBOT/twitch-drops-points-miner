@@ -234,6 +234,7 @@ Ce qui le distingue des autres mineurs. « Voir en image » montre chaque poin
   aux chaînes abonnées, présence dans le chat (désactivable), options par défaut des
   nouveaux streamers, notifications Discord, Telegram et webhook avec images, proxy global
   ou par compte.
+- **Bientôt : le minage de badges.** Les badges Twitch obtenus en regardant, minés comme les Drops.
 - 29 langues, thèmes sombre et clair, notifications de bureau, icône dans la zone de
   notification, lancement au démarrage du système.
 

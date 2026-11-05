@@ -232,6 +232,7 @@ all'opera.
   canali abbonati, presenza in chat (disattivabile), opzioni predefinite per i nuovi
   streamer, notifiche Discord, Telegram e webhook con immagini, proxy globale o per
   account.
+- **Presto: il mining dei badge.** I badge di Twitch che si ottengono guardando, minati come i Drops.
 - 29 lingue, temi scuro e chiaro, notifiche desktop, icona nell'area di notifica, avvio con
   il sistema.
 

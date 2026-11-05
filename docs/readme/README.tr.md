@@ -176,6 +176,7 @@ Onu diğer madencilerden ayıran şeyler. Bir maddenin altındaki “Çalışır
 ### Ve ayrıca
 
 - Diğer madencilerde olduğu gibi: bonus sandıkları, baskınlar, anlar, topluluk hedefleri, tahminler (stratejiler, bahis zamanı, koşullar), önce izleme serileri ve abone olunan kanallar, sohbette bulunma (kapatılabilir), yeni yayıncılar için varsayılan seçenekler, resimli Discord, Telegram ve webhook bildirimleri, genel veya hesap başına proxy.
+- **Yakında: rozet madenciliği.** İzleyerek kazanılan Twitch rozetleri, Drops gibi kazılır.
 - 29 dil, koyu ve açık tema, masaüstü bildirimleri, sistem tepsisi simgesi, sistemle birlikte başlatma.
 
   <details open><summary>Çalışırken görün</summary>

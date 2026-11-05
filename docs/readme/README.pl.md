@@ -230,6 +230,7 @@ działa.
   kanałów, obecność na czacie (można ją wyłączyć), domyślne opcje dla nowych streamerów,
   powiadomienia Discord, Telegram i webhook z obrazkami, proxy globalne lub osobne dla
   każdego konta.
+- **Wkrótce: kopanie odznak.** Odznaki Twitcha zdobywane za oglądanie, kopane tak jak Dropsy.
 - 29 języków, ciemny i jasny motyw, powiadomienia na pulpicie, ikona w zasobniku,
   uruchamianie razem z systemem.
 

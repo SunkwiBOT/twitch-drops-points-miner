@@ -237,6 +237,7 @@ funcionando.
   y canales suscritos primero, presencia en el chat (se puede desactivar), opciones
   predeterminadas para streamers nuevos, notificaciones de Discord, Telegram y webhook con
   imágenes, proxy global o por cuenta.
+- **Próximamente: minado de insignias.** Las insignias de Twitch que se ganan viendo, minadas como los Drops.
 - 29 idiomas, temas oscuro y claro, notificaciones de escritorio, ícono en la bandeja,
   inicio con el sistema.
 

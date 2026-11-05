@@ -229,6 +229,7 @@ recurso funcionando.
   (estratégias, momento da aposta, condições), sequências e canais com inscrição primeiro,
   presença no chat (pode ser desativada), opções padrão para novos streamers, notificações
   por Discord, Telegram e webhook com imagens, proxy global ou por conta.
+- **Em breve: mineração de emblemas.** Os emblemas da Twitch ganhos assistindo, minerados como os Drops.
 - 29 idiomas, temas escuro e claro, notificações da área de trabalho, ícone na bandeja,
   inicialização com o sistema.
 

@@ -227,6 +227,7 @@ What sets it apart from other miners. “See it in action” under a point shows
   (strategies, when to bet, conditions), watch streaks and subscribed channels first,
   chat presence (can be turned off), default options for new streamers, Discord, Telegram
   and webhook notifications with images, a global or per-account proxy.
+- **Coming soon: badge mining.** The Twitch badges earned by watching, mined like the Drops.
 - 29 languages, dark and light themes, desktop notifications, a tray icon, start with the
   system.
 

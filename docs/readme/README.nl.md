@@ -235,6 +235,7 @@ het werkt.
   eerst, aanwezigheid in de chat (uit te zetten), standaardopties voor nieuwe streamers,
   meldingen via Discord, Telegram en webhook met afbeeldingen, een globale proxy of een
   proxy per account.
+- **Binnenkort: badges minen.** De Twitch-badges die je met kijken verdient, gemined zoals de Drops.
 - 29 talen, donker en licht thema, bureaubladmeldingen, een pictogram in het systeemvak,
   starten met het systeem.
 

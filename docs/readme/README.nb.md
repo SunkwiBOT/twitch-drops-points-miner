@@ -234,6 +234,7 @@ bruk.
   når det skal satses, betingelser), seerrekker og abonnerte kanaler først,
   tilstedeværelse i chatten (kan slås av), standardalternativer for nye streamere, varsler
   via Discord, Telegram og webhook med bilder, en global proxy eller én per konto.
+- **Kommer snart: utvinning av merker.** Twitch-merkene man får ved å se på, utvunnet som Drops.
 - 29 språk, mørkt og lyst tema, skrivebordsvarsler, et ikon i systemstatusfeltet, start
   med systemet.
 

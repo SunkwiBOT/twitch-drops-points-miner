@@ -176,6 +176,7 @@ Hal-hal yang membedakannya dari penambang lain. “Lihat langsung” di bawah se
 ### Selain itu
 
 - Seperti penambang lain: peti bonus, raid, momen, target komunitas, prediksi (strategi, kapan bertaruh, syarat), streak tonton dan channel langganan lebih dulu, kehadiran di chat (bisa dimatikan), opsi default untuk streamer baru, notifikasi Discord, Telegram, dan webhook dengan gambar, proxy global atau per akun.
+- **Segera hadir: menambang lencana.** Lencana Twitch yang didapat dengan menonton, ditambang seperti Drops.
 - 29 bahasa, tema gelap dan terang, notifikasi desktop, ikon tray, jalan saat sistem dimulai.
 
   <details open><summary>Lihat langsung</summary>

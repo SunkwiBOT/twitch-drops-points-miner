@@ -230,6 +230,7 @@ la lucru.
   vizionare și pentru canalele cu abonament, prezență în chat (se poate dezactiva), opțiuni
   implicite pentru streamerii noi, notificări Discord, Telegram și webhook cu imagini, proxy
   global sau per cont.
+- **În curând: minarea insignelor.** Insignele Twitch câștigate prin vizionare, minate ca Drops.
 - 29 de limbi, teme întunecată și luminoasă, notificări desktop, pictogramă în bara de
   sistem, pornire odată cu sistemul.
 

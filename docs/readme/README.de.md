@@ -236,6 +236,7 @@ im Einsatz.
   (Strategien, Zeitpunkt der Wette, Bedingungen), Zuschauerserien und abonnierte Kanäle
   zuerst, Chat-Präsenz (abschaltbar), Standardoptionen für neue Streamer, Benachrichtigungen
   über Discord, Telegram und Webhook mit Bildern, ein globaler Proxy oder einer pro Konto.
+- **Bald: Abzeichen-Mining.** Die Twitch-Abzeichen, die man durchs Zuschauen verdient, gemint wie die Drops.
 - 29 Sprachen, dunkles und helles Design, Desktop-Benachrichtigungen, Symbol im
   Infobereich, Start mit dem System.
 

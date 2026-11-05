@@ -234,6 +234,7 @@ ominaisuuden käytössä.
   (strategiat, panostuksen ajoitus, ehdot), katseluputket ja tilatut kanavat ensin,
   läsnäolo chatissa (voi poistaa käytöstä), uusien streamaajien oletusvalinnat, Discord-,
   Telegram- ja webhook-ilmoitukset kuvineen, yleinen tai tilikohtainen proxy.
+- **Tulossa pian: merkkien louhinta.** Katsomalla ansaittavat Twitch-merkit louhitaan kuten Dropsit.
 - 29 kieltä, tumma ja vaalea teema, työpöytäilmoitukset, ilmoitusalueen kuvake,
   käynnistys järjestelmän mukana.
 
