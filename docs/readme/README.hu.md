@@ -513,7 +513,7 @@ Ugyanennek a szerzőnek más projektjei:
 - A hálózatodon kívül tedd az irányítópultot egy HTTPS fordított proxy mögé, a
   `MINER_PUBLIC_URL` beállításával (lásd: [Docker](#docker)).
 - A bányász csak a `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`,
-  `twitch-drops-api.sunkwi.com` címekkel és az általad beállított értesítési célokkal
+  `drops.sunkwi.com` címekkel és az általad beállított értesítési célokkal
   kommunikál. Az alkalmazás (asztali és Docker) a `github.com` oldalon keres új
   verziókat, az asztali alkalmazás pedig a projekt GitHub-kiadásaiból tölti le őket. Ezek
   alá vannak írva: csak a megjelenített verzió települ.

@@ -502,7 +502,7 @@ Inne projekty tego samego autora:
 - Poza swoją siecią umieść panel za odwrotnym proxy HTTPS z `MINER_PUBLIC_URL`
   (zob. [Docker](#docker)).
 - Miner łączy się tylko z `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`,
-  `twitch-drops-api.sunkwi.com` oraz z ustawionymi przez Ciebie celami powiadomień.
+  `drops.sunkwi.com` oraz z ustawionymi przez Ciebie celami powiadomień.
   Aplikacja (desktopowa i Docker) sprawdza nowe wersje na `github.com`, a aplikacja
   desktopowa pobiera je z wydań projektu na GitHubie. Są podpisane: instalowana jest tylko
   wyświetlona wersja.

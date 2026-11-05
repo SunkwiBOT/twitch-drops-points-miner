@@ -520,7 +520,7 @@ Weitere Projekte desselben Autors:
 - Außerhalb Ihres Netzwerks stellen Sie das Dashboard mit `MINER_PUBLIC_URL` hinter einen
   HTTPS-Reverse-Proxy (siehe [Docker](#docker)).
 - Der Miner kommuniziert nur mit `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`,
-  `twitch-drops-api.sunkwi.com` und den Benachrichtigungszielen, die Sie konfigurieren.
+  `drops.sunkwi.com` und den Benachrichtigungszielen, die Sie konfigurieren.
   Die App (Desktop und Docker) sucht auf `github.com` nach neuen Versionen, und die
   Desktop-App lädt sie aus den GitHub-Releases des Projekts herunter. Sie sind signiert:
   Installiert wird nur die angezeigte Version.

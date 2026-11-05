@@ -511,7 +511,7 @@ Autres projets du même auteur :
 - Hors de votre réseau, placez le tableau de bord derrière un reverse proxy HTTPS avec
   `MINER_PUBLIC_URL` (voir [Docker](#docker)).
 - Le mineur ne parle qu'à `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`,
-  `twitch-drops-api.sunkwi.com` et aux cibles de notification que vous configurez.
+  `drops.sunkwi.com` et aux cibles de notification que vous configurez.
   L'application (bureau et Docker) cherche les nouvelles versions sur `github.com`, et
   l'application de bureau les télécharge depuis les versions GitHub du projet. Elles sont
   signées : seule la version affichée est installée.

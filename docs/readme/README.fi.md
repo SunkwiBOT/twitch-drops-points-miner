@@ -515,7 +515,7 @@ Saman tekijän muita projekteja:
 - Oman verkkosi ulkopuolella sijoita hallintapaneeli HTTPS-käänteisproxyn taakse ja aseta
   `MINER_PUBLIC_URL` (katso [Docker](#docker)).
 - Louhija on yhteydessä vain kohteisiin `twitch.tv`, `ttvnw.net`, `jtvnw.net`,
-  `twitchcdn.net`, `twitch-drops-api.sunkwi.com` sekä määrittämiisi ilmoituskohteisiin.
+  `twitchcdn.net`, `drops.sunkwi.com` sekä määrittämiisi ilmoituskohteisiin.
   Sovellus (työpöytä ja Docker) tarkistaa uudet versiot `github.com`-palvelusta, ja
   työpöytäsovellus lataa ne projektin GitHub-julkaisuista. Ne on allekirjoitettu: vain
   näytetty versio asennetaan.

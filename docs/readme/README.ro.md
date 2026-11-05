@@ -504,7 +504,7 @@ Alte proiecte ale aceluiași autor:
 - În afara rețelei tale, pune panoul în spatele unui reverse proxy HTTPS cu
   `MINER_PUBLIC_URL` (vezi [Docker](#docker)).
 - Minerul comunică doar cu `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`,
-  `twitch-drops-api.sunkwi.com` și cu destinațiile de notificare pe care le configurezi.
+  `drops.sunkwi.com` și cu destinațiile de notificare pe care le configurezi.
   Aplicația (desktop și Docker) verifică versiunile noi pe `github.com`, iar aplicația
   desktop le descarcă din versiunile proiectului pe GitHub. Sunt semnate: se instalează
   doar versiunea afișată.

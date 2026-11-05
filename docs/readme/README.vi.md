@@ -369,7 +369,7 @@ Các dự án khác của cùng tác giả:
 - Bảng điều khiển HTTP kiểm tra mật khẩu trong thời gian hằng định và dùng cookie HttpOnly, SameSite=Strict (`Secure`, với tiền tố `__Host-`, khi chạy sau HTTPS). Máy chủ chỉ lưu SHA-256 của mỗi phiên. Nó kết thúc một phiên sau 30 ngày hoặc khi đăng xuất. Nó kiểm tra phiên trước khi đọc bất kỳ nội dung yêu cầu nào và giới hạn nội dung ở 256 KiB.
 - Sau 5 lần nhập sai mật khẩu liên tiếp từ một địa chỉ IP (biểu mẫu đăng nhập hoặc bearer), địa chỉ đó phải chờ 30 giây. Máy chủ trả về `429` kèm `Retry-After` mà không xem mật khẩu. Mỗi mật khẩu sai cũng phải chờ nửa giây mới được trả lời.
 - Bên ngoài mạng của bạn, hãy đặt bảng điều khiển sau một reverse proxy HTTPS với `MINER_PUBLIC_URL` (xem [Docker](#docker)).
-- Trình đào chỉ liên lạc với `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`, `twitch-drops-api.sunkwi.com` và các đích thông báo bạn cấu hình. Ứng dụng (bản máy tính và Docker) kiểm tra phiên bản mới trên `github.com`, và ứng dụng máy tính tải chúng từ GitHub releases của dự án. Các phiên bản đều có chữ ký: chỉ phiên bản được hiển thị mới được cài.
+- Trình đào chỉ liên lạc với `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`, `drops.sunkwi.com` và các đích thông báo bạn cấu hình. Ứng dụng (bản máy tính và Docker) kiểm tra phiên bản mới trên `github.com`, và ứng dụng máy tính tải chúng từ GitHub releases của dự án. Các phiên bản đều có chữ ký: chỉ phiên bản được hiển thị mới được cài.
 
 ## <a name="build"></a>Build từ mã nguồn
 

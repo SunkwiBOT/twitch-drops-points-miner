@@ -493,7 +493,7 @@ Další projekty stejného autora:
 - Mimo svou síť umístěte panel za reverzní proxy HTTPS s `MINER_PUBLIC_URL`
   (viz [Docker](#docker)).
 - Miner komunikuje jen s `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`,
-  `twitch-drops-api.sunkwi.com` a s cíli oznámení, které nastavíte. Aplikace (desktopová
+  `drops.sunkwi.com` a s cíli oznámení, které nastavíte. Aplikace (desktopová
   i Docker) kontroluje nové verze na `github.com` a desktopová aplikace je stahuje
   z vydání projektu na GitHubu. Jsou podepsané: nainstaluje se jen zobrazená verze.
 

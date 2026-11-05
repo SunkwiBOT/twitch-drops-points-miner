@@ -510,7 +510,7 @@ Otros proyectos del mismo autor:
 - Fuera de tu red, pon el panel detrás de un proxy inverso HTTPS con
   `MINER_PUBLIC_URL` (consulta [Docker](#docker)).
 - El minero solo se comunica con `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`,
-  `twitch-drops-api.sunkwi.com` y los destinos de notificación que configures. La app
+  `drops.sunkwi.com` y los destinos de notificación que configures. La app
   (escritorio y Docker) busca versiones nuevas en `github.com`, y la app de escritorio las
   descarga de las releases de GitHub del proyecto. Están firmadas: solo se instala la
   versión que se muestra.

@@ -507,7 +507,7 @@ Andra projekt av samma upphovsperson:
 - Utanför ditt nätverk placerar du översikten bakom en omvänd HTTPS-proxy med
   `MINER_PUBLIC_URL` (se [Docker](#docker)).
 - Minern pratar bara med `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`,
-  `twitch-drops-api.sunkwi.com` och de aviseringsmål du konfigurerar. Appen (skrivbord och
+  `drops.sunkwi.com` och de aviseringsmål du konfigurerar. Appen (skrivbord och
   Docker) söker efter nya versioner på `github.com`, och skrivbordsappen laddar ner dem
   från projektets GitHub-releaser. De är signerade: bara den visade versionen installeras.
 

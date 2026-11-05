@@ -369,7 +369,7 @@ Aynı geliştiricinin diğer projeleri:
 - HTTP paneli şifreyi sabit sürede denetler ve HttpOnly, SameSite=Strict çerezleri kullanır (HTTPS arkasında `__Host-` önekiyle birlikte `Secure`). Sunucu her oturumun yalnızca SHA-256 özetini tutar. Bir oturumu 30 gün sonra veya çıkışta sonlandırır. Herhangi bir istek gövdesini okumadan önce oturumu denetler ve gövdeleri 256 KiB ile sınırlar.
 - Bir IP adresinden art arda 5 yanlış şifre girilirse (giriş formu veya bearer), o adres 30 saniye bekler. Sunucu şifreye bakmadan `Retry-After` ile `429` yanıtı verir. Her yanlış şifrenin yanıtı ayrıca yarım saniye sürer.
 - Ağınızın dışında paneli `MINER_PUBLIC_URL` ile bir HTTPS ters proxy'nin arkasına koyun ([Docker](#docker) bölümüne bakın).
-- Madenci yalnızca `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`, `twitch-drops-api.sunkwi.com` ve yapılandırdığınız bildirim hedefleriyle konuşur. Uygulama (masaüstü ve Docker) yeni sürümleri `github.com` üzerinde denetler; masaüstü uygulaması bunları projenin GitHub sürümlerinden indirir. Sürümler imzalıdır: yalnızca gösterilen sürüm yüklenir.
+- Madenci yalnızca `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`, `drops.sunkwi.com` ve yapılandırdığınız bildirim hedefleriyle konuşur. Uygulama (masaüstü ve Docker) yeni sürümleri `github.com` üzerinde denetler; masaüstü uygulaması bunları projenin GitHub sürümlerinden indirir. Sürümler imzalıdır: yalnızca gösterilen sürüm yüklenir.
 
 ## <a name="build"></a>Kaynaktan derleme
 

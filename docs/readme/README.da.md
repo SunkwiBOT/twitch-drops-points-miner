@@ -510,7 +510,7 @@ Andre projekter fra samme udvikler:
 - Uden for dit netværk skal du placere oversigten bag en reverse proxy til HTTPS med
   `MINER_PUBLIC_URL` (se [Docker](#docker)).
 - Mineren taler kun med `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`,
-  `twitch-drops-api.sunkwi.com` og de notifikationsmål, du konfigurerer. Appen (skrivebord
+  `drops.sunkwi.com` og de notifikationsmål, du konfigurerer. Appen (skrivebord
   og Docker) søger efter nye versioner på `github.com`, og skrivebordsappen henter dem fra
   projektets GitHub-udgivelser. De er signerede: kun den viste version bliver installeret.
 

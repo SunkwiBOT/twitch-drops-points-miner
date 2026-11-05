@@ -369,7 +369,7 @@ Twitch 對每個帳號同一時間只會計入**一個 Drops 活動**和**兩個
 - HTTP 儀表板使用固定時間的密碼比對，以及 HttpOnly、SameSite=Strict 的 Cookie（透過 HTTPS 時另加 `Secure` 和 `__Host-` 前綴）。伺服器只保存每個工作階段的 SHA-256。工作階段會在 30 天後或登出時結束。伺服器會先檢查工作階段，才讀取任何請求內容，並將請求內容限制在 256 KiB 以內。
 - 同一個 IP 位址連續輸錯 5 次密碼後（登入表單或 bearer），該位址必須等待 30 秒。伺服器會直接回傳 `429` 和 `Retry-After`，不會檢查密碼。每次輸錯密碼，回應也會延遲半秒。
 - 在你的網路以外使用時，請把儀表板放在 HTTPS 反向代理伺服器後方，並設定 `MINER_PUBLIC_URL`（請參閱 [Docker](#docker)）。
-- 挖掘器只會與 `twitch.tv`、`ttvnw.net`、`jtvnw.net`、`twitchcdn.net`、`twitch-drops-api.sunkwi.com` 以及你設定的通知目標通訊。應用程式（桌面版和 Docker 版）會在 `github.com` 檢查新版本，桌面版會從本專案的 GitHub releases 下載新版本。新版本都經過簽章：只會安裝畫面上顯示的那個版本。
+- 挖掘器只會與 `twitch.tv`、`ttvnw.net`、`jtvnw.net`、`twitchcdn.net`、`drops.sunkwi.com` 以及你設定的通知目標通訊。應用程式（桌面版和 Docker 版）會在 `github.com` 檢查新版本，桌面版會從本專案的 GitHub releases 下載新版本。新版本都經過簽章：只會安裝畫面上顯示的那個版本。
 
 ## <a name="build"></a>從原始碼建置
 

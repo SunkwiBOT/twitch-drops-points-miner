@@ -369,7 +369,7 @@ Twitch 对每个账号同时只计入**一个 Drops 活动**和**两个频道的
 - HTTP 仪表盘使用恒定时间的密码校验，以及 HttpOnly、SameSite=Strict 的 Cookie（位于 HTTPS 之后时还带有 `Secure` 和 `__Host-` 前缀）。服务器只保存每个会话的 SHA-256。会话在 30 天后或退出登录时结束。服务器在读取任何请求体之前先检查会话，并将请求体限制在 256 KiB 以内。
 - 同一 IP 地址连续输错 5 次密码后（登录表单或 bearer），该地址需等待 30 秒。服务器会直接返回 `429` 和 `Retry-After`，不会查看密码。每次密码错误还会延迟半秒才响应。
 - 在你的网络之外访问时，请把仪表盘放在 HTTPS 反向代理之后，并设置 `MINER_PUBLIC_URL`（参见 [Docker](#docker)）。
-- 挖掘器只与 `twitch.tv`、`ttvnw.net`、`jtvnw.net`、`twitchcdn.net`、`twitch-drops-api.sunkwi.com` 以及你配置的通知目标通信。应用（桌面版和 Docker 版）会在 `github.com` 上检查新版本，桌面应用会从项目的 GitHub releases 下载新版本。新版本都经过签名：只会安装界面上显示的那个版本。
+- 挖掘器只与 `twitch.tv`、`ttvnw.net`、`jtvnw.net`、`twitchcdn.net`、`drops.sunkwi.com` 以及你配置的通知目标通信。应用（桌面版和 Docker 版）会在 `github.com` 上检查新版本，桌面应用会从项目的 GitHub releases 下载新版本。新版本都经过签名：只会安装界面上显示的那个版本。
 
 ## <a name="build"></a>从源码构建
 

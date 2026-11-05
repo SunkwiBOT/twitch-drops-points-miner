@@ -369,7 +369,7 @@ Proyek lain dari pembuat yang sama:
 - Dasbor HTTP memeriksa kata sandi dalam waktu konstan dan memakai cookie HttpOnly, SameSite=Strict (`Secure`, dengan awalan `__Host-`, di belakang HTTPS). Server hanya menyimpan SHA-256 dari setiap sesi. Sesi diakhiri setelah 30 hari atau saat keluar. Server memeriksa sesi sebelum membaca body request apa pun dan membatasi body hingga 256 KiB.
 - Setelah 5 kata sandi salah berturut-turut dari satu alamat IP (formulir masuk atau bearer), alamat itu harus menunggu 30 detik. Server menjawab `429` dengan `Retry-After` tanpa melihat kata sandinya. Setiap kata sandi salah juga butuh setengah detik untuk dijawab.
 - Di luar jaringan Anda, taruh dasbor di belakang reverse proxy HTTPS dengan `MINER_PUBLIC_URL` (lihat [Docker](#docker)).
-- Penambang hanya berkomunikasi dengan `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`, `twitch-drops-api.sunkwi.com`, dan tujuan notifikasi yang Anda atur. Aplikasi (desktop dan Docker) memeriksa versi baru di `github.com`, dan aplikasi desktop mengunduhnya dari GitHub releases proyek. Versi itu ditandatangani: hanya versi yang ditampilkan yang dipasang.
+- Penambang hanya berkomunikasi dengan `twitch.tv`, `ttvnw.net`, `jtvnw.net`, `twitchcdn.net`, `drops.sunkwi.com`, dan tujuan notifikasi yang Anda atur. Aplikasi (desktop dan Docker) memeriksa versi baru di `github.com`, dan aplikasi desktop mengunduhnya dari GitHub releases proyek. Versi itu ditandatangani: hanya versi yang ditampilkan yang dipasang.
 
 ## <a name="build"></a>Build dari sumber
 
