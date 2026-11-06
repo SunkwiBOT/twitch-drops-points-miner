@@ -197,6 +197,7 @@ all'opera.
 - **La stessa interfaccia ovunque.** L'app desktop (Linux, Windows, macOS) e l'immagine
   Docker mostrano la stessa dashboard. Docker gira su un VPS, un NAS o un Raspberry Pi,
   senza schermo né browser su quella macchina: la dashboard si apre in qualsiasi browser.
+  Sul telefono la dashboard si adatta allo schermo e, in HTTPS, si installa come un'app.
 - **Leggero.** Circa 30 MB di memoria per 4 account, quasi niente CPU e un'immagine Docker
   di circa 12 MB.
 

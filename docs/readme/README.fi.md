@@ -200,6 +200,7 @@ ominaisuuden käytössä.
   Docker-image näyttävät saman hallintapaneelin. Docker toimii VPS:llä, NAS-laitteella tai
   Raspberry Pi:llä ilman näyttöä tai selainta kyseisellä koneella: hallintapaneeli
   avautuu missä tahansa selaimessa.
+  Puhelimessa hallintapaneeli mukautuu näyttöön, ja HTTPS:n kautta sen voi asentaa kuin sovelluksen.
 - **Kevyt.** Noin 30 Mt muistia 4 tilille, tuskin lainkaan suoritinta ja noin 12 Mt:n
   Docker-image.
 

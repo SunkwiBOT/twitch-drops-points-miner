@@ -197,6 +197,7 @@ funcionando.
   imagen de Docker muestran el mismo panel. Docker funciona en un VPS, un NAS o una
   Raspberry Pi, sin pantalla ni navegador en esa máquina: el panel se abre en cualquier
   navegador.
+  En el móvil, el panel se adapta a la pantalla y, por HTTPS, se instala como una app.
 - **Ligero.** Unos 30 MB de memoria para 4 cuentas, casi nada de CPU y una imagen de
   Docker de unos 12 MB.
 

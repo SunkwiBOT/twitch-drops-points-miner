@@ -199,6 +199,7 @@ Ce qui le distingue des autres mineurs. « Voir en image » montre chaque poin
   Docker affichent le même tableau de bord. Docker tourne sur un VPS, un NAS ou un
   Raspberry Pi, sans écran ni navigateur sur cette machine : le tableau de bord s'ouvre
   dans n'importe quel navigateur.
+  Sur un téléphone, le tableau de bord s'adapte à l'écran et, en HTTPS, s'installe comme une application.
 - **Léger.** Environ 30 Mo de mémoire pour 4 comptes, presque pas de processeur, et une
   image Docker d'environ 12 Mo.
 

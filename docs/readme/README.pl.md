@@ -196,6 +196,7 @@ działa.
 - **Ten sam interfejs wszędzie.** Aplikacja desktopowa (Linux, Windows, macOS) i obraz
   Dockera pokazują ten sam panel. Docker działa na VPS-ie, NAS-ie lub Raspberry Pi, bez
   ekranu i przeglądarki na tej maszynie: panel otwiera się w dowolnej przeglądarce.
+  Na telefonie panel dopasowuje się do ekranu, a przez HTTPS można go zainstalować jak aplikację.
 - **Lekki.** Około 30 MB pamięci przy 4 kontach, prawie zerowe użycie procesora i obraz
   Dockera o rozmiarze około 12 MB.
 

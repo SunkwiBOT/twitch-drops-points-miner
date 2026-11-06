@@ -157,6 +157,7 @@ Hal-hal yang membedakannya dari penambang lain. “Lihat langsung” di bawah se
 ### Di desktop atau di server
 
 - **Antarmuka yang sama di mana saja.** Aplikasi desktop (Linux, Windows, macOS) dan image Docker menampilkan dasbor yang sama. Docker berjalan di VPS, NAS, atau Raspberry Pi, tanpa layar atau browser di mesin itu: dasbor bisa dibuka di browser mana pun.
+  Di ponsel, dasbor menyesuaikan diri dengan layar, dan lewat HTTPS bisa dipasang seperti aplikasi.
 - **Ringan.** Sekitar 30 MB memori untuk 4 akun, hampir tanpa CPU, dan image Docker sekitar 12 MB.
 
 ### Keamanan dan pembaruan

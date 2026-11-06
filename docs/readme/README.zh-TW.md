@@ -156,7 +156,7 @@
 
 ### 桌面或伺服器
 
-- **到哪裡都是同一個介面。** 桌面應用程式（Linux、Windows、macOS）和 Docker 映像檔顯示的是同一個儀表板。Docker 可以在 VPS、NAS 或 Raspberry Pi 上執行，那台機器不需要螢幕或瀏覽器：儀表板可以在任何瀏覽器中開啟。
+- **到哪裡都是同一個介面。** 桌面應用程式（Linux、Windows、macOS）和 Docker 映像檔顯示的是同一個儀表板。Docker 可以在 VPS、NAS 或 Raspberry Pi 上執行，那台機器不需要螢幕或瀏覽器：儀表板可以在任何瀏覽器中開啟。在手機上，儀表板會配合螢幕顯示；透過 HTTPS 開啟時，還能像 App 一樣安裝。
 - **輕巧。** 4 個帳號約使用 30 MB 記憶體，幾乎不佔用 CPU，Docker 映像檔約 12 MB。
 
 ### 安全性與更新

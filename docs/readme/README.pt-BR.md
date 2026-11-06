@@ -195,6 +195,7 @@ recurso funcionando.
 - **A mesma interface em todo lugar.** O app para desktop (Linux, Windows, macOS) e a
   imagem Docker mostram o mesmo painel. O Docker roda em um VPS, um NAS ou um
   Raspberry Pi, sem tela nem navegador nessa máquina: o painel abre em qualquer navegador.
+  No celular, o painel se ajusta à tela e, via HTTPS, pode ser instalado como um app.
 - **Leve.** Cerca de 30 MB de memória para 4 contas, quase nada de CPU e uma imagem Docker
   de cerca de 12 MB.
 

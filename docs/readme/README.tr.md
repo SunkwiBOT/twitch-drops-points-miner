@@ -157,6 +157,7 @@ Onu diğer madencilerden ayıran şeyler. Bir maddenin altındaki “Çalışır
 ### Masaüstünde veya bir sunucuda
 
 - **Her yerde aynı arayüz.** Masaüstü uygulaması (Linux, Windows, macOS) ve Docker imajı aynı paneli gösterir. Docker bir VPS, NAS veya Raspberry Pi üzerinde, o makinede ekran ya da tarayıcı olmadan çalışır: panel herhangi bir tarayıcıda açılır.
+  Telefonda panel ekrana uyum sağlar; HTTPS üzerinden bir uygulama gibi yüklenebilir.
 - **Hafif.** 4 hesap için yaklaşık 30 MB bellek, neredeyse hiç işlemci kullanımı ve yaklaşık 12 MB'lık bir Docker imajı.
 
 ### Güvenlik ve güncellemeler

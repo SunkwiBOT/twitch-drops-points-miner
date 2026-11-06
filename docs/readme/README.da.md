@@ -198,6 +198,7 @@ brug.
 - **Den samme brugerflade overalt.** Skrivebordsappen (Linux, Windows, macOS) og
   Docker-imaget viser den samme oversigt. Docker kører på en VPS, en NAS eller en Raspberry
   Pi uden skærm eller browser på den maskine: oversigten åbner i enhver browser.
+  På en telefon tilpasser oversigten sig skærmen, og via HTTPS kan den installeres som en app.
 - **Let.** Omkring 30 MB hukommelse til 4 konti, næsten ingen CPU og et Docker-image på
   omkring 12 MB.
 

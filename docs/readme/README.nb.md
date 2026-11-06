@@ -199,6 +199,7 @@ bruk.
   Docker-imaget viser den samme oversikten. Docker kjører på en VPS, en NAS eller en
   Raspberry Pi, uten skjerm eller nettleser på den maskinen: oversikten åpnes i hvilken som
   helst nettleser.
+  På en telefon tilpasser oversikten seg skjermen, og over HTTPS kan den installeres som en app.
 - **Lett.** Rundt 30 MB minne for 4 kontoer, nesten ingen CPU og et Docker-image på rundt
   12 MB.
 

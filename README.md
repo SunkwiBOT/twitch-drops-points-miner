@@ -194,6 +194,7 @@ What sets it apart from other miners. “See it in action” under a point shows
 - **The same interface everywhere.** The desktop app (Linux, Windows, macOS) and the
   Docker image show the same dashboard. Docker runs on a VPS, a NAS or a Raspberry Pi,
   with no screen or browser on that machine: the dashboard opens in any browser.
+  On a phone, the dashboard fits the screen, and over HTTPS it installs like an app.
 - **Light.** About 30 MB of memory for 4 accounts, almost no CPU, and a Docker image of
   about 12 MB.
 

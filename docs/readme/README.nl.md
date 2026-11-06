@@ -200,6 +200,7 @@ het werkt.
 - **Overal dezelfde interface.** De desktop-app (Linux, Windows, macOS) en de Docker-image
   tonen hetzelfde dashboard. Docker draait op een VPS, een NAS of een Raspberry Pi, zonder
   scherm of browser op die machine: het dashboard opent in elke browser.
+  Op een telefoon past het dashboard zich aan het scherm aan, en via HTTPS installeer je het als een app.
 - **Licht.** Ongeveer 30 MB geheugen voor 4 accounts, bijna geen CPU, en een Docker-image
   van ongeveer 12 MB.
 

@@ -156,7 +156,7 @@
 
 ### 桌面或服务器
 
-- **处处都是同一个界面。** 桌面应用（Linux、Windows、macOS）和 Docker 镜像显示的是同一个仪表盘。Docker 可以运行在 VPS、NAS 或 Raspberry Pi 上，那台机器上不需要屏幕或浏览器：仪表盘可以在任何浏览器中打开。
+- **处处都是同一个界面。** 桌面应用（Linux、Windows、macOS）和 Docker 镜像显示的是同一个仪表盘。Docker 可以运行在 VPS、NAS 或 Raspberry Pi 上，那台机器上不需要屏幕或浏览器：仪表盘可以在任何浏览器中打开。在手机上，仪表盘会适配屏幕；通过 HTTPS 打开时，还能像应用一样安装。
 - **轻量。** 4 个账号约占用 30 MB 内存，几乎不占用 CPU，Docker 镜像约 12 MB。
 
 ### 安全与更新

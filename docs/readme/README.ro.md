@@ -196,6 +196,7 @@ la lucru.
 - **Aceeași interfață peste tot.** Aplicația desktop (Linux, Windows, macOS) și imaginea
   Docker afișează același panou. Docker rulează pe un VPS, un NAS sau un Raspberry Pi, fără
   ecran și fără browser pe acea mașină: panoul se deschide în orice browser.
+  Pe telefon, panoul se adaptează la ecran și, prin HTTPS, se instalează ca o aplicație.
 - **Consum redus.** În jur de 30 MB de memorie pentru 4 conturi, aproape deloc procesor și
   o imagine Docker de circa 12 MB.
 

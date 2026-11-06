@@ -193,6 +193,7 @@
 - **Všude stejné rozhraní.** Desktopová aplikace (Linux, Windows, macOS) i obraz pro Docker
   zobrazují stejný panel. Docker běží na VPS, NAS nebo Raspberry Pi, bez obrazovky
   a prohlížeče na tom stroji: panel se otevře v jakémkoli prohlížeči.
+  Na telefonu se panel přizpůsobí obrazovce a přes HTTPS ho lze nainstalovat jako aplikaci.
 - **Nenáročný.** Asi 30 MB paměti pro 4 účty, téměř žádná zátěž procesoru a obraz pro
   Docker o velikosti asi 12 MB.
 

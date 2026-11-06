@@ -201,6 +201,7 @@ im Einsatz.
   Docker-Image zeigen dasselbe Dashboard. Docker läuft auf einem VPS, einem NAS oder einem
   Raspberry Pi, ohne Bildschirm und ohne Browser auf diesem Rechner: Das Dashboard öffnet
   sich in jedem beliebigen Browser.
+  Auf dem Handy passt sich das Dashboard dem Bildschirm an und lässt sich über HTTPS wie eine App installieren.
 - **Sparsam.** Etwa 30 MB Arbeitsspeicher für 4 Konten, kaum CPU und ein Docker-Image von
   etwa 12 MB.
 

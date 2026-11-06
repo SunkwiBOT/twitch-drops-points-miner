@@ -157,6 +157,7 @@ Những gì làm nên khác biệt so với các trình đào khác. “Xem minh
 ### Trên máy tính hoặc trên máy chủ
 
 - **Cùng một giao diện ở mọi nơi.** Ứng dụng máy tính (Linux, Windows, macOS) và image Docker hiển thị cùng một bảng điều khiển. Docker chạy trên VPS, NAS hoặc Raspberry Pi, máy đó không cần màn hình hay trình duyệt: bảng điều khiển mở được trong bất kỳ trình duyệt nào.
+  Trên điện thoại, bảng điều khiển tự vừa với màn hình, và qua HTTPS có thể cài như một ứng dụng.
 - **Nhẹ.** Khoảng 30 MB bộ nhớ cho 4 tài khoản, gần như không tốn CPU, và image Docker chỉ khoảng 12 MB.
 
 ### Bảo mật và cập nhật

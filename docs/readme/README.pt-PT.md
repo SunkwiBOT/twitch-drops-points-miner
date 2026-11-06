@@ -197,6 +197,7 @@ funcionar.
   imagem Docker mostram o mesmo painel. O Docker corre num VPS, num NAS ou num
   Raspberry Pi, sem ecrã nem navegador nessa máquina: o painel abre-se em qualquer
   navegador.
+  No telemóvel, o painel adapta-se ao ecrã e, por HTTPS, instala-se como uma app.
 - **Leve.** Cerca de 30 MB de memória para 4 contas, quase nada de CPU e uma imagem Docker
   de cerca de 12 MB.
 

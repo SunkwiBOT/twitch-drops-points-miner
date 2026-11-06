@@ -197,6 +197,7 @@ arbete.
 - **Samma gränssnitt överallt.** Skrivbordsappen (Linux, Windows, macOS) och
   Docker-avbilden visar samma översikt. Docker körs på en VPS, en NAS eller en Raspberry
   Pi, utan skärm eller webbläsare på den maskinen: översikten öppnas i valfri webbläsare.
+  På en telefon anpassar sig översikten efter skärmen, och via HTTPS kan den installeras som en app.
 - **Lätt.** Cirka 30 MB minne för 4 konton, nästan ingen CPU och en Docker-avbild på
   cirka 12 MB.
 

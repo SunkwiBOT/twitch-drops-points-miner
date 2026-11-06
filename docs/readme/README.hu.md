@@ -201,6 +201,7 @@ láthatod, hogyan működnek.
   a Docker-image ugyanazt az irányítópultot mutatja. A Docker VPS-en, NAS-on vagy
   Raspberry Pi-on fut, azon a gépen képernyő és böngésző nélkül: az irányítópult bármely
   böngészőben megnyílik.
+  Telefonon az irányítópult igazodik a képernyőhöz, HTTPS-en pedig alkalmazásként telepíthető.
 - **Könnyű.** Nagyjából 30 MB memória 4 fiókhoz, szinte semmi processzorhasználat, és egy
   nagyjából 12 MB-os Docker-image.
 
