@@ -24,6 +24,7 @@ export const ICON_PATHS: Record<IconName, string> = {
   [IconName.MINUS]: "M5 12h14",
   [IconName.INFO]: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 16v-4M12 8h.01",
   [IconName.X]: "M18 6 6 18M6 6l12 12",
+  [IconName.MENU]: "M4 6h16M4 12h16M4 18h16",
   [IconName.REFRESH]: "M21 12a9 9 0 1 1-2.64-6.36L21 8M21 3v5h-5",
   [IconName.TRASH]: "M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6",
   [IconName.UP]: "m18 15-6-6-6 6",

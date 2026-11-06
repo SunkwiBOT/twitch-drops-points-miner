@@ -228,6 +228,7 @@
   "time_in_days": "om {count} d",
   "nav_home": "Hjem",
   "nav_main": "Hovedmeny",
+  "nav_open_menu": "Åpne menyen",
   "nav_catalogue": "Katalog",
   "nav_logs": "Tekniske logger",
   "nav_account_overview": "Oversikt",

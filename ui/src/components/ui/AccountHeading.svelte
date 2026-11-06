@@ -24,7 +24,7 @@
     </span>
     <span class="text-hint text-muted-foreground">{subtitle}</span>
   </div>
-  {#if actions}<div class="flex shrink-0 flex-wrap items-center gap-2">
+  {#if actions}<div class="flex max-w-full shrink-0 flex-wrap items-center gap-2">
       {@render actions()}
     </div>{/if}
 </div>

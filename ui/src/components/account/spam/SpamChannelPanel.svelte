@@ -210,10 +210,10 @@
 {/snippet}
 
 <Card class="gap-0 overflow-visible py-0">
-  <!-- ! -top-6 undoes PageBody's p-6: stuck, the header sits on the page's very top edge,
-       with no reward scrolling above it. -->
+  <!-- ! -top-6 / max-md:-top-3 undo PageBody's padding: stuck, the header sits on the page's
+       very top edge, with no reward scrolling above it. -->
   <header
-    class="group/twin sticky -top-6 z-10 isolate flex flex-wrap items-center gap-x-4 gap-y-3 overflow-hidden rounded-t-xl border-b bg-card px-5 py-4"
+    class="group/twin sticky -top-6 z-10 isolate flex flex-wrap items-center gap-x-4 gap-y-3 overflow-hidden rounded-t-xl border-b bg-card px-5 py-4 max-md:-top-3 max-md:px-3.5"
   >
     {#if knownBanners[channel.login]}
       <span

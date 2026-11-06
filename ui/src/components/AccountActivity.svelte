@@ -36,6 +36,7 @@
   import {
     AvatarSize,
     BadgeTone,
+    BalanceAlign,
     ButtonSize,
     ButtonType,
     ButtonVariant,
@@ -217,7 +218,11 @@
         </span>
       </div>
       {#if slot.points}
-        <PointsBalance balance={slot.points.balance} earned={slot.points.earned_session} />
+        <PointsBalance
+          balance={slot.points.balance}
+          earned={slot.points.earned_session}
+          align={BalanceAlign.END}
+        />
       {:else}<span></span>{/if}
       <div class="col-span-3 min-w-0">{@render watched(slot)}</div>
     </div>

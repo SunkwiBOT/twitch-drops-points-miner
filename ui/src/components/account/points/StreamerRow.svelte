@@ -6,6 +6,7 @@
   import { channelUrl } from "../../../lib/events/events.utils";
   import { t } from "../../../lib/i18n/i18n.svelte";
   import { ticker } from "../../../lib/state/ticker.svelte";
+  import { wideLayout } from "../../../lib/state/viewport.svelte";
   import { strong } from "../../../lib/text.utils";
   import { relativeTime } from "../../../lib/time/time.utils";
   import Badge from "../../ui/Badge.svelte";
@@ -18,6 +19,7 @@
   import {
     AvatarSize,
     BadgeTone,
+    BalanceAlign,
     IconName,
     LinkLook,
     LinkMark,
@@ -32,6 +34,25 @@
 
   let { streamer, channel, view }: StreamerRowPropsType = $props();
 </script>
+
+{#snippet balance(align: BalanceAlign)}
+  {#if view && view.points.balance > 0}
+    <PointsBalance
+      balance={view.points.balance}
+      earned={view.points.earned_session}
+      streak={view.points.streak?.count}
+      {align}
+    >
+      {#if view.points.last_bonus_at}<span
+          ><RichText
+            text={t.streamer_last_bonus({
+              time: strong(relativeTime(view.points.last_bonus_at, ticker.now)),
+            })}
+          /></span
+        >{/if}
+    </PointsBalance>
+  {/if}
+{/snippet}
 
 <div
   class={[
@@ -84,20 +105,8 @@
         <span class="truncate">{t.points_offline_hint()}</span>
       {/if}
     </span>
+    <!-- ! On a phone the balance goes under the name: on the right it left the name a few letters. -->
+    {#if !wideLayout.current}{@render balance(BalanceAlign.START)}{/if}
   </div>
-  {#if view && view.points.balance > 0}
-    <PointsBalance
-      balance={view.points.balance}
-      earned={view.points.earned_session}
-      streak={view.points.streak?.count}
-    >
-      {#if view.points.last_bonus_at}<span
-          ><RichText
-            text={t.streamer_last_bonus({
-              time: strong(relativeTime(view.points.last_bonus_at, ticker.now)),
-            })}
-          /></span
-        >{/if}
-    </PointsBalance>
-  {/if}
+  {#if wideLayout.current}{@render balance(BalanceAlign.END)}{/if}
 </div>

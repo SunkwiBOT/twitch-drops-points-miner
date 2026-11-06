@@ -20,6 +20,7 @@
 </script>
 
 <Tabs
+  class="max-w-full min-w-0"
   {value}
   onValueChange={(next) => {
     const option = options.find((item) => item.value === next);
@@ -29,7 +30,12 @@
     }
   }}
 >
-  <TabsList aria-label={label}>
+  <!-- ! On a phone the tabs scroll sideways inside their bar: wider, they would make the
+       whole page scroll sideways. -->
+  <TabsList
+    aria-label={label}
+    class="max-w-full justify-start overflow-x-auto [scrollbar-width:none]"
+  >
     {#each options as option (option.value)}
       <TabsTrigger
         value={option.value}

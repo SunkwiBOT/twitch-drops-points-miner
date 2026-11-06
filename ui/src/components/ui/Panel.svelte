@@ -25,7 +25,7 @@
   let { title, count, description, actions, children }: PanelPropsType = $props();
 </script>
 
-<Card class="gap-4 [--card-spacing:--spacing(5)]">
+<Card class="gap-4 [--card-spacing:--spacing(5)] max-md:[--card-spacing:--spacing(3.5)]">
   <CardHeader class="flex flex-wrap items-center gap-x-3 gap-y-1.5">
     <CardTitle class="flex items-center gap-2 text-base font-semibold">
       {title}

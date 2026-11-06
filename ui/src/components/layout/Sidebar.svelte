@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Snippet } from "svelte";
+
   import { CommandName } from "../../lib/bindings/CommandName";
   import TextButton from "../ui/TextButton.svelte";
   import { cn } from "$lib/utils";
@@ -28,6 +30,10 @@
   import PoweredBy from "./PoweredBy.svelte";
 
   type NavItemType = { page: Page; icon: IconName; label: string; count?: number };
+
+  type SidebarPropsType = { controls?: Snippet };
+
+  let { controls }: SidebarPropsType = $props();
 
   const accounts = $derived(app.snapshot?.accounts ?? []);
 
@@ -198,7 +204,10 @@
       type={ButtonType.BUTTON}
       disabled={!app.snapshot?.vault.unlocked}
       class="mt-1.5 w-full"
-      onclick={() => (app.loginDialog = true)}
+      onclick={() => {
+        app.navDrawer = false;
+        app.loginDialog = true;
+      }}
     />
   </div>
   <div class="flex items-center gap-2 text-xs text-muted-foreground tabular-nums">
@@ -214,6 +223,7 @@
     <span class="h-px flex-1 bg-border"></span>
   </div>
   <div class="flex flex-col gap-2.5 px-3 pt-2 pb-3">
+    {#if controls}<div class="flex items-center gap-2">{@render controls()}</div>{/if}
     <TextButton
       label={t.nav_feedback()}
       icon={IconName.ALERT}
@@ -222,7 +232,10 @@
       type={ButtonType.BUTTON}
       disabled={false}
       class="h-auto min-h-8 w-full justify-start py-1.5 text-left leading-snug whitespace-normal"
-      onclick={() => (app.feedbackDialog = true)}
+      onclick={() => {
+        app.navDrawer = false;
+        app.feedbackDialog = true;
+      }}
     />
     <PoweredBy />
   </div>

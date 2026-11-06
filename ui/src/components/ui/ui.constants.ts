@@ -9,6 +9,7 @@ export enum IconName {
   MINUS = "MINUS",
   INFO = "INFO",
   X = "X",
+  MENU = "MENU",
   REFRESH = "REFRESH",
   TRASH = "TRASH",
   UP = "UP",
@@ -217,6 +218,11 @@ export const DOT_TONE_CLASSES: Record<BadgeTone, string> = {
   [BadgeTone.DANGER]: "bg-destructive",
   [BadgeTone.LIVE]: "bg-live-emphasis",
 };
+
+export enum BalanceAlign {
+  START = "START",
+  END = "END",
+}
 
 export enum MenuAlign {
   LEFT = "LEFT",

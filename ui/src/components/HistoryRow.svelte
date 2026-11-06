@@ -1,20 +1,17 @@
 <script lang="ts">
   import { TableCell, TableRow } from "$lib/components/ui/table";
   import type { MinerEventType } from "../lib/bindings/MinerEventType";
-  import { eventDetail, redeemedReward } from "../lib/events/detail.utils";
+  import { historyView } from "../lib/events/detail.utils";
   import {
     eventIcon,
     channelUrl,
     EVENT_ICONS,
     EVENT_KIND_LABELS,
     EVENT_TONES,
-    eventText,
     MINER_ICONS,
     MINER_LABELS,
     MINER_TONES,
   } from "../lib/events/events.utils";
-  import { BoxArtSize } from "../lib/format.constants";
-  import { boxArt } from "../lib/format.utils";
   import { app } from "../lib/state/state.svelte";
   import { formatShortDateTime } from "../lib/time/time.utils";
   import Avatar from "./ui/Avatar.svelte";
@@ -41,17 +38,8 @@
 
   let { event, showAccount }: HistoryRowPropsType = $props();
 
-  const owner = $derived(app.snapshot?.accounts.find((a) => a.id === event.account_id));
-  const login = $derived(event.context.channel);
-  const accountName = $derived(owner?.display_name ?? event.account_login);
-  const miner = $derived(event.context.miner);
-  const sentence = $derived(eventText(event, true));
-
-  const reward = $derived(redeemedReward(event));
-  const detail = $derived(eventDetail(event));
-
-  const picture = $derived(
-    event.context.reward ?? boxArt(event.context.art, BoxArtSize.ACTIVITY) ?? undefined,
+  const { owner, login, accountName, miner, sentence, reward, detail, picture } = $derived(
+    historyView(event, app.snapshot?.accounts ?? []),
   );
 </script>
 

@@ -108,3 +108,6 @@ export const ACTIVITY_REPORT_GAP_MS = 30_000;
 export const LOCK_CHECK_DELAY_MS = 2_000;
 
 export const LOCK_CHECK_TIMEOUT_MS = 5_000;
+
+// ! Tailwind's `md`: the sidebar and the phone drawer switch where the `max-md:` rules do.
+export const WIDE_LAYOUT_QUERY = "min-width: 48rem";

@@ -102,10 +102,11 @@
           }}
         >
           {#if background}{@render background(item)}{/if}
-          <div class="flex min-h-13 items-center gap-3 px-3 py-2.5">
+          <!-- ! On a phone the row's buttons take a line of their own, under the content. -->
+          <div class="flex min-h-13 items-center gap-3 px-3 py-2.5 max-sm:flex-wrap max-sm:gap-2">
             {#if lead}{@render lead(item)}{/if}
             <span
-              class="inline-flex cursor-grab rounded-sm px-0.5 py-1 text-link transition-colors hover:bg-accent hover:text-link-hover active:cursor-grabbing"
+              class="inline-flex cursor-grab rounded-sm px-0.5 py-1 text-link transition-colors hover:bg-accent hover:text-link-hover active:cursor-grabbing max-sm:hidden"
               role="button"
               tabindex="-1"
               aria-hidden="true"
@@ -125,11 +126,12 @@
             >
               <Icon name={IconName.GRIP} size={18} class="[stroke-width:3.25]" />
             </span>
-            <span class="-ml-2 w-4 shrink-0 text-right text-xs text-muted-foreground tabular-nums"
+            <span
+              class="-ml-2 w-4 shrink-0 text-right text-xs text-muted-foreground tabular-nums max-sm:ml-0"
               >{index + 1}</span
             >
             <div class="flex min-w-0 flex-1 items-center gap-3">{@render row(item, index)}</div>
-            <div class="flex shrink-0 items-center gap-1.5">
+            <div class="flex shrink-0 items-center gap-1.5 max-sm:w-full max-sm:justify-end">
               {#if actions}{@render actions(item, index)}{/if}
               <IconButton
                 icon={IconName.ARROW_UP}

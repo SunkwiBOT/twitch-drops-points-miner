@@ -88,6 +88,7 @@ type AppStateType = {
   loginDialog: boolean;
   closeDialog: boolean;
   feedbackDialog: boolean;
+  navDrawer: boolean;
   liveEvents: MinerEventType[];
   logsAccount: string | null;
   tab: string;
@@ -107,6 +108,7 @@ export const app = $state<AppStateType>({
   loginDialog: false,
   closeDialog: false,
   feedbackDialog: false,
+  navDrawer: false,
   liveEvents: [],
   logsAccount: null,
   tab: "",
@@ -371,6 +373,7 @@ export const sessionEnded = (): void => {
   app.logsAccount = null;
   app.loginDialog = false;
   app.feedbackDialog = false;
+  app.navDrawer = false;
   sonner.dismiss();
 };
 
@@ -722,6 +725,7 @@ export const navigate = (page: Page, accountId?: string): void => {
   const next = isAccountPage(page) && !(accountId ?? app.selectedAccount) ? Page.HOME : page;
 
   app.page = next;
+  app.navDrawer = false;
   remember(KEY_STORAGE_PAGE, next);
 
   if (accountId !== undefined) {

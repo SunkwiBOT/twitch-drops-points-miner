@@ -28,12 +28,14 @@
   import { shownEvent, unnamedChannels } from "../lib/events/shown.svelte";
   import { PagedFeed } from "../lib/feed/feed.svelte";
   import { t } from "../lib/i18n/i18n.svelte";
+  import { wideLayout } from "../lib/state/viewport.svelte";
   import { app, openTab, showTab } from "../lib/state/state.svelte";
   import {
     HISTORY_MORE_SKELETON_ROWS,
     HISTORY_PAGE_SIZE,
     HISTORY_SKELETON_ROWS,
   } from "./history.constants";
+  import HistoryCard from "./HistoryCard.svelte";
   import HistoryRow from "./HistoryRow.svelte";
   import LoadMoreSentinel from "./ui/LoadMoreSentinel.svelte";
   import MultiSelect from "./ui/MultiSelect.svelte";
@@ -169,25 +171,51 @@
   {/each}
 {/snippet}
 
+{#snippet cardSkeleton(rows: number)}
+  {#each { length: rows }, index (index)}
+    <li class="flex gap-2.5 py-3" aria-hidden="true">
+      <Skeleton class="size-7 shrink-0 rounded-md" />
+      <span class="flex flex-1 flex-col gap-2">
+        <Skeleton class="h-3.5 w-4/5" />
+        <Skeleton class="h-3 w-1/2" />
+      </span>
+    </li>
+  {/each}
+{/snippet}
+
 {#if feed.loading && feed.items.length === 0}
-  <Table class="text-hint">
-    {@render head()}
-    <TableBody>{@render skeleton(HISTORY_SKELETON_ROWS)}</TableBody>
-  </Table>
+  {#if wideLayout.current}
+    <Table class="text-hint">
+      {@render head()}
+      <TableBody>{@render skeleton(HISTORY_SKELETON_ROWS)}</TableBody>
+    </Table>
+  {:else}
+    <ul class="flex flex-col divide-y text-hint">{@render cardSkeleton(HISTORY_SKELETON_ROWS)}</ul>
+  {/if}
 {:else if feed.items.length === 0 && feed.problem}
   <EmptyState title={t.history_load_failed()} text={feed.problem} icon={IconName.ALERT} />
 {:else if feed.items.length === 0}
   <EmptyState text={t.history_empty()} />
 {:else}
-  <Table class="text-hint">
-    {@render head()}
-    <TableBody>
+  {#if wideLayout.current}
+    <Table class="text-hint">
+      {@render head()}
+      <TableBody>
+        {#each shown as event (event.id)}
+          <HistoryRow {event} {showAccount} />
+        {/each}
+        {#if feed.loadingMore}{@render skeleton(HISTORY_MORE_SKELETON_ROWS)}{/if}
+      </TableBody>
+    </Table>
+  {:else}
+    <!-- ! On a phone the table's six columns leave the event a few letters: one card per event. -->
+    <ul class="flex flex-col divide-y text-hint">
       {#each shown as event (event.id)}
-        <HistoryRow {event} {showAccount} />
+        <HistoryCard {event} {showAccount} />
       {/each}
-      {#if feed.loadingMore}{@render skeleton(HISTORY_MORE_SKELETON_ROWS)}{/if}
-    </TableBody>
-  </Table>
+      {#if feed.loadingMore}{@render cardSkeleton(HISTORY_MORE_SKELETON_ROWS)}{/if}
+    </ul>
+  {/if}
   <LoadMoreSentinel
     label={t.history_load_more()}
     busy={feed.loadingMore}

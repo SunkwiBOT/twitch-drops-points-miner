@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onDestroy } from "svelte";
+  import { onDestroy, tick } from "svelte";
 
   import type { AccountSnapshotType } from "../../lib/bindings/AccountSnapshotType";
   import type { ChannelType } from "../../lib/bindings/ChannelType";
@@ -30,6 +30,22 @@
   let { account, snapshot }: AccountSpamPointsPropsType = $props();
 
   let selected = $state<string | null>(null);
+  let list = $state<HTMLElement | null>(null);
+  let panel = $state<HTMLElement | null>(null);
+
+  // ! In one column (a phone, a narrow window) the rewards open under the list, out of sight.
+  const show = (login: string): void => {
+    selected = login;
+    void tick().then(() => {
+      if (
+        list &&
+        panel &&
+        panel.getBoundingClientRect().top >= list.getBoundingClientRect().bottom
+      ) {
+        panel.scrollIntoView({ block: "start", behavior: "smooth" });
+      }
+    });
+  };
 
   const channelOf = (login: string): ChannelType | undefined => accountChannel(account, login);
 
@@ -77,7 +93,7 @@
       rememberChannels([searchedChannel(found)]);
     }
 
-    selected = found.login;
+    show(found.login);
 
     if (!entries.some((entry) => entry.login === found.login && entry.in_points)) {
       await run({
@@ -115,24 +131,24 @@
 <PageBody>
   <div class="@container">
     <div class="grid items-start gap-5 @4xl:grid-cols-[minmax(0,21rem)_minmax(0,1fr)]">
-      <div class="@4xl:sticky @4xl:top-0">
-        <SpamChannelList
-          {entries}
-          {selected}
-          onselect={(login) => (selected = login)}
-          onpick={pick}
-          onremove={remove}
-        />
+      <div bind:this={list} class="@4xl:sticky @4xl:top-0">
+        <SpamChannelList {entries} {selected} onselect={show} onpick={pick} onremove={remove} />
       </div>
-      {#if current}
-        {#key current.login}
-          <SpamChannelPanel {account} channel={current} settings={snapshot.settings.spam_points} />
-        {/key}
-      {:else}
-        <Panel title={t.spam_rewards()}>
-          <EmptyState title={t.spam_pick_title()} text={t.spam_pick_text()} icon={IconName.ZAP} />
-        </Panel>
-      {/if}
+      <div bind:this={panel} class="min-w-0 scroll-mt-3">
+        {#if current}
+          {#key current.login}
+            <SpamChannelPanel
+              {account}
+              channel={current}
+              settings={snapshot.settings.spam_points}
+            />
+          {/key}
+        {:else}
+          <Panel title={t.spam_rewards()}>
+            <EmptyState title={t.spam_pick_title()} text={t.spam_pick_text()} icon={IconName.ZAP} />
+          </Panel>
+        {/if}
+      </div>
     </div>
   </div>
 </PageBody>

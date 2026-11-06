@@ -75,8 +75,8 @@
 <style>
   .timeline {
     --head-width: 248px;
-    /* ! The padding of the page's scroller (PageBody, p-6): a sticky box stops that far
-       inside it, so the axis is pulled up by as much to stick to the very top. */
+    /* ! The padding of the page's scroller (PageBody, p-6, p-3 on a phone): a sticky box
+       stops that far inside it, so the axis is pulled up by as much to stick to the very top. */
     --scroller-padding: 24px;
     position: relative;
     isolation: isolate;
@@ -130,6 +130,14 @@
   @media (max-width: 860px) {
     .timeline {
       --head-width: 150px;
+    }
+  }
+
+  /* PageBody's max-md:p-3. */
+  @media (width < 48rem) {
+    .timeline {
+      --head-width: 116px;
+      --scroller-padding: 12px;
     }
   }
 </style>

@@ -4,19 +4,27 @@
   import { number } from "../../lib/format.utils";
   import { t } from "../../lib/i18n/i18n.svelte";
   import Icon from "./Icon.svelte";
-  import { IconName } from "./ui.constants";
+  import { BalanceAlign, IconName } from "./ui.constants";
 
   type PointsBalancePropsType = {
     balance: number;
     earned: number;
     streak?: number;
+    align: BalanceAlign;
     children?: Snippet;
   };
 
-  let { balance, earned, streak, children }: PointsBalancePropsType = $props();
+  let { balance, earned, streak, align, children }: PointsBalancePropsType = $props();
+
+  const end = $derived(align === BalanceAlign.END);
 </script>
 
-<span class="flex min-w-22 shrink-0 flex-col items-end gap-0.5 text-right">
+<span
+  class={[
+    "flex shrink-0 flex-col gap-0.5",
+    end ? "min-w-22 items-end text-right" : "items-start text-left",
+  ]}
+>
   <span class="inline-flex items-center gap-1 font-semibold tabular-nums"
     ><span class="text-link"><Icon name={IconName.CHANNEL_POINTS} size={14} /></span>{number(
       balance,
@@ -38,7 +46,8 @@
         >{/if}
     </span>
   {/if}
-  {#if children}<span class="flex flex-col items-end text-xs text-muted-foreground"
+  {#if children}<span
+      class={["flex flex-col text-xs text-muted-foreground", end ? "items-end" : "items-start"]}
       >{@render children()}</span
     >{/if}
 </span>

@@ -208,6 +208,13 @@
     @apply bg-background text-foreground font-sans antialiased overflow-hidden text-sm;
   }
 
+  /* ! viewport-fit=cover (index.html): installed on a notched phone, the app would draw
+     under the notch and the home bar. */
+  #app {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+      env(safe-area-inset-left);
+  }
+
   :where(
     button,
     a[href],

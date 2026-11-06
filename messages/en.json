@@ -228,6 +228,7 @@
   "time_in_days": "in {count} d",
   "nav_home": "Home",
   "nav_main": "Main menu",
+  "nav_open_menu": "Open the menu",
   "nav_catalogue": "Catalogue",
   "nav_logs": "Technical logs",
   "nav_account_overview": "Overview",

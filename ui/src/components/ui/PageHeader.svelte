@@ -24,7 +24,7 @@
       </div>
     {/if}
     {#if actions}
-      <div class="ml-auto flex shrink-0 flex-wrap items-center justify-end gap-2">
+      <div class="ml-auto flex max-w-full shrink-0 flex-wrap items-center justify-end gap-2">
         {@render actions()}
       </div>
     {/if}

@@ -228,6 +228,7 @@
   "time_in_days": "след {count} д",
   "nav_home": "Начало",
   "nav_main": "Основно меню",
+  "nav_open_menu": "Отваряне на менюто",
   "nav_catalogue": "Каталог",
   "nav_logs": "Технически логове",
   "nav_account_overview": "Преглед",

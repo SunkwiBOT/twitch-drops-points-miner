@@ -228,6 +228,7 @@
   "time_in_days": "over {count} d",
   "nav_home": "Home",
   "nav_main": "Hoofdmenu",
+  "nav_open_menu": "Menu openen",
   "nav_catalogue": "Catalogus",
   "nav_logs": "Technisch logboek",
   "nav_account_overview": "Overzicht",

@@ -13,6 +13,7 @@
     isVaultLocked,
     navigate,
   } from "../../lib/state/state.svelte";
+  import { wideLayout } from "../../lib/state/viewport.svelte";
   import AccountDrops from "../account/AccountDrops.svelte";
   import AccountHistory from "../account/AccountHistory.svelte";
   import AccountInventory from "../account/AccountInventory.svelte";
@@ -31,6 +32,7 @@
   import FeedbackDialog from "../feedback/FeedbackDialog.svelte";
   import { APP_TITLE, LockKind } from "./layout.constants";
   import LockScreen from "./LockScreen.svelte";
+  import NavDrawer from "./NavDrawer.svelte";
   import Sidebar from "./Sidebar.svelte";
   import StartupProblem from "./StartupProblem.svelte";
   import Toasts from "./Toasts.svelte";
@@ -91,6 +93,15 @@
       closeBulk();
       app.loginDialog = false;
       app.feedbackDialog = false;
+      app.navDrawer = false;
+    }
+  });
+
+  // ! The drawer is unmounted when the window widens: left open, it would come back open
+  // by itself the next time the window narrows.
+  $effect(() => {
+    if (wideLayout.current) {
+      app.navDrawer = false;
     }
   });
 
@@ -128,8 +139,8 @@ timers and its push channel never do. -->
   {:else if vaultLocked}
     <LockScreen kind={LockKind.VAULT} />
   {:else}
-    <div class="grid h-full w-full grid-cols-[248px_minmax(0,1fr)]">
-      <Sidebar />
+    <div class="grid h-full w-full grid-cols-[minmax(0,1fr)] md:grid-cols-[248px_minmax(0,1fr)]">
+      {#if wideLayout.current}<Sidebar />{:else}<NavDrawer />{/if}
       <div class="flex h-full min-h-0 min-w-0 flex-col">
         <Topbar {title} {section} />
         {#if !app.snapshot}
