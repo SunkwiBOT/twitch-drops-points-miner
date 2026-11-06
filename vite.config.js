@@ -2,9 +2,37 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import { paraglideVitePlugin } from "@inlang/paraglide-js";
+import { readdirSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const devHost = process.env.TAURI_DEV_HOST;
+
+// The service worker's "no connection" screen (ui/public/offline.html) is no Svelte page:
+// its three texts in every language are written next to it at build time, from messages/.
+const offlineTexts = () => ({
+  name: "offline-texts",
+  generateBundle() {
+    const dir = fileURLToPath(new URL("./messages", import.meta.url));
+    const texts = Object.fromEntries(
+      readdirSync(dir)
+        .filter((file) => file.endsWith(".json"))
+        .map((file) => {
+          const messages = JSON.parse(readFileSync(`${dir}/${file}`, "utf8"));
+
+          return [
+            file.slice(0, -".json".length),
+            [messages.offline_title, messages.offline_text, messages.offline_retry],
+          ];
+        }),
+    );
+
+    this.emitFile({
+      type: "asset",
+      fileName: "offline-texts.js",
+      source: `self.OFFLINE_TEXTS = ${JSON.stringify(texts)};\n`,
+    });
+  },
+});
 
 export default defineConfig({
   root: "ui",
@@ -18,6 +46,7 @@ export default defineConfig({
     }),
     tailwindcss(),
     svelte(),
+    offlineTexts(),
   ],
   resolve: {
     alias: {

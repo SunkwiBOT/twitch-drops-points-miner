@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" data-theme="DARK">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0e0e10" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>Twitch Miner</title>
+    <style>
+      :root {
+        --background: #0e0e10;
+        --card: #18181b;
+        --foreground: #efeff1;
+        --muted: #adadb8;
+        --border: #2f2f35;
+        --primary: #9146ff;
+      }
+      :root[data-theme="LIGHT"] {
+        --background: #f4f4f6;
+        --card: #ffffff;
+        --foreground: #0e0e10;
+        --muted: #53535f;
+        --border: #e0e0e5;
+        --primary: #772ce8;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        display: grid;
+        place-items: center;
+        padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+          max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+        background: var(--background);
+        color: var(--foreground);
+        font:
+          14px/1.5 system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          "Noto Sans",
+          sans-serif;
+      }
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        max-width: 360px;
+        padding: 28px 24px 24px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--card);
+        text-align: center;
+      }
+      img {
+        width: 64px;
+        height: 64px;
+        image-rendering: pixelated;
+      }
+      h1 {
+        margin: 4px 0 0;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+      button {
+        margin-top: 8px;
+        min-height: 36px;
+        padding: 0 16px;
+        border: 0;
+        border-radius: 6px;
+        background: var(--primary);
+        color: #fff;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+      }
+    </style>
+    <script src="/offline-texts.js" defer></script>
+    <script src="/offline.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <img src="/app-icon.svg" alt="" />
+      <h1 id="title">No connection</h1>
+      <p id="text">Twitch Miner cannot reach its server. Check the connection, then try again.</p>
+      <button id="retry" type="button">Try again</button>
+    </main>
+  </body>
+</html>
