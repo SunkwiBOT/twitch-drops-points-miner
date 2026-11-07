@@ -74,12 +74,17 @@ jobs:
         include:
           - platform: ubuntu-22.04
             args: --bundles appimage,rpm,deb -- --locked
+            # ! No "linux" in the name: every AppImage is for Linux, and AppImage tools
+            # warn about a name that says so.
+            assets: "twitch-miner_[version]_[arch][setup][ext]"
           - platform: windows-latest
             args: --bundles nsis -- --locked
+            assets: "twitch-miner_[version]_[platform]_[arch][setup][ext]"
           - platform: macos-latest
             # ! The macOS updater installs the signed `.app.tar.gz` that only the `app`
             # bundle produces.
             args: --bundles app,dmg --target universal-apple-darwin -- --locked
+            assets: "twitch-miner_[version]_[platform]_[arch][setup][ext]"
     runs-on: ${{ matrix.platform }}
     permissions:
       contents: write
@@ -129,7 +134,7 @@ jobs:
           # ! A fixed file name without the product name's "&": GitHub drops it from
           # asset names but tauri-action does not, so it would not find the signatures
           # and would skip latest.json.
-          releaseAssetNamePattern: "twitch-miner_[version]_[platform]_[arch][setup][ext]"
+          releaseAssetNamePattern: ${{ matrix.assets }}
           args: ${{ matrix.args }}
 
       - name: Attach the portable Windows executable
